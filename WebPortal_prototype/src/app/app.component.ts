@@ -7,6 +7,8 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { CreateStudyPage } from '../pages/create_study/create_study';
 import { ModulesPage } from '../pages/modules/modules';
+import { LoginPage } from '../pages/login/login';
+import * as firebase from 'firebase';
 
 @Component({
   templateUrl: 'app.html'
@@ -14,12 +16,29 @@ import { ModulesPage } from '../pages/modules/modules';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+
 
   pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+
+
+
     this.initializeApp();
+
+  var that = this;
+
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        // User is signed in.
+        that.rootPage = HomePage;
+        // ...
+      } else {
+        // User is signed out.
+        // ...
+        that.rootPage = LoginPage;
+      }
+    });
 
     // used for an example of ngFor and navigation
     this.pages = [
