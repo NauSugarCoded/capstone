@@ -8,11 +8,15 @@ import { ListPage } from '../pages/list/list';
 import { CreateStudyPage } from '../pages/create_study/create_study';
 import { ModulesPage } from '../pages/modules/modules';
 import { LoginPage } from '../pages/login/login';
+import { SignupPage } from '../pages/signup/signup';
+
 
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import * as firebase from 'firebase';
+import { UsersserviceProvider } from '../providers/usersservice/usersservice';
+
 
 // Initialize Firebase
 export const config = {
@@ -33,6 +37,7 @@ firebase.initializeApp(config);
     CreateStudyPage,
     ModulesPage,
     LoginPage,
+    SignupPage,
   ],
   imports: [
     BrowserModule,
@@ -46,11 +51,13 @@ firebase.initializeApp(config);
     CreateStudyPage,
     ModulesPage,
     LoginPage,
+    SignupPage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    UsersserviceProvider
   ]
 })
 export class AppModule {}

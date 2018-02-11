@@ -26,7 +26,7 @@ export class MyApp {
 
     this.initializeApp();
 
-  var that = this;
+    var that = this;
 
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {

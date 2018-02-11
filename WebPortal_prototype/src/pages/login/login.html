@@ -17,13 +17,13 @@
 
   <ion-list>
     <ion-item>
-      <ion-label floating>Username</ion-label>
-      <ion-input type="text" value=""></ion-input>
+      <ion-label floating>Email</ion-label>
+      <ion-input type="email" [(ngModel)]="email" name="email" required="required"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Password</ion-label>
-      <ion-input type="password"></ion-input>
+      <ion-input type="password" [(ngModel)]="password" name="password" required="required"></ion-input>
     </ion-item>
   </ion-list>
 
@@ -32,7 +32,7 @@
     <button *ngIf="email && password " ion-button color="default" round (click)="submitLogin()">
      Login</button>
    <!-- Show dead button if form is not filled -->
-   <button *ngIf="!email && !password" ion-button color="default" clear round>Login</button>
+   <button *ngIf="!email || !password" ion-button color="deafault" clear round>Login</button>
 
   </div>
 
