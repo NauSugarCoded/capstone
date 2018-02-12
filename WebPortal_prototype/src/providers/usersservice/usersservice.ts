@@ -12,7 +12,7 @@ export class UsersserviceProvider {
 
   public data: any;
   public fireAuth: any;
-  public UserProfile: any;
+  public userProfile: any;
 
   constructor() {
     console.log('Hello UsersserviceProvider Provider');
