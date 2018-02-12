@@ -12,11 +12,12 @@ import * as firebase from 'firebase';
 
 @Component({
   templateUrl: 'app.html'
+
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-
+  rootPage:any = LoginPage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -25,20 +26,6 @@ export class MyApp {
 
 
     this.initializeApp();
-
-    var that = this;
-
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        // User is signed in.
-        that.rootPage = HomePage;
-        // ...
-      } else {
-        // User is signed out.
-        // ...
-        that.rootPage = LoginPage;
-      }
-    });
 
     // used for an example of ngFor and navigation
     this.pages = [

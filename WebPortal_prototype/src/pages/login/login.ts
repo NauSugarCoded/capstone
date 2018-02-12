@@ -30,6 +30,14 @@ export class LoginPage {
     public navCtrl: NavController,
     public navParams: NavParams) {
 
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          // User is signed in.
+          this.navCtrl.push(HomePage);
+          // ...
+        }
+      });
+
   }
 
   ionViewDidLoad() {
@@ -72,6 +80,7 @@ export class LoginPage {
   redirectToSignup() {
     this.navCtrl.push(SignupPage);
   }
+
 
 
 

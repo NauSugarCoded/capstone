@@ -54,13 +54,11 @@ export class SignupPage {
     }, error => {
       loader.dismiss();
 
-      let toast = this.toastCtrl.create({
+      this.toastCtrl.create({
         message: error,
         duration: 9000,
-        position: top
-      });
-
-      toast.present();
+        position: 'top'
+      }).present();
 
       that.password = ""
     });
