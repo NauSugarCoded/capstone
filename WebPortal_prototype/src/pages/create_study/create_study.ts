@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController,ToastController } from 'ionic-angular';
 import * as firebase from 'firebase';
 
 @Component({
@@ -15,7 +15,7 @@ export class CreateStudyPage {
   public study_edate: string;
   public study_description: string;
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public toastCtrl: ToastController) {
 
   }
 
@@ -26,6 +26,12 @@ export class CreateStudyPage {
       FullName: this.study_fname,
       StartDate: this.study_sdate
     });
+
+    this.toastCtrl.create({
+      message: "Study Created",
+      duration: 9000,
+      position: 'top'
+    }).present();
 
   }
 
