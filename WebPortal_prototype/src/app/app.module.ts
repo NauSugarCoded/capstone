@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { HttpClientModule } from '@angular/common/http';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -9,13 +10,16 @@ import { CreateStudyPage } from '../pages/create_study/create_study';
 import { ModulesPage } from '../pages/modules/modules';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
-
+import { QuestionsPage } from '../pages/questions/questions';
+import { CreateQuestionPage } from '../pages/create_question/create_question';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import * as firebase from 'firebase';
 import { UsersserviceProvider } from '../providers/usersservice/usersservice';
+import { DatabaseProvider } from '../providers/database/database';
+
 
 
 // Initialize Firebase
@@ -38,10 +42,12 @@ firebase.initializeApp(config);
     ModulesPage,
     LoginPage,
     SignupPage,
+    QuestionsPage,
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    HttpClientModule,
+    IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -52,12 +58,14 @@ firebase.initializeApp(config);
     ModulesPage,
     LoginPage,
     SignupPage,
+    QuestionsPage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    UsersserviceProvider
+    UsersserviceProvider,
+    DatabaseProvider
   ]
 })
 export class AppModule {}
