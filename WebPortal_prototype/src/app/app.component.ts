@@ -27,7 +27,7 @@ export class MyApp {
 
 
 
-    this.initializeApp(ENV.this);
+    this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
