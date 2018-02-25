@@ -9,23 +9,37 @@
 
 <ion-content padding>
 
-  <div class="page-container">
+  <ion-list>
 
-    <h3>Create Study</h3>
+   <ion-item>
+      <ion-label stacked>Study Full Name</ion-label>
+      <ion-input type="text" [(ngModel)]="study_fname" name="study_fname"></ion-input>
+    </ion-item>
 
-    <div id="create-study-form">
-      <form>
-        Study Full name:<br>
-        <input type="text" name="fullname"><br>
-        Short name:<br>
-        <input type="text" name="shortname"><br>
-        <br><br>
-        <input type="submit" name="submit" value="Submit">
-      </form>
+    <ion-item>
+      <ion-label stacked>Study Short Name</ion-label>
+      <ion-input type="text" [(ngModel)]="study_sname" name="study_sname"></ion-input>
+    </ion-item>
+
+    <ion-item >
+        <ion-label stacked>Study Start Date</ion-label>
+        <ion-input type="text" [(ngModel)]="study_sdate" name="study_sdate"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Study End Date</ion-label>
+      <ion-input type="text" [(ngModel)]="study_edate" name="study_edate"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Description</ion-label>
+      <ion-input type="text" [(ngModel)]="study_discription" name="study_discription"></ion-input>
+    </ion-item>
+
+    <div padding text-center>
+      <button ion-button color="default" round (click)="doSignup()" >Create Study</button>
     </div>
 
-  </div>
-
-
+  </ion-list>
 
 </ion-content>
