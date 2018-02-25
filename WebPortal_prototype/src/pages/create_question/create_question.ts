@@ -11,6 +11,16 @@ import { DatabaseProvider } from '../../providers/database/database';
   selector: 'page-create-question',
   templateUrl: 'create_question.html',
 })
+
+/*export class storage {
+	qtypes = [
+		{name: 'Text'},
+		{name: 'Radio'},
+		{name: 'Multiple Choice'},
+		{name: 'Slider'}
+	];
+}*/
+
 export class CreateQuestionPage {
 
 

@@ -10,14 +10,47 @@
 </ion-header>
 
 <ion-content padding>
+<div class = "row">
+  <div class = "col">
+    <button
+      ion-button
+      block
+      color='primary'
+      (click)='addDocument()'>
+      Add a new textbox question
+    </button>
+  </div>
 
-  <button
-    ion-button
-    block
-    color='primary'
-    (click)='addDocument()'>
-    Add a new question
-  </button>
+  <div class = "col">
+    <button
+      ion-button
+      block
+      color='primary'
+      (click)='addDocument()'>
+      Add a new radio question
+    </button>
+  </div>
+
+  <div class = "col">
+    <button
+      ion-button
+      block
+      color='primary'
+      (click)='addDocument()'>
+      Add a new multiple choice question
+    </button>
+  </div>
+
+  <div class = "col">
+    <button
+      ion-button
+      block
+      color='primary'
+      (click)='addDocument()'>
+      Add a new slider question
+    </button>
+  </div>
+</div>
 
   <ion-list>
     <ion-item *ngFor='let location of locations'>

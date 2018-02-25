@@ -156,7 +156,20 @@ export class QuestionsPage {
       this.navCtrl.push('create_question');
    }
 
+   addRadio() : void
+   {
+      this.navCtrl.push('create_question');
+   }
 
+   addSlider() : void
+   {
+      this.navCtrl.push('create_question');
+   }
+
+   addMulti() : void
+   {
+      this.navCtrl.push('create_question');
+   }
 
 
    /**
