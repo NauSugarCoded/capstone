@@ -22,7 +22,12 @@ export class CreateStudyPage {
 
   submitStudy() {
 
+<<<<<<< HEAD
     var study_database = firebase.database().ref("Studies/" + this.study_sname).set({
+=======
+
+      var study_database = firebase.database().ref("Studies/" + this.study_sname).set({
+>>>>>>> e4ece72949909d8d32c5f5b205575494876d846e
       Abstract: this.study_description,
       EndDate: this.study_edate,
       FullName: this.study_fname,
