@@ -8,6 +8,8 @@ import { ListPage } from '../pages/list/list';
 import { CreateStudyPage } from '../pages/create_study/create_study';
 import { ModulesPage } from '../pages/modules/modules';
 import { LoginPage } from '../pages/login/login';
+import { QuestionsPage } from '../pages/questions/questions';
+import { ENV } from '../config/env';
 import * as firebase from 'firebase';
 
 @Component({
@@ -17,7 +19,7 @@ import * as firebase from 'firebase';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = LoginPage;
+  rootPage:any = HomePage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -25,14 +27,14 @@ export class MyApp {
 
 
 
-    this.initializeApp();
+    this.initializeApp(ENV.this);
 
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'My Studies', component: ListPage },
+      { title: 'My Questions', component: QuestionsPage },
       { title: 'Modules', component: ModulesPage },
-      { title: 'Create Study', component: CreateStudyPage },
     ];
 
   }

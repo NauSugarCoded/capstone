@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Schema
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <button
+    ion-button
+    block
+    color='primary'
+    (click)='addDocument()'>
+    Add a new question
+  </button>
+
+  <ion-list>
+    <ion-item *ngFor='let location of locations'>
+      <h2>{{ location.name }}</h2>
+      <p>
+        Type: {{ location.type}}<br>
+        Question Text: {{ location.qtext }}
+      </p>
+
+      <button
+        ion-button
+        color='secondary'
+        (click)='updateDocument(location)'>
+        Update this question
+      </button>
+
+      <button
+        ion-button
+        color='danger'
+        (click)="deleteDocument(location)">
+        Delete this question
+      </button>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

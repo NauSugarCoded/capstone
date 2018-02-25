@@ -19,13 +19,31 @@ export class CreateStudyPage {
 
   }
 
+
   submitStudy() {
-    var study_database = firebase.database().ref("Studies/" + this.study_sname).set({
+
+    const admin =  require('firebase-admin')
+    const functions = require('firebase-functions');
+
+    admin.initializeApp(functions.config().firebase);
+
+    var db = admin.firestore();
+
+    var docRef = db.collection('Studies').doc(this.study_sname);
+
+    var setStudy = docRef.set({
       Abstract: this.study_description,
       EndDate: this.study_edate,
       FullName: this.study_fname,
       StartDate: this.study_sdate
     });
+
+    /* var study_database = firebase.database().ref("Studies/" + this.study_sname).set({
+      Abstract: this.study_description,
+      EndDate: this.study_edate,
+      FullName: this.study_fname,
+      StartDate: this.study_sdate
+    }); */
 
     this.toastCtrl.create({
       message: "Study Created",
