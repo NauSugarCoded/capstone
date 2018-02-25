@@ -27,7 +27,7 @@ export class MyApp {
 
 
 
-    this.initializeApp(ENV.this);
+    this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
@@ -35,6 +35,7 @@ export class MyApp {
       { title: 'My Studies', component: ListPage },
       { title: 'My Questions', component: QuestionsPage },
       { title: 'Modules', component: ModulesPage },
+      { title: 'Create Study', component: CreateStudyPage },
     ];
 
   }
