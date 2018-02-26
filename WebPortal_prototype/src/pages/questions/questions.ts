@@ -57,9 +57,9 @@ export class QuestionsPage {
                private _ALERT  : AlertController)
    {
       this._CONTENT = {
-         name : "DietQ1",
-         type : "textbox",
-         qtext : "Did you over eat during your last meal?"
+         name : "",
+         type : "",
+         qtext : ""
       };
    }
 

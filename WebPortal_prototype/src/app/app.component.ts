@@ -9,6 +9,7 @@ import { CreateStudyPage } from '../pages/create_study/create_study';
 import { ModulesPage } from '../pages/modules/modules';
 import { LoginPage } from '../pages/login/login';
 import { QuestionsPage } from '../pages/questions/questions';
+import { ParticipantsPage } from '../pages/participants/participants';
 import { ENV } from '../config/env';
 import * as firebase from 'firebase';
 
@@ -36,6 +37,7 @@ export class MyApp {
       { title: 'My Questions', component: QuestionsPage },
       { title: 'Modules', component: ModulesPage },
       { title: 'Create Study', component: CreateStudyPage },
+      { title: 'Participants', component: ParticipantsPage },
     ];
 
   }

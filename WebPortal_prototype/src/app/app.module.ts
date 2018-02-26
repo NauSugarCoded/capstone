@@ -12,6 +12,7 @@ import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { QuestionsPage } from '../pages/questions/questions';
 import { CreateQuestionPage } from '../pages/create_question/create_question';
+import { ParticipantsPage } from '../pages/participants/participants';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -43,6 +44,7 @@ firebase.initializeApp(config);
     LoginPage,
     SignupPage,
     QuestionsPage,
+    ParticipantsPage
   ],
   imports: [
     BrowserModule,
@@ -59,6 +61,7 @@ firebase.initializeApp(config);
     LoginPage,
     SignupPage,
     QuestionsPage,
+    ParticipantsPage
   ],
   providers: [
     StatusBar,

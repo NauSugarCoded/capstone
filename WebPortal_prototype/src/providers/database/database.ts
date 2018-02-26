@@ -74,6 +74,64 @@ export class DatabaseProvider {
     });
   }
 
+  getParticipants(collectionObj: string) : Promise<any>{
+    return new Promise((resolve, reject) => {
+      this._DB.collection(collectionObj)
+      .get()
+      .then((querySnapshot) => {
+        let obj : any = [];
+
+        querySnapshot
+        .forEach((doc: any) => {
+          obj.push({
+           id             : doc.id,
+           name           : doc.data().name,
+           email          : doc.data().email,
+           phone          : doc.data().phone,
+           owner          : doc.data().owner,
+           study          : doc.data().study,
+           sleep_start    : doc.data().sleep_start,
+           sleep_end      : doc.data().sleep_end
+          });
+        });
+
+        resolve(obj);
+      })
+      .catch((error : any) => {
+        reject(error);
+      });
+    });
+  }
+
+  getStudies(collectionObj: string) : Promise<any>{
+    return new Promise((resolve, reject) => {
+      this._DB.collection(collectionObj)
+      .get()
+      .then((querySnapshot) => {
+        let obj : any = [];
+
+        querySnapshot
+        .forEach((doc: any) => {
+          obj.push({
+           id             : doc.id,
+           abstract           : doc.data().name,
+           end_date          : doc.data().email,
+           full_name          : doc.data().phone,
+           modules          : doc.data().owner,
+           participants        : doc.data().study,
+           short_name    : doc.data().sleep_start,
+           start_date      : doc.data().sleep_end
+          });
+        });
+
+        resolve(obj);
+      })
+      .catch((error : any) => {
+        reject(error);
+      });
+    });
+  }
+
   /**
    * Add a new document to a selected database collection
    */

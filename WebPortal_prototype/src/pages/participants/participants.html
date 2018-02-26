@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Schema
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <button
+      ion-button
+      block
+      color='primary'
+      (click)='addParticipant()'>
+      Add a new participant
+    </button>
+
+  <ion-list>
+    <ion-item *ngFor='let location of locations'>
+      <h2>{{ location.name }}</h2>
+      <p>
+        ID: {{ location.id }} <br>
+        Email: {{ location.email}}<br>
+        Phone: {{ location.phone }}<br>
+        Owner: {{ location.owner }}<br>
+        Study: {{ location.study }}<br>
+        Sleep start time: {{ location.sleep_start}}<br>
+        Sleep end time: {{ location.sleep_end}}
+      </p>
+
+      <button
+        ion-button
+        color='secondary'
+        (click)='updateDocument(location)'>
+        Update this participant
+      </button>
+
+      <button
+        ion-button
+        color='danger'
+        (click)="deleteDocument(location)">
+        Delete this participant
+      </button>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
