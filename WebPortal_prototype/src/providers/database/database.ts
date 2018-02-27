@@ -62,7 +62,11 @@ export class DatabaseProvider {
            id             : doc.id,
            name           : doc.data().name,
            type     : doc.data().type,
-           qtext    : doc.data().qtext
+           qtext    : doc.data().qtext,
+           option1  :doc.data().option1,
+           option2  :doc.data().option2,
+           option3  :doc.data().option3,
+           option4  :doc.data().option4
           });
         });
 

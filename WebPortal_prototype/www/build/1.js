@@ -1,14 +1,14 @@
 webpackJsonp([1],{
 
-/***/ 535:
+/***/ 536:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CreateParticipantPageModule", function() { return CreateParticipantPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CreateQuestionPageModule", function() { return CreateQuestionPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__create_participant__ = __webpack_require__(540);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__create_question__ = __webpack_require__(542);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,35 +18,35 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var CreateParticipantPageModule = (function () {
-    function CreateParticipantPageModule() {
+var CreateQuestionPageModule = (function () {
+    function CreateQuestionPageModule() {
     }
-    CreateParticipantPageModule = __decorate([
+    CreateQuestionPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__create_participant__["a" /* CreateParticipantPage */],
+                __WEBPACK_IMPORTED_MODULE_2__create_question__["a" /* CreateQuestionPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__create_participant__["a" /* CreateParticipantPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__create_question__["a" /* CreateQuestionPage */]),
             ],
         })
-    ], CreateParticipantPageModule);
-    return CreateParticipantPageModule;
+    ], CreateQuestionPageModule);
+    return CreateQuestionPageModule;
 }());
 
-//# sourceMappingURL=create_participant.module.js.map
+//# sourceMappingURL=create_question.module.js.map
 
 /***/ }),
 
-/***/ 540:
+/***/ 542:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CreateParticipantPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CreateQuestionPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_database_database__ = __webpack_require__(181);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_database_database__ = __webpack_require__(107);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -60,8 +60,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var CreateParticipantPage = (function () {
-    function CreateParticipantPage(navCtrl, params, _FB, _DB, _ALERT) {
+var CreateQuestionPage = (function () {
+    function CreateQuestionPage(navCtrl, params, _FB, _DB, _ALERT) {
         this.navCtrl = navCtrl;
         this.params = params;
         this._FB = _FB;
@@ -75,47 +75,19 @@ var CreateParticipantPage = (function () {
          */
         this.name = '';
         /**
-         * @name email
+         * @name type
          * @type {string}
          * @public
          * @description     Model for population form field
          */
-        this.email = '';
+        this.type = '';
         /**
-         * @name phone
+         * @name qtext
          * @type {string}
          * @public
          * @description     Model for established form field
          */
-        this.phone = '';
-        /**
-         * @name owner
-         * @type {string}
-         * @public
-         * @description     Model for established form field
-         */
-        this.owner = '';
-        /**
-         * @name sleep_end
-         * @type {string}
-         * @public
-         * @description     Model for established form field
-         */
-        this.sleep_end = '';
-        /**
-         * @name sleep_start
-         * @type {string}
-         * @public
-         * @description     Model for established form field
-         */
-        this.sleep_start = '';
-        /**
-         * @name study
-         * @type {string}
-         * @public
-         * @description     Model for established form field
-         */
-        this.study = '';
+        this.qtext = '';
         /**
          * @name docID
          * @type {string}
@@ -137,25 +109,21 @@ var CreateParticipantPage = (function () {
          * @public
          * @description     property that defines the template title value
          */
-        this.title = 'Add a new participant';
+        this.title = 'Add a new question';
         /**
          * @name _COLL
          * @type {string}
          * @private
          * @description     property that stores the value for the database collection
          */
-        this._COLL = "Participants";
+        this._COLL = "Questions";
         // Use Formbuilder API to create a FormGroup object
         // that will be used to programmatically control the
         // form / form fields in the component template
         this.form = _FB.group({
             'name': ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required],
-            'email': ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required],
-            'phone': ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required],
-            'owner': ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required],
-            'sleep_end': ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required],
-            'sleep_start': ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required],
-            'study': ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required]
+            'type': ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required],
+            'qtext': ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required]
         });
         // If we have navigation parameters then we need to
         // parse these as we know these will be used for
@@ -163,15 +131,11 @@ var CreateParticipantPage = (function () {
         if (params.get('isEdited')) {
             var record = params.get('record');
             this.name = record.location.name;
-            this.email = record.location.email;
-            this.phone = record.location.phone;
-            this.owner = record.location.owner;
-            this.sleep_end = record.location.sleep_end;
-            this.sleep_start = record.location.sleep_start;
-            this.study = record.location.study;
+            this.type = record.location.type;
+            this.qtext = record.location.qtext;
             this.docID = record.location.id;
             this.isEditable = true;
-            this.title = 'Update this participant';
+            this.title = 'Update this question';
         }
     }
     /**
@@ -183,28 +147,24 @@ var CreateParticipantPage = (function () {
      * @param  val          {any}              Form data
      * @return {none}
      */
-    CreateParticipantPage.prototype.saveDocument = function (val) {
+    CreateQuestionPage.prototype.saveDocument = function (val) {
         var _this = this;
-        var name = this.form.controls["name"].value, email = this.form.controls["email"].value, phone = this.form.controls["phone"].value, owner = this.form.controls["owner"].value, sleep_end = this.form.controls["sleep_end"].value, sleep_start = this.form.controls["sleep_start"].value, study = this.form.controls["study"].value;
+        var name = this.form.controls["name"].value, type = this.form.controls["type"].value, qtext = this.form.controls["qtext"].value;
         // If we are editing an existing record then handle this scenario
         if (this.isEditable) {
             // Call the DatabaseProvider service and pass/format the data for use
             // with the updateDocument method
             this._DB.updateDocument(this._COLL, this.docID, {
                 name: name,
-                email: email,
-                phone: phone,
-                owner: owner,
-                sleep_end: sleep_end,
-                sleep_start: sleep_start,
-                study: study
+                type: type,
+                qtext: qtext
             })
                 .then(function (data) {
                 _this.clearForm();
-                _this.displayAlert('Success', 'The participant ' + name + ' was successfully updated');
+                _this.displayAlert('Success', 'The question ' + name + ' was successfully updated');
             })
                 .catch(function (error) {
-                _this.displayAlert('Updating participant failed', error.message);
+                _this.displayAlert('Updating question failed', error.message);
             });
         }
         else {
@@ -212,19 +172,15 @@ var CreateParticipantPage = (function () {
             // with the addDocument method
             this._DB.addDocument(this._COLL, {
                 name: name,
-                email: email,
-                phone: phone,
-                owner: owner,
-                sleep_end: sleep_end,
-                sleep_start: sleep_start,
-                study: study
+                type: type,
+                qtext: qtext
             })
                 .then(function (data) {
                 _this.clearForm();
-                _this.displayAlert('Record added', 'The participant ' + name + ' was successfully added');
+                _this.displayAlert('Question added', 'The question ' + name + ' was successfully added');
             })
                 .catch(function (error) {
-                _this.displayAlert('Adding participant failed', error.message);
+                _this.displayAlert('Adding question failed', error.message);
             });
         }
     };
@@ -237,7 +193,7 @@ var CreateParticipantPage = (function () {
      * @param  message        {String}           Content for alert message
      * @return {none}
      */
-    CreateParticipantPage.prototype.displayAlert = function (title, message) {
+    CreateQuestionPage.prototype.displayAlert = function (title, message) {
         var alert = this._ALERT.create({
             title: title,
             subTitle: message,
@@ -252,26 +208,34 @@ var CreateParticipantPage = (function () {
      * @method clearForm
      * @return {none}
      */
-    CreateParticipantPage.prototype.clearForm = function () {
+    CreateQuestionPage.prototype.clearForm = function () {
         this.name = '';
-        this.email = '';
-        this.phone = '';
-        this.owner = '';
-        this.sleep_end = '';
-        this.sleep_start = '';
-        this.study = '';
+        this.type = '';
+        this.qtext = '';
     };
-    CreateParticipantPage = __decorate([
+    CreateQuestionPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-create-participant',template:/*ion-inline-start:"/home/chantz/Desktop/college/projects/capstone/WebPortal_prototype/src/pages/create_participant/create_participant.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ title }}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <form\n    [formGroup]=\'form\'\n    (ngSubmit)=\'saveDocument(form.value)\'>\n\n    <ion-item>\n      <ion-label stacked>Participant Name:</ion-label>\n      <ion-input\n        type=\'text\'\n        formControlName=\'name\'\n        [(ngModel)]=\'name\'>\n      </ion-input>\n    </ion-item>\n\n    <ion-item>\n       <ion-label stacked>Participant Email:</ion-label>\n       <ion-input\n          type="text"\n          formControlName="email"\n          [(ngModel)]="email"></ion-input>\n 	  </ion-item>\n\n    <ion-item>\n       <ion-label stacked>Participant Phone:</ion-label>\n       <ion-input\n          type="text"\n          formControlName="phone"\n          [(ngModel)]="phone"></ion-input>\n    </ion-item>\n\n    <br>\n    <label stacked class ="item item-input item-select">\n      <div class ="input-label">\n        Participant Study:\n      </div>\n      <select formControlName=\'study\'>\n        <option *ngFor="let study of studs" [(ngModel)]="study">\n          {{ studs.short_name }}\n        </option>\n      </select>\n    </label>\n    <br>\n\n 	  <ion-item>\n       <button\n         ion-button\n         block\n         color="primary"\n         text-center\n         padding-top\n         padding-bottom\n         [disabled]="!form.valid">\n          <div *ngIf="!isEditable">\n             Add a new participant\n          </div>\n\n          <div *ngIf="isEditable">\n             Update this participant\n          </div>\n          </button>\n 	  </ion-item>\n\n  </form>\n\n</ion-content>\n'/*ion-inline-end:"/home/chantz/Desktop/college/projects/capstone/WebPortal_prototype/src/pages/create_participant/create_participant.html"*/,
-        }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormBuilder */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__providers_database_database__["a" /* DatabaseProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_database_database__["a" /* DatabaseProvider */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */]) === "function" && _e || Object])
-    ], CreateParticipantPage);
-    return CreateParticipantPage;
-    var _a, _b, _c, _d, _e;
+            selector: 'page-create-question',template:/*ion-inline-start:"/home/chantz/Desktop/college/projects/capstone/WebPortal_prototype/src/pages/create_question/create_question.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ title }}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <form\n    [formGroup]=\'form\'\n    (ngSubmit)=\'saveDocument(form.value)\'>\n\n    <ion-item>\n      <ion-label stacked>Question Name:</ion-label>\n      <ion-input\n        type=\'text\'\n        formControlName=\'name\'\n        [(ngModel)]=\'name\'>\n      </ion-input>\n    </ion-item>\n    <!--\n    <br>\n\n    <label stacked class ="item item-input item-select">\n      <div class ="input-label">\n        Question Type:\n      </div>\n      <select formControlName=\'type\'>\n        <option>Text</option>\n        <option>Radio</option>\n        <option>Multiple Choice</option>\n        <option>Slider</option>\n      </select>\n    </label>\n    <br>\n\n    <ion-item>\n       <ion-label stacked>Question Type:</ion-label>\n       <select>\n         <option>Text</option>\n         <option>Radio</option>\n         <option>Multiple Choice</option>\n         <option>Slider</option>\n        </select>\n 	  </ion-item>-->\n  <ion-item>\n       <ion-label stacked>Question Type:</ion-label>\n       <ion-input\n          type="text"\n          formControlName="type"\n          [(ngModel)]="type" value= \'text\' disabled=\'true\'></ion-input>\n 	  </ion-item>\n\n    <ion-item>\n       <ion-label stacked>Question Text:</ion-label>\n       <ion-input\n          type="text"\n          formControlName="qtext"\n          [(ngModel)]="qtext"></ion-input>\n 	  </ion-item>\n\n 	  <ion-item>\n       <button\n         ion-button\n         block\n         color="primary"\n         text-center\n         padding-top\n         padding-bottom\n         [disabled]="!form.valid">\n          <div *ngIf="!isEditable">\n             Add a new question\n          </div>\n\n          <div *ngIf="isEditable">\n             Update this question\n          </div>\n          </button>\n 	  </ion-item>\n\n  </form>\n\n</ion-content>\n'/*ion-inline-end:"/home/chantz/Desktop/college/projects/capstone/WebPortal_prototype/src/pages/create_question/create_question.html"*/,
+        })
+        /*export class storage {
+            qtypes = [
+                {name: 'Text'},
+                {name: 'Radio'},
+                {name: 'Multiple Choice'},
+                {name: 'Slider'}
+            ];
+        }*/
+        ,
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormBuilder */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_database_database__["a" /* DatabaseProvider */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */]])
+    ], CreateQuestionPage);
+    return CreateQuestionPage;
 }());
 
-//# sourceMappingURL=create_participant.js.map
+//# sourceMappingURL=create_question.js.map
 
 /***/ })
 

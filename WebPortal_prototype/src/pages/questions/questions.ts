@@ -158,7 +158,7 @@ export class QuestionsPage {
 
    addRadio() : void
    {
-      this.navCtrl.push('create_question');
+      this.navCtrl.push('create_questionRadio');
    }
 
    addSlider() : void
@@ -189,7 +189,56 @@ export class QuestionsPage {
       this.navCtrl.push('create_question', { record : params, isEdited : true });
    }
 
+   /**
+    * Update a document by passing the data to the manage-document component
+    *
+    * @public
+    * @method updateRadio
+    * @param  obj          {Object}           The document data we wish to update
+    * @return {none}
+    */
+   updateRadio(obj) : void
+   {
+      let params : any = {
+         collection   : this._COLL,
+         location     : obj
+      };
+      this.navCtrl.push('create_questionRadio', { record : params, isEdited : true });
+   }
 
+   /**
+    * Update a document by passing the data to the manage-document component
+    *
+    * @public
+    * @method updateMulti
+    * @param  obj          {Object}           The document data we wish to update
+    * @return {none}
+    */
+   updateMulti(obj) : void
+   {
+      let params : any = {
+         collection   : this._COLL,
+         location     : obj
+      };
+      this.navCtrl.push('create_question', { record : params, isEdited : true });
+   }
+
+   /**
+    * Update a document by passing the data to the manage-document component
+    *
+    * @public
+    * @method updateSlider
+    * @param  obj          {Object}           The document data we wish to update
+    * @return {none}
+    */
+   updateSlider(obj) : void
+   {
+      let params : any = {
+         collection   : this._COLL,
+         location     : obj
+      };
+      this.navCtrl.push('create_question', { record : params, isEdited : true });
+   }
 
 
    /**

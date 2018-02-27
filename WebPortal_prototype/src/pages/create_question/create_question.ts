@@ -144,7 +144,7 @@ export class CreateQuestionPage {
           this.qtext      = record.location.qtext;
           this.docID            = record.location.id;
           this.isEditable       = true;
-          this.title            = 'Update this document';
+          this.title            = 'Update this question';
       }
    }
 
@@ -205,7 +205,7 @@ export class CreateQuestionPage {
          .then((data) =>
          {
             this.clearForm();
-            this.displayAlert('Record added', 'The question ' +  name + ' was successfully added');
+            this.displayAlert('Question added', 'The question ' +  name + ' was successfully added');
          })
          .catch((error) =>
          {

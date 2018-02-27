@@ -26,7 +26,7 @@
       ion-button
       block
       color='primary'
-      (click)='addDocument()'>
+      (click)='addRadio()'>
       Add a new radio question
     </button>
   </div>
@@ -36,7 +36,7 @@
       ion-button
       block
       color='primary'
-      (click)='addDocument()'>
+      (click)='addMulti()'>
       Add a new multiple choice question
     </button>
   </div>
@@ -46,14 +46,14 @@
       ion-button
       block
       color='primary'
-      (click)='addDocument()'>
+      (click)='addSlider()'>
       Add a new slider question
     </button>
   </div>
 </div>
 
-  <ion-list>
-    <ion-item *ngFor='let location of locations'>
+  <ion-list><!--
+    <ion-item  *ngFor='let location of locations'>
       <h2>{{ location.name }}</h2>
       <p>
         Type: {{ location.type}}<br>
@@ -73,7 +73,36 @@
         (click)="deleteDocument(location)">
         Delete this question
       </button>
-    </ion-item>
-  </ion-list>
+    </ion-item>-->
+
+  <ion-item *ngFor='let location of locations'>
+    <h2>{{ location.name }}</h2>
+    <p>
+      Type: {{ location.type}}<br>
+      Question Text: {{ location.qtext }}<br>
+      <ng-container *ngIf="location.option1">
+      Answer Choice 1: {{ location.option1 }}<br>
+      Answer Choice 2: {{ location.option2 }}<br>
+      Answer Choice 3: {{ location.option3 }}<br>
+      Answer Choice 4: {{ location.option4 }}
+    </ng-container>
+    </p>
+
+    <button
+      ion-button
+      color='secondary'
+      (click)='updateRadio(location)'>
+      Update this question
+    </button>
+
+    <button
+      ion-button
+      color='danger'
+      (click)="deleteDocument(location)">
+      Delete this question
+    </button>
+  </ion-item>
+
+</ion-list>
 
 </ion-content>

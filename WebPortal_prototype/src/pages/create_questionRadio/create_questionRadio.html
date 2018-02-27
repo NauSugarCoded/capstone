@@ -1,0 +1,93 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ title }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form
+    [formGroup]='form'
+    (ngSubmit)='saveDocument(form.value)'>
+
+    <ion-item>
+      <ion-label stacked>Question Name:</ion-label>
+      <ion-input
+        type='text'
+        formControlName='name'
+        [(ngModel)]='name'>
+      </ion-input>
+    </ion-item>
+
+  <ion-item>
+       <ion-label stacked>Question Type:</ion-label>
+       <ion-input
+          type="text"
+          formControlName="type"
+          [(ngModel)]="type" value= 'radio' disabled='true'></ion-input>
+ 	  </ion-item>
+
+    <ion-item>
+       <ion-label stacked>Question Text:</ion-label>
+       <ion-input
+          type="text"
+          formControlName="qtext"
+          [(ngModel)]="qtext"></ion-input>
+ 	  </ion-item>
+
+    <ion-item>
+       <ion-label stacked>Answer choice 1:</ion-label>
+       <ion-input
+          type="text"
+          formControlName="option1"
+          [(ngModel)]="option1"></ion-input>
+    </ion-item>
+
+    <ion-item>
+       <ion-label stacked>Answer choice 2:</ion-label>
+       <ion-input
+          type="text"
+          formControlName="option2"
+          [(ngModel)]="option2"></ion-input>
+    </ion-item>
+
+    <ion-item>
+       <ion-label stacked>Answer choice 3:</ion-label>
+       <ion-input
+          type="text"
+          formControlName="option3"
+          [(ngModel)]="option3"></ion-input>
+    </ion-item>
+
+    <ion-item>
+       <ion-label stacked>Answer choice 4:</ion-label>
+       <ion-input
+          type="text"
+          formControlName="option4"
+          [(ngModel)]="option4"></ion-input>
+    </ion-item>
+
+ 	  <ion-item>
+       <button
+         ion-button
+         block
+         color="primary"
+         text-center
+         padding-top
+         padding-bottom
+         [disabled]="!form.valid">
+          <div *ngIf="!isEditable">
+             Add a new question
+          </div>
+
+          <div *ngIf="isEditable">
+             Update this question
+          </div>
+          </button>
+ 	  </ion-item>
+
+  </form>
+
+</ion-content>

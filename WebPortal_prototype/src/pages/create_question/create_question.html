@@ -20,7 +20,7 @@
         [(ngModel)]='name'>
       </ion-input>
     </ion-item>
-
+    <!--
     <br>
 
     <label stacked class ="item item-input item-select">
@@ -35,7 +35,7 @@
       </select>
     </label>
     <br>
-    <!--
+
     <ion-item>
        <ion-label stacked>Question Type:</ion-label>
        <select>
@@ -45,6 +45,13 @@
          <option>Slider</option>
         </select>
  	  </ion-item>-->
+  <ion-item>
+       <ion-label stacked>Question Type:</ion-label>
+       <ion-input
+          type="text"
+          formControlName="type"
+          [(ngModel)]="type" value= 'text' disabled='true'></ion-input>
+ 	  </ion-item>
 
     <ion-item>
        <ion-label stacked>Question Text:</ion-label>
