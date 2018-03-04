@@ -1,4 +1,4 @@
-webpackJsonp([6],{
+webpackJsonp([8],{
 
 /***/ 102:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -115,7 +115,9 @@ var DatabaseProvider = (function () {
                         option1: doc.data().option1,
                         option2: doc.data().option2,
                         option3: doc.data().option3,
-                        option4: doc.data().option4
+                        option4: doc.data().option4,
+                        option5: doc.data().option5,
+                        option6: doc.data().option6
                     });
                 });
                 resolve(obj);
@@ -439,28 +441,36 @@ webpackEmptyAsyncContext.id = 195;
 
 var map = {
 	"../pages/create_participant/create_participant.module": [
-		535,
-		2
-	],
-	"../pages/create_question/create_question.module": [
-		536,
-		1
-	],
-	"../pages/create_questionRadio/create_questionRadio.module": [
-		537,
-		0
-	],
-	"../pages/login/login.module": [
-		538,
-		5
-	],
-	"../pages/modules/modules.module": [
 		539,
 		4
 	],
-	"../pages/signup/signup.module": [
-		540,
+	"../pages/create_question/create_question.module": [
+		535,
 		3
+	],
+	"../pages/create_questionMulti/create_questionMulti.module": [
+		536,
+		2
+	],
+	"../pages/create_questionRadio/create_questionRadio.module": [
+		537,
+		1
+	],
+	"../pages/create_questionSlider/create_questionSlider.module": [
+		538,
+		0
+	],
+	"../pages/login/login.module": [
+		540,
+		7
+	],
+	"../pages/modules/modules.module": [
+		541,
+		6
+	],
+	"../pages/signup/signup.module": [
+		542,
+		5
 	]
 };
 function webpackAsyncContext(req) {
@@ -695,11 +705,11 @@ var QuestionsPage = (function () {
     QuestionsPage.prototype.addRadio = function () {
         this.navCtrl.push('create_questionRadio');
     };
-    QuestionsPage.prototype.addSlider = function () {
-        this.navCtrl.push('create_question');
-    };
     QuestionsPage.prototype.addMulti = function () {
-        this.navCtrl.push('create_question');
+        this.navCtrl.push('create_questionMulti');
+    };
+    QuestionsPage.prototype.addSlider = function () {
+        this.navCtrl.push('create_questionSlider');
     };
     /**
      * Update a document by passing the data to the manage-document component
@@ -744,7 +754,7 @@ var QuestionsPage = (function () {
             collection: this._COLL,
             location: obj
         };
-        this.navCtrl.push('create_question', { record: params, isEdited: true });
+        this.navCtrl.push('create_questionMulti', { record: params, isEdited: true });
     };
     /**
      * Update a document by passing the data to the manage-document component
@@ -759,7 +769,7 @@ var QuestionsPage = (function () {
             collection: this._COLL,
             location: obj
         };
-        this.navCtrl.push('create_question', { record: params, isEdited: true });
+        this.navCtrl.push('create_questionSlider', { record: params, isEdited: true });
     };
     /**
      * Delete a document from the Cloud Firestore collection using the
@@ -774,7 +784,7 @@ var QuestionsPage = (function () {
         var _this = this;
         this._DB.deleteDocument(this._COLL, obj.id)
             .then(function (data) {
-            _this.displayAlert('Success', 'The record ' + obj.name + ' was successfully removed');
+            _this.displayAlert('Success', 'The question ' + obj.name + ' was successfully removed');
         })
             .catch(function (error) {
             _this.displayAlert('Error', error.message);
@@ -805,7 +815,7 @@ var QuestionsPage = (function () {
     };
     QuestionsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-questions',template:/*ion-inline-start:"/home/chantz/Desktop/college/projects/capstone/WebPortal_prototype/src/pages/questions/questions.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>\n      Schema\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n<div class = "row">\n  <div class = "col">\n    <button\n      ion-button\n      block\n      color=\'primary\'\n      (click)=\'addDocument()\'>\n      Add a new textbox question\n    </button>\n  </div>\n\n  <div class = "col">\n    <button\n      ion-button\n      block\n      color=\'primary\'\n      (click)=\'addRadio()\'>\n      Add a new radio question\n    </button>\n  </div>\n\n  <div class = "col">\n    <button\n      ion-button\n      block\n      color=\'primary\'\n      (click)=\'addMulti()\'>\n      Add a new multiple choice question\n    </button>\n  </div>\n\n  <div class = "col">\n    <button\n      ion-button\n      block\n      color=\'primary\'\n      (click)=\'addSlider()\'>\n      Add a new slider question\n    </button>\n  </div>\n</div>\n\n  <ion-list><!--\n    <ion-item  *ngFor=\'let location of locations\'>\n      <h2>{{ location.name }}</h2>\n      <p>\n        Type: {{ location.type}}<br>\n        Question Text: {{ location.qtext }}\n      </p>\n\n      <button\n        ion-button\n        color=\'secondary\'\n        (click)=\'updateDocument(location)\'>\n        Update this question\n      </button>\n\n      <button\n        ion-button\n        color=\'danger\'\n        (click)="deleteDocument(location)">\n        Delete this question\n      </button>\n    </ion-item>-->\n\n  <ion-item *ngFor=\'let location of locations\'>\n    <h2>{{ location.name }}</h2>\n    <p>\n      Type: {{ location.type}}<br>\n      Question Text: {{ location.qtext }}<br>\n      <ng-container *ngIf="location.option1">\n      Answer Choice 1: {{ location.option1 }}<br>\n      Answer Choice 2: {{ location.option2 }}<br>\n      Answer Choice 3: {{ location.option3 }}<br>\n      Answer Choice 4: {{ location.option4 }}\n    </ng-container>\n    </p>\n\n    <button\n      ion-button\n      color=\'secondary\'\n      (click)=\'updateRadio(location)\'>\n      Update this question\n    </button>\n\n    <button\n      ion-button\n      color=\'danger\'\n      (click)="deleteDocument(location)">\n      Delete this question\n    </button>\n  </ion-item>\n\n</ion-list>\n\n</ion-content>\n'/*ion-inline-end:"/home/chantz/Desktop/college/projects/capstone/WebPortal_prototype/src/pages/questions/questions.html"*/
+            selector: 'page-questions',template:/*ion-inline-start:"/home/chantz/Desktop/college/projects/capstone/WebPortal_prototype/src/pages/questions/questions.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>\n      Schema\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n<div class = "row">\n  <div class = "col">\n    <button\n      ion-button\n      block\n      color=\'primary\'\n      (click)=\'addDocument()\'>\n      Add a new textbox question\n    </button>\n  </div>\n\n  <div class = "col">\n    <button\n      ion-button\n      block\n      color=\'primary\'\n      (click)=\'addRadio()\'>\n      Add a new radio question\n    </button>\n  </div>\n\n  <div class = "col">\n    <button\n      ion-button\n      block\n      color=\'primary\'\n      (click)=\'addMulti()\'>\n      Add a new multiple choice question\n    </button>\n  </div>\n\n  <div class = "col">\n    <button\n      ion-button\n      block\n      color=\'primary\'\n      (click)=\'addSlider()\'>\n      Add a new slider question\n    </button>\n  </div>\n</div>\n\n  <ion-list>\n\n  <ion-item *ngFor=\'let location of locations\'>\n    <h2>{{ location.name }}</h2>\n    <p>\n      Type: {{ location.type}}<br>\n      Question Text: {{ location.qtext }}<br>\n      <ng-container *ngIf="location.option1">\n      Answer Choice 1: {{ location.option1 }}<br>\n      Answer Choice 2: {{ location.option2 }}<br>\n      Answer Choice 3: {{ location.option3 }}<br>\n      Answer Choice 4: {{ location.option4 }}<br>\n      Answer Choice 5: {{ location.option5 }}<br>\n      Answer Choice 6: {{ location.option6 }}\n    </ng-container>\n    </p>\n\n    <ng-container *ngIf="location.type == \'text\'">\n      <button\n        ion-button\n        color=\'secondary\'\n        (click)=\'updateDocument(location)\'>\n        Update this question\n      </button>\n   </ng-container>\n\n    <ng-container *ngIf="location.type == \'radio\'">\n      <button\n        ion-button\n        color=\'secondary\'\n        (click)=\'updateRadio(location)\'>\n        Update this question\n      </button>\n   </ng-container>\n\n   <ng-container *ngIf="location.type == \'multi\'">\n     <button\n       ion-button\n       color=\'secondary\'\n       (click)=\'updateMulti(location)\'>\n       Update this question\n     </button>\n  </ng-container>\n\n  <ng-container *ngIf="location.type == \'slider\'">\n    <button\n      ion-button\n      color=\'secondary\'\n      (click)=\'updateSlider(location)\'>\n      Update this question\n    </button>\n </ng-container>\n\n    <button\n      ion-button\n      color=\'danger\'\n      (click)="deleteDocument(location)">\n      Delete this question\n    </button>\n  </ion-item>\n\n</ion-list>\n\n</ion-content>\n'/*ion-inline-end:"/home/chantz/Desktop/college/projects/capstone/WebPortal_prototype/src/pages/questions/questions.html"*/
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object])
     ], QuestionsPage);
@@ -1208,9 +1218,11 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["b" /* HttpClientModule */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* MyApp */], {}, {
                     links: [
-                        { loadChildren: '../pages/create_participant/create_participant.module#CreateParticipantPageModule', name: 'create_participant', segment: 'create_participant', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/create_question/create_question.module#CreateQuestionPageModule', name: 'create_question', segment: 'create_question', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/create_questionMulti/create_questionMulti.module#CreateQuestionMultiPageModule', name: 'create_questionMulti', segment: 'create_questionMulti', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/create_questionRadio/create_questionRadio.module#CreateQuestionRadioPageModule', name: 'create_questionRadio', segment: 'create_questionRadio', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/create_questionSlider/create_questionSlider.module#CreateQuestionSliderPageModule', name: 'create_questionSlider', segment: 'create_questionSlider', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/create_participant/create_participant.module#CreateParticipantPageModule', name: 'create_participant', segment: 'create_participant', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/modules/modules.module#ModulesPageModule', name: 'ModulesPage', segment: 'modules', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/signup/signup.module#SignupPageModule', name: 'SignupPage', segment: 'signup', priority: 'low', defaultHistory: [] }

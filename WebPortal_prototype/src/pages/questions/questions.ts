@@ -161,14 +161,14 @@ export class QuestionsPage {
       this.navCtrl.push('create_questionRadio');
    }
 
-   addSlider() : void
-   {
-      this.navCtrl.push('create_question');
-   }
-
    addMulti() : void
    {
-      this.navCtrl.push('create_question');
+      this.navCtrl.push('create_questionMulti');
+   }
+
+   addSlider() : void
+   {
+      this.navCtrl.push('create_questionSlider');
    }
 
 
@@ -220,7 +220,7 @@ export class QuestionsPage {
          collection   : this._COLL,
          location     : obj
       };
-      this.navCtrl.push('create_question', { record : params, isEdited : true });
+      this.navCtrl.push('create_questionMulti', { record : params, isEdited : true });
    }
 
    /**
@@ -237,7 +237,7 @@ export class QuestionsPage {
          collection   : this._COLL,
          location     : obj
       };
-      this.navCtrl.push('create_question', { record : params, isEdited : true });
+      this.navCtrl.push('create_questionSlider', { record : params, isEdited : true });
    }
 
 
@@ -256,7 +256,7 @@ export class QuestionsPage {
       						obj.id)
       .then((data : any) =>
       {
-         this.displayAlert('Success', 'The record ' + obj.name + ' was successfully removed');
+         this.displayAlert('Success', 'The question ' + obj.name + ' was successfully removed');
       })
       .catch((error : any) =>
       {

@@ -1,14 +1,14 @@
 webpackJsonp([1],{
 
-/***/ 536:
+/***/ 537:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CreateQuestionPageModule", function() { return CreateQuestionPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CreateQuestionRadioPageModule", function() { return CreateQuestionRadioPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__create_question__ = __webpack_require__(542);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__create_questionRadio__ = __webpack_require__(545);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,31 +18,31 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var CreateQuestionPageModule = (function () {
-    function CreateQuestionPageModule() {
+var CreateQuestionRadioPageModule = (function () {
+    function CreateQuestionRadioPageModule() {
     }
-    CreateQuestionPageModule = __decorate([
+    CreateQuestionRadioPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__create_question__["a" /* CreateQuestionPage */],
+                __WEBPACK_IMPORTED_MODULE_2__create_questionRadio__["a" /* CreateQuestionRadioPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__create_question__["a" /* CreateQuestionPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__create_questionRadio__["a" /* CreateQuestionRadioPage */]),
             ],
         })
-    ], CreateQuestionPageModule);
-    return CreateQuestionPageModule;
+    ], CreateQuestionRadioPageModule);
+    return CreateQuestionRadioPageModule;
 }());
 
-//# sourceMappingURL=create_question.module.js.map
+//# sourceMappingURL=create_questionRadio.module.js.map
 
 /***/ }),
 
-/***/ 542:
+/***/ 545:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CreateQuestionPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CreateQuestionRadioPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(32);
@@ -60,8 +60,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var CreateQuestionPage = (function () {
-    function CreateQuestionPage(navCtrl, params, _FB, _DB, _ALERT) {
+var CreateQuestionRadioPage = (function () {
+    function CreateQuestionRadioPage(navCtrl, params, _FB, _DB, _ALERT) {
         this.navCtrl = navCtrl;
         this.params = params;
         this._FB = _FB;
@@ -88,6 +88,48 @@ var CreateQuestionPage = (function () {
          * @description     Model for established form field
          */
         this.qtext = '';
+        /**
+           * @name option1
+           * @type {string}
+           * @public
+           * @description     Model for established form field
+           */
+        this.option1 = '';
+        /**
+           * @name option2
+           * @type {string}
+           * @public
+           * @description     Model for established form field
+           */
+        this.option2 = '';
+        /**
+           * @name option3
+           * @type {string}
+           * @public
+           * @description     Model for established form field
+           */
+        this.option3 = '';
+        /**
+           * @name option4
+           * @type {string}
+           * @public
+           * @description     Model for established form field
+           */
+        this.option4 = '';
+        /**
+           * @name option5
+           * @type {string}
+           * @public
+           * @description     Model for established form field
+           */
+        this.option5 = '';
+        /**
+           * @name option6
+           * @type {string}
+           * @public
+           * @description     Model for established form field
+           */
+        this.option6 = '';
         /**
          * @name docID
          * @type {string}
@@ -123,7 +165,13 @@ var CreateQuestionPage = (function () {
         this.form = _FB.group({
             'name': ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required],
             'type': ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required],
-            'qtext': ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required]
+            'qtext': ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required],
+            'option1': ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required],
+            'option2': [''],
+            'option3': [''],
+            'option4': [''],
+            'option5': [''],
+            'option6': ['']
         });
         // If we have navigation parameters then we need to
         // parse these as we know these will be used for
@@ -133,6 +181,12 @@ var CreateQuestionPage = (function () {
             this.name = record.location.name;
             this.type = record.location.type;
             this.qtext = record.location.qtext;
+            this.option1 = record.location.option1;
+            this.option2 = record.location.option2;
+            this.option3 = record.location.option3;
+            this.option4 = record.location.option4;
+            this.option5 = record.location.option5;
+            this.option6 = record.location.option6;
             this.docID = record.location.id;
             this.isEditable = true;
             this.title = 'Update this question';
@@ -147,9 +201,9 @@ var CreateQuestionPage = (function () {
      * @param  val          {any}              Form data
      * @return {none}
      */
-    CreateQuestionPage.prototype.saveDocument = function (val) {
+    CreateQuestionRadioPage.prototype.saveDocument = function (val) {
         var _this = this;
-        var name = this.form.controls["name"].value, type = this.form.controls["type"].value, qtext = this.form.controls["qtext"].value;
+        var name = this.form.controls["name"].value, type = this.form.controls["type"].value, qtext = this.form.controls["qtext"].value, option1 = this.form.controls["option1"].value, option2 = this.form.controls["option2"].value, option3 = this.form.controls["option3"].value, option4 = this.form.controls["option4"].value, option5 = this.form.controls["option5"].value, option6 = this.form.controls["option6"].value;
         // If we are editing an existing record then handle this scenario
         if (this.isEditable) {
             // Call the DatabaseProvider service and pass/format the data for use
@@ -157,7 +211,13 @@ var CreateQuestionPage = (function () {
             this._DB.updateDocument(this._COLL, this.docID, {
                 name: name,
                 type: type,
-                qtext: qtext
+                qtext: qtext,
+                option1: option1,
+                option2: option2,
+                option3: option3,
+                option4: option4,
+                option5: option5,
+                option6: option6
             })
                 .then(function (data) {
                 _this.clearForm();
@@ -173,7 +233,13 @@ var CreateQuestionPage = (function () {
             this._DB.addDocument(this._COLL, {
                 name: name,
                 type: type,
-                qtext: qtext
+                qtext: qtext,
+                option1: option1,
+                option2: option2,
+                option3: option3,
+                option4: option4,
+                option5: option5,
+                option6: option6
             })
                 .then(function (data) {
                 _this.clearForm();
@@ -193,7 +259,7 @@ var CreateQuestionPage = (function () {
      * @param  message        {String}           Content for alert message
      * @return {none}
      */
-    CreateQuestionPage.prototype.displayAlert = function (title, message) {
+    CreateQuestionRadioPage.prototype.displayAlert = function (title, message) {
         var alert = this._ALERT.create({
             title: title,
             subTitle: message,
@@ -208,34 +274,31 @@ var CreateQuestionPage = (function () {
      * @method clearForm
      * @return {none}
      */
-    CreateQuestionPage.prototype.clearForm = function () {
+    CreateQuestionRadioPage.prototype.clearForm = function () {
         this.name = '';
         this.type = '';
         this.qtext = '';
+        this.option1 = '';
+        this.option2 = '';
+        this.option3 = '';
+        this.option4 = '';
+        this.option5 = '';
+        this.option6 = '';
     };
-    CreateQuestionPage = __decorate([
+    CreateQuestionRadioPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-create-question',template:/*ion-inline-start:"/home/chantz/Desktop/college/projects/capstone/WebPortal_prototype/src/pages/create_question/create_question.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ title }}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <form\n    [formGroup]=\'form\'\n    (ngSubmit)=\'saveDocument(form.value)\'>\n\n    <ion-item>\n      <ion-label stacked>Question Name:</ion-label>\n      <ion-input\n        type=\'text\'\n        formControlName=\'name\'\n        [(ngModel)]=\'name\'>\n      </ion-input>\n    </ion-item>\n    <!--\n    <br>\n\n    <label stacked class ="item item-input item-select">\n      <div class ="input-label">\n        Question Type:\n      </div>\n      <select formControlName=\'type\'>\n        <option>Text</option>\n        <option>Radio</option>\n        <option>Multiple Choice</option>\n        <option>Slider</option>\n      </select>\n    </label>\n    <br>\n\n    <ion-item>\n       <ion-label stacked>Question Type:</ion-label>\n       <select>\n         <option>Text</option>\n         <option>Radio</option>\n         <option>Multiple Choice</option>\n         <option>Slider</option>\n        </select>\n 	  </ion-item>-->\n  <ion-item>\n       <ion-label stacked>Question Type:</ion-label>\n       <ion-input\n          type="text"\n          formControlName="type"\n          [(ngModel)]="type" value= \'text\' disabled=\'true\'></ion-input>\n 	  </ion-item>\n\n    <ion-item>\n       <ion-label stacked>Question Text:</ion-label>\n       <ion-input\n          type="text"\n          formControlName="qtext"\n          [(ngModel)]="qtext"></ion-input>\n 	  </ion-item>\n\n 	  <ion-item>\n       <button\n         ion-button\n         block\n         color="primary"\n         text-center\n         padding-top\n         padding-bottom\n         [disabled]="!form.valid">\n          <div *ngIf="!isEditable">\n             Add a new question\n          </div>\n\n          <div *ngIf="isEditable">\n             Update this question\n          </div>\n          </button>\n 	  </ion-item>\n\n  </form>\n\n</ion-content>\n'/*ion-inline-end:"/home/chantz/Desktop/college/projects/capstone/WebPortal_prototype/src/pages/create_question/create_question.html"*/,
-        })
-        /*export class storage {
-            qtypes = [
-                {name: 'Text'},
-                {name: 'Radio'},
-                {name: 'Multiple Choice'},
-                {name: 'Slider'}
-            ];
-        }*/
-        ,
+            selector: 'page-create-questionRadio',template:/*ion-inline-start:"/home/chantz/Desktop/college/projects/capstone/WebPortal_prototype/src/pages/create_questionRadio/create_questionRadio.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ title }}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <form\n    [formGroup]=\'form\'\n    (ngSubmit)=\'saveDocument(form.value)\'>\n\n    <ion-item>\n      <ion-label stacked>Question Name:</ion-label>\n      <ion-input\n        type=\'text\'\n        formControlName=\'name\'\n        [(ngModel)]=\'name\'>\n      </ion-input>\n    </ion-item>\n\n  <ion-item>\n       <ion-label stacked>Question Type:</ion-label>\n       <ion-input\n          type="text"\n          formControlName="type"\n          [(ngModel)]="type" value= \'radio\' disabled=\'true\'></ion-input>\n 	  </ion-item>\n\n    <ion-item>\n       <ion-label stacked>Question Text:</ion-label>\n       <ion-input\n          type="text"\n          formControlName="qtext"\n          [(ngModel)]="qtext"></ion-input>\n 	  </ion-item>\n\n    <ion-item>\n       <ion-label stacked>Answer choice 1:</ion-label>\n       <ion-input\n          type="text"\n          formControlName="option1"\n          [(ngModel)]="option1"></ion-input>\n    </ion-item>\n\n    <ion-item>\n       <ion-label stacked>Answer choice 2:</ion-label>\n       <ion-input\n          type="text"\n          formControlName="option2"\n          [(ngModel)]="option2"></ion-input>\n    </ion-item>\n\n    <ion-item>\n       <ion-label stacked>Answer choice 3:</ion-label>\n       <ion-input\n          type="text"\n          formControlName="option3"\n          [(ngModel)]="option3"></ion-input>\n    </ion-item>\n\n    <ion-item>\n       <ion-label stacked>Answer choice 4:</ion-label>\n       <ion-input\n          type="text"\n          formControlName="option4"\n          [(ngModel)]="option4"></ion-input>\n    </ion-item>\n\n    <ion-item>\n       <ion-label stacked>Answer choice 5:</ion-label>\n       <ion-input\n          type="text"\n          formControlName="option5"\n          [(ngModel)]="option5"></ion-input>\n    </ion-item>\n\n    <ion-item>\n       <ion-label stacked>Answer choice 6:</ion-label>\n       <ion-input\n          type="text"\n          formControlName="option6"\n          [(ngModel)]="option6"></ion-input>\n    </ion-item>\n\n 	  <ion-item>\n       <button\n         ion-button\n         block\n         color="primary"\n         text-center\n         padding-top\n         padding-bottom\n         [disabled]="!form.valid">\n          <div *ngIf="!isEditable">\n             Add a new question\n          </div>\n\n          <div *ngIf="isEditable">\n             Update this question\n          </div>\n          </button>\n 	  </ion-item>\n\n  </form>\n\n</ion-content>\n'/*ion-inline-end:"/home/chantz/Desktop/college/projects/capstone/WebPortal_prototype/src/pages/create_questionRadio/create_questionRadio.html"*/,
+        }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormBuilder */],
             __WEBPACK_IMPORTED_MODULE_3__providers_database_database__["a" /* DatabaseProvider */],
             __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */]])
-    ], CreateQuestionPage);
-    return CreateQuestionPage;
+    ], CreateQuestionRadioPage);
+    return CreateQuestionRadioPage;
 }());
 
-//# sourceMappingURL=create_question.js.map
+//# sourceMappingURL=create_questionRadio.js.map
 
 /***/ })
 

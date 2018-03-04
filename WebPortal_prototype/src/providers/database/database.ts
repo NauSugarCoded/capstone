@@ -66,7 +66,9 @@ export class DatabaseProvider {
            option1  :doc.data().option1,
            option2  :doc.data().option2,
            option3  :doc.data().option3,
-           option4  :doc.data().option4
+           option4  :doc.data().option4,
+           option5  :doc.data().option5,
+           option6  :doc.data().option6
           });
         });
 

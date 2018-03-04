@@ -97,7 +97,21 @@ export class CreateQuestionRadioPage {
 		*/
 	 public option4 	: string          = '';
 
+	 /**
+		* @name option5
+		* @type {string}
+		* @public
+		* @description     Model for established form field
+		*/
+	 public option5 	: string          = '';
 
+	 /**
+		* @name option6
+		* @type {string}
+		* @public
+		* @description     Model for established form field
+		*/
+	 public option6 	: string          = '';
 
    /**
     * @name docID
@@ -156,7 +170,9 @@ export class CreateQuestionRadioPage {
 				 'option1'				: ['', Validators.required],
 				 'option2'				: [''],
 				 'option3'				: [''],
-				 'option4'				: ['']
+				 'option4'				: [''],
+				 'option5'				: [''],
+				 'option6'				: ['']
       });
 
 
@@ -174,6 +190,8 @@ export class CreateQuestionRadioPage {
 					this.option2 		= record.location.option2;
 					this.option3 		= record.location.option3;
 					this.option4 		= record.location.option4;
+					this.option5 		= record.location.option5;
+					this.option6 		= record.location.option6;
           this.docID            = record.location.id;
           this.isEditable       = true;
           this.title            = 'Update this question';
@@ -199,7 +217,9 @@ export class CreateQuestionRadioPage {
 					option1 		: string 		= this.form.controls["option1"].value,
 					option2 		: string 		= this.form.controls["option2"].value,
 					option3 		: string 		= this.form.controls["option3"].value,
-					option4 		: string 		= this.form.controls["option4"].value;
+					option4 		: string 		= this.form.controls["option4"].value,
+					option5 		: string 		= this.form.controls["option5"].value,
+					option6 		: string 		= this.form.controls["option6"].value;
 
 
       // If we are editing an existing record then handle this scenario
@@ -217,7 +237,9 @@ export class CreateQuestionRadioPage {
 																 option1 : option1,
 																 option2 : option2,
 																 option3 : option3,
-																 option4 : option4
+																 option4 : option4,
+																 option5 : option5,
+																 option6 : option6
 	                           })
          .then((data) =>
          {
@@ -244,7 +266,9 @@ export class CreateQuestionRadioPage {
 														 option1 : option1,
 														 option2 : option2,
 														 option3 : option3,
-														 option4 : option4
+														 option4 : option4,
+														 option5 : option5,
+														 option6 : option6
 	                        })
          .then((data) =>
          {
@@ -298,6 +322,8 @@ export class CreateQuestionRadioPage {
 			this.option2 	= '';
 			this.option3 	= '';
 			this.option4 	= '';
+			this.option5 	= '';
+			this.option6 	= '';
    }
 
 
