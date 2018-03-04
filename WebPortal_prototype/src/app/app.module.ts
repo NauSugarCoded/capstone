@@ -5,13 +5,13 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import { StudiesPage } from '../pages/studies/studies';
 import { CreateStudyPage } from '../pages/create_study/create_study';
 import { ModulesPage } from '../pages/modules/modules';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { QuestionsPage } from '../pages/questions/questions';
-import { CreateQuestionPage } from '../pages/create_question/create_question';
+import { SelectModulePage } from '../pages/select_module/select_module';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -19,7 +19,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import * as firebase from 'firebase';
 import { UsersserviceProvider } from '../providers/usersservice/usersservice';
 import { DatabaseProvider } from '../providers/database/database';
-
 
 
 // Initialize Firebase
@@ -37,12 +36,12 @@ firebase.initializeApp(config);
   declarations: [
     MyApp,
     HomePage,
-    ListPage,
-    CreateStudyPage,
+    StudiesPage,
     ModulesPage,
     LoginPage,
     SignupPage,
     QuestionsPage,
+    SelectModulePage,
   ],
   imports: [
     BrowserModule,
@@ -53,12 +52,12 @@ firebase.initializeApp(config);
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage,
-    CreateStudyPage,
+    StudiesPage,
     ModulesPage,
     LoginPage,
     SignupPage,
     QuestionsPage,
+    SelectModulePage,
   ],
   providers: [
     StatusBar,
