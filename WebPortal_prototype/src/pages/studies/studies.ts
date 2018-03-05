@@ -26,7 +26,7 @@ export class StudiesPage {
    * @private
    * @description      Defines the initial document ID for the database collection
    */
-  private _DOC 		: string 			= "81XU1moWva6onAtMHpYY ";
+  private _DOC 		: string 			= "81XU1moWva6onAtMHpYY";
 
 
 
@@ -142,6 +142,7 @@ export class StudiesPage {
 
 
 
+
   /**
    * Navigate to the manage-document component to begin adding a new document
    *
@@ -188,7 +189,7 @@ export class StudiesPage {
         collection   : this._COLL,
         location     : obj
      };
-     this.navCtrl.push('create_study', { record : params, isEdited : true });
+     this.navCtrl.push('select_study', { record : params, isEdited : true });
   }
 
   /**
@@ -243,7 +244,4 @@ export class StudiesPage {
      alert.present();
   }
 
-  itemTapped(event, item) {
-    this.navCtrl.push(SelectStudyPage);
-  }
 }

@@ -133,6 +133,33 @@ export class DatabaseProvider {
     });
   }
 
+  getStudies_Modules(maincollectionObj: string, docObj : string, collectionObj : string) : Promise<any>{
+    return new Promise((resolve, reject) => {
+      this._DB.collection(maincollectionObj).doc(docObj).collection(collectionObj)
+      .get()
+      .then((querySnapshot) => {
+        let obj : any = [];
+
+        querySnapshot
+        .forEach((doc: any) => {
+          obj.push({
+           id             : doc.id,
+           name           : doc.data().name,
+           owner          : doc.data().owner,
+           type           : doc.data().type,
+          });
+        });
+
+        resolve(obj);
+      })
+      .catch((error : any) => {
+        reject(error);
+      });
+    });
+  }
+
+
+
   /**
    * Add a new document to a selected database collection
    */

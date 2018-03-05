@@ -69,7 +69,7 @@ export class CreateStudyPage {
     * @public
     * @description     Model for established form field
     */
-   public end_date 	: date;
+   public end_date 	: any;
 
 
 

@@ -11,7 +11,6 @@ import { ModulesPage } from '../pages/modules/modules';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { QuestionsPage } from '../pages/questions/questions';
-import { SelectModulePage } from '../pages/select_module/select_module';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -41,7 +40,6 @@ firebase.initializeApp(config);
     LoginPage,
     SignupPage,
     QuestionsPage,
-    SelectModulePage,
   ],
   imports: [
     BrowserModule,
@@ -57,7 +55,6 @@ firebase.initializeApp(config);
     LoginPage,
     SignupPage,
     QuestionsPage,
-    SelectModulePage,
   ],
   providers: [
     StatusBar,

@@ -8,10 +8,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+@IonicPage({
+ name: "create_module"
+})
 @Component({
   selector: 'page-create-modules',
-  templateUrl: 'create-modules.html',
+  templateUrl: 'create_modules.html',
 })
 export class CreateModulesPage {
 

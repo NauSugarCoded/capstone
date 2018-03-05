@@ -10,7 +10,9 @@ import { DatabaseProvider } from '../../providers/database/database';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+@IonicPage({
+  name: 'modules'
+})
 @Component({
   selector: 'page-modules',
   templateUrl: 'modules.html',

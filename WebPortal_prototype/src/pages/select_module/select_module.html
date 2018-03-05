@@ -14,5 +14,36 @@
 
 
 <ion-content padding>
-  
+
+  <form
+    [formGroup]='form'
+    (ngSubmit)='saveDocument(form.value)'>
+
+    <ion-item>
+      <ion-label stacked>Modules Name:</ion-label>
+      <ion-input
+        type='text'
+        formControlName='name'
+        [(ngModel)]='name'>
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+       <ion-label stacked>Owner:</ion-label>
+       <ion-input
+          type="text"
+          formControlName="owner"
+          [(ngModel)]="owner"></ion-input>
+ 	  </ion-item>
+
+    <ion-item>
+       <ion-label stacked>Type:</ion-label>
+       <ion-input
+          type="text"
+          formControlName="type"
+          [(ngModel)]="type"></ion-input>
+ 	  </ion-item>
+
+  </form>
+
 </ion-content>

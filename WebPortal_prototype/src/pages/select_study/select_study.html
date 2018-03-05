@@ -15,10 +15,57 @@
 
 <ion-content padding>
 
-  <ion-list>
+  <form
+    [formGroup]='form'>
+
     <ion-item>
-      <p>
-        Abstract: {{ abstract }}<br>
-        End Date: {{ end_date }}
-      </p>
+      <ion-label stacked>Study Full Name</ion-label>
+      <ion-input
+        type='text'
+        formControlName= "full_name"
+        [(ngModel)]="full_name">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+       <ion-label stacked>Study Short Name</ion-label>
+       <ion-input
+          type="text"
+          formControlName="short_name"
+          [(ngModel)]="short_name"></ion-input>
+ 	  </ion-item>
+
+    <ion-item>
+       <ion-label stacked>Study End Date</ion-label>
+       <ion-datetime
+          formControlName="end_date"
+          [(ngModel)]="end_date"></ion-datetime>
+ 	  </ion-item>
+
+    <ion-item>
+       <ion-label stacked>Description</ion-label>
+       <ion-input
+          type="text"
+          formControlName="abstract"
+          [(ngModel)]="abstract"></ion-input>
+ 	  </ion-item>
+<hr>
+    <h2> Modules </h2>
+    <ion-list>
+      <button ion-item *ngFor='let module of modules' (click)="viewDocument(module)">
+        <h2> {{ module.type }} </h2>
+      </button>
+    </ion-list>
+
+    <button
+      ion-button
+      block
+      color='primary'
+      (click)='addDocument()'>
+      Add a new module
+    </button>
+
+
+  </form>
+
 </ion-content>
