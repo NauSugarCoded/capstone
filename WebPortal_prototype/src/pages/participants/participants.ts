@@ -179,7 +179,7 @@ export class ParticipantsPage {
     * @method addParticipant
     * @return {none}
     */
-   addDocument() : void
+   addParticipant() : void
    {
       this.navCtrl.push('create_participant');
    }
@@ -202,7 +202,6 @@ export class ParticipantsPage {
       };
       this.navCtrl.push('create_participant', { record : params, isEdited : true });
    }
-
 
 
 

@@ -189,6 +189,8 @@ export class QuestionsPage {
       this.navCtrl.push('create_question', { record : params, isEdited : true });
    }
 
+
+
    /**
     * Update a document by passing the data to the manage-document component
     *

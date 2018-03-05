@@ -138,10 +138,9 @@ export class CreateQuestionPage {
       if(params.get('isEdited'))
       {
           let record 		        = params.get('record');
-
           this.name	            = record.location.name;
-          this.type   	  = record.location.type;
-          this.qtext      = record.location.qtext;
+          this.type   	  			= record.location.type;
+          this.qtext      			= record.location.qtext;
           this.docID            = record.location.id;
           this.isEditable       = true;
           this.title            = 'Update this question';

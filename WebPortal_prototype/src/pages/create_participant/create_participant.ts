@@ -134,6 +134,10 @@ export class CreateParticipantPage {
     * @description     property that stores the value for the database collection
     */
    private _COLL 		: string 			= "Participants";
+	 private _STUDS 	: string		  = "Studies";
+	 public studs : any;
+
+
 
 
    constructor(public navCtrl        : NavController,
@@ -150,9 +154,9 @@ export class CreateParticipantPage {
          'name' 		        : ['', Validators.required],
          'email' 	        : ['', Validators.required],
          'phone'	        : ['', Validators.required],
-         'owner' 	        : ['', Validators.required],
-         'sleep_end' 	        : ['', Validators.required],
-         'sleep_start' 	        : ['', Validators.required],
+         'owner' 	        : ['',],
+         'sleep_end' 	        : ['',],
+         'sleep_start' 	        : ['',],
          'study' 	        : ['', Validators.required]
       });
 
@@ -177,6 +181,44 @@ export class CreateParticipantPage {
       }
    }
 
+
+	 /**
+    * Retrieve all documents from the specified collection using the
+    * retrieveCollection method when the view is entered
+    *
+    * @public
+    * @method ionViewDidEnter
+    * @return {none}
+    */
+   ionViewDidEnter()
+   {
+      this.retrieveCollection();
+   }
+
+
+	 /**
+    * Retrieve all documents from the specified collection using the
+    * getDocuments method of the DatabaseProvider service
+    *
+    * @public
+    * @method retrieveCollection
+    * @return {none}
+    */
+   retrieveCollection() : void
+   {
+      this._DB.getDocuments(this._STUDS)
+      .then((data) =>
+      {
+
+         // Otherwise the collection does exist and we assign the returned
+         // documents to the public property of locations so this can be
+         // iterated through in the component template
+
+        this.studs = data;
+				print(this.studs)
+      })
+      .catch();
+   }
 
 
    /**

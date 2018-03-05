@@ -43,8 +43,8 @@
         Participant Study:
       </div>
       <select formControlName='study'>
-        <option *ngFor="let study of studs" [(ngModel)]="study">
-          {{ studs.short_name }}
+        <option *ngFor="let stud of studs" [(ngModel)]="study" [value]="stud">
+          {{ stud.short_name }}
         </option>
       </select>
     </label>
