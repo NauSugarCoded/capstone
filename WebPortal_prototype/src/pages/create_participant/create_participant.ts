@@ -206,7 +206,7 @@ export class CreateParticipantPage {
     */
    retrieveCollection() : void
    {
-      this._DB.getDocuments(this._STUDS)
+      this._DB.getStudies(this._STUDS)
       .then((data) =>
       {
 
@@ -215,7 +215,6 @@ export class CreateParticipantPage {
          // iterated through in the component template
 
         this.studs = data;
-				print(this.studs)
       })
       .catch();
    }
