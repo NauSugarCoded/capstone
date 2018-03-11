@@ -37,9 +37,9 @@
 
     <ion-item>
        <ion-label stacked>Study End Date</ion-label>
-       <ion-datetime
+       <ion-input
           formControlName="end_date"
-          [(ngModel)]="end_date"></ion-datetime>
+          [(ngModel)]="end_date"></ion-input>
  	  </ion-item>
 
     <ion-item>
@@ -53,7 +53,7 @@
     <h2> Modules </h2>
     <ion-list>
       <button ion-item *ngFor='let module of modules' (click)="viewDocument(module)">
-        <h2> {{ module.type }} </h2>
+        <h2> {{ module.name }} </h2>
       </button>
     </ion-list>
 

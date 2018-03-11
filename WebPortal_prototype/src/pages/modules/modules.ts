@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { SelectModulePage } from "../select_module/select_module"
 import { DatabaseProvider } from '../../providers/database/database';
 
 /**
@@ -18,9 +17,6 @@ import { DatabaseProvider } from '../../providers/database/database';
   templateUrl: 'modules.html',
 })
 export class ModulesPage {
-
-  icons: string[];
-  items: Array<{title: string, note: string, icon: string}>;
 
   /**
    * @name _COLL
@@ -63,7 +59,7 @@ export class ModulesPage {
   public locations     : any;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,  private _DB     : DatabaseProvider) {
+  constructor(public navCtrl: NavController, private _DB     : DatabaseProvider) {
 
     this._CONTENT = {
        name : "Test",
@@ -147,7 +143,7 @@ export class ModulesPage {
 
    addDocument() : void
    {
-      this.navCtrl.push('create_question');
+      this.navCtrl.push('create_module');
    }
 
 
@@ -156,8 +152,13 @@ export class ModulesPage {
     console.log('ionViewDidLoad ModulesPage');
   }
 
-  itemTapped(event, item) {
-    this.navCtrl.push(SelectModulePage);
+  updateDocument(obj) : void
+  {
+     let params : any = {
+        collection   : this._COLL,
+        location     : obj
+     };
+     this.navCtrl.push('create_module', { record : params, isEdited : true });
   }
 
 

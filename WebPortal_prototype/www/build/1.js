@@ -1,14 +1,14 @@
 webpackJsonp([1],{
 
-/***/ 531:
+/***/ 533:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CreateQuestionPageModule", function() { return CreateQuestionPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SelectModulePageModule", function() { return SelectModulePageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__create_question__ = __webpack_require__(539);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__select_module__ = __webpack_require__(539);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,23 +18,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var CreateQuestionPageModule = (function () {
-    function CreateQuestionPageModule() {
+var SelectModulePageModule = (function () {
+    function SelectModulePageModule() {
     }
-    CreateQuestionPageModule = __decorate([
+    SelectModulePageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__create_question__["a" /* CreateQuestionPage */],
+                __WEBPACK_IMPORTED_MODULE_2__select_module__["a" /* SelectModulePage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__create_question__["a" /* CreateQuestionPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__select_module__["a" /* SelectModulePage */]),
             ],
         })
-    ], CreateQuestionPageModule);
-    return CreateQuestionPageModule;
+    ], SelectModulePageModule);
+    return SelectModulePageModule;
 }());
 
-//# sourceMappingURL=create_question.module.js.map
+//# sourceMappingURL=select_module.module.js.map
 
 /***/ }),
 
@@ -42,10 +42,10 @@ var CreateQuestionPageModule = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CreateQuestionPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SelectModulePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_database_database__ = __webpack_require__(81);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -60,8 +60,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var CreateQuestionPage = (function () {
-    function CreateQuestionPage(navCtrl, params, _FB, _DB, _ALERT) {
+/**
+ * Generated class for the SelectModulePage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var SelectModulePage = (function () {
+    function SelectModulePage(navCtrl, params, _FB, _DB, _ALERT) {
         this.navCtrl = navCtrl;
         this.params = params;
         this._FB = _FB;
@@ -75,19 +81,19 @@ var CreateQuestionPage = (function () {
          */
         this.name = '';
         /**
-         * @name type
+         * @name owner
          * @type {string}
          * @public
          * @description     Model for population form field
          */
-        this.type = '';
+        this.owner = '';
         /**
-         * @name qtext
+         * @name tyoe
          * @type {string}
          * @public
          * @description     Model for established form field
          */
-        this.qtext = '';
+        this.type = '';
         /**
          * @name docID
          * @type {string}
@@ -116,74 +122,28 @@ var CreateQuestionPage = (function () {
          * @private
          * @description     property that stores the value for the database collection
          */
-        this._COLL = "Questions";
+        this._COLL = "Modules";
         // Use Formbuilder API to create a FormGroup object
         // that will be used to programmatically control the
         // form / form fields in the component template
         this.form = _FB.group({
             'name': ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required],
-            'type': ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required],
-            'qtext': ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required]
+            'owner': ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required],
+            'type': ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required]
         });
         // If we have navigation parameters then we need to
         // parse these as we know these will be used for
         // editing an existing record
         if (params.get('isEdited')) {
             var record = params.get('record');
-            this.name = record.location.name;
-            this.type = record.location.type;
-            this.qtext = record.location.qtext;
-            this.docID = record.location.id;
+            this.name = record.module.name;
+            this.type = record.module.type;
+            this.owner = record.module.owner;
+            this.docID = record.module.id;
             this.isEditable = true;
             this.title = 'Update this document';
         }
     }
-    /**
-     * Saves form data as newly added/edited record within Firebase Realtime
-     * database and handles uploading of media asset to Firebase Storage
-     *
-     * @public
-     * @method saveDocument
-     * @param  val          {any}              Form data
-     * @return {none}
-     */
-    CreateQuestionPage.prototype.saveDocument = function (val) {
-        var _this = this;
-        var name = this.form.controls["name"].value, type = this.form.controls["type"].value, qtext = this.form.controls["qtext"].value;
-        // If we are editing an existing record then handle this scenario
-        if (this.isEditable) {
-            // Call the DatabaseProvider service and pass/format the data for use
-            // with the updateDocument method
-            this._DB.updateDocument(this._COLL, this.docID, {
-                name: name,
-                type: type,
-                qtext: qtext
-            })
-                .then(function (data) {
-                _this.clearForm();
-                _this.displayAlert('Success', 'The question ' + name + ' was successfully updated');
-            })
-                .catch(function (error) {
-                _this.displayAlert('Updating question failed', error.message);
-            });
-        }
-        else {
-            // Call the DatabaseProvider service and pass/format the data for use
-            // with the addDocument method
-            this._DB.addDocument(this._COLL, {
-                name: name,
-                type: type,
-                qtext: qtext
-            })
-                .then(function (data) {
-                _this.clearForm();
-                _this.displayAlert('Record added', 'The question ' + name + ' was successfully added');
-            })
-                .catch(function (error) {
-                _this.displayAlert('Adding question failed', error.message);
-            });
-        }
-    };
     /**
      * Provide feedback to user after an operation has succeeded/failed
      *
@@ -193,7 +153,7 @@ var CreateQuestionPage = (function () {
      * @param  message        {String}           Content for alert message
      * @return {none}
      */
-    CreateQuestionPage.prototype.displayAlert = function (title, message) {
+    SelectModulePage.prototype.displayAlert = function (title, message) {
         var alert = this._ALERT.create({
             title: title,
             subTitle: message,
@@ -201,32 +161,20 @@ var CreateQuestionPage = (function () {
         });
         alert.present();
     };
-    /**
-     * Clear all form data
-     *
-     * @public
-     * @method clearForm
-     * @return {none}
-     */
-    CreateQuestionPage.prototype.clearForm = function () {
-        this.name = '';
-        this.type = '';
-        this.qtext = '';
-    };
-    CreateQuestionPage = __decorate([
+    SelectModulePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-create-question',template:/*ion-inline-start:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\create_question\create_question.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ title }}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <form\n\n    [formGroup]=\'form\'\n\n    (ngSubmit)=\'saveDocument(form.value)\'>\n\n\n\n    <ion-item>\n\n      <ion-label stacked>Question Name:</ion-label>\n\n      <ion-input\n\n        type=\'text\'\n\n        formControlName=\'name\'\n\n        [(ngModel)]=\'name\'>\n\n      </ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n       <ion-label stacked>Question Type:</ion-label>\n\n       <ion-input\n\n          type="text"\n\n          formControlName="type"\n\n          [(ngModel)]="type"></ion-input>\n\n 	  </ion-item>\n\n\n\n    <ion-item>\n\n       <ion-label stacked>Question Text:</ion-label>\n\n       <ion-input\n\n          type="text"\n\n          formControlName="qtext"\n\n          [(ngModel)]="qtext"></ion-input>\n\n 	  </ion-item>\n\n\n\n 	  <ion-item>\n\n       <button\n\n         ion-button\n\n         block\n\n         color="primary"\n\n         text-center\n\n         padding-top\n\n         padding-bottom\n\n         [disabled]="!form.valid">\n\n          <div *ngIf="!isEditable">\n\n             Add a new question\n\n          </div>\n\n\n\n          <div *ngIf="isEditable">\n\n             Update this question\n\n          </div>\n\n          </button>\n\n 	  </ion-item>\n\n\n\n  </form>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\create_question\create_question.html"*/,
+            selector: 'page-select-module',template:/*ion-inline-start:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\select_module\select_module.html"*/'<!--\n\n  Generated template for the SelectModulePage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Module</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n  <form\n\n    [formGroup]=\'form\'\n\n    (ngSubmit)=\'saveDocument(form.value)\'>\n\n\n\n    <ion-item>\n\n      <ion-label stacked>Modules Name:</ion-label>\n\n      <ion-input\n\n        type=\'text\'\n\n        formControlName=\'name\'\n\n        [(ngModel)]=\'name\'>\n\n      </ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n       <ion-label stacked>Owner:</ion-label>\n\n       <ion-input\n\n          type="text"\n\n          formControlName="owner"\n\n          [(ngModel)]="owner"></ion-input>\n\n 	  </ion-item>\n\n\n\n    <ion-item>\n\n       <ion-label stacked>Type:</ion-label>\n\n       <ion-input\n\n          type="text"\n\n          formControlName="type"\n\n          [(ngModel)]="type"></ion-input>\n\n 	  </ion-item>\n\n\n\n    <h2> Questions </h2>\n\n    <!-- <ion-list>\n\n      <button ion-item *ngFor=\'let module of modules\' (click)="viewDocument(module)">\n\n        <h2> {{ module.name }} </h2>\n\n      </button>\n\n    </ion-list>\n\n\n\n    <button\n\n      ion-button\n\n      block\n\n      color=\'primary\'\n\n      (click)=\'addDocument()\'>\n\n      Add a question to module\n\n    </button> -->\n\n\n\n  </form>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\select_module\select_module.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormBuilder */],
             __WEBPACK_IMPORTED_MODULE_3__providers_database_database__["a" /* DatabaseProvider */],
             __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */]])
-    ], CreateQuestionPage);
-    return CreateQuestionPage;
+    ], SelectModulePage);
+    return SelectModulePage;
 }());
 
-//# sourceMappingURL=create_question.js.map
+//# sourceMappingURL=select_module.js.map
 
 /***/ })
 

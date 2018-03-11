@@ -24,10 +24,10 @@
       block
       color='primary'
       (click)='addDocument()'>
-      Add a new module
+      Create a new module
     </button>
 
-    <button ion-item *ngFor='let location of locations' (click)="itemTapped($event, item)">
+    <button ion-item *ngFor='let location of locations' (click)="updateDocument(location)">
       {{location.name}}
       <div class="item-note" item-end>
         {{location.type}}

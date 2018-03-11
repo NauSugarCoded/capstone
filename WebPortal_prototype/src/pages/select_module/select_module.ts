@@ -105,7 +105,7 @@ export class SelectModulePage {
    * @private
    * @description     property that stores the value for the database collection
    */
-  private _COLL 		: string 			= "modules";
+  private _COLL 		: string 			= "Modules";
 
 
   constructor(public navCtrl        : NavController,
