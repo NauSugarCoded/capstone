@@ -120,13 +120,10 @@ export class DatabaseProvider {
         .forEach((doc: any) => {
           obj.push({
            id             : doc.id,
-           abstract           : doc.data().name,
-           end_date          : doc.data().email,
-           full_name          : doc.data().phone,
-           modules          : doc.data().owner,
-           participants        : doc.data().study,
-           short_name    : doc.data().sleep_start,
-           start_date      : doc.data().sleep_end
+           abstract           : doc.data().abstract,
+           end_date          : doc.data().end_date,
+           full_name          : doc.data().full_name,
+           short_name    : doc.data().short_name,
           });
         });
 

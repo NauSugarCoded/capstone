@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AngularFirestore } from 'angularfire2/firestore';
 import { DatabaseProvider } from '../../providers/database/database';
+import { Storage } from '@ionic/storage';
 
 
 @IonicPage({
@@ -12,9 +14,7 @@ import { DatabaseProvider } from '../../providers/database/database';
   templateUrl: 'create_participant.html',
 })
 
-
 export class CreateParticipantPage {
-
 
 
    /**
@@ -182,18 +182,7 @@ export class CreateParticipantPage {
    }
 
 
-	 /**
-    * Retrieve all documents from the specified collection using the
-    * retrieveCollection method when the view is entered
-    *
-    * @public
-    * @method ionViewDidEnter
-    * @return {none}
-    */
-   ionViewDidEnter()
-   {
-      this.retrieveCollection();
-   }
+
 
 
 	 /**
@@ -219,6 +208,18 @@ export class CreateParticipantPage {
       .catch();
    }
 
+	 /**
+    * Retrieve all documents from the specified collection using the
+    * retrieveCollection method when the view is entered
+    *
+    * @public
+    * @method ionViewDidEnter
+    * @return {none}
+    */
+   ionViewDidEnter()
+   {
+      this.retrieveCollection();
+   }
 
    /**
     * Saves form data as newly added/edited record within Firebase Realtime
@@ -335,7 +336,7 @@ export class CreateParticipantPage {
       this.phone 				= '';
       this.owner 				= '';
       this.sleep_end 				= '';
-      this.sleep_start 				= '';
+      this.sleep_start 			= '';
       this.study 				= '';
 
    }

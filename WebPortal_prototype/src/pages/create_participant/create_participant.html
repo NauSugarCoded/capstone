@@ -42,8 +42,12 @@
       <div class ="input-label">
         Participant Study:
       </div>
-      <select formControlName='study'>
-        <option *ngFor="let stud of studs" [(ngModel)]="study" [value]="stud">
+      <script>
+      console.log(studs);
+      console.log('cats');
+      </script>
+      <select formControlName="study">
+        <option *ngFor="let stud of studs">
           {{ stud.short_name }}
         </option>
       </select>
@@ -68,7 +72,6 @@
           </div>
           </button>
  	  </ion-item>
-
   </form>
 
 </ion-content>
