@@ -35,11 +35,7 @@ export class MyApp {
       { title: 'My Studies', component: StudiesPage },
       { title: 'My Questions', component: QuestionsPage },
       { title: 'Modules', component: ModulesPage },
-<<<<<<< HEAD
-      { title: 'Create Study', component: CreateStudyPage },
       { title: 'Participants', component: ParticipantsPage },
-=======
->>>>>>> ddfa01f710849d9abf639c2f429c9ed1566ee828
     ];
 
   }

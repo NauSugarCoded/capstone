@@ -11,11 +11,8 @@ import { ModulesPage } from '../pages/modules/modules';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { QuestionsPage } from '../pages/questions/questions';
-<<<<<<< HEAD
 import { CreateQuestionPage } from '../pages/create_question/create_question';
 import { ParticipantsPage } from '../pages/participants/participants';
-=======
->>>>>>> ddfa01f710849d9abf639c2f429c9ed1566ee828
 
 
 import { StatusBar } from '@ionic-native/status-bar';

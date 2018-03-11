@@ -147,7 +147,7 @@ export class ParticipantsPage {
 
    retrieveStudies() : void
    {
-      this._DB.getDocuments(this._SD)
+      this._DB.getStudies(this._SD)
       .then((data) =>
       {
 

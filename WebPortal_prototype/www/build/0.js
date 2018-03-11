@@ -1,14 +1,14 @@
 webpackJsonp([0],{
 
-/***/ 539:
+/***/ 544:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CreateQuestionSliderPageModule", function() { return CreateQuestionSliderPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SelectStudyPageModule", function() { return SelectStudyPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__create_questionSlider__ = __webpack_require__(547);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__select_study__ = __webpack_require__(554);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,35 +18,36 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var CreateQuestionSliderPageModule = (function () {
-    function CreateQuestionSliderPageModule() {
+var SelectStudyPageModule = (function () {
+    function SelectStudyPageModule() {
     }
-    CreateQuestionSliderPageModule = __decorate([
+    SelectStudyPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__create_questionSlider__["a" /* CreateQuestionSliderPage */],
+                __WEBPACK_IMPORTED_MODULE_2__select_study__["a" /* SelectStudyPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__create_questionSlider__["a" /* CreateQuestionSliderPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__select_study__["a" /* SelectStudyPage */]),
             ],
         })
-    ], CreateQuestionSliderPageModule);
-    return CreateQuestionSliderPageModule;
+    ], SelectStudyPageModule);
+    return SelectStudyPageModule;
 }());
 
-//# sourceMappingURL=create_questionSlider.module.js.map
+//# sourceMappingURL=select_study.module.js.map
 
 /***/ }),
 
-/***/ 547:
+/***/ 554:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CreateQuestionSliderPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SelectStudyPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_database_database__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_modules__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_database_database__ = __webpack_require__(64);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -60,41 +61,55 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var CreateQuestionSliderPage = (function () {
-    function CreateQuestionSliderPage(navCtrl, params, _FB, _DB, _ALERT) {
+
+/**
+ * Generated class for the SelectStudyPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var SelectStudyPage = (function () {
+    function SelectStudyPage(navCtrl, params, _FB, _DB, _ALERT) {
         this.navCtrl = navCtrl;
         this.params = params;
         this._FB = _FB;
         this._DB = _DB;
         this._ALERT = _ALERT;
         /**
-         * @name name
+         * @name full_name
          * @type {string}
          * @public
          * @description     Model for city form field
          */
-        this.name = '';
+        this.full_name = '';
         /**
-         * @name type
+         * @name short_name
          * @type {string}
          * @public
          * @description     Model for population form field
          */
-        this.type = '';
+        this.short_name = '';
         /**
-         * @name qtext
+         * @name abstract
          * @type {string}
          * @public
          * @description     Model for established form field
          */
-        this.qtext = '';
+        this.abstract = '';
+        /**
+         * @name end_date
+         * @type {date}
+         * @public
+         * @description     Model for established form field
+         */
+        this.end_date = '';
         /**
          * @name docID
          * @type {string}
          * @public
          * @description     property that stores an edited document's ID
          */
-        this.docID = '';
+        this.docID = '81XU1moWva6onAtMHpYY';
         /**
          * @name isEditable
          * @type {boolean}
@@ -109,80 +124,89 @@ var CreateQuestionSliderPage = (function () {
          * @public
          * @description     property that defines the template title value
          */
-        this.title = 'Add a new question';
+        this.title = 'Add a new Study';
         /**
          * @name _COLL
          * @type {string}
          * @private
          * @description     property that stores the value for the database collection
          */
-        this._COLL = "Questions";
+        this._COLL = "Studies";
         // Use Formbuilder API to create a FormGroup object
         // that will be used to programmatically control the
         // form / form fields in the component template
         this.form = _FB.group({
-            'name': ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required],
-            'type': ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required],
-            'qtext': ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required]
+            'full_name': ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required],
+            'short_name': ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required],
+            'abstract': ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required],
+            'end_date': ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required]
         });
         // If we have navigation parameters then we need to
         // parse these as we know these will be used for
         // editing an existing record
         if (params.get('isEdited')) {
             var record = params.get('record');
-            this.name = record.location.name;
-            this.type = record.location.type;
-            this.qtext = record.location.qtext;
+            this.full_name = record.location.full_name;
+            this.short_name = record.location.short_name;
+            this.abstract = record.location.abstract;
+            this.end_date = record.location.end_date;
             this.docID = record.location.id;
             this.isEditable = true;
-            this.title = 'Update this question';
+            this.title = 'Update this document';
         }
     }
     /**
-     * Saves form data as newly added/edited record within Firebase Realtime
-     * database and handles uploading of media asset to Firebase Storage
+     * Retrieve all documents from the specified collection using the
+     * retrieveCollection method when the view is entered
      *
      * @public
-     * @method saveDocument
-     * @param  val          {any}              Form data
+     * @method ionViewDidEnter
      * @return {none}
      */
-    CreateQuestionSliderPage.prototype.saveDocument = function (val) {
+    SelectStudyPage.prototype.ionViewDidEnter = function () {
+        this.retrieveCollection();
+        this.retrieveSubCollection();
+    };
+    SelectStudyPage.prototype.retrieveCollection = function () {
         var _this = this;
-        var name = this.form.controls["name"].value, type = this.form.controls["type"].value, qtext = this.form.controls["qtext"].value;
-        // If we are editing an existing record then handle this scenario
-        if (this.isEditable) {
-            // Call the DatabaseProvider service and pass/format the data for use
-            // with the updateDocument method
-            this._DB.updateDocument(this._COLL, this.docID, {
-                name: name,
-                type: type,
-                qtext: qtext
-            })
-                .then(function (data) {
-                _this.clearForm();
-                _this.displayAlert('Success', 'The question ' + name + ' was successfully updated');
-            })
-                .catch(function (error) {
-                _this.displayAlert('Updating question failed', error.message);
-            });
-        }
-        else {
-            // Call the DatabaseProvider service and pass/format the data for use
-            // with the addDocument method
-            this._DB.addDocument(this._COLL, {
-                name: name,
-                type: type,
-                qtext: qtext
-            })
-                .then(function (data) {
-                _this.clearForm();
-                _this.displayAlert('Question added', 'The question ' + name + ' was successfully added');
-            })
-                .catch(function (error) {
-                _this.displayAlert('Adding question failed', error.message);
-            });
-        }
+        this._DB.getStudies(this._COLL)
+            .then(function (data) {
+            _this.locations = data;
+        })
+            .catch();
+    };
+    /**
+     * Retrieve all documents from the specified collection using the
+     * getDocuments method of the DatabaseProvider service
+     *
+     * @public
+     * @method retrieveCollection
+     * @return {none}
+     */
+    SelectStudyPage.prototype.retrieveSubCollection = function () {
+        var _this = this;
+        this._DB.getStudies_Modules(this._COLL, this.docID, "modules")
+            .then(function (data) {
+            _this.modules = data;
+        })
+            .catch();
+    };
+    /**
+     * Navigate to the manage-document component to begin adding a new document
+     *
+     * @public
+     * @method addModule
+     * @return {none}
+     */
+    SelectStudyPage.prototype.addDocument = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__modules_modules__["a" /* ModulesPage */]);
+    };
+    SelectStudyPage.prototype.viewDocument = function (obj) {
+        var params = {
+            collection: "modules",
+            module: obj
+        };
+        this.navCtrl.push('select_module', { record: params, isEdited: true });
     };
     /**
      * Provide feedback to user after an operation has succeeded/failed
@@ -193,7 +217,7 @@ var CreateQuestionSliderPage = (function () {
      * @param  message        {String}           Content for alert message
      * @return {none}
      */
-    CreateQuestionSliderPage.prototype.displayAlert = function (title, message) {
+    SelectStudyPage.prototype.displayAlert = function (title, message) {
         var alert = this._ALERT.create({
             title: title,
             subTitle: message,
@@ -201,32 +225,20 @@ var CreateQuestionSliderPage = (function () {
         });
         alert.present();
     };
-    /**
-     * Clear all form data
-     *
-     * @public
-     * @method clearForm
-     * @return {none}
-     */
-    CreateQuestionSliderPage.prototype.clearForm = function () {
-        this.name = '';
-        this.type = '';
-        this.qtext = '';
-    };
-    CreateQuestionSliderPage = __decorate([
+    SelectStudyPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-create-questionSlider',template:/*ion-inline-start:"/home/chantz/Desktop/college/projects/capstone/WebPortal_prototype/src/pages/create_questionSlider/create_questionSlider.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ title }}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <form\n    [formGroup]=\'form\'\n    (ngSubmit)=\'saveDocument(form.value)\'>\n\n    <ion-item>\n      <ion-label stacked>Question Name:</ion-label>\n      <ion-input\n        type=\'text\'\n        formControlName=\'name\'\n        [(ngModel)]=\'name\'>\n      </ion-input>\n    </ion-item>\n\n  <ion-item>\n       <ion-label stacked>Question Type:</ion-label>\n       <ion-input\n          type="text"\n          formControlName="type"\n          [(ngModel)]="type" value= \'slider\' disabled=\'true\'></ion-input>\n 	  </ion-item>\n\n    <ion-item>\n       <ion-label stacked>Question Text:</ion-label>\n       <ion-input\n          type="text"\n          formControlName="qtext"\n          [(ngModel)]="qtext"></ion-input>\n 	  </ion-item>\n\n 	  <ion-item>\n       <button\n         ion-button\n         block\n         color="primary"\n         text-center\n         padding-top\n         padding-bottom\n         [disabled]="!form.valid">\n          <div *ngIf="!isEditable">\n             Add a new question\n          </div>\n\n          <div *ngIf="isEditable">\n             Update this question\n          </div>\n          </button>\n 	  </ion-item>\n\n  </form>\n\n</ion-content>\n'/*ion-inline-end:"/home/chantz/Desktop/college/projects/capstone/WebPortal_prototype/src/pages/create_questionSlider/create_questionSlider.html"*/,
+            selector: 'page-select-study',template:/*ion-inline-start:"/home/chantz/Desktop/college/projects/capstone/WebPortal_prototype/src/pages/select_study/select_study.html"*/'<!--\n  Generated template for the SelectStudyPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ short_name }}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <form\n    [formGroup]=\'form\'>\n\n    <ion-item>\n      <ion-label stacked>Study Full Name</ion-label>\n      <ion-input\n        type=\'text\'\n        formControlName= "full_name"\n        [(ngModel)]="full_name">\n      </ion-input>\n    </ion-item>\n\n    <ion-item>\n       <ion-label stacked>Study Short Name</ion-label>\n       <ion-input\n          type="text"\n          formControlName="short_name"\n          [(ngModel)]="short_name"></ion-input>\n 	  </ion-item>\n\n    <ion-item>\n       <ion-label stacked>Study End Date</ion-label>\n       <ion-input\n          formControlName="end_date"\n          [(ngModel)]="end_date"></ion-input>\n 	  </ion-item>\n\n    <ion-item>\n       <ion-label stacked>Description</ion-label>\n       <ion-input\n          type="text"\n          formControlName="abstract"\n          [(ngModel)]="abstract"></ion-input>\n 	  </ion-item>\n<hr>\n    <h2> Modules </h2>\n    <ion-list>\n      <button ion-item *ngFor=\'let module of modules\' (click)="viewDocument(module)">\n        <h2> {{ module.name }} </h2>\n      </button>\n    </ion-list>\n\n    <button\n      ion-button\n      block\n      color=\'primary\'\n      (click)=\'addDocument()\'>\n      Add a new module\n    </button>\n\n\n  </form>\n\n</ion-content>\n'/*ion-inline-end:"/home/chantz/Desktop/college/projects/capstone/WebPortal_prototype/src/pages/select_study/select_study.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormBuilder */],
-            __WEBPACK_IMPORTED_MODULE_3__providers_database_database__["a" /* DatabaseProvider */],
+            __WEBPACK_IMPORTED_MODULE_4__providers_database_database__["a" /* DatabaseProvider */],
             __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */]])
-    ], CreateQuestionSliderPage);
-    return CreateQuestionSliderPage;
+    ], SelectStudyPage);
+    return SelectStudyPage;
 }());
 
-//# sourceMappingURL=create_questionSlider.js.map
+//# sourceMappingURL=select_study.js.map
 
 /***/ })
 
