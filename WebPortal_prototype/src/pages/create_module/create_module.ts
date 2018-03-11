@@ -5,23 +5,13 @@ import { DatabaseProvider } from '../../providers/database/database';
 
 
 @IonicPage({
-	name: "create_question"
+	name: "create_module"
 })
 @Component({
   selector: 'page-create-question',
-  templateUrl: 'create_question.html',
+  templateUrl: 'create_module.html',
 })
-
-/*export class storage {
-	qtypes = [
-		{name: 'Text'},
-		{name: 'Radio'},
-		{name: 'Multiple Choice'},
-		{name: 'Slider'}
-	];
-}*/
-
-export class CreateQuestionPage {
+export class CreateModulePage {
 
 
 
@@ -66,12 +56,12 @@ export class CreateQuestionPage {
 
 
    /**
-    * @name qtext
+    * @name owner
     * @type {string}
     * @public
     * @description     Model for established form field
     */
-   public qtext 	: string          = '';
+   public owner 	: string          = '';
 
 
 
@@ -102,7 +92,7 @@ export class CreateQuestionPage {
     * @public
     * @description     property that defines the template title value
     */
-   public title 		: string		   = 'Add a new question';
+   public title 		: string		   = 'Add a new module';
 
 
 
@@ -112,7 +102,7 @@ export class CreateQuestionPage {
     * @private
     * @description     property that stores the value for the database collection
     */
-   private _COLL 		: string 			= "Questions";
+   private _COLL 		: string 			= "Modules";
 
 
    constructor(public navCtrl        : NavController,
@@ -128,7 +118,7 @@ export class CreateQuestionPage {
       this.form 		= _FB.group({
          'name' 		        : ['', Validators.required],
          'type' 	        : ['', Validators.required],
-         'qtext'	        : ['', Validators.required]
+         'owner'	        : ['', Validators.required]
       });
 
 
@@ -138,12 +128,13 @@ export class CreateQuestionPage {
       if(params.get('isEdited'))
       {
           let record 		        = params.get('record');
+
           this.name	            = record.location.name;
-          this.type   	  			= record.location.type;
-          this.qtext      			= record.location.qtext;
+          this.type   	  = record.location.type;
+          this.owner      = record.location.owner;
           this.docID            = record.location.id;
           this.isEditable       = true;
-          this.title            = 'Update this question';
+          this.title            = 'Update this document';
       }
    }
 
@@ -162,7 +153,7 @@ export class CreateQuestionPage {
    {
       let name	      : string		= this.form.controls["name"].value,
 	 	      type        : string 		= this.form.controls["type"].value,
-  		    qtext       : string		= this.form.controls["qtext"].value;
+  		    owner       : string		= this.form.controls["owner"].value;
 
 
       // If we are editing an existing record then handle this scenario
@@ -176,7 +167,7 @@ export class CreateQuestionPage {
                                {
 	                               name    : name,
 	                               type    : type,
-	                               qtext   : qtext
+	                               owner   : owner
 	                           })
          .then((data) =>
          {
@@ -199,16 +190,16 @@ export class CreateQuestionPage {
                             {
 	                           name    : name,
 	                           type    : type,
-	                           qtext   : qtext
+	                           owner   : owner
 	                        })
          .then((data) =>
          {
             this.clearForm();
-            this.displayAlert('Question added', 'The question ' +  name + ' was successfully added');
+            this.displayAlert('Record added', 'The module ' +  name + ' was successfully added');
          })
          .catch((error) =>
          {
-            this.displayAlert('Adding question failed', error.message);
+            this.displayAlert('Adding module failed', error.message);
          });
       }
    }
@@ -248,7 +239,7 @@ export class CreateQuestionPage {
    {
       this.name  					= '';
       this.type				= '';
-      this.qtext 				= '';
+      this.owner 				= '';
    }
 
 

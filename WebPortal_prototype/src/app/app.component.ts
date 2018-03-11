@@ -4,8 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
-import { CreateStudyPage } from '../pages/create_study/create_study';
+import { StudiesPage } from '../pages/studies/studies';
 import { ModulesPage } from '../pages/modules/modules';
 import { LoginPage } from '../pages/login/login';
 import { QuestionsPage } from '../pages/questions/questions';
@@ -33,11 +32,14 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
-      { title: 'My Studies', component: ListPage },
+      { title: 'My Studies', component: StudiesPage },
       { title: 'My Questions', component: QuestionsPage },
       { title: 'Modules', component: ModulesPage },
+<<<<<<< HEAD
       { title: 'Create Study', component: CreateStudyPage },
       { title: 'Participants', component: ParticipantsPage },
+=======
+>>>>>>> ddfa01f710849d9abf639c2f429c9ed1566ee828
     ];
 
   }

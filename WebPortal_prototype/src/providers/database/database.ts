@@ -17,7 +17,7 @@ export class DatabaseProvider {
   private _DB: any;
 
   constructor(public http: HttpClient) {
-    console.log('Hello DatabaseProvider Provider');
+    console.log('Hello DatabaseQuestionsProvider Provider');
     this._DB = firebase.firestore();
   }
 
@@ -49,7 +49,7 @@ export class DatabaseProvider {
    * Return documents from specific database collection
    */
 
-  getDocuments(collectionObj: string) : Promise<any>{
+  getQuestions(collectionObj: string) : Promise<any>{
     return new Promise((resolve, reject) => {
       this._DB.collection(collectionObj)
       .get()
@@ -135,6 +135,91 @@ export class DatabaseProvider {
     });
   }
 
+  /*
+   * Return documents from specific database collection
+   */
+
+  getModules(collectionObj: string) : Promise<any>{
+    return new Promise((resolve, reject) => {
+      this._DB.collection(collectionObj)
+      .get()
+      .then((querySnapshot) => {
+        let obj : any = [];
+
+        querySnapshot
+        .forEach((doc: any) => {
+          obj.push({
+           id             : doc.id,
+           name           : doc.data().name,
+           owner    : doc.data().owner,
+           type     : doc.data().type,
+          });
+        });
+
+        resolve(obj);
+      })
+      .catch((error : any) => {
+        reject(error);
+      });
+    });
+  }
+
+  /*
+   * Return documents from specific database collection
+   */
+
+  getStudies(collectionObj: string) : Promise<any>{
+    return new Promise((resolve, reject) => {
+      this._DB.collection(collectionObj)
+      .get()
+      .then((querySnapshot) => {
+        let obj : any = [];
+
+        querySnapshot
+        .forEach((doc: any) => {
+          obj.push({
+           id             : doc.id,
+           full_name           : doc.data().full_name,
+           abstract    : doc.data().abstract,
+           short_name     : doc.data().short_name,
+          });
+        });
+
+        resolve(obj);
+      })
+      .catch((error : any) => {
+        reject(error);
+      });
+    });
+  }
+
+  getStudies_Modules(maincollectionObj: string, docObj : string, collectionObj : string) : Promise<any>{
+    return new Promise((resolve, reject) => {
+      this._DB.collection(maincollectionObj).doc(docObj).collection(collectionObj)
+      .get()
+      .then((querySnapshot) => {
+        let obj : any = [];
+
+        querySnapshot
+        .forEach((doc: any) => {
+          obj.push({
+           id             : doc.id,
+           name           : doc.data().name,
+           owner          : doc.data().owner,
+           type           : doc.data().type,
+          });
+        });
+
+        resolve(obj);
+      })
+      .catch((error : any) => {
+        reject(error);
+      });
+    });
+  }
+
+
+
   /**
    * Add a new document to a selected database collection
    */
@@ -192,4 +277,21 @@ export class DatabaseProvider {
         });
       });
     }
+
+    viewDocument(collectionObj : string,
+                    docID : string,
+                    dataObj : any) : Promise<any>{
+      return new Promise((resolve, reject) => {
+        this._DB
+        .collection(collectionObj)
+        .doc(docID)
+        .then((obj : any) => {
+          resolve(obj);
+        })
+        .catch((error : any) => {
+          reject(error);
+        });
+      });
+    }
+
 }

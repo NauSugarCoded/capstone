@@ -119,7 +119,7 @@ export class QuestionsPage {
     */
    retrieveCollection() : void
    {
-      this._DB.getDocuments(this._COLL)
+      this._DB.getQuestions(this._COLL)
       .then((data) =>
       {
 
