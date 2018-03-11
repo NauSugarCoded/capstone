@@ -1,0 +1,71 @@
+<!--
+  Generated template for the SelectStudyPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ short_name }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <form
+    [formGroup]='form'>
+
+    <ion-item>
+      <ion-label stacked>Study Full Name</ion-label>
+      <ion-input
+        type='text'
+        formControlName= "full_name"
+        [(ngModel)]="full_name">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+       <ion-label stacked>Study Short Name</ion-label>
+       <ion-input
+          type="text"
+          formControlName="short_name"
+          [(ngModel)]="short_name"></ion-input>
+ 	  </ion-item>
+
+    <ion-item>
+       <ion-label stacked>Study End Date</ion-label>
+       <ion-input
+          formControlName="end_date"
+          [(ngModel)]="end_date"></ion-input>
+ 	  </ion-item>
+
+    <ion-item>
+       <ion-label stacked>Description</ion-label>
+       <ion-input
+          type="text"
+          formControlName="abstract"
+          [(ngModel)]="abstract"></ion-input>
+ 	  </ion-item>
+<hr>
+    <h2> Modules </h2>
+    <ion-list>
+      <button ion-item *ngFor='let module of modules' (click)="viewDocument(module)">
+        <h2> {{ module.name }} </h2>
+      </button>
+    </ion-list>
+
+    <button
+      ion-button
+      block
+      color='primary'
+      (click)='addDocument()'>
+      Add a new module
+    </button>
+
+
+  </form>
+
+</ion-content>

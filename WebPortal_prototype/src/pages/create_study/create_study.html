@@ -1,45 +1,69 @@
 <ion-header>
+
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>SCHEMA</ion-title>
+    <ion-title>{{ title }}</ion-title>
   </ion-navbar>
+
 </ion-header>
 
 <ion-content padding>
 
-  <ion-list>
+  <form
+    [formGroup]='form'
+    (ngSubmit)='saveDocument(form.value)'>
 
-   <ion-item>
+    <ion-item>
       <ion-label stacked>Study Full Name</ion-label>
-      <ion-input type="text" [(ngModel)]="study_fname" name="study_fname"></ion-input>
+      <ion-input
+        type='text'
+        formControlName= "full_name"
+        [(ngModel)]="full_name">
+      </ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label stacked>Study Short Name</ion-label>
-      <ion-input type="text" [(ngModel)]="study_sname" name="study_sname"></ion-input>
-    </ion-item>
-
-    <ion-item >
-        <ion-label stacked>Study Start Date</ion-label>
-        <ion-input type="date" [(ngModel)]="study_sdate" name="study_sdate"></ion-input>
-    </ion-item>
+       <ion-label stacked>Study Short Name</ion-label>
+       <ion-input
+          type="text"
+          formControlName="short_name"
+          [(ngModel)]="short_name"></ion-input>
+ 	  </ion-item>
 
     <ion-item>
-      <ion-label stacked>Study End Date</ion-label>
-      <ion-input type="date" [(ngModel)]="study_edate" name="study_edate"></ion-input>
-    </ion-item>
+       <ion-label stacked>Study End Date</ion-label>
+       <ion-input
+          type="date"
+          formControlName="end_date"
+          [(ngModel)]="end_date"></ion-input>
+ 	  </ion-item>
 
     <ion-item>
-      <ion-label stacked>Description</ion-label>
-      <ion-input type="text" [(ngModel)]="study_description" name="study_discription"></ion-input>
-    </ion-item>
+       <ion-label stacked>Description</ion-label>
+       <ion-input
+          type="text"
+          formControlName="abstract"
+          [(ngModel)]="abstract"></ion-input>
+ 	  </ion-item>
 
-    <div padding text-center>
-      <button ion-button color="default" round (click)="submitStudy()" >Create Study</button>
-    </div>
+ 	  <ion-item>
+       <button
+         ion-button
+         block
+         color="primary"
+         text-center
+         padding-top
+         padding-bottom
+         [disabled]="!form.valid">
+          <div *ngIf="!isEditable">
+             Add a new study
+          </div>
 
-  </ion-list>
+          <div *ngIf="isEditable">
+             Update this study
+          </div>
+          </button>
+ 	  </ion-item>
+
+  </form>
 
 </ion-content>

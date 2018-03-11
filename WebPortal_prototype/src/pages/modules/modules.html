@@ -18,4 +18,21 @@
 
 <ion-content padding>
 
+  <ion-list>
+    <button
+      ion-button
+      block
+      color='primary'
+      (click)='addDocument()'>
+      Create a new module
+    </button>
+
+    <button ion-item *ngFor='let location of locations' (click)="updateDocument(location)">
+      {{location.name}}
+      <div class="item-note" item-end>
+        {{location.type}}
+      </div>
+    </button>
+  </ion-list>
+
 </ion-content>
