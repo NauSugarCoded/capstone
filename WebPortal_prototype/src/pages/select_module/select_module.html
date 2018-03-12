@@ -16,8 +16,7 @@
 <ion-content padding>
 
   <form
-    [formGroup]='form'
-    (ngSubmit)='saveDocument(form.value)'>
+    [formGroup]='form'>
 
     <ion-item>
       <ion-label stacked>Modules Name:</ion-label>
@@ -45,19 +44,21 @@
  	  </ion-item>
 
     <h2> Questions </h2>
-    <!-- <ion-list>
-      <button ion-item *ngFor='let module of modules' (click)="viewDocument(module)">
-        <h2> {{ module.name }} </h2>
+
+    <ion-list>
+      <button ion-item *ngFor='let question of questions'>
+        <h2> {{ question.id }} </h2>
       </button>
     </ion-list>
 
-    <button
-      ion-button
-      block
-      color='primary'
-      (click)='addDocument()'>
-      Add a question to module
-    </button> -->
+    <ion-item *ngFor='let quest of quests'>
+      <button ion-button
+              block
+              color='primary'
+            (click)="saveQuestions(quest)">
+              Add question {{ quest.name }}
+      </button>
+    </ion-item>
 
   </form>
 

@@ -190,6 +190,37 @@ export class DatabaseProvider {
     });
   }
 
+  getModules_Questions(maincollectionObj: string, docObj : string, collectionObj : string) : Promise<any>{
+    return new Promise((resolve, reject) => {
+      this._DB.collection(maincollectionObj).doc(docObj).collection(collectionObj)
+      .get()
+      .then((querySnapshot) => {
+        let obj : any = [];
+
+        querySnapshot
+        .forEach((doc: any) => {
+          obj.push({
+            id             : doc.id,
+            name           : doc.data().name,
+            type     : doc.data().type,
+            qtext    : doc.data().qtext,
+            option1  :doc.data().option1,
+            option2  :doc.data().option2,
+            option3  :doc.data().option3,
+            option4  :doc.data().option4,
+            option5  :doc.data().option5,
+            option6  :doc.data().option6
+          });
+        });
+
+        resolve(obj);
+      })
+      .catch((error : any) => {
+        reject(error);
+      });
+    });
+  }
+
 
 
   /**
@@ -209,9 +240,37 @@ export class DatabaseProvider {
     });
   }
 
+  addStudies_Modules(maincollectionObj: string, docObj : string,
+                     collectionObj : string, dataObj : any) : Promise<any>{
+    return new Promise((resolve, reject) => {
+      this._DB.collection(maincollectionObj).doc(docObj).collection(collectionObj)
+      .add(dataObj)
+      .then((obj : any) => {
+        resolve(obj);
+      })
+      .catch((error : any) => {
+        reject(error);
+      });
+    });
+  }
+
+  addModules_Questions(maincollectionObj: string, docObj : string,
+                     collectionObj : string, dataObj : any) : Promise<any>{
+    return new Promise((resolve, reject) => {
+      this._DB.collection(maincollectionObj).doc(docObj).collection(collectionObj)
+      .add(dataObj)
+      .then((obj : any) => {
+        resolve(obj);
+      })
+      .catch((error : any) => {
+        reject(error);
+      });
+    });
+  }
   /**
    * Delete an existing document from a selected database collection
    */
+
 
    deleteDocument(collectionObj : string,
                   docID : string) : Promise<any>{

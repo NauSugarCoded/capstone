@@ -107,6 +107,21 @@ export class SelectModulePage {
    */
   private _COLL 		: string 			= "Modules";
 
+  /**
+   * @name quests
+   * @type {object}
+   * @private
+   * @description     property that stores the value for the database collection
+   */
+  private quests 		: any;
+
+  /**
+   * @name questions
+   * @type {object}
+   * @private
+   * @description     property that stores the value for the database collection
+   */
+  private questions 		: any;
 
   constructor(public navCtrl        : NavController,
               public params         : NavParams,
@@ -132,16 +147,46 @@ export class SelectModulePage {
      {
          let record 		        = params.get('record');
 
-         this.name	            = record.module.name;
-         this.type   	  = record.module.type;
-         this.owner      = record.module.owner;
-         this.docID            = record.module.id;
+         this.name	            = record.location.name;
+         this.type   	  = record.location.type;
+         this.owner      = record.location.owner;
+         this.docID            = record.location.id;
          this.isEditable       = true;
          this.title            = 'Update this document';
      }
   }
 
+  ionViewDidEnter()
+  {
+    this.retrieveCollection();
+    this.retrieveSubCollection();
+  }
 
+  retrieveCollection() : void
+  {
+     this._DB.getQuestions("Questions")
+     .then((data) =>
+     {
+       this.quests = data;
+
+     })
+     .catch();
+  }
+
+  retrieveSubCollection() : void
+  {
+     this._DB.getModules_Questions(this._COLL, this.docID, "Questions")
+     .then((data) =>
+     {
+       this.questions = data;
+     })
+     .catch();
+  }
+
+  saveQuestions(val : any)
+  {
+    this._DB.addModules_Questions("Modules", this.docID, "Questions", val);
+  }
 
   /**
    * Provide feedback to user after an operation has succeeded/failed
