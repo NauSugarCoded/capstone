@@ -164,34 +164,6 @@ export class DatabaseProvider {
     });
   }
 
-  /*
-   * Return documents from specific database collection
-   */
-
-  getStudies(collectionObj: string) : Promise<any>{
-    return new Promise((resolve, reject) => {
-      this._DB.collection(collectionObj)
-      .get()
-      .then((querySnapshot) => {
-        let obj : any = [];
-
-        querySnapshot
-        .forEach((doc: any) => {
-          obj.push({
-           id             : doc.id,
-           full_name           : doc.data().full_name,
-           abstract    : doc.data().abstract,
-           short_name     : doc.data().short_name,
-          });
-        });
-
-        resolve(obj);
-      })
-      .catch((error : any) => {
-        reject(error);
-      });
-    });
-  }
 
   getStudies_Modules(maincollectionObj: string, docObj : string, collectionObj : string) : Promise<any>{
     return new Promise((resolve, reject) => {
