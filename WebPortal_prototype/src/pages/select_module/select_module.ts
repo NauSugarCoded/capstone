@@ -66,6 +66,38 @@ export class SelectModulePage {
    */
   public type 	: string          = '';
 
+  /**
+   * @name recurrence
+   * @type {string}
+   * @public
+   * @description     Model for established form field
+   */
+  public recurrence 	: string          = '';
+
+  /**
+   * @name start_time
+   * @type {time}
+   * @public
+   * @description     Model for established form field
+   */
+  public start_time 	: any;
+
+  /**
+   * @name start_date
+   * @type {date}
+   * @public
+   * @description     Model for established form field
+   */
+  public start_date 	: any;
+
+  /**
+   * @name end_date
+   * @type {date}
+   * @public
+   * @description     Model for established form field
+   */
+  public end_date 	: any;
+
 
 
   /**
@@ -135,8 +167,13 @@ export class SelectModulePage {
      // form / form fields in the component template
      this.form 		= _FB.group({
         'name' 		        : ['', Validators.required],
-        'owner' 	        : ['', Validators.required],
-        'type'	        : ['', Validators.required]
+        'type'	        : ['', Validators.required],
+        'recurrence'			: [''],
+        'start_time'			:	[''],
+        'start_date'			: [''],
+        'end_date'				: [''],
+        'owner' 	        : ['', Validators.required]
+
      });
 
 
@@ -149,6 +186,10 @@ export class SelectModulePage {
 
          this.name	            = record.location.name;
          this.type   	  = record.location.type;
+         this.recurrence = record.location.recurrence;
+         this.start_time = record.location.start_time;
+         this.start_date = record.location.start_date;
+         this.end_date = record.location.end_date;
          this.owner      = record.location.owner;
          this.docID            = record.location.id;
          this.isEditable       = true;

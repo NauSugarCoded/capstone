@@ -153,6 +153,10 @@ export class DatabaseProvider {
            name           : doc.data().name,
            owner    : doc.data().owner,
            type     : doc.data().type,
+           recurrence : doc.data().recurrence,
+           start_time : doc.data().start_time,
+           start_date : doc.data().start_date,
+           end_date   : doc.data().end_date,
           });
         });
 

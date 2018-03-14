@@ -43,6 +43,40 @@
           [(ngModel)]="type"></ion-input>
  	  </ion-item>
 
+    <ion-item>
+      <ion-label> Recurrence: </ion-label>
+      <ion-select formControlName="recurrence" [(ngModel)]="recurrence">
+        <ion-option value="once"> Once </ion-option>
+        <ion-option value="day"> Daily </ion-option>
+        <ion-option value="week"> Weekly </ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+       <ion-label stacked> Start Time </ion-label>
+       <ion-datetime
+          displayFormat="hh:mma"
+          type="time"
+          formControlName="start_time"
+          [(ngModel)]="start_time"></ion-datetime>
+ 	  </ion-item>
+
+    <ion-item>
+       <ion-label stacked> Start Date </ion-label>
+       <ion-input
+          type="date"
+          formControlName="start_date"
+          [(ngModel)]="start_date"></ion-input>
+ 	  </ion-item>
+
+    <ion-item>
+       <ion-label stacked> End Date</ion-label>
+       <ion-input
+          type="date"
+          formControlName="end_date"
+          [(ngModel)]="end_date"></ion-input>
+ 	  </ion-item>
+
     <h2> Questions </h2>
 
     <ion-list>
