@@ -205,6 +205,7 @@ export class DatabaseProvider {
         .forEach((doc: any) => {
           obj.push({
             id             : doc.id,
+            quest_id       : doc.data().id,
             name           : doc.data().name,
             type     : doc.data().type,
             qtext    : doc.data().qtext,

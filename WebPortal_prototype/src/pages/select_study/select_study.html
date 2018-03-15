@@ -53,7 +53,7 @@
 <hr>
     <h2> Modules </h2>
     <ion-list>
-      <button ion-item *ngFor='let module of modules' (click)="viewDocument(module)">
+      <button ion-item *ngFor='let module of modules'> <!-- (click)="viewDocument(module)" -->
         <h2> {{ module.name }} </h2>
       </button>
     </ion-list>
