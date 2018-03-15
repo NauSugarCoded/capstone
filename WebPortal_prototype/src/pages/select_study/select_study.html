@@ -18,6 +18,7 @@
   <form
     [formGroup]='form'>
 
+
     <ion-item>
       <ion-label stacked>Study Full Name</ion-label>
       <ion-input
@@ -57,13 +58,15 @@
       </button>
     </ion-list>
 
-    <button
-      ion-button
-      block
-      color='primary'
-      (click)='addDocument()'>
-      Add a new module
-    </button>
+    <ion-item *ngFor="let mod of mods">
+      <button
+        ion-button
+        block
+        color='primary'
+        (click)='saveDocument(mod)'>
+        Add {{ mod.name }}
+      </button>
+    </ion-item>
 
 
   </form>

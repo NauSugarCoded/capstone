@@ -158,7 +158,7 @@ export class ModulesPage {
         collection   : this._COLL,
         location     : obj
      };
-     this.navCtrl.push('create_module', { record : params, isEdited : true });
+     this.navCtrl.push('select_module', { record : params, isEdited : true });
   }
 
 

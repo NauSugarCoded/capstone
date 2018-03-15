@@ -134,6 +134,16 @@ export class SelectStudyPage {
   public locations     : any;
 
 
+  /**
+   * @name mods
+   * @type {any}
+   * @public
+   * @description      Property to store the returned documents from the database collection
+   */
+  public mods     : any;
+
+
+
   constructor(public navCtrl        : NavController,
               public params         : NavParams,
               private _FB 	         : FormBuilder,
@@ -148,7 +158,8 @@ export class SelectStudyPage {
         'full_name' 		        : ['', Validators.required],
         'short_name' 	        : ['', Validators.required],
         'abstract'	            : ['', Validators.required],
-        'end_date'	            : ['', Validators.required]
+        'end_date'	            : ['', Validators.required],
+        'modules'               : ['']
      });
 
 
@@ -181,6 +192,7 @@ export class SelectStudyPage {
   {
     this.retrieveCollection();
     this.retrieveSubCollection();
+    this.retrieveModules();
   }
 
   retrieveCollection() : void
@@ -212,6 +224,15 @@ export class SelectStudyPage {
      .catch();
   }
 
+  retrieveModules() : void
+  {
+    this._DB.getModules("Modules")
+    .then((data) =>
+    {
+      this.mods = data;
+    })
+    .catch();
+  }
 
    /**
     * Navigate to the manage-document component to begin adding a new document
@@ -220,9 +241,14 @@ export class SelectStudyPage {
     * @method addModule
     * @return {none}
     */
-   addDocument() : void
+   addDocument(obj) : void
    {
       this.navCtrl.push(ModulesPage);
+   }
+
+   saveDocument(val : any)
+   {
+     this._DB.addStudies_Modules(this._COLL, this.docID, "modules", val);
    }
 
    viewDocument(obj) : void

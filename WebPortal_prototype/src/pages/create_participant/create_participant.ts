@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AngularFirestore } from 'angularfire2/firestore';
 import { DatabaseProvider } from '../../providers/database/database';
 import { Storage } from '@ionic/storage';
 
