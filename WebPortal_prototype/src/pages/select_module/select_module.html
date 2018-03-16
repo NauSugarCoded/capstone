@@ -44,10 +44,18 @@
  	  </ion-item>
 
     <h2> Questions </h2>
+    <ion-item>
+      <button ion-button
+              block
+              color='primary'
+            (click)="branchQuestions()">
+              Apply Question Order
+      </button>
+    </ion-item>
 
     <ion-list>
       <button ion-item *ngFor='let question of questions'>
-        <h2> {{ question.id }} </h2>
+        <h2> {{ question.name }} </h2>
       </button>
     </ion-list>
 
@@ -56,7 +64,7 @@
               block
               color='primary'
             (click)="saveQuestions(quest)">
-              Add question {{ quest.name }}
+              Add question: {{ quest.name }}
       </button>
     </ion-item>
 

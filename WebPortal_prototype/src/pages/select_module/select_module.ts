@@ -188,6 +188,11 @@ export class SelectModulePage {
     this._DB.addModules_Questions("Modules", this.docID, "Questions", val);
   }
 
+  branchQuestions()
+  {
+    this.navCtrl.push('branching');
+  }
+
   /**
    * Provide feedback to user after an operation has succeeded/failed
    *
