@@ -127,7 +127,7 @@ export class CreateQuestionPage {
       // form / form fields in the component template
       this.form 		= _FB.group({
          'name' 		        : ['', Validators.required],
-         'type' 	        : ['', Validators.required],
+         'type' 	        : [''],
          'qtext'	        : ['', Validators.required]
       });
 

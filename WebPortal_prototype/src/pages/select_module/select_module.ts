@@ -88,7 +88,7 @@ export class SelectModulePage {
    * @public
    * @description     Model for established form field
    */
-  public start_date 	: any;
+  public start_date 	: string             = '';
 
   /**
    * @name end_date
@@ -96,7 +96,7 @@ export class SelectModulePage {
    * @public
    * @description     Model for established form field
    */
-  public end_date 	: any;
+  public end_date 	: string             = '';
 
 
 
@@ -200,12 +200,14 @@ export class SelectModulePage {
   ionViewDidEnter()
   {
     this.retrieveCollection();
-    this.retrieveSubCollection();
+    if(this.docID != ''){
+      this.retrieveSubCollection();
+    }
   }
 
   retrieveCollection() : void
   {
-     this._DB.getQuestions("Questions")
+     this._DB.getQuestions_Modules("Questions")
      .then((data) =>
      {
        this.quests = data;
@@ -224,9 +226,96 @@ export class SelectModulePage {
      .catch();
   }
 
+  updateModule(val : any) : void
+  {
+     let name	      : string		= this.form.controls["name"].value,
+         type        : string 		= this.form.controls["type"].value,
+         recurrence	: string		= this.form.controls['recurrence'].value,
+         start_time	: string		= this.form.controls['start_time'].value,
+         start_date	: string		= this.form.controls['start_date'].value,
+         end_date		: string		= this.form.controls['end_date'].value,
+         owner       : string		= this.form.controls["owner"].value;
+
+
+     // If we are editing an existing record then handle this scenario
+     if(this.isEditable)
+     {
+
+        // Call the DatabaseProvider service and pass/format the data for use
+        // with the updateDocument method
+        this._DB.updateDocument(this._COLL,
+                              this.docID,
+                              {
+                                name    : name,
+                                type    : type,
+                                recurrence : recurrence,
+                                start_time	: start_time,
+                                start_date	: start_date,
+                                end_date		: end_date,
+                                owner   : owner
+                            })
+        .then((data) =>
+        {
+           this.displayAlert('Success', 'The module ' +  name + ' was successfully updated');
+        })
+        .catch((error) =>
+        {
+           this.displayAlert('Updating module failed', error.message);
+        });
+     }
+
+     // Otherwise we are adding a new record
+     else
+     {
+
+        // Call the DatabaseProvider service and pass/format the data for use
+        // with the addDocument method
+        this._DB.addDocument(this._COLL,
+                           {
+                            name    : name,
+                            type    : type,
+                            recurrence : recurrence,
+                            start_time	: start_time,
+                            start_date : start_date,
+                            end_date		: end_date,
+                            owner   : owner
+                         })
+        .then((data) =>
+        {
+           this.displayAlert('Record added', 'The module ' +  name + ' was successfully added');
+        })
+        .catch((error) =>
+        {
+           this.displayAlert('Adding module failed', error.message);
+        });
+     }
+  }
+
+  deleteDocument() : void
+  {
+     this._DB.deleteDocument(this._COLL,
+                this.docID)
+     .then((data : any) =>
+     {
+        this.displayAlert('Success', 'The module ' + this.name + ' was successfully removed');
+     })
+     .catch((error : any) =>
+     {
+        this.displayAlert('Error', error.message);
+     });
+  }
+
   saveQuestions(val : any)
   {
-    this._DB.addModules_Questions("Modules", this.docID, "Questions", val);
+    this._DB.addModules_Questions("Modules", this.docID, "Questions", val)
+    .then((data : any) =>
+    {
+      this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
+    })
+    .catch((error : any) =>
+    {
+      this.displayAlert('Error', error.message);
+    });
   }
 
   /**

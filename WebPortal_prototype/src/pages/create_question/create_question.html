@@ -61,25 +61,24 @@
           [(ngModel)]="qtext"></ion-input>
  	  </ion-item>
 
+    <ion-item>
+       <button
+         ion-button
+         block
+         color="primary"
+         text-center
+         padding-top
+         padding-bottom
+         [disabled]="!form.valid">
+          <div *ngIf="!isEditable">
+             Add a new question
+          </div>
+
+          <div *ngIf="isEditable">
+             Update this question
+          </div>
+          </button>
+    </ion-item>
   </form>
-
-  <ion-item>
-     <button
-       ion-button
-       block
-       color="primary"
-       text-center
-       padding-top
-       padding-bottom
-       [disabled]="!form.valid">
-        <div *ngIf="!isEditable">
-           Add a new question
-        </div>
-
-        <div *ngIf="isEditable">
-           Update this question
-        </div>
-        </button>
-  </ion-item>
 
 </ion-content>

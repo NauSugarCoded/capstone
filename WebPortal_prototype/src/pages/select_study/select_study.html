@@ -16,7 +16,8 @@
 <ion-content padding>
 
   <form
-    [formGroup]='form'>
+    [formGroup]='form'
+    (ngSubmit)='updateStudy(form.value)'>
 
 
     <ion-item>
@@ -37,6 +38,13 @@
  	  </ion-item>
 
     <ion-item>
+       <ion-label stacked>Study Start Date</ion-label>
+       <ion-input
+          formControlName="start_date"
+          [(ngModel)]="start_date"></ion-input>
+ 	  </ion-item>
+
+    <ion-item>
        <ion-label stacked>Study End Date</ion-label>
        <ion-input
           formControlName="end_date"
@@ -50,25 +58,58 @@
           formControlName="abstract"
           [(ngModel)]="abstract"></ion-input>
  	  </ion-item>
-<hr>
-    <h2> Modules </h2>
-    <ion-list>
-      <button ion-item *ngFor='let module of modules'> <!-- (click)="viewDocument(module)" -->
-        <h2> {{ module.name }} </h2>
-      </button>
-    </ion-list>
 
-    <ion-item *ngFor="let mod of mods">
+    <ion-item>
+       <button
+         ion-button
+         block
+         color="primary"
+         text-center
+         padding-top
+         padding-bottom
+         [disabled]="!form.valid">
+          <div *ngIf="!isEditable">
+             Add a new study
+          </div>
+
+          <div *ngIf="isEditable">
+             Update this study
+          </div>
+          </button>
+ 	  </ion-item>
+  </form>
+
+  <ion-item>
+  <div *ngIf="isEditable">
       <button
         ion-button
         block
-        color='primary'
-        (click)='saveDocument(mod)'>
-        Add {{ mod.name }}
+        color="danger"
+        text-center
+        padding-top
+        padding-bottom
+        [disabled]="!form.valid"
+        (click)="deleteDocument()">
+        Delete study
       </button>
-    </ion-item>
+    </div>
+  </ion-item>
 
+  <h2> Modules </h2>
+  <ion-list>
+    <button ion-item *ngFor='let module of modules'> <!-- (click)="viewDocument(module)" -->
+      <h2> {{ module.name }} </h2>
+    </button>
+  </ion-list>
 
-  </form>
+  <ion-item *ngFor="let mod of mods">
+    <button
+      ion-button
+      block
+      color='primary'
+      (click)='saveDocument(mod)'>
+      Add {{ mod.name }}
+    </button>
+  </ion-item>
 
 </ion-content>
