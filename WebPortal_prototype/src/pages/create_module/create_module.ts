@@ -53,6 +53,38 @@ export class CreateModulePage {
     */
    public type    : string          = '';
 
+	 /**
+		* @name recurrence
+		* @type {string}
+		* @public
+		* @description     Model for established form field
+		*/
+	 public recurrence 	: string          = '';
+
+	 /**
+		* @name start_time
+		* @type {time}
+		* @public
+		* @description     Model for established form field
+		*/
+	 public start_time 	: any;
+
+	 /**
+		* @name start_date
+		* @type {date}
+		* @public
+		* @description     Model for established form field
+		*/
+	 public start_date 	: any;
+
+	 /**
+		* @name end_date
+		* @type {date}
+		* @public
+		* @description     Model for established form field
+		*/
+	 public end_date 	: any;
+
 
 
    /**
@@ -62,6 +94,8 @@ export class CreateModulePage {
     * @description     Model for established form field
     */
    public owner 	: string          = '';
+
+
 
 
 
@@ -118,6 +152,10 @@ export class CreateModulePage {
       this.form 		= _FB.group({
          'name' 		        : ['', Validators.required],
          'type' 	        : ['', Validators.required],
+				 'recurrence'			: [''],
+				 'start_time'			:	['']
+,				 'start_date'			: [''],
+				 'end_date'				: [''],
          'owner'	        : ['', Validators.required]
       });
 
@@ -153,6 +191,10 @@ export class CreateModulePage {
    {
       let name	      : string		= this.form.controls["name"].value,
 	 	      type        : string 		= this.form.controls["type"].value,
+					recurrence	: string		= this.form.controls['recurrence'].value,
+					start_time	: string		= this.form.controls['start_time'].value,
+					start_date	: string		= this.form.controls['start_date'].value,
+					end_date		: string		= this.form.controls['end_date'].value,
   		    owner       : string		= this.form.controls["owner"].value;
 
 
@@ -167,6 +209,10 @@ export class CreateModulePage {
                                {
 	                               name    : name,
 	                               type    : type,
+																 recurrence : recurrence,
+																 start_time	: start_time,
+																 start_date	: start_date,
+																 end_date		: end_date,
 	                               owner   : owner
 	                           })
          .then((data) =>
@@ -190,6 +236,10 @@ export class CreateModulePage {
                             {
 	                           name    : name,
 	                           type    : type,
+														 recurrence : recurrence,
+														 start_time	: start_time,
+														 start_date : start_date,
+														 end_date		: end_date,
 	                           owner   : owner
 	                        })
          .then((data) =>

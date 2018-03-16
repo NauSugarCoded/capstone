@@ -80,6 +80,31 @@ export class DatabaseProvider {
     });
   }
 
+  getQuestions_Modules(collectionObj: string) : Promise<any>{
+    return new Promise((resolve, reject) => {
+      this._DB.collection(collectionObj)
+      .get()
+      .then((querySnapshot) => {
+        let obj : any = [];
+
+        querySnapshot
+        .forEach((doc: any) => {
+          obj.push({
+           id             : doc.id,
+           name           : doc.data().name,
+           type     : doc.data().type,
+           qtext    : doc.data().qtext,
+          });
+        });
+
+        resolve(obj);
+      })
+      .catch((error : any) => {
+        reject(error);
+      });
+    });
+  }
+
   getParticipants(collectionObj: string) : Promise<any>{
     return new Promise((resolve, reject) => {
       this._DB.collection(collectionObj)
@@ -121,6 +146,7 @@ export class DatabaseProvider {
           obj.push({
            id             : doc.id,
            abstract           : doc.data().abstract,
+           start_date         : doc.data().start_date,
            end_date          : doc.data().end_date,
            full_name          : doc.data().full_name,
            short_name    : doc.data().short_name,
@@ -153,6 +179,10 @@ export class DatabaseProvider {
            name           : doc.data().name,
            owner    : doc.data().owner,
            type     : doc.data().type,
+           recurrence : doc.data().recurrence,
+           start_time : doc.data().start_time,
+           start_date : doc.data().start_date,
+           end_date   : doc.data().end_date,
           });
         });
 
@@ -201,15 +231,10 @@ export class DatabaseProvider {
         .forEach((doc: any) => {
           obj.push({
             id             : doc.id,
+            quest_id       : doc.data().id,
             name           : doc.data().name,
             type     : doc.data().type,
             qtext    : doc.data().qtext,
-            option1  :doc.data().option1,
-            option2  :doc.data().option2,
-            option3  :doc.data().option3,
-            option4  :doc.data().option4,
-            option5  :doc.data().option5,
-            option6  :doc.data().option6
           });
         });
 

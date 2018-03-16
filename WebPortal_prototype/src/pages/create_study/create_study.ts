@@ -63,6 +63,14 @@ export class CreateStudyPage {
     */
    public abstract 	: string          = '';
 
+	 /**
+		* @name start_date
+		* @type {date}
+		* @public
+		* @description     Model for established form field
+		*/
+	 public start_date 	: any;
+
    /**
     * @name end_date
     * @type {date}
@@ -70,8 +78,6 @@ export class CreateStudyPage {
     * @description     Model for established form field
     */
    public end_date 	: any;
-
-
 
    /**
     * @name docID
@@ -127,6 +133,7 @@ export class CreateStudyPage {
          'full_name' 		        : ['', Validators.required],
          'short_name' 	        : ['', Validators.required],
          'abstract'	            : ['', Validators.required],
+				 'start_date'	            : ['', Validators.required],
          'end_date'	            : ['', Validators.required]
       });
 
@@ -141,6 +148,7 @@ export class CreateStudyPage {
           this.full_name	            = record.location.full_name;
           this.short_name   	  = record.location.short_name;
           this.abstract      = record.location.abstract;
+					this.start_date      = record.location.start_date;
           this.end_date      = record.location.end_date;
           this.docID            = record.location.id;
           this.isEditable       = true;
@@ -164,6 +172,7 @@ export class CreateStudyPage {
       let full_name	      : string		= this.form.controls["full_name"].value,
 	 	      short_name        : string 		= this.form.controls["short_name"].value,
           abstract       : string		= this.form.controls["abstract"].value,
+					start_date       : string		= this.form.controls["start_date"].value,
           end_date       : string		= this.form.controls["end_date"].value;
 
       // If we are editing an existing record then handle this scenario
@@ -178,6 +187,7 @@ export class CreateStudyPage {
 	                               full_name    : full_name,
 	                               short_name    : short_name,
 	                               abstract   : abstract,
+																 start_date	: start_date,
                                  end_date   : end_date
 	                           })
          .then((data) =>
@@ -202,6 +212,7 @@ export class CreateStudyPage {
 	                           full_name    : full_name,
 	                           short_name    : short_name,
 	                           abstract   : abstract,
+														 start_date	: start_date,
                              end_date   : end_date
 	                        })
          .then((data) =>
@@ -252,6 +263,7 @@ export class CreateStudyPage {
       this.full_name  					= '';
       this.short_name				= '';
       this.abstract 				= '';
+			this.start_date				= '';
       this.end_date         = '';
    }
 

@@ -19,7 +19,7 @@ import * as firebase from 'firebase';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = HomePage;
+  rootPage:any = LoginPage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -32,9 +32,9 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
-      { title: 'My Studies', component: StudiesPage },
-      { title: 'My Questions', component: QuestionsPage },
+      { title: 'Studies', component: StudiesPage },
       { title: 'Modules', component: ModulesPage },
+      { title: 'Questions', component: QuestionsPage },
       { title: 'Participants', component: ParticipantsPage },
     ];
 

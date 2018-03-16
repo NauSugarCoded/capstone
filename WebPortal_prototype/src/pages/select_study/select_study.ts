@@ -69,6 +69,14 @@ export class SelectStudyPage {
   public abstract 	: string          = '';
 
   /**
+   * @name start_date
+   * @type {date}
+   * @public
+   * @description     Model for established form field
+   */
+  public start_date 	: string           ='';
+
+  /**
    * @name end_date
    * @type {date}
    * @public
@@ -158,6 +166,7 @@ export class SelectStudyPage {
         'full_name' 		        : ['', Validators.required],
         'short_name' 	        : ['', Validators.required],
         'abstract'	            : ['', Validators.required],
+        'start_date'	            : ['', Validators.required],
         'end_date'	            : ['', Validators.required],
         'modules'               : ['']
      });
@@ -173,6 +182,7 @@ export class SelectStudyPage {
          this.full_name	            = record.location.full_name;
          this.short_name   	  = record.location.short_name;
          this.abstract      = record.location.abstract;
+         this.start_date      = record.location.start_date;
          this.end_date      = record.location.end_date;
          this.docID            = record.location.id;
          this.isEditable       = true;
@@ -234,21 +244,75 @@ export class SelectStudyPage {
     .catch();
   }
 
-   /**
-    * Navigate to the manage-document component to begin adding a new document
-    *
-    * @public
-    * @method addModule
-    * @return {none}
-    */
-   addDocument(obj) : void
-   {
-      this.navCtrl.push(ModulesPage);
-   }
+  updateStudy(obj)  : void
+  {
+     let full_name	      : string		= this.form.controls["full_name"].value,
+         short_name        : string 		= this.form.controls["short_name"].value,
+         abstract       : string		= this.form.controls["abstract"].value,
+         start_date       : string		= this.form.controls["start_date"].value,
+         end_date       : string		= this.form.controls["end_date"].value;
+
+     // If we are editing an existing record then handle this scenario
+     if(this.isEditable)
+     {
+
+        // Call the DatabaseProvider service and pass/format the data for use
+        // with the updateDocument method
+        this._DB.updateDocument(this._COLL,
+                              this.docID,
+                              {
+                                full_name    : full_name,
+                                short_name    : short_name,
+                                abstract   : abstract,
+                                start_date	: start_date,
+                                end_date   : end_date
+                            })
+        .then((data) =>
+        {
+           this.displayAlert('Success', 'The study ' +  short_name + ' was successfully updated');
+        })
+        .catch((error) =>
+        {
+           this.displayAlert('Updating study failed', error.message);
+        });
+     }
+
+     // Otherwise we are adding a new record
+     else
+     {
+
+        // Call the DatabaseProvider service and pass/format the data for use
+        // with the addDocument method
+        this._DB.addDocument(this._COLL,
+                           {
+                            full_name    : full_name,
+                            short_name    : short_name,
+                            abstract   : abstract,
+                            start_date	: start_date,
+                            end_date   : end_date
+                         })
+        .then((data) =>
+        {
+           this.displayAlert('Record added', 'The study ' +  short_name + ' was successfully added');
+        })
+        .catch((error) =>
+        {
+           this.displayAlert('Adding study failed', error.message);
+        });
+     }
+  }
 
    saveDocument(val : any)
    {
-     this._DB.addStudies_Modules(this._COLL, this.docID, "modules", val);
+     this._DB.addStudies_Modules(this._COLL, this.docID, "modules", val)
+     .then((data : any) =>
+     {
+       this.displayAlert('Success', 'The module ' + val.name + ' was successfully added');
+     })
+     .catch((error : any) =>
+     {
+       this.displayAlert('Error', error.message);
+     });
    }
 
    viewDocument(obj) : void
@@ -258,6 +322,20 @@ export class SelectStudyPage {
          module     : obj
       };
       this.navCtrl.push('select_module', { record : params, isEdited : true });
+   }
+
+   deleteDocument() : void
+   {
+      this._DB.deleteDocument(this._COLL,
+                 this.docID)
+      .then((data : any) =>
+      {
+         this.displayAlert('Success', 'The study ' + this.short_name + ' was successfully removed');
+      })
+      .catch((error : any) =>
+      {
+         this.displayAlert('Error', error.message);
+      });
    }
 
   /**
