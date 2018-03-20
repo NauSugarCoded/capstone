@@ -27,12 +27,16 @@
       Create a new module
     </button>
 
-    <button ion-item *ngFor='let location of locations' (click)="updateDocument(location)">
-      {{location.name}}
-      <div class="item-note" item-end>
-        {{location.type}}
+    <div *ngFor='let location of locations'>
+      <div *ngIf = "email == location.owner">
+        <button ion-item (click)="updateDocument(location)">
+          {{location.name}}
+          <div class="item-note" item-end>
+            {{location.type}}
+          </div>
+        </button>
       </div>
-    </button>
+    </div>
   </ion-list>
 
 </ion-content>

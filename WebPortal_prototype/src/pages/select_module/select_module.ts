@@ -318,6 +318,8 @@ export class SelectModulePage {
     });
   }
 
+
+
   /**
    * Provide feedback to user after an operation has succeeded/failed
    *

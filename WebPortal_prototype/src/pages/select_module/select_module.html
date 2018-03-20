@@ -123,13 +123,9 @@
     </button>
   </ion-list>
 
-  <ion-item *ngFor='let quest of quests'>
-    <button ion-button
-            block
-            color='primary'
-          (click)="saveQuestions(quest)">
-            Add question {{ quest.name }}
-    </button>
-  </ion-item>
+  <h2> Add Questions </h2>
+  <button ion-item *ngFor='let quest of quests' (click)="saveQuestions(quest)">
+    Add {{ quest.name }}
+  </button>
 
 </ion-content>

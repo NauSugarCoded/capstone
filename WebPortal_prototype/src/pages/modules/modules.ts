@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DatabaseProvider } from '../../providers/database/database';
+import { UsersserviceProvider } from '../../providers/usersservice/usersservice';
 
 /**
  * Generated class for the ModulesPage page.
@@ -58,8 +59,12 @@ export class ModulesPage {
    */
   public locations     : any;
 
+  public email         : string;
 
-  constructor(public navCtrl: NavController, private _DB     : DatabaseProvider) {
+
+  constructor(public navCtrl: NavController,
+              private _DB     : DatabaseProvider,
+              private _US     : UsersserviceProvider) {
 
     this._CONTENT = {
        name : "Test",
@@ -81,6 +86,8 @@ export class ModulesPage {
    ionViewDidEnter()
    {
       this.retrieveCollection();
+      this.email = this._US.returnUser();
+      console.log(this.email)
    }
 
    /**
