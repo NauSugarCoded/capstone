@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators,FormsModule } from '@angular/forms';
 import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DatabaseProvider } from '../../providers/database/database';
+import { UsersserviceProvider } from '../../providers/usersservice/usersservice';
+
 /**
  * Generated class for the SelectModulePage page.
  *
@@ -155,10 +157,13 @@ export class SelectModulePage {
    */
   private questions 		: any;
 
+  public email          : string;
+
   constructor(public navCtrl        : NavController,
               public params         : NavParams,
               private _FB 	         : FormBuilder,
               private _DB           : DatabaseProvider,
+              private _US           : UsersserviceProvider,
               private _ALERT        : AlertController)
   {
 
@@ -202,6 +207,8 @@ export class SelectModulePage {
     if(this.docID != ''){
       this.retrieveSubCollection();
     }
+
+    this.email = this._US.returnUser();
   }
 
   retrieveCollection() : void

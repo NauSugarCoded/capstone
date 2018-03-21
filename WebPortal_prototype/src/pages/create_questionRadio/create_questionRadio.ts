@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DatabaseProvider } from '../../providers/database/database';
+import { UsersserviceProvider } from '../../providers/usersservice/usersservice';
+
 
 
 @IonicPage({
@@ -152,11 +154,14 @@ export class CreateQuestionRadioPage {
     */
    private _COLL 		: string 			= "Questions";
 
+	 public owner			: string;
+
 
    constructor(public navCtrl        : NavController,
                public params         : NavParams,
                private _FB 	         : FormBuilder,
                private _DB           : DatabaseProvider,
+							 private _US					 : UsersserviceProvider,
                private _ALERT        : AlertController)
    {
 
@@ -192,6 +197,7 @@ export class CreateQuestionRadioPage {
 					this.option4 		= record.location.option4;
 					this.option5 		= record.location.option5;
 					this.option6 		= record.location.option6;
+					this.owner			= record.loaction.owner;
           this.docID            = record.location.id;
           this.isEditable       = true;
           this.title            = 'Update this question';
@@ -219,7 +225,8 @@ export class CreateQuestionRadioPage {
 					option3 		: string 		= this.form.controls["option3"].value,
 					option4 		: string 		= this.form.controls["option4"].value,
 					option5 		: string 		= this.form.controls["option5"].value,
-					option6 		: string 		= this.form.controls["option6"].value;
+					option6 		: string 		= this.form.controls["option6"].value,
+					owner				: string		= this._US.returnUser();
 
 
       // If we are editing an existing record then handle this scenario
@@ -239,7 +246,8 @@ export class CreateQuestionRadioPage {
 																 option3 : option3,
 																 option4 : option4,
 																 option5 : option5,
-																 option6 : option6
+																 option6 : option6,
+																 owner	 : owner
 	                           })
          .then((data) =>
          {
@@ -268,7 +276,8 @@ export class CreateQuestionRadioPage {
 														 option3 : option3,
 														 option4 : option4,
 														 option5 : option5,
-														 option6 : option6
+														 option6 : option6,
+														 owner	 : owner
 	                        })
          .then((data) =>
          {

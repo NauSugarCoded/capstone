@@ -80,7 +80,6 @@ export class StudiesPage {
   {
      this.retrieveCollection();
      this.email = this._US.returnUser();
-     console.log(this.email);
   }
 
 
@@ -178,7 +177,7 @@ export class StudiesPage {
         collection   : this._COLL,
         location     : obj
      };
-     this.navCtrl.push('create_study', { record : params, isEdited : true });
+     this.navCtrl.push('select_study', { record : params, isEdited : true });
   }
 
   /**

@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms'
 import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ModulesPage } from "../modules/modules"
 import { DatabaseProvider } from '../../providers/database/database';
+import { UsersserviceProvider } from '../../providers/usersservice/usersservice';
+
 
 /**
  * Generated class for the SelectStudyPage page.
@@ -150,12 +152,15 @@ export class SelectStudyPage {
    */
   public mods     : any;
 
+  public email    : string;
+
 
 
   constructor(public navCtrl        : NavController,
               public params         : NavParams,
               private _FB 	         : FormBuilder,
               private _DB           : DatabaseProvider,
+              private _US           : UsersserviceProvider,
               private _ALERT        : AlertController)
   {
 
@@ -203,6 +208,7 @@ export class SelectStudyPage {
     this.retrieveCollection();
     this.retrieveSubCollection();
     this.retrieveModules();
+    this.email = this._US.returnUser();
   }
 
   retrieveCollection() : void

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DatabaseProvider } from '../../providers/database/database';
+import { UsersserviceProvider } from '../../providers/usersservice/usersservice';
 import { Storage } from '@ionic/storage';
 
 
@@ -143,6 +144,7 @@ export class CreateParticipantPage {
                public params         : NavParams,
                private _FB 	         : FormBuilder,
                private _DB           : DatabaseProvider,
+							 private _US					 : UsersserviceProvider,
                private _ALERT        : AlertController)
    {
 
@@ -234,7 +236,7 @@ export class CreateParticipantPage {
       let name	      : string		= this.form.controls["name"].value,
 	 	      email        : string 		= this.form.controls["email"].value,
   		    phone       : string		= this.form.controls["phone"].value,
-          owner        : string 		= this.form.controls["owner"].value,
+          owner        : string 		= this._US.returnUser(),
           sleep_end        : string 		= this.form.controls["sleep_end"].value,
           sleep_start        : string 		= this.form.controls["sleep_start"].value,
           study        : string 		= this.form.controls["study"].value;
@@ -333,7 +335,6 @@ export class CreateParticipantPage {
       this.name  					= '';
       this.email				= '';
       this.phone 				= '';
-      this.owner 				= '';
       this.sleep_end 				= '';
       this.sleep_start 			= '';
       this.study 				= '';

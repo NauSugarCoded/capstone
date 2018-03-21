@@ -102,14 +102,13 @@
     </button>
   </ion-list>
 
-  <ion-item *ngFor="let mod of mods">
-    <button
-      ion-button
-      block
-      color='primary'
-      (click)='saveDocument(mod)'>
-      Add {{ mod.name }}
-    </button>
-  </ion-item>
+  <h2> Create Modules </h2>
+  <div *ngFor='let mod of mods'>
+    <div *ngIf = "email == mod.owner">
+      <button ion-item (click)="saveDocument(mod)">
+        Add {{ mod.name }}
+      </button>
+    </div>
+  </div>
 
 </ion-content>

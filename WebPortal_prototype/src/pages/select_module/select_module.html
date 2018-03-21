@@ -116,8 +116,13 @@
   </ion-list>
 
   <h2> Add Questions </h2>
-  <button ion-item *ngFor='let quest of quests' (click)="saveQuestions(quest)">
-    Add {{ quest.name }}
-  </button>
+
+  <div *ngFor='let quest of quests'>
+    <div *ngIf = "email == quest.owner">
+      <button ion-item (click)="saveQuestions(quest)">
+        Add {{ quest.name }}
+      </button>
+    </div>
+  </div>
 
 </ion-content>
