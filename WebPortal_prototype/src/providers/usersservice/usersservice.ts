@@ -13,6 +13,7 @@ export class UsersserviceProvider {
   public data: any;
   public fireAuth: any;
   public userProfile: any;
+  public email: string;
 
   constructor() {
     console.log('Hello UsersserviceProvider Provider');
@@ -22,6 +23,7 @@ export class UsersserviceProvider {
   }
 
   loginUserService(email: string, password: string): any {
+    this.email = email;
     return this.fireAuth.signInWithEmailAndPassword(email, password);
   }
 
@@ -35,4 +37,11 @@ export class UsersserviceProvider {
     });
 
   }
+
+  returnUser(): string
+  {
+    let email = firebase.auth().currentUser.email;
+    return email;
+  }
+
 }
