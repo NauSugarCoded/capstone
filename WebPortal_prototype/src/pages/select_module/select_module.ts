@@ -171,8 +171,7 @@ export class SelectModulePage {
         'recurrence'			: [''],
         'start_time'			:	[''],
         'start_date'			: [''],
-        'end_date'				: [''],
-        'owner' 	        : ['', Validators.required]
+        'end_date'				: ['']
 
      });
 
@@ -233,8 +232,7 @@ export class SelectModulePage {
          recurrence	: string		= this.form.controls['recurrence'].value,
          start_time	: string		= this.form.controls['start_time'].value,
          start_date	: string		= this.form.controls['start_date'].value,
-         end_date		: string		= this.form.controls['end_date'].value,
-         owner       : string		= this.form.controls["owner"].value;
+         end_date		: string		= this.form.controls['end_date'].value
 
 
      // If we are editing an existing record then handle this scenario
@@ -251,8 +249,7 @@ export class SelectModulePage {
                                 recurrence : recurrence,
                                 start_time	: start_time,
                                 start_date	: start_date,
-                                end_date		: end_date,
-                                owner   : owner
+                                end_date		: end_date
                             })
         .then((data) =>
         {
@@ -277,8 +274,7 @@ export class SelectModulePage {
                             recurrence : recurrence,
                             start_time	: start_time,
                             start_date : start_date,
-                            end_date		: end_date,
-                            owner   : owner
+                            end_date		: end_date
                          })
         .then((data) =>
         {

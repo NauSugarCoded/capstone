@@ -20,38 +20,14 @@
         [(ngModel)]='name'>
       </ion-input>
     </ion-item>
-    <!--
-    <br>
-
-    <label stacked class ="item item-input item-select">
-      <div class ="input-label">
-        Question Type:
-      </div>
-      <select formControlName='type'>
-        <option>Text</option>
-        <option>Radio</option>
-        <option>Multiple Choice</option>
-        <option>Slider</option>
-      </select>
-    </label>
-    <br>
 
     <ion-item>
-       <ion-label stacked>Question Type:</ion-label>
-       <select>
-         <option>Text</option>
-         <option>Radio</option>
-         <option>Multiple Choice</option>
-         <option>Slider</option>
-        </select>
- 	  </ion-item>-->
-  <ion-item>
-       <ion-label stacked>Question Type:</ion-label>
-       <ion-input
-          type="text"
-          formControlName="type"
-          [(ngModel)]="type" value= 'text' disabled='true'></ion-input>
- 	  </ion-item>
+         <ion-label stacked>Question Type:</ion-label>
+         <ion-input
+            type="text"
+            formControlName="type"
+            [(ngModel)]="type" value= 'text' disabled='true'></ion-input>
+   	  </ion-item>
 
     <ion-item>
        <ion-label stacked>Question Text:</ion-label>

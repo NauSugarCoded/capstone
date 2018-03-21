@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators,FormsModule } from '@angular/forms';
 import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DatabaseProvider } from '../../providers/database/database';
+import { UsersserviceProvider } from '../../providers/usersservice/usersservice';
+
 
 
 @IonicPage({
@@ -104,6 +106,8 @@ export class CreateQuestionPage {
     */
    public title 		: string		   = 'Add a new question';
 
+	 public email			: string;
+
 
 
    /**
@@ -119,6 +123,7 @@ export class CreateQuestionPage {
                public params         : NavParams,
                private _FB 	         : FormBuilder,
                private _DB           : DatabaseProvider,
+							 private _US					 : UsersserviceProvider,
                private _ALERT        : AlertController)
    {
 
@@ -142,6 +147,7 @@ export class CreateQuestionPage {
           this.type   	  			= record.location.type;
           this.qtext      			= record.location.qtext;
           this.docID            = record.location.id;
+					this.owner						= record.location.owner
           this.isEditable       = true;
           this.title            = 'Update this question';
       }
@@ -162,7 +168,8 @@ export class CreateQuestionPage {
    {
       let name	      : string		= this.form.controls["name"].value,
 	 	      type        : string 		= this.form.controls["type"].value,
-  		    qtext       : string		= this.form.controls["qtext"].value;
+  		    qtext       : string		= this.form.controls["qtext"].value,
+					owner				: string		= this._US.returnUser();
 
 
       // If we are editing an existing record then handle this scenario
@@ -176,7 +183,8 @@ export class CreateQuestionPage {
                                {
 	                               name    : name,
 	                               type    : type,
-	                               qtext   : qtext
+	                               qtext   : qtext,
+																 owner	 : owner
 	                           })
          .then((data) =>
          {
@@ -199,7 +207,8 @@ export class CreateQuestionPage {
                             {
 	                           name    : name,
 	                           type    : type,
-	                           qtext   : qtext
+	                           qtext   : qtext,
+														 owner	 : owner
 	                        })
          .then((data) =>
          {

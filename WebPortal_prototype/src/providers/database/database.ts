@@ -63,6 +63,7 @@ export class DatabaseProvider {
            name           : doc.data().name,
            type     : doc.data().type,
            qtext    : doc.data().qtext,
+           owner    : doc.data().owner,
            option1  :doc.data().option1,
            option2  :doc.data().option2,
            option3  :doc.data().option3,
@@ -94,6 +95,7 @@ export class DatabaseProvider {
            name           : doc.data().name,
            type     : doc.data().type,
            qtext    : doc.data().qtext,
+           owner    : doc.data().owner,
           });
         });
 
@@ -150,6 +152,7 @@ export class DatabaseProvider {
            end_date          : doc.data().end_date,
            full_name          : doc.data().full_name,
            short_name    : doc.data().short_name,
+           owner         : doc.data().owner,
           });
         });
 
@@ -235,6 +238,7 @@ export class DatabaseProvider {
             name           : doc.data().name,
             type     : doc.data().type,
             qtext    : doc.data().qtext,
+            owner    : doc.data().owner,
           });
         });
 

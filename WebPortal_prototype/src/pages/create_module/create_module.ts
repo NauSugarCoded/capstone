@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators,FormsModule } from '@angular/forms';
 import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DatabaseProvider } from '../../providers/database/database';
+import { UsersserviceProvider } from '../../providers/usersservice/usersservice';
+
 
 
 @IonicPage({
@@ -143,6 +145,7 @@ export class CreateModulePage {
                public params         : NavParams,
                private _FB 	         : FormBuilder,
                private _DB           : DatabaseProvider,
+							 private _US 					 : UsersserviceProvider,
                private _ALERT        : AlertController)
    {
 
@@ -153,10 +156,9 @@ export class CreateModulePage {
          'name' 		        : ['', Validators.required],
          'type' 	        : ['', Validators.required],
 				 'recurrence'			: [''],
-				 'start_time'			:	['']
-,				 'start_date'			: [''],
-				 'end_date'				: [''],
-         'owner'	        : ['', Validators.required]
+				 'start_time'			:	[''],
+				 'start_date'			: [''],
+				 'end_date'				: ['']
       });
 
 
@@ -195,7 +197,7 @@ export class CreateModulePage {
 					start_time	: string		= this.form.controls['start_time'].value,
 					start_date	: string		= this.form.controls['start_date'].value,
 					end_date		: string		= this.form.controls['end_date'].value,
-  		    owner       : string		= this.form.controls["owner"].value;
+  		    owner       : string		= this._US.returnUser();
 
 
       // If we are editing an existing record then handle this scenario
@@ -289,7 +291,6 @@ export class CreateModulePage {
    {
       this.name  					= '';
       this.type				= '';
-      this.owner 				= '';
    }
 
 
