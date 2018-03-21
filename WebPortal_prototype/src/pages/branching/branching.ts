@@ -12,10 +12,12 @@ import { DatabaseProvider } from '../../providers/database/database';
 @IonicPage({
  name: "branching"
 })
+
 @Component({
   selector: 'page-branching',
   templateUrl: 'branching.html',
 })
+
 export class BranchingPage {
 
   /**
@@ -25,7 +27,6 @@ export class BranchingPage {
    * @description     Defines an object for handling form validation
    */
   public form          : any;
-
 
 
   /**
@@ -182,6 +183,5 @@ export class BranchingPage {
      });
      alert.present();
   }
-
 
 }
