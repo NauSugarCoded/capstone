@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Studies</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <button
+    ion-button
+    block
+    color='primary'
+    (click)='addDocument()'>
+    Add a new Study
+  </button>
+
+  <button ion-item *ngFor='let location of locations' (click)="viewDocument(location)">
+    {{location.short_name}}
+    <div class="item-note" item-end>
+      {{location.abstract}}
+    </div>
+  </button>
+
+</ion-content>

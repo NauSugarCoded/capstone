@@ -1,0 +1,77 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ title }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form
+    [formGroup]='form'
+    (ngSubmit)='saveDocument(form.value)'>
+
+    <ion-item>
+      <ion-label stacked>Participant Name:</ion-label>
+      <ion-input
+        type='text'
+        formControlName='name'
+        [(ngModel)]='name'>
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+       <ion-label stacked>Participant Email:</ion-label>
+       <ion-input
+          type="text"
+          formControlName="email"
+          [(ngModel)]="email"></ion-input>
+ 	  </ion-item>
+
+    <ion-item>
+       <ion-label stacked>Participant Phone:</ion-label>
+       <ion-input
+          type="text"
+          formControlName="phone"
+          [(ngModel)]="phone"></ion-input>
+    </ion-item>
+
+    <br>
+    <label stacked class ="item item-input item-select">
+      <div class ="input-label">
+        Participant Study:
+      </div>
+      <script>
+      console.log(studs);
+      console.log('cats');
+      </script>
+      <select formControlName="study">
+        <option *ngFor="let stud of studs">
+          {{ stud.short_name }}
+        </option>
+      </select>
+    </label>
+    <br>
+
+ 	  <ion-item>
+       <button
+         ion-button
+         block
+         color="primary"
+         text-center
+         padding-top
+         padding-bottom
+         [disabled]="!form.valid">
+          <div *ngIf="!isEditable">
+             Add a new participant
+          </div>
+
+          <div *ngIf="isEditable">
+             Update this participant
+          </div>
+          </button>
+ 	  </ion-item>
+  </form>
+
+</ion-content>
