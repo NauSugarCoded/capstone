@@ -46,7 +46,7 @@ var SelectModulePageModule = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_database_database__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_database_database__ = __webpack_require__(65);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -153,8 +153,7 @@ var SelectModulePage = (function () {
             'recurrence': [''],
             'start_time': [''],
             'start_date': [''],
-            'end_date': [''],
-            'owner': ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required]
+            'end_date': ['']
         });
         // If we have navigation parameters then we need to
         // parse these as we know these will be used for
@@ -197,7 +196,7 @@ var SelectModulePage = (function () {
     };
     SelectModulePage.prototype.updateModule = function (val) {
         var _this = this;
-        var name = this.form.controls["name"].value, type = this.form.controls["type"].value, recurrence = this.form.controls['recurrence'].value, start_time = this.form.controls['start_time'].value, start_date = this.form.controls['start_date'].value, end_date = this.form.controls['end_date'].value, owner = this.form.controls["owner"].value;
+        var name = this.form.controls["name"].value, type = this.form.controls["type"].value, recurrence = this.form.controls['recurrence'].value, start_time = this.form.controls['start_time'].value, start_date = this.form.controls['start_date'].value, end_date = this.form.controls['end_date'].value;
         // If we are editing an existing record then handle this scenario
         if (this.isEditable) {
             // Call the DatabaseProvider service and pass/format the data for use
@@ -208,8 +207,7 @@ var SelectModulePage = (function () {
                 recurrence: recurrence,
                 start_time: start_time,
                 start_date: start_date,
-                end_date: end_date,
-                owner: owner
+                end_date: end_date
             })
                 .then(function (data) {
                 _this.displayAlert('Success', 'The module ' + name + ' was successfully updated');
@@ -227,8 +225,7 @@ var SelectModulePage = (function () {
                 recurrence: recurrence,
                 start_time: start_time,
                 start_date: start_date,
-                end_date: end_date,
-                owner: owner
+                end_date: end_date
             })
                 .then(function (data) {
                 _this.displayAlert('Record added', 'The module ' + name + ' was successfully added');

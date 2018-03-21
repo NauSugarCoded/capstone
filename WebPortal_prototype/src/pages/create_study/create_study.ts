@@ -119,6 +119,8 @@ export class CreateStudyPage {
     */
    private _COLL 		: string 			= "Studies";
 
+	 public owner			: string;
+
 
    constructor(public navCtrl        : NavController,
                public params         : NavParams,
