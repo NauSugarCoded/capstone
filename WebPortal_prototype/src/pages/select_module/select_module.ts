@@ -159,6 +159,8 @@ export class SelectModulePage {
 
   public email          : string;
 
+  public every          : string;
+
   constructor(public navCtrl        : NavController,
               public params         : NavParams,
               private _FB 	         : FormBuilder,
@@ -176,7 +178,8 @@ export class SelectModulePage {
         'recurrence'			: [''],
         'start_time'			:	[''],
         'start_date'			: [''],
-        'end_date'				: ['']
+        'end_date'				: [''],
+        'every'           : [''],
 
      });
 
@@ -194,6 +197,7 @@ export class SelectModulePage {
          this.start_time = record.location.start_time;
          this.start_date = record.location.start_date;
          this.end_date = record.location.end_date;
+         this.every    = record.location.every;
          this.owner      = record.location.owner;
          this.docID            = record.location.id;
          this.isEditable       = true;
@@ -239,7 +243,8 @@ export class SelectModulePage {
          recurrence	: string		= this.form.controls['recurrence'].value,
          start_time	: string		= this.form.controls['start_time'].value,
          start_date	: string		= this.form.controls['start_date'].value,
-         end_date		: string		= this.form.controls['end_date'].value
+         end_date		: string		= this.form.controls['end_date'].value,
+         every      : string    = this.form.controls['every'].value,
 
 
      // If we are editing an existing record then handle this scenario
@@ -256,7 +261,8 @@ export class SelectModulePage {
                                 recurrence : recurrence,
                                 start_time	: start_time,
                                 start_date	: start_date,
-                                end_date		: end_date
+                                end_date		: end_date,
+                                every       : every
                             })
         .then((data) =>
         {
@@ -281,7 +287,8 @@ export class SelectModulePage {
                             recurrence : recurrence,
                             start_time	: start_time,
                             start_date : start_date,
-                            end_date		: end_date
+                            end_date		: end_date,
+                            every       : every
                          })
         .then((data) =>
         {

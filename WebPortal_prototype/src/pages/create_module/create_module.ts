@@ -140,6 +140,8 @@ export class CreateModulePage {
     */
    private _COLL 		: string 			= "Modules";
 
+	 public every			: any;
+
 
    constructor(public navCtrl        : NavController,
                public params         : NavParams,
@@ -156,6 +158,7 @@ export class CreateModulePage {
          'name' 		        : ['', Validators.required],
          'type' 	        : ['', Validators.required],
 				 'recurrence'			: [''],
+				 'every'					: [''],
 				 'start_time'			:	[''],
 				 'start_date'			: [''],
 				 'end_date'				: ['']
@@ -197,6 +200,7 @@ export class CreateModulePage {
 					start_time	: string		= this.form.controls['start_time'].value,
 					start_date	: string		= this.form.controls['start_date'].value,
 					end_date		: string		= this.form.controls['end_date'].value,
+					every				: string 		= this.form.controls['every'].value,
   		    owner       : string		= this._US.returnUser();
 
 
@@ -215,6 +219,7 @@ export class CreateModulePage {
 																 start_time	: start_time,
 																 start_date	: start_date,
 																 end_date		: end_date,
+																 every			: every,
 	                               owner   : owner
 	                           })
          .then((data) =>
@@ -242,6 +247,7 @@ export class CreateModulePage {
 														 start_time	: start_time,
 														 start_date : start_date,
 														 end_date		: end_date,
+														 every			: every,
 	                           owner   : owner
 	                        })
          .then((data) =>

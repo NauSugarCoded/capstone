@@ -47,6 +47,16 @@
       </ion-item>
 
       <ion-item>
+        <ion-label stacked>Every X Hour(s)</ion-label>
+        <ion-datetime
+          displayFormat="HH:mm"
+          type='time'
+          formControlName='every'
+          [(ngModel)]='every'>
+        </ion-datetime>
+      </ion-item>
+
+      <ion-item>
          <ion-label stacked> Start Time </ion-label>
          <ion-datetime
             displayFormat="hh:mma"

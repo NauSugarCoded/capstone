@@ -186,6 +186,7 @@ export class DatabaseProvider {
            start_time : doc.data().start_time,
            start_date : doc.data().start_date,
            end_date   : doc.data().end_date,
+           every      : doc.data().every,
           });
         });
 
