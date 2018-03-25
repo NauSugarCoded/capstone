@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpClientModule } from '@angular/common/http';
+import { File } from '@ionic-native/file';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -18,9 +19,11 @@ import { ParticipantsPage } from '../pages/participants/participants';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import * as firebase from 'firebase';
+import * as admin from 'firebase-admin';
 import { UsersserviceProvider } from '../providers/usersservice/usersservice';
 import { DatabaseProvider } from '../providers/database/database';
 
+var iceAccount = require("../capstone-sugar-firebase-adminsdk-mbprx-a6251a0043.json");
 
 // Initialize Firebase
 export const config = {
@@ -29,7 +32,8 @@ export const config = {
   databaseURL: "https://capstone-sugar.firebaseio.com",
   projectId: "capstone-sugar",
   storageBucket: "capstone-sugar.appspot.com",
-  messagingSenderId: "714682249068"
+  messagingSenderId: "714682249068",
+  credential: admin.credential.cert(iceAccount)
 };
 firebase.initializeApp(config);
 
@@ -65,6 +69,7 @@ firebase.initializeApp(config);
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UsersserviceProvider,
+    File,
     DatabaseProvider
   ]
 })

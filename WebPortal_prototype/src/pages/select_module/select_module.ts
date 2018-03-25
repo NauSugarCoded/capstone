@@ -244,7 +244,7 @@ export class SelectModulePage {
          start_time	: string		= this.form.controls['start_time'].value,
          start_date	: string		= this.form.controls['start_date'].value,
          end_date		: string		= this.form.controls['end_date'].value,
-         every      : string    = this.form.controls['every'].value,
+         every      : string    = this.form.controls['every'].value;
 
 
      // If we are editing an existing record then handle this scenario

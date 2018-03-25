@@ -3,7 +3,8 @@ import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { SelectStudyPage } from "../select_study/select_study"
 import { DatabaseProvider } from '../../providers/database/database';
 import { UsersserviceProvider } from '../../providers/usersservice/usersservice';
-
+import * as admin from 'firebase-admin';
+import * as fs from 'fs';
 
 @Component({
   selector: 'page-studies',
@@ -52,6 +53,8 @@ export class StudiesPage {
   public locations     : any;
 
   public email         : string;
+  public url           : any;
+  public link          : any;
 
 
   constructor(public navCtrl  : NavController,
@@ -218,6 +221,20 @@ export class StudiesPage {
      {
         this.displayAlert('Error', error.message);
      });
+  }
+
+  exportStudies() : void
+  {
+    this._DB.exportStudies(this._COLL);
+    this._DB.downloadStudies();
+    this.url = this._DB.returnURL();
+  }
+
+  downloadFile() : void
+  {
+    this.link = this.url["i"];
+
+    window.location = this.link;
   }
 
 

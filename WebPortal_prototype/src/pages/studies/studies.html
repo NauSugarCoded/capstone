@@ -27,4 +27,20 @@
     </div>
   </div>
 
+  <button ion-button
+          block
+          color='primary'
+          (click)="exportStudies()">
+          Fetch Download
+  </button>
+
+  <div *ngIf='url != ""'>
+    <button ion-button
+            block
+            color='primary'
+            (click) = "downloadFile()">
+            Download Study
+    </button>
+  </div>
+
 </ion-content>

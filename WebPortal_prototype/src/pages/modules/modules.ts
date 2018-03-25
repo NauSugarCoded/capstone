@@ -87,7 +87,6 @@ export class ModulesPage {
    {
       this.retrieveCollection();
       this.email = this._US.returnUser();
-      console.log(this.email)
    }
 
    /**

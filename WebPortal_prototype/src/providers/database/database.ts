@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { File } from '@ionic-native/file';
 import 'rxjs/add/operator/map';
 
 // Import firebase and firestore
@@ -15,10 +16,18 @@ import 'firebase/firestore';
 export class DatabaseProvider {
 
   private _DB: any;
+  private storage: any;
+  private ref: any;
+  private url: any;
 
-  constructor(public http: HttpClient) {
+  public data = {};
+
+  constructor(public http: HttpClient, private file : File) {
     console.log('Hello DatabaseQuestionsProvider Provider');
     this._DB = firebase.firestore();
+    this.storage = firebase.storage();
+    this.ref = this.storage.ref();
+
   }
 
   /**
@@ -354,5 +363,37 @@ export class DatabaseProvider {
         });
       });
     }
+
+    exportStudies(collectionObj : string){
+
+        this.data[collectionObj] = {};
+
+        this._DB
+        .collection(collectionObj)
+        .get()
+        .then(snapshot => {
+          snapshot.forEach(doc => {
+            this.data[collectionObj][doc.id] = doc.data();
+          })
+          var myData =  JSON.stringify(this.data);
+          this.ref.child('firestore-studies.json').putString(myData).then(function(snapshot) {
+            console.log('Uploaded JSON');
+          });
+        })
+        .catch((error : any) => {
+          console.log(error);
+        });
+    }
+
+    downloadStudies() : void {
+      var fileRef = this.storage.ref('firestore-studies.json');
+      this.url = fileRef.getDownloadURL();
+      console.log(this.url);
+    }
+
+    returnURL() : any {
+      return this.url;
+    }
+
 
 }
