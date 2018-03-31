@@ -29,14 +29,6 @@
     </ion-item>
 
     <ion-item>
-       <ion-label stacked>Owner:</ion-label>
-       <ion-input
-          type="text"
-          formControlName="owner"
-          [(ngModel)]="owner"></ion-input>
- 	  </ion-item>
-
-    <ion-item>
        <ion-label stacked>Type:</ion-label>
        <ion-input
           type="text"
@@ -117,8 +109,21 @@
 
   <h2> Questions </h2>
 
+  <!--<ion-item>
+     <button
+       ion-button
+       block
+       color="primary"
+       text-center
+       padding-top
+       padding-bottom
+       (click)="updateDocument()">
+           Add Branching
+      </button>
+    </ion-item>-->
+
   <ion-list>
-    <button ion-item *ngFor='let question of questions'>
+    <button ion-item *ngFor='let question of questions' (click)="updateDocument(question)">
       <h2> {{ question.name }} </h2>
     </button>
   </ion-list>

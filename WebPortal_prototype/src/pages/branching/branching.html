@@ -1,7 +1,61 @@
-<h2> Questions </h2>
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Branch Question</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <form
+    [formGroup]='form'
+    (ngSubmit)='saveDocument(form.value)'>
 
 <ion-list>
-  <button ion-item *ngFor='let question of questions'>
-    <h2> {{ question.name }} </h2>
-  </button>
+  <h2> Question name:</h2><h3> {{ name }} </h3>
+  <h2> Question text:</h2><h3> {{ qtext }} </h3>
+  <h2> Question Type:</h2><h3> {{ type }} </h3>
+  <!--<div *ngIf="type == 'radio' or type == 'multi'">
+    <h2> Option 1:  {{ option1 }} </h2>
+    <h2> Option 2:  {{ option2 }} </h2>
+    <h2> Option 3:  {{ option3 }} </h2>
+    <h2> Option 4:  {{ option4 }} </h2>
+    <h2> Option 5:  {{ option5 }} </h2>
+    <h2> Option 6:  {{ option6 }} </h2>
+  </div>-->
+
+  <div *ngIf="type == 'slider' || type == 'text'">
+    <label stacked class ="item item-input item-select">
+          <div class ="input-label">
+
+          <h2>  What should the next question be:</h2>
+
+          <select formControlName="branch">
+            <option *ngFor="let q of questions">
+              {{ q.name }}
+            </option>
+            <option>end</option>
+          </select>
+        </div>
+        </label>
+  </div>
+
 </ion-list>
+
+<ion-item>
+  <div *ngIf="isEditable">
+    <button
+      ion-button
+      block
+      color="primary"
+      text-center
+      padding-top
+      padding-bottom
+      [disabled]="!form.valid">
+      Branch question
+    </button>
+  </div>
+</ion-item>
+
+</form>
+</ion-content>

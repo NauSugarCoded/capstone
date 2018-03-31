@@ -138,6 +138,8 @@ export class SelectModulePage {
    * @description     property that stores the value for the database collection
    */
   private _COLL 		: string 			= "Modules";
+  private module  : any;
+  private record : any;
 
   /**
    * @name quests
@@ -171,8 +173,7 @@ export class SelectModulePage {
         'recurrence'			: [''],
         'start_time'			:	[''],
         'start_date'			: [''],
-        'end_date'				: [''],
-        'owner' 	        : ['', Validators.required]
+        'end_date'				: ['']
 
      });
 
@@ -194,6 +195,8 @@ export class SelectModulePage {
          this.docID            = record.location.id;
          this.isEditable       = true;
          this.title            = 'Update this document';
+
+         this.module = record.location;
      }
   }
 
@@ -233,8 +236,7 @@ export class SelectModulePage {
          recurrence	: string		= this.form.controls['recurrence'].value,
          start_time	: string		= this.form.controls['start_time'].value,
          start_date	: string		= this.form.controls['start_date'].value,
-         end_date		: string		= this.form.controls['end_date'].value,
-         owner       : string		= this.form.controls["owner"].value;
+         end_date		: string		= this.form.controls['end_date'].value
 
 
      // If we are editing an existing record then handle this scenario
@@ -251,8 +253,7 @@ export class SelectModulePage {
                                 recurrence : recurrence,
                                 start_time	: start_time,
                                 start_date	: start_date,
-                                end_date		: end_date,
-                                owner   : owner
+                                end_date		: end_date
                             })
         .then((data) =>
         {
@@ -277,8 +278,7 @@ export class SelectModulePage {
                             recurrence : recurrence,
                             start_time	: start_time,
                             start_date : start_date,
-                            end_date		: end_date,
-                            owner   : owner
+                            end_date		: end_date
                          })
         .then((data) =>
         {
@@ -318,10 +318,15 @@ export class SelectModulePage {
     });
   }
 
-  branchQuestions()
+  updateDocument(object) : void
   {
-    this.navCtrl.push('branching');
+     let params : any = {
+        collection   : this._COLL,
+        location     : object
+     };
+     this.navCtrl.push('branching', { record : params});
   }
+
 
   /**
    * Provide feedback to user after an operation has succeeded/failed

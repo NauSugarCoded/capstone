@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
 import { DatabaseProvider } from '../../providers/database/database';
+import { UsersserviceProvider } from '../../providers/usersservice/usersservice';
 
 @Component({
   selector: 'page-questions',
@@ -50,10 +51,13 @@ export class QuestionsPage {
     */
    public locations     : any;
 
+   public email         : string;
+
 
 
    constructor(public navCtrl  : NavController,
                private _DB     : DatabaseProvider,
+               private _US     : UsersserviceProvider,
                private _ALERT  : AlertController)
    {
       this._CONTENT = {
@@ -77,6 +81,7 @@ export class QuestionsPage {
    ionViewDidEnter()
    {
       this.retrieveCollection();
+      this.email = this._US.returnUser();
    }
 
 

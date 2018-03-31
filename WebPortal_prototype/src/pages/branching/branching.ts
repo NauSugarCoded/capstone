@@ -39,12 +39,13 @@ export class BranchingPage {
 
 
   /**
-   * @name owner
+   * @name branch
    * @type {string}
    * @public
    * @description     Model for population form field
    */
   public branch    : any;
+  public name  : any;
 
 
   /**
@@ -53,7 +54,7 @@ export class BranchingPage {
    * @public
    * @description     property that stores an edited document's ID
    */
-  public docID         : string          = '';
+  public docID         : string          = 'EwW6NEEVwzrCEqFD1PY7';
 
 
 
@@ -94,6 +95,7 @@ export class BranchingPage {
    */
   private quests 		: any;
 
+
   /**
    * @name questions
    * @type {object}
@@ -101,10 +103,14 @@ export class BranchingPage {
    * @description     property that stores the value for the database collection
    */
   private questions 		: any;
+  private qID     : any;
+  private quest : any;
+  private qtext : any;
+  private type : any;
 
   constructor(public navCtrl        : NavController,
               public params         : NavParams,
-              private _FB 	         : FormBuilder,
+              private _FB 	        : FormBuilder,
               private _DB           : DatabaseProvider,
               private _ALERT        : AlertController)
   {
@@ -120,22 +126,47 @@ export class BranchingPage {
      // If we have navigation parameters then we need to
      // parse these as we know these will be used for
      // editing an existing record
-     if(params.get('isEdited'))
-     {
          let record 		        = params.get('record');
 
+         this.name            = record.location.name;
+         this.qtext           = record.location.qtext;
          this.branch          = record.location.branch;
          this.docID            = record.location.id;
+         this.qID             = record.location.quest_id;
+         this.type             = record.location.type;
          this.isEditable       = true;
-         this.title            = 'Update this document';
-     }
+         this.title            = 'Update this branch';
   }
 
   ionViewDidEnter()
   {
     this.retrieveCollection();
     this.retrieveSubCollection();
+  /*  var start = new Date().getTime();
+    var end = start;
+    while(end < start + 5000) {
+      end = new Date().getTime();
+    }
+    for(let i = 0; i < 3; i++){
+    console.log(this.questions[i].name);
+  }*/
   }
+
+  /*findID() : void
+  {
+    console.log(this.quests);
+    if(this.quests != ''){
+      let i = 0;
+      for(i; i < this.quests.length; i++){
+        if(this.qID == this.quests[i].docID) {
+          quest = this.quests[i];
+          console.log(quest);
+          break;
+
+        }
+      }
+    }
+  }*/
 
   retrieveCollection() : void
   {
@@ -143,7 +174,6 @@ export class BranchingPage {
      .then((data) =>
      {
        this.quests = data;
-
      })
      .catch();
   }
@@ -158,10 +188,71 @@ export class BranchingPage {
      .catch();
   }
 
-  saveQuestions(val : any)
+  /**
+   * Saves form data as newly added/edited record within Firebase Realtime
+   * database and handles uploading of media asset to Firebase Storage
+   *
+   * @public
+   * @method saveDocument
+   * @param  val          {any}              Form data
+   * @return {none}
+   */
+  saveDocument(val : any) : void
   {
-    this._DB.addModules_Questions("Modules", this.docID, "Questions", val);
+     let branch        : string 		= this.form.controls["branch"].value;
+
+
+
+     // If we are editing an existing record then handle this scenario
+     if(this.isEditable)
+     {
+
+        // Call the DatabaseProvider service and pass/format the data for use
+        // with the updateDocument method
+        this._DB.updateDocument(this._COLL,
+                              this.docID,
+                              {
+                                branch    : branch
+                            })
+        .then((data) =>
+        {
+           this.clearForm();
+           this.displayAlert('Success', 'The branch was successfully updated');
+        })
+        .catch((error) =>
+        {
+           this.displayAlert('Updating branch failed', error.message);
+        });
+     }
+
+     // Otherwise we are adding a new record
+     /*else
+     {
+
+        // Call the DatabaseProvider service and pass/format the data for use
+        // with the addDocument method
+        this._DB.addDocument(this._COLL,
+                           {
+                            name    : name,
+                            email    : email,
+                            phone   : phone,
+                            owner  : owner,
+                            sleep_end : sleep_end,
+                            sleep_start : sleep_start,
+                            study  : study
+                         })
+        .then((data) =>
+        {
+           this.clearForm();
+           this.displayAlert('Record added', 'The participant ' +  name + ' was successfully added');
+        })
+        .catch((error) =>
+        {
+           this.displayAlert('Adding participant failed', error.message);
+        });
+     }*/
   }
+
 
 
   /**
@@ -182,6 +273,19 @@ export class BranchingPage {
         buttons    : ['Got it!']
      });
      alert.present();
+  }
+
+  /**
+   * Clear all form data
+   *
+   * @public
+   * @method clearForm
+   * @return {none}
+   */
+  clearForm() : void
+  {
+     this.name  					= '';
+     this.type				= '';
   }
 
 }

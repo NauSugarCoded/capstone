@@ -42,16 +42,14 @@
       <div class ="input-label">
         Participant Study:
       </div>
-      <script>
-      console.log(studs);
-      console.log('cats');
-      </script>
+
       <select formControlName="study">
         <option *ngFor="let stud of studs">
           {{ stud.short_name }}
         </option>
       </select>
     </label>
+    
     <br>
 
  	  <ion-item>

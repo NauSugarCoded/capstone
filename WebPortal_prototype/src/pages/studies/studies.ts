@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { SelectStudyPage } from "../select_study/select_study"
 import { DatabaseProvider } from '../../providers/database/database';
+import { UsersserviceProvider } from '../../providers/usersservice/usersservice';
+
 
 @Component({
   selector: 'page-studies',
@@ -49,10 +51,12 @@ export class StudiesPage {
    */
   public locations     : any;
 
+  public email         : string;
 
 
   constructor(public navCtrl  : NavController,
               private _DB     : DatabaseProvider,
+              private _US     : UsersserviceProvider,
               private _ALERT  : AlertController)
   {
      this._CONTENT = {
@@ -75,6 +79,8 @@ export class StudiesPage {
   ionViewDidEnter()
   {
      this.retrieveCollection();
+     this.email = this._US.returnUser();
+     console.log(this.email);
   }
 
 

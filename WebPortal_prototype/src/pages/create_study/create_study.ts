@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms';
 import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DatabaseProvider } from '../../providers/database/database';
+import { UsersserviceProvider } from '../../providers/usersservice/usersservice';
 
 
 @IonicPage({
@@ -118,11 +119,14 @@ export class CreateStudyPage {
     */
    private _COLL 		: string 			= "Studies";
 
+	 public owner			: string;
+
 
    constructor(public navCtrl        : NavController,
                public params         : NavParams,
                private _FB 	         : FormBuilder,
                private _DB           : DatabaseProvider,
+							 private _US					 : UsersserviceProvider,
                private _ALERT        : AlertController)
    {
 
@@ -151,10 +155,13 @@ export class CreateStudyPage {
 					this.start_date      = record.location.start_date;
           this.end_date      = record.location.end_date;
           this.docID            = record.location.id;
+					this.owner 						= record.location.owner;
           this.isEditable       = true;
           this.title            = 'Update this document';
       }
    }
+
+
 
 
 
@@ -173,7 +180,8 @@ export class CreateStudyPage {
 	 	      short_name        : string 		= this.form.controls["short_name"].value,
           abstract       : string		= this.form.controls["abstract"].value,
 					start_date       : string		= this.form.controls["start_date"].value,
-          end_date       : string		= this.form.controls["end_date"].value;
+          end_date       : string		= this.form.controls["end_date"].value,
+					owner 					: string = this._US.returnUser();
 
       // If we are editing an existing record then handle this scenario
       if(this.isEditable)
@@ -188,7 +196,8 @@ export class CreateStudyPage {
 	                               short_name    : short_name,
 	                               abstract   : abstract,
 																 start_date	: start_date,
-                                 end_date   : end_date
+                                 end_date   : end_date,
+																 owner 			: owner
 	                           })
          .then((data) =>
          {
@@ -213,7 +222,8 @@ export class CreateStudyPage {
 	                           short_name    : short_name,
 	                           abstract   : abstract,
 														 start_date	: start_date,
-                             end_date   : end_date
+                             end_date   : end_date,
+														 owner			: owner
 	                        })
          .then((data) =>
          {
