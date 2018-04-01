@@ -60,6 +60,10 @@ export class ModulesPage {
   public locations     : any;
 
   public email         : string;
+  public url           : any;
+  public link          : string;
+
+  public answers       : any;
 
 
   constructor(public navCtrl: NavController,
@@ -125,6 +129,8 @@ export class ModulesPage {
     */
    retrieveCollection() : void
    {
+      this._DB.getAnswers("Answers");
+
       this._DB.getModules(this._COLL)
       .then((data) =>
       {
@@ -150,6 +156,28 @@ export class ModulesPage {
    addDocument() : void
    {
       this.navCtrl.push('create_module');
+   }
+
+   exportModules() : any
+   {
+     this._DB.exportModules(this._COLL);
+     this._DB.downloadModules();
+     this.url = this._DB.returnURL();
+     return this.url;
+   }
+
+   downloadFile(link : any) : void
+   {
+
+     this.link = link;
+     window.location.href = this.link;
+   }
+
+   downloadClick() : void
+   {
+     this.exportModules().then((link) => {
+       this.downloadFile(link);
+     });
    }
 
 

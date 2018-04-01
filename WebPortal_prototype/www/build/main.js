@@ -133,6 +133,14 @@ var DatabaseProvider = (function () {
             });
         });
     };
+    DatabaseProvider.prototype.getAnswers = function (collectionObj) {
+        var obj = this._DB.collection(collectionObj).doc("1234");
+        obj.getCollections().then(function (collections) {
+            collections.forEach(function (collection) {
+                console.log('Found subcollection with id: ', collection.id);
+            });
+        });
+    };
     DatabaseProvider.prototype.getQuestions_Modules = function (collectionObj) {
         var _this = this;
         return new Promise(function (resolve, reject) {
@@ -399,8 +407,61 @@ var DatabaseProvider = (function () {
             console.log(error);
         });
     };
+    DatabaseProvider.prototype.exportModules = function (collectionObj) {
+        var _this = this;
+        this.data[collectionObj] = {};
+        this._DB
+            .collection(collectionObj)
+            .get()
+            .then(function (snapshot) {
+            snapshot.forEach(function (doc) {
+                _this.data[collectionObj][doc.id] = doc.data();
+            });
+            var myData = JSON.stringify(_this.data);
+            _this.ref.child('firestore-modules.json').putString(myData).then(function (snapshot) {
+                console.log('Uploaded JSON');
+            });
+        })
+            .catch(function (error) {
+            console.log(error);
+        });
+    };
+    DatabaseProvider.prototype.exportQuestions = function (collectionObj) {
+        var _this = this;
+        this.data[collectionObj] = {};
+        this._DB
+            .collection(collectionObj)
+            .get()
+            .then(function (snapshot) {
+            snapshot.forEach(function (doc) {
+                _this.data[collectionObj][doc.id] = doc.data();
+            });
+            var myData = JSON.stringify(_this.data);
+            _this.ref.child('firestore-questions.json').putString(myData).then(function (snapshot) {
+                console.log('Uploaded JSON');
+            });
+        })
+            .catch(function (error) {
+            console.log(error);
+        });
+    };
     DatabaseProvider.prototype.downloadStudies = function () {
         var fileRef = this.storage.ref('firestore-studies.json');
+        this.url = fileRef.getDownloadURL();
+        console.log(this.url);
+    };
+    DatabaseProvider.prototype.downloadModules = function () {
+        var fileRef = this.storage.ref('firestore-modules.json');
+        this.url = fileRef.getDownloadURL();
+        console.log(this.url);
+    };
+    DatabaseProvider.prototype.downloadParticipants = function () {
+        var fileRef = this.storage.ref('firestore-participants.json');
+        this.url = fileRef.getDownloadURL();
+        console.log(this.url);
+    };
+    DatabaseProvider.prototype.downloadQuestions = function () {
+        var fileRef = this.storage.ref('firestore-questions.json');
         this.url = fileRef.getDownloadURL();
         console.log(this.url);
     };
@@ -721,6 +782,7 @@ var ModulesPage = (function () {
      */
     ModulesPage.prototype.retrieveCollection = function () {
         var _this = this;
+        this._DB.getAnswers("Answers");
         this._DB.getModules(this._COLL)
             .then(function (data) {
             // IF we don't have any documents then the collection doesn't exist
@@ -737,6 +799,22 @@ var ModulesPage = (function () {
     ModulesPage.prototype.addDocument = function () {
         this.navCtrl.push('create_module');
     };
+    ModulesPage.prototype.exportModules = function () {
+        this._DB.exportModules(this._COLL);
+        this._DB.downloadModules();
+        this.url = this._DB.returnURL();
+        return this.url;
+    };
+    ModulesPage.prototype.downloadFile = function (link) {
+        this.link = link;
+        window.location.href = this.link;
+    };
+    ModulesPage.prototype.downloadClick = function () {
+        var _this = this;
+        this.exportModules().then(function (link) {
+            _this.downloadFile(link);
+        });
+    };
     ModulesPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad ModulesPage');
     };
@@ -749,13 +827,12 @@ var ModulesPage = (function () {
     };
     ModulesPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-modules',template:/*ion-inline-start:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\modules\modules.html"*/'<!--\n\n  Generated template for the ModulesPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Modules</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n  <ion-list>\n\n    <button\n\n      ion-button\n\n      block\n\n      color=\'primary\'\n\n      (click)=\'addDocument()\'>\n\n      Create a new module\n\n    </button>\n\n\n\n    <div *ngFor=\'let location of locations\'>\n\n      <div *ngIf = "email == location.owner">\n\n        <button ion-item (click)="updateDocument(location)">\n\n          {{location.name}}\n\n          <div class="item-note" item-end>\n\n            {{location.type}}\n\n          </div>\n\n        </button>\n\n      </div>\n\n    </div>\n\n  </ion-list>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\modules\modules.html"*/,
+            selector: 'page-modules',template:/*ion-inline-start:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\modules\modules.html"*/'<!--\n\n  Generated template for the ModulesPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Modules</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n  <ion-list>\n\n    <button\n\n      ion-button\n\n      block\n\n      color=\'primary\'\n\n      (click)=\'addDocument()\'>\n\n      Create a new module\n\n    </button>\n\n\n\n    <div *ngFor=\'let location of locations\'>\n\n      <div *ngIf = "email == location.owner">\n\n        <button ion-item (click)="updateDocument(location)">\n\n          {{location.name}}\n\n          <div class="item-note" item-end>\n\n            {{location.type}}\n\n          </div>\n\n        </button>\n\n      </div>\n\n    </div>\n\n  </ion-list>\n\n\n\n  <button ion-button\n\n          block\n\n          color=\'primary\'\n\n          (click)="downloadClick()">\n\n          Download Modules\n\n  </button>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\modules\modules.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */],
-            __WEBPACK_IMPORTED_MODULE_3__providers_usersservice_usersservice__["a" /* UsersserviceProvider */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__providers_usersservice_usersservice__["a" /* UsersserviceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_usersservice_usersservice__["a" /* UsersserviceProvider */]) === "function" && _c || Object])
     ], ModulesPage);
     return ModulesPage;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=modules.js.map
@@ -788,11 +865,11 @@ var map = {
 		8
 	],
 	"../pages/create_participant/create_participant.module": [
-		1294,
+		1293,
 		7
 	],
 	"../pages/create_question/create_question.module": [
-		1293,
+		1294,
 		3
 	],
 	"../pages/create_questionMulti/create_questionMulti.module": [
@@ -1011,10 +1088,17 @@ var StudiesPage = (function () {
         this._DB.exportStudies(this._COLL);
         this._DB.downloadStudies();
         this.url = this._DB.returnURL();
+        return this.url;
     };
-    StudiesPage.prototype.downloadFile = function () {
-        this.link = this.url["i"];
-        window.location = this.link;
+    StudiesPage.prototype.downloadFile = function (link) {
+        this.link = link;
+        window.location.href = this.link;
+    };
+    StudiesPage.prototype.downloadClick = function () {
+        var _this = this;
+        this.exportStudies().then(function (link) {
+            _this.downloadFile(link);
+        });
     };
     /**
      * Provide feedback to user after an operation has succeeded/failed
@@ -1041,7 +1125,7 @@ var StudiesPage = (function () {
     };
     StudiesPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-studies',template:/*ion-inline-start:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\studies\studies.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Studies</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n  <button\n\n    ion-button\n\n    block\n\n    color=\'primary\'\n\n    (click)=\'addDocument()\'>\n\n    Add a new Study\n\n  </button>\n\n\n\n  <div *ngFor=\'let location of locations\'>\n\n    <div *ngIf = "email == location.owner">\n\n      <button ion-item (click)="updateDocument(location)">\n\n        {{location.short_name}}\n\n        <div class="item-note" item-end>\n\n          {{location.abstract}}\n\n        </div>\n\n      </button>\n\n    </div>\n\n  </div>\n\n\n\n  <button ion-button\n\n          block\n\n          color=\'primary\'\n\n          (click)="exportStudies()">\n\n          Fetch Download\n\n  </button>\n\n\n\n  <div *ngIf=\'url != ""\'>\n\n    <button ion-button\n\n            block\n\n            color=\'primary\'\n\n            (click) = "downloadFile()">\n\n            Download Study\n\n    </button>\n\n  </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\studies\studies.html"*/
+            selector: 'page-studies',template:/*ion-inline-start:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\studies\studies.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Studies</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n  <button\n\n    ion-button\n\n    block\n\n    color=\'primary\'\n\n    (click)=\'addDocument()\'>\n\n    Add a new Study\n\n  </button>\n\n\n\n  <div *ngFor=\'let location of locations\'>\n\n    <div *ngIf = "email == location.owner">\n\n      <button ion-item (click)="updateDocument(location)">\n\n        {{location.short_name}}\n\n        <div class="item-note" item-end>\n\n          {{location.abstract}}\n\n        </div>\n\n      </button>\n\n    </div>\n\n  </div>\n\n\n\n  <div *ngIf="flag == true">\n\n    <button ion-button\n\n            block\n\n            color=\'primary\'\n\n            (click)="downloadClick()">\n\n            Download Study\n\n    </button>\n\n  </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\studies\studies.html"*/
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__providers_usersservice_usersservice__["a" /* UsersserviceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_usersservice_usersservice__["a" /* UsersserviceProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _d || Object])
     ], StudiesPage);
@@ -1602,8 +1686,8 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */], {}, {
                     links: [
                         { loadChildren: '../pages/create_module/create_module.module#CreateModulePageModule', name: 'create_module', segment: 'create_module', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/create_question/create_question.module#CreateQuestionPageModule', name: 'create_question', segment: 'create_question', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/create_participant/create_participant.module#CreateParticipantPageModule', name: 'create_participant', segment: 'create_participant', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/create_question/create_question.module#CreateQuestionPageModule', name: 'create_question', segment: 'create_question', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/create_questionMulti/create_questionMulti.module#CreateQuestionMultiPageModule', name: 'create_questionMulti', segment: 'create_questionMulti', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/create_questionRadio/create_questionRadio.module#CreateQuestionRadioPageModule', name: 'create_questionRadio', segment: 'create_questionRadio', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/create_questionSlider/create_questionSlider.module#CreateQuestionSliderPageModule', name: 'create_questionSlider', segment: 'create_questionSlider', priority: 'low', defaultHistory: [] },

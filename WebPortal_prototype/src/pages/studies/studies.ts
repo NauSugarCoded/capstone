@@ -54,7 +54,7 @@ export class StudiesPage {
 
   public email         : string;
   public url           : any;
-  public link          : any;
+  public link          : string;
 
 
   constructor(public navCtrl  : NavController,
@@ -223,20 +223,27 @@ export class StudiesPage {
      });
   }
 
-  exportStudies() : void
+  exportStudies() : any
   {
     this._DB.exportStudies(this._COLL);
     this._DB.downloadStudies();
     this.url = this._DB.returnURL();
+    return this.url;
   }
 
-  downloadFile() : void
+  downloadFile(link : any) : void
   {
-    this.link = this.url["i"];
 
-    window.location = this.link;
+    this.link = link;
+    window.location.href = this.link;
   }
 
+  downloadClick() : void
+  {
+    this.exportStudies().then((link) => {
+      this.downloadFile(link);
+    });
+  }
 
 
 

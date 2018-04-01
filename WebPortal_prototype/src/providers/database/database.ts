@@ -90,6 +90,15 @@ export class DatabaseProvider {
     });
   }
 
+  getAnswers(collectionObj: string){
+      var obj = this._DB.collection(collectionObj).doc("1234");
+      obj.getCollections().then(collections => {
+        collections.forEach(collection => {
+          console.log('Found subcollection with id: ', collection.id);
+        });
+      });
+  }
+
   getQuestions_Modules(collectionObj: string) : Promise<any>{
     return new Promise((resolve, reject) => {
       this._DB.collection(collectionObj)
@@ -385,8 +394,68 @@ export class DatabaseProvider {
         });
     }
 
+    exportModules(collectionObj : string){
+
+        this.data[collectionObj] = {};
+
+        this._DB
+        .collection(collectionObj)
+        .get()
+        .then(snapshot => {
+          snapshot.forEach(doc => {
+            this.data[collectionObj][doc.id] = doc.data();
+          })
+          var myData =  JSON.stringify(this.data);
+          this.ref.child('firestore-modules.json').putString(myData).then(function(snapshot) {
+            console.log('Uploaded JSON');
+          });
+        })
+        .catch((error : any) => {
+          console.log(error);
+        });
+    }
+
+    exportQuestions(collectionObj : string){
+
+        this.data[collectionObj] = {};
+
+        this._DB
+        .collection(collectionObj)
+        .get()
+        .then(snapshot => {
+          snapshot.forEach(doc => {
+            this.data[collectionObj][doc.id] = doc.data();
+          })
+          var myData =  JSON.stringify(this.data);
+          this.ref.child('firestore-questions.json').putString(myData).then(function(snapshot) {
+            console.log('Uploaded JSON');
+          });
+        })
+        .catch((error : any) => {
+          console.log(error);
+        });
+    }
+
     downloadStudies() : void {
       var fileRef = this.storage.ref('firestore-studies.json');
+      this.url = fileRef.getDownloadURL();
+      console.log(this.url);
+    }
+
+    downloadModules() : void {
+      var fileRef = this.storage.ref('firestore-modules.json');
+      this.url = fileRef.getDownloadURL();
+      console.log(this.url);
+    }
+
+    downloadParticipants() : void {
+      var fileRef = this.storage.ref('firestore-participants.json');
+      this.url = fileRef.getDownloadURL();
+      console.log(this.url);
+    }
+
+    downloadQuestions() : void {
+      var fileRef = this.storage.ref('firestore-questions.json');
       this.url = fileRef.getDownloadURL();
       console.log(this.url);
     }
