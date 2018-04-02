@@ -91,12 +91,6 @@ export class DatabaseProvider {
   }
 
   getAnswers(collectionObj: string){
-      var obj = this._DB.collection(collectionObj).doc("1234");
-      obj.getCollections().then(collections => {
-        collections.forEach(collection => {
-          console.log('Found subcollection with id: ', collection.id);
-        });
-      });
   }
 
   getQuestions_Modules(collectionObj: string) : Promise<any>{

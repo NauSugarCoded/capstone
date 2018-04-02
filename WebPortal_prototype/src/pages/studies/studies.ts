@@ -55,6 +55,7 @@ export class StudiesPage {
   public email         : string;
   public url           : any;
   public link          : string;
+  public flag          : boolean = false;
 
 
   constructor(public navCtrl  : NavController,

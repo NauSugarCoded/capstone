@@ -62,7 +62,9 @@ export class ModulesPage {
   public email         : string;
   public url           : any;
   public link          : string;
-
+  public flag          : boolean = false;
+  public firstFlag     : boolean = false;
+  public secondFlag    : boolean = false;
   public answers       : any;
 
 
@@ -161,24 +163,27 @@ export class ModulesPage {
    exportModules() : any
    {
      this._DB.exportModules(this._COLL);
+     this.flag = true;
+   }
+
+   setLink() : void
+   {
      this._DB.downloadModules();
-     this.url = this._DB.returnURL();
-     return this.url;
+     this.firstFlag = true;
    }
 
-   downloadFile(link : any) : void
+   createLink() : void
    {
-
-     this.link = link;
-     window.location.href = this.link;
+     this.link = this._DB.returnURL();
+     console.log(this.link);
+     this.secondFlag = true;
    }
 
-   downloadClick() : void
+   downloadFile() : void
    {
-     this.exportModules().then((link) => {
-       this.downloadFile(link);
-     });
+     window.location.href = this.link["i"];
    }
+
 
 
 
