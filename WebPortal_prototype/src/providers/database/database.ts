@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { File } from '@ionic-native/file';
 import 'rxjs/add/operator/map';
 
 // Import firebase and firestore
@@ -22,7 +21,7 @@ export class DatabaseProvider {
 
   public data = {};
 
-  constructor(public http: HttpClient, private file : File) {
+  constructor(public http: HttpClient) {
     console.log('Hello DatabaseQuestionsProvider Provider');
     this._DB = firebase.firestore();
     this.storage = firebase.storage();
