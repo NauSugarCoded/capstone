@@ -129,7 +129,7 @@
   </ion-list>
 
   <h2> Add Questions </h2>
-  <button ion-item *ngFor='let quest of quests' (click)="saveQuestions(quest)">
+  <button ion-item *ngFor='let quest of quests' (click)="saveQuestions(quest, docID)">
     Add {{ quest.name }}
   </button>
 

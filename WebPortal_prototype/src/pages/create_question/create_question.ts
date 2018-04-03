@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators,FormsModule } from '@angular/forms';
 import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DatabaseProvider } from '../../providers/database/database';
-import { UsersserviceProvider } from '../../providers/usersservice/usersservice';
+import { UsersserviceProvider } from '../../providers/usersservice/usersservice';7
 
 
 
@@ -106,8 +106,6 @@ export class CreateQuestionPage {
     */
    public title 		: string		   = 'Add a new question';
 
-	 public email			: string;
-
 	 public owner			: string;
 
 
@@ -149,7 +147,7 @@ export class CreateQuestionPage {
           this.type   	  			= record.location.type;
           this.qtext      			= record.location.qtext;
           this.docID            = record.location.id;
-					this.owner						= record.location.owner
+					this.owner						= record.location.owner;
           this.isEditable       = true;
           this.title            = 'Update this question';
       }

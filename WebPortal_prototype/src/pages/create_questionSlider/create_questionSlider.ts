@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DatabaseProvider } from '../../providers/database/database';
+import { UsersserviceProvider } from '../../providers/usersservice/usersservice';
 
 
 @IonicPage({
@@ -94,7 +95,7 @@ export class CreateQuestionSliderPage {
     * @description     property that defines the template title value
     */
    public title 		: string		   = 'Add a new question';
-
+   public owner			: string;
 
 
    /**
@@ -110,6 +111,7 @@ export class CreateQuestionSliderPage {
                public params         : NavParams,
                private _FB 	         : FormBuilder,
                private _DB           : DatabaseProvider,
+               private _US					 : UsersserviceProvider,
                private _ALERT        : AlertController)
    {
 
@@ -134,6 +136,7 @@ export class CreateQuestionSliderPage {
           this.type   	  = record.location.type;
           this.qtext      = record.location.qtext;
           this.docID            = record.location.id;
+          this.owner						= record.location.owner;
           this.isEditable       = true;
           this.title            = 'Update this question';
       }
@@ -154,7 +157,8 @@ export class CreateQuestionSliderPage {
    {
       let name	      : string		= this.form.controls["name"].value,
 	 	      type        : string 		= this.form.controls["type"].value,
-  		    qtext       : string		= this.form.controls["qtext"].value;
+  		    qtext       : string		= this.form.controls["qtext"].value,
+          owner				: string		= this._US.returnUser();
 
 
       // If we are editing an existing record then handle this scenario
@@ -168,7 +172,8 @@ export class CreateQuestionSliderPage {
                                {
 	                               name    : name,
 	                               type    : type,
-	                               qtext   : qtext
+	                               qtext   : qtext,
+                                 owner	 : owner
 	                           })
          .then((data) =>
          {
@@ -191,7 +196,8 @@ export class CreateQuestionSliderPage {
                             {
 	                           name    : name,
 	                           type    : type,
-	                           qtext   : qtext
+	                           qtext   : qtext,
+                             owner	 : owner
 	                        })
          .then((data) =>
          {

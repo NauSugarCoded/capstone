@@ -15,14 +15,14 @@
   <h2> Question name:</h2><h3> {{ name }} </h3>
   <h2> Question text:</h2><h3> {{ qtext }} </h3>
   <h2> Question Type:</h2><h3> {{ type }} </h3>
-  <!--<div *ngIf="type == 'radio' or type == 'multi'">
+  <div *ngIf="type == 'radio' || type == 'multi'">
     <h2> Option 1:  {{ option1 }} </h2>
     <h2> Option 2:  {{ option2 }} </h2>
     <h2> Option 3:  {{ option3 }} </h2>
     <h2> Option 4:  {{ option4 }} </h2>
     <h2> Option 5:  {{ option5 }} </h2>
     <h2> Option 6:  {{ option6 }} </h2>
-  </div>-->
+  </div>
 
   <div *ngIf="type == 'slider' || type == 'text'">
     <label stacked class ="item item-input item-select">
@@ -31,10 +31,9 @@
           <h2>  What should the next question be:</h2>
 
           <select formControlName="branch">
-            <option *ngFor="let q of questions">
-              {{ q.name }}
+            <option *ngFor="let question of questions">
+              {{ question.name }}
             </option>
-            <option>end</option>
           </select>
         </div>
         </label>

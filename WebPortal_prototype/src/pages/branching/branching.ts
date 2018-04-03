@@ -54,7 +54,7 @@ export class BranchingPage {
    * @public
    * @description     property that stores an edited document's ID
    */
-  public docID         : string          = 'EwW6NEEVwzrCEqFD1PY7';
+  public docID         : string          = '';
 
 
 
@@ -107,6 +107,7 @@ export class BranchingPage {
   private quest : any;
   private qtext : any;
   private type : any;
+  private moduleID : any;
 
   constructor(public navCtrl        : NavController,
               public params         : NavParams,
@@ -127,11 +128,11 @@ export class BranchingPage {
      // parse these as we know these will be used for
      // editing an existing record
          let record 		        = params.get('record');
-
          this.name            = record.location.name;
          this.qtext           = record.location.qtext;
          this.branch          = record.location.branch;
          this.docID            = record.location.id;
+         this.moduleID        = record.location.moduleID;
          this.qID             = record.location.quest_id;
          this.type             = record.location.type;
          this.isEditable       = true;
@@ -141,7 +142,9 @@ export class BranchingPage {
   ionViewDidEnter()
   {
     this.retrieveCollection();
-    this.retrieveSubCollection();
+    if(this.moduleID != '') {
+      this.retrieveSubCollection();
+    }
   /*  var start = new Date().getTime();
     var end = start;
     while(end < start + 5000) {
@@ -180,10 +183,12 @@ export class BranchingPage {
 
   retrieveSubCollection() : void
   {
-     this._DB.getModules_Questions(this._COLL, this.docID, "Questions")
+     this._DB.getModules_Questions(this._COLL, "OHiOh9B2BREiF8oyJkZ4", "Questions")
      .then((data) =>
      {
+       console.log(data);
        this.questions = data;
+       console.log(this.questions);
      })
      .catch();
   }

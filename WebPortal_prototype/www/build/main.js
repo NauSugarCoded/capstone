@@ -269,35 +269,35 @@ webpackEmptyAsyncContext.id = 195;
 
 var map = {
 	"../pages/branching/branching.module": [
-		535,
+		534,
 		9
 	],
 	"../pages/create_module/create_module.module": [
-		534,
+		535,
 		8
 	],
 	"../pages/create_participant/create_participant.module": [
-		537,
+		536,
 		7
 	],
 	"../pages/create_question/create_question.module": [
-		536,
+		537,
 		3
 	],
 	"../pages/create_questionMulti/create_questionMulti.module": [
-		541,
+		538,
 		6
 	],
 	"../pages/create_questionRadio/create_questionRadio.module": [
-		538,
+		539,
 		5
 	],
 	"../pages/create_questionSlider/create_questionSlider.module": [
-		539,
+		540,
 		4
 	],
 	"../pages/create_study/create_study.module": [
-		540,
+		541,
 		2
 	],
 	"../pages/login/login.module": [
@@ -313,11 +313,11 @@ var map = {
 		1
 	],
 	"../pages/select_study/select_study.module": [
-		546,
+		545,
 		0
 	],
 	"../pages/signup/signup.module": [
-		545,
+		546,
 		10
 	]
 };
@@ -1162,19 +1162,19 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["b" /* HttpClientModule */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* MyApp */], {}, {
                     links: [
-                        { loadChildren: '../pages/create_module/create_module.module#CreateModulePageModule', name: 'create_module', segment: 'create_module', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/branching/branching.module#BranchingPageModule', name: 'branching', segment: 'branching', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/create_question/create_question.module#CreateQuestionPageModule', name: 'create_question', segment: 'create_question', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/create_module/create_module.module#CreateModulePageModule', name: 'create_module', segment: 'create_module', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/create_participant/create_participant.module#CreateParticipantPageModule', name: 'create_participant', segment: 'create_participant', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/create_question/create_question.module#CreateQuestionPageModule', name: 'create_question', segment: 'create_question', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/create_questionMulti/create_questionMulti.module#CreateQuestionMultiPageModule', name: 'create_questionMulti', segment: 'create_questionMulti', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/create_questionRadio/create_questionRadio.module#CreateQuestionRadioPageModule', name: 'create_questionRadio', segment: 'create_questionRadio', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/create_questionSlider/create_questionSlider.module#CreateQuestionSliderPageModule', name: 'create_questionSlider', segment: 'create_questionSlider', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/create_study/create_study.module#CreateStudyPageModule', name: 'create_study', segment: 'create_study', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/create_questionMulti/create_questionMulti.module#CreateQuestionMultiPageModule', name: 'create_questionMulti', segment: 'create_questionMulti', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/modules/modules.module#ModulesPageModule', name: 'modules', segment: 'modules', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/select_module/select_module.module#SelectModulePageModule', name: 'select_module', segment: 'select_module', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/signup/signup.module#SignupPageModule', name: 'SignupPage', segment: 'signup', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/select_study/select_study.module#SelectStudyPageModule', name: 'select_study', segment: 'select_study', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/select_study/select_study.module#SelectStudyPageModule', name: 'select_study', segment: 'select_study', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/signup/signup.module#SignupPageModule', name: 'SignupPage', segment: 'signup', priority: 'low', defaultHistory: [] }
                     ]
                 })
             ],
@@ -1581,6 +1581,7 @@ var DatabaseProvider = (function () {
                         type: doc.data().type,
                         qtext: doc.data().qtext,
                         owner: doc.data().owner,
+                        moduleID: doc.data().moduleID,
                     });
                 });
                 resolve(obj);

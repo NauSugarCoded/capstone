@@ -239,6 +239,7 @@ export class DatabaseProvider {
             type     : doc.data().type,
             qtext    : doc.data().qtext,
             owner    : doc.data().owner,
+            moduleID : doc.data().moduleID,
           });
         });
 

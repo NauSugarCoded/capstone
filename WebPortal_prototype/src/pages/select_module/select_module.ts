@@ -156,6 +156,13 @@ export class SelectModulePage {
    * @description     property that stores the value for the database collection
    */
   private questions 		: any;
+  private option1       : string;
+  private option2       : string;
+  private option3       : string;
+  private option4       : string;
+  private option5       : string;
+  private option6       : string;
+
 
   constructor(public navCtrl        : NavController,
               public params         : NavParams,
@@ -305,17 +312,92 @@ export class SelectModulePage {
      });
   }
 
-  saveQuestions(val : any)
+  saveQuestions(val : any, moduleID : any)
   {
-    this._DB.addModules_Questions("Modules", this.docID, "Questions", val)
-    .then((data : any) =>
-    {
-      this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
-    })
-    .catch((error : any) =>
-    {
-      this.displayAlert('Error', error.message);
-    });
+    if(val.type == "text"){
+      this._DB.addModules_Questions("Modules", this.docID, "Questions", {
+                                                            name    : val.name,
+                                                            type    : val.type,
+                                                            qtext   : val.qtext,
+                                                            owner	 : val.owner,
+                                                            moduleID : moduleID
+                                                          })
+      .then((data : any) =>
+      {
+        this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
+      })
+      .catch((error : any) =>
+      {
+        this.displayAlert('Error', error.message);
+      });
+    }
+
+    else if(val.type == "multi"){
+      this._DB.addModules_Questions("Modules", this.docID, "Questions", {
+                                                            name    : val.name,
+                                                            type    : val.type,
+                                                            qtext   : val.qtext,
+                                                            owner	  : val.owner,
+                                                            option1 : val.option1,
+                           																  option2 : val.option2,
+                           																  option3 : val.option3,
+                           																  option4 : val.option4,
+                           																  option5 : val.option5,
+                           																  option6 : val.option6,
+                                                            moduleID : moduleID
+                                                          })
+      .then((data : any) =>
+      {
+        this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
+      })
+      .catch((error : any) =>
+      {
+        this.displayAlert('Error', error.message);
+      });
+    }
+
+    else if(val.type == "radio"){
+      this._DB.addModules_Questions("Modules", this.docID, "Questions", {
+                                                            name    : val.name,
+                                                            type    : val.type,
+                                                            qtext   : val.qtext,
+                                                            owner	 : val.owner,
+                                                            option1 : val.option1,
+                           																  option2 : val.option2,
+                           																  option3 : val.option3,
+                           																  option4 : val.option4,
+                           																  option5 : val.option5,
+                           																  option6 : val.option6,
+                                                            moduleID : moduleID
+                                                          })
+      .then((data : any) =>
+      {
+        this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
+      })
+      .catch((error : any) =>
+      {
+        this.displayAlert('Error', error.message);
+      });
+    }
+
+    else{
+      this._DB.addModules_Questions("Modules", this.docID, "Questions", {
+                                                            name    : val.name,
+                                                            type    : val.type,
+                                                            qtext   : val.qtext,
+                                                            owner	  : val.owner,
+                                                            moduleID : moduleID
+                                                          })
+      .then((data : any) =>
+      {
+        this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
+      })
+      .catch((error : any) =>
+      {
+        this.displayAlert('Error', error.message);
+      });
+    }
+
   }
 
   updateDocument(object) : void

@@ -246,15 +246,80 @@ var SelectModulePage = (function () {
             _this.displayAlert('Error', error.message);
         });
     };
-    SelectModulePage.prototype.saveQuestions = function (val) {
+    SelectModulePage.prototype.saveQuestions = function (val, moduleID) {
         var _this = this;
-        this._DB.addModules_Questions("Modules", this.docID, "Questions", val)
-            .then(function (data) {
-            _this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
-        })
-            .catch(function (error) {
-            _this.displayAlert('Error', error.message);
-        });
+        if (val.type == "text") {
+            this._DB.addModules_Questions("Modules", this.docID, "Questions", {
+                name: val.name,
+                type: val.type,
+                qtext: val.qtext,
+                owner: val.owner,
+                moduleID: moduleID
+            })
+                .then(function (data) {
+                _this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
+            })
+                .catch(function (error) {
+                _this.displayAlert('Error', error.message);
+            });
+        }
+        else if (val.type == "multi") {
+            this._DB.addModules_Questions("Modules", this.docID, "Questions", {
+                name: val.name,
+                type: val.type,
+                qtext: val.qtext,
+                owner: val.owner,
+                option1: val.option1,
+                option2: val.option2,
+                option3: val.option3,
+                option4: val.option4,
+                option5: val.option5,
+                option6: val.option6,
+                moduleID: moduleID
+            })
+                .then(function (data) {
+                _this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
+            })
+                .catch(function (error) {
+                _this.displayAlert('Error', error.message);
+            });
+        }
+        else if (val.type == "radio") {
+            this._DB.addModules_Questions("Modules", this.docID, "Questions", {
+                name: val.name,
+                type: val.type,
+                qtext: val.qtext,
+                owner: val.owner,
+                option1: val.option1,
+                option2: val.option2,
+                option3: val.option3,
+                option4: val.option4,
+                option5: val.option5,
+                option6: val.option6,
+                moduleID: moduleID
+            })
+                .then(function (data) {
+                _this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
+            })
+                .catch(function (error) {
+                _this.displayAlert('Error', error.message);
+            });
+        }
+        else {
+            this._DB.addModules_Questions("Modules", this.docID, "Questions", {
+                name: val.name,
+                type: val.type,
+                qtext: val.qtext,
+                owner: val.owner,
+                moduleID: moduleID
+            })
+                .then(function (data) {
+                _this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
+            })
+                .catch(function (error) {
+                _this.displayAlert('Error', error.message);
+            });
+        }
     };
     SelectModulePage.prototype.updateDocument = function (object) {
         var params = {
@@ -282,15 +347,12 @@ var SelectModulePage = (function () {
     };
     SelectModulePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-select-module',template:/*ion-inline-start:"C:\Users\spear\Desktop\projects\capstone\WebPortal_prototype\src\pages\select_module\select_module.html"*/'<!--\n  Generated template for the SelectModulePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Module</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <form\n    [formGroup]=\'form\'\n    (ngSubmit)=\'updateModule(form.value)\'>\n\n    <ion-item>\n      <ion-label stacked>Modules Name:</ion-label>\n      <ion-input\n        type=\'text\'\n        formControlName=\'name\'\n        [(ngModel)]=\'name\'>\n      </ion-input>\n    </ion-item>\n\n    <ion-item>\n       <ion-label stacked>Type:</ion-label>\n       <ion-input\n          type="text"\n          formControlName="type"\n          [(ngModel)]="type"></ion-input>\n 	  </ion-item>\n\n    <div *ngIf="type == \'Time Initiated\'">\n      <ion-item>\n        <ion-label> Recurrence: </ion-label>\n        <ion-select formControlName="recurrence" [(ngModel)]="recurrence">\n          <ion-option value="once"> Once </ion-option>\n          <ion-option value="day"> Daily </ion-option>\n          <ion-option value="week"> Weekly </ion-option>\n        </ion-select>\n      </ion-item>\n\n      <ion-item>\n         <ion-label stacked> Start Time </ion-label>\n         <ion-datetime\n            displayFormat="hh:mma"\n            type="time"\n            formControlName="start_time"\n            [(ngModel)]="start_time"></ion-datetime>\n   	  </ion-item>\n\n      <ion-item>\n         <ion-label stacked> Start Date </ion-label>\n         <ion-input\n            formControlName="start_date"\n            [(ngModel)]="start_date"></ion-input>\n   	  </ion-item>\n\n      <ion-item>\n         <ion-label stacked> End Date</ion-label>\n         <ion-input\n            formControlName="end_date"\n            [(ngModel)]="end_date"></ion-input>\n   	  </ion-item>\n    </div>\n\n    <ion-item>\n       <button\n         ion-button\n         block\n         color="primary"\n         text-center\n         padding-top\n         padding-bottom\n         [disabled]="!form.valid">\n          <div *ngIf="!isEditable">\n             Add a new Module\n          </div>\n\n          <div *ngIf="isEditable">\n             Update this Module\n          </div>\n          </button>\n 	  </ion-item>\n\n  </form>\n\n  <ion-item>\n  <div *ngIf="isEditable">\n      <button\n        ion-button\n        block\n        color="danger"\n        text-center\n        padding-top\n        padding-bottom\n        [disabled]="!form.valid"\n        (click)="deleteDocument()">\n        Delete Module\n      </button>\n    </div>\n  </ion-item>\n\n  <h2> Questions </h2>\n\n  <!--<ion-item>\n     <button\n       ion-button\n       block\n       color="primary"\n       text-center\n       padding-top\n       padding-bottom\n       (click)="updateDocument()">\n           Add Branching\n      </button>\n    </ion-item>-->\n\n  <ion-list>\n    <button ion-item *ngFor=\'let question of questions\' (click)="updateDocument(question)">\n      <h2> {{ question.name }} </h2>\n    </button>\n  </ion-list>\n\n  <h2> Add Questions </h2>\n  <button ion-item *ngFor=\'let quest of quests\' (click)="saveQuestions(quest)">\n    Add {{ quest.name }}\n  </button>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\spear\Desktop\projects\capstone\WebPortal_prototype\src\pages\select_module\select_module.html"*/,
+            selector: 'page-select-module',template:/*ion-inline-start:"C:\Users\spear\Desktop\projects\capstone\WebPortal_prototype\src\pages\select_module\select_module.html"*/'<!--\n  Generated template for the SelectModulePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Module</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <form\n    [formGroup]=\'form\'\n    (ngSubmit)=\'updateModule(form.value)\'>\n\n    <ion-item>\n      <ion-label stacked>Modules Name:</ion-label>\n      <ion-input\n        type=\'text\'\n        formControlName=\'name\'\n        [(ngModel)]=\'name\'>\n      </ion-input>\n    </ion-item>\n\n    <ion-item>\n       <ion-label stacked>Type:</ion-label>\n       <ion-input\n          type="text"\n          formControlName="type"\n          [(ngModel)]="type"></ion-input>\n 	  </ion-item>\n\n    <div *ngIf="type == \'Time Initiated\'">\n      <ion-item>\n        <ion-label> Recurrence: </ion-label>\n        <ion-select formControlName="recurrence" [(ngModel)]="recurrence">\n          <ion-option value="once"> Once </ion-option>\n          <ion-option value="day"> Daily </ion-option>\n          <ion-option value="week"> Weekly </ion-option>\n        </ion-select>\n      </ion-item>\n\n      <ion-item>\n         <ion-label stacked> Start Time </ion-label>\n         <ion-datetime\n            displayFormat="hh:mma"\n            type="time"\n            formControlName="start_time"\n            [(ngModel)]="start_time"></ion-datetime>\n   	  </ion-item>\n\n      <ion-item>\n         <ion-label stacked> Start Date </ion-label>\n         <ion-input\n            formControlName="start_date"\n            [(ngModel)]="start_date"></ion-input>\n   	  </ion-item>\n\n      <ion-item>\n         <ion-label stacked> End Date</ion-label>\n         <ion-input\n            formControlName="end_date"\n            [(ngModel)]="end_date"></ion-input>\n   	  </ion-item>\n    </div>\n\n    <ion-item>\n       <button\n         ion-button\n         block\n         color="primary"\n         text-center\n         padding-top\n         padding-bottom\n         [disabled]="!form.valid">\n          <div *ngIf="!isEditable">\n             Add a new Module\n          </div>\n\n          <div *ngIf="isEditable">\n             Update this Module\n          </div>\n          </button>\n 	  </ion-item>\n\n  </form>\n\n  <ion-item>\n  <div *ngIf="isEditable">\n      <button\n        ion-button\n        block\n        color="danger"\n        text-center\n        padding-top\n        padding-bottom\n        [disabled]="!form.valid"\n        (click)="deleteDocument()">\n        Delete Module\n      </button>\n    </div>\n  </ion-item>\n\n  <h2> Questions </h2>\n\n  <!--<ion-item>\n     <button\n       ion-button\n       block\n       color="primary"\n       text-center\n       padding-top\n       padding-bottom\n       (click)="updateDocument()">\n           Add Branching\n      </button>\n    </ion-item>-->\n\n  <ion-list>\n    <button ion-item *ngFor=\'let question of questions\' (click)="updateDocument(question)">\n      <h2> {{ question.name }} </h2>\n    </button>\n  </ion-list>\n\n  <h2> Add Questions </h2>\n  <button ion-item *ngFor=\'let quest of quests\' (click)="saveQuestions(quest, docID)">\n    Add {{ quest.name }}\n  </button>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\spear\Desktop\projects\capstone\WebPortal_prototype\src\pages\select_module\select_module.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormBuilder */],
-            __WEBPACK_IMPORTED_MODULE_3__providers_database_database__["a" /* DatabaseProvider */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormBuilder */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__providers_database_database__["a" /* DatabaseProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_database_database__["a" /* DatabaseProvider */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */]) === "function" && _e || Object])
     ], SelectModulePage);
     return SelectModulePage;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=select_module.js.map
