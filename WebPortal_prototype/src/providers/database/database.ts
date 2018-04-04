@@ -20,6 +20,7 @@ export class DatabaseProvider {
   private url: any;
 
   public data = {};
+  public i = 0;
 
   constructor(public http: HttpClient) {
     console.log('Hello DatabaseQuestionsProvider Provider');
@@ -427,6 +428,36 @@ export class DatabaseProvider {
         .catch((error : any) => {
           console.log(error);
         });
+    }
+
+    exportAnswers_Modules(moduleID : string){
+      this.data[moduleID] = {};
+      let userList = [];
+      this._DB.collection("Answers").get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          userList.push(doc.id);
+          this.data[moduleID][doc.id] = {};
+        })
+        this._DB
+        .collection("Answers").doc(userList[this.i]).collection(moduleID)
+        .get()
+        .then(snapshot => {
+          snapshot.forEach(doc => {
+            for(this.i = 0; this.i < userList.length; this.i++){
+              this.data[moduleID][userList[0]][doc.id] = doc.data();
+            }
+          })
+        })
+
+
+
+
+      })
+      .catch((error : any) => {
+        console.log(error);
+      });
+      console.log(this.data);
     }
 
     downloadStudies() : void {
