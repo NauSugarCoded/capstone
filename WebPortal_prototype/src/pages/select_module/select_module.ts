@@ -332,6 +332,20 @@ export class SelectModulePage {
     this._DB.exportAnswers_Modules(this.docID);
   }
 
+  searchQuestions(input : any){
+
+    let val = input.target.value;
+    if(val && val.trim() != '') {
+      this.questions = this.questions.filter((question) => {
+        return(question.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+    }
+
+    else{
+      this.retrieveSubCollection();
+    }
+  }
+
 
 
   /**

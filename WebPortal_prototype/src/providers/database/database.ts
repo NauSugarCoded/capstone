@@ -18,6 +18,7 @@ export class DatabaseProvider {
   private storage: any;
   private ref: any;
   private url: any;
+  private filename: string;
 
   public data = {};
   public i = 0;
@@ -439,25 +440,29 @@ export class DatabaseProvider {
           userList.push(doc.id);
           this.data[moduleID][doc.id] = {};
         })
+
+        this.exportAnswers_Modules_helper(moduleID, userList);
+      })
+      .catch((error : any) => {
+        console.log(error);
+      });
+    }
+
+    exportAnswers_Modules_helper(moduleID: string, userList : any){
+        console.log(userList[this.i]);
         this._DB
         .collection("Answers").doc(userList[this.i]).collection(moduleID)
         .get()
         .then(snapshot => {
           snapshot.forEach(doc => {
-            for(this.i = 0; this.i < userList.length; this.i++){
-              this.data[moduleID][userList[0]][doc.id] = doc.data();
-            }
+              this.data[moduleID][userList[this.i]][doc.id] = doc.data();
           })
+          var myData =  JSON.stringify(this.data);
+          this.filename = 'firestore-answers-to-module-' + moduleID + '.json';
+          this.ref.child(this.filename).putString(myData).then(function(snapshot) {
+            console.log('Uploaded JSON');
+          });
         })
-
-
-
-
-      })
-      .catch((error : any) => {
-        console.log(error);
-      });
-      console.log(this.data);
     }
 
     downloadStudies() : void {

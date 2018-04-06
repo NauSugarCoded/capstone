@@ -119,11 +119,12 @@
 
   <h2> Questions </h2>
 
-  <ion-list>
-    <button ion-item *ngFor='let question of questions'>
-      <h2> {{ question.name }} </h2>
-    </button>
-  </ion-list>
+  <ion-searchbar (ionInput)="searchQuestions($event)"></ion-searchbar>
+<ion-list>
+  <ion-item *ngFor="let question of questions">
+    {{ question.name }}
+  </ion-item>
+</ion-list>
 
   <h2> Add Questions </h2>
 

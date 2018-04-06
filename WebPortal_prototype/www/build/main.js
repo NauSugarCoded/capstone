@@ -447,21 +447,28 @@ var DatabaseProvider = (function () {
                 userList.push(doc.id);
                 _this.data[moduleID][doc.id] = {};
             });
-            _this._DB
-                .collection("Answers").doc(userList[_this.i]).collection(moduleID)
-                .get()
-                .then(function (snapshot) {
-                snapshot.forEach(function (doc) {
-                    for (_this.i = 0; _this.i < userList.length; _this.i++) {
-                        _this.data[moduleID][userList[0]][doc.id] = doc.data();
-                    }
-                });
-            });
+            _this.exportAnswers_Modules_helper(moduleID, userList);
         })
             .catch(function (error) {
             console.log(error);
         });
-        console.log(this.data);
+    };
+    DatabaseProvider.prototype.exportAnswers_Modules_helper = function (moduleID, userList) {
+        var _this = this;
+        console.log(userList[this.i]);
+        this._DB
+            .collection("Answers").doc(userList[this.i]).collection(moduleID)
+            .get()
+            .then(function (snapshot) {
+            snapshot.forEach(function (doc) {
+                _this.data[moduleID][userList[_this.i]][doc.id] = doc.data();
+            });
+            var myData = JSON.stringify(_this.data);
+            _this.filename = 'firestore-answers-to-module-' + moduleID + '.json';
+            _this.ref.child(_this.filename).putString(myData).then(function (snapshot) {
+                console.log('Uploaded JSON');
+            });
+        });
     };
     DatabaseProvider.prototype.downloadStudies = function () {
         var fileRef = this.storage.ref('firestore-studies.json');
@@ -899,23 +906,23 @@ var map = {
 		6
 	],
 	"../pages/create_questionRadio/create_questionRadio.module": [
-		1295,
+		1299,
 		5
 	],
 	"../pages/create_questionSlider/create_questionSlider.module": [
-		1296,
+		1295,
 		4
 	],
 	"../pages/create_study/create_study.module": [
-		1297,
+		1298,
 		2
 	],
 	"../pages/login/login.module": [
-		1298,
+		1296,
 		11
 	],
 	"../pages/modules/modules.module": [
-		1299,
+		1297,
 		10
 	],
 	"../pages/select_module/select_module.module": [
@@ -1712,11 +1719,11 @@ var AppModule = (function () {
                         { loadChildren: '../pages/create_participant/create_participant.module#CreateParticipantPageModule', name: 'create_participant', segment: 'create_participant', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/create_question/create_question.module#CreateQuestionPageModule', name: 'create_question', segment: 'create_question', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/create_questionMulti/create_questionMulti.module#CreateQuestionMultiPageModule', name: 'create_questionMulti', segment: 'create_questionMulti', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/create_questionRadio/create_questionRadio.module#CreateQuestionRadioPageModule', name: 'create_questionRadio', segment: 'create_questionRadio', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/create_questionSlider/create_questionSlider.module#CreateQuestionSliderPageModule', name: 'create_questionSlider', segment: 'create_questionSlider', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/create_study/create_study.module#CreateStudyPageModule', name: 'create_study', segment: 'create_study', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/modules/modules.module#ModulesPageModule', name: 'modules', segment: 'modules', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/create_study/create_study.module#CreateStudyPageModule', name: 'create_study', segment: 'create_study', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/create_questionRadio/create_questionRadio.module#CreateQuestionRadioPageModule', name: 'create_questionRadio', segment: 'create_questionRadio', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/select_module/select_module.module#SelectModulePageModule', name: 'select_module', segment: 'select_module', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/select_study/select_study.module#SelectStudyPageModule', name: 'select_study', segment: 'select_study', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/signup/signup.module#SignupPageModule', name: 'SignupPage', segment: 'signup', priority: 'low', defaultHistory: [] }
