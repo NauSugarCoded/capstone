@@ -74,7 +74,7 @@ export class LoginPage {
   }
 
   forgotPassword() {
-
+    this.navCtrl.push(ForgotPassPage);
   }
 
   redirectToSignup() {

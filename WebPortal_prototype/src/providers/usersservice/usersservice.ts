@@ -38,6 +38,10 @@ export class UsersserviceProvider {
 
   }
 
+  logoutUserService() {
+    this.fireAuth.signOut();
+  }
+
   returnUser(): string
   {
     let email = firebase.auth().currentUser.email;
