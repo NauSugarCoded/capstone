@@ -162,6 +162,7 @@ export class SelectModulePage {
   private option4       : string;
   private option5       : string;
   private option6       : string;
+  //private opts          : any;
 
 
   constructor(public navCtrl        : NavController,
@@ -221,9 +222,10 @@ export class SelectModulePage {
      .then((data) =>
      {
        this.quests = data;
-
+       console.log(this.quests);
      })
      .catch();
+
   }
 
   retrieveSubCollection() : void
@@ -236,10 +238,11 @@ export class SelectModulePage {
      .catch();
   }
 
+
   updateModule(val : any) : void
   {
      let name	      : string		= this.form.controls["name"].value,
-         type        : string 		= this.form.controls["type"].value,
+         type       : string 		= this.form.controls["type"].value,
          recurrence	: string		= this.form.controls['recurrence'].value,
          start_time	: string		= this.form.controls['start_time'].value,
          start_date	: string		= this.form.controls['start_date'].value,
@@ -312,6 +315,7 @@ export class SelectModulePage {
      });
   }
 
+
   saveQuestions(val : any, moduleID : any)
   {
     if(val.type == "text"){
@@ -333,17 +337,21 @@ export class SelectModulePage {
     }
 
     else if(val.type == "multi"){
+      this.saveQuestionsHelper(val)
+      .then((opts : any) =>
+      {
+      console.log(this.opts);
       this._DB.addModules_Questions("Modules", this.docID, "Questions", {
                                                             name    : val.name,
                                                             type    : val.type,
                                                             qtext   : val.qtext,
                                                             owner	  : val.owner,
-                                                            option1 : val.option1,
-                           																  option2 : val.option2,
-                           																  option3 : val.option3,
-                           																  option4 : val.option4,
-                           																  option5 : val.option5,
-                           																  option6 : val.option6,
+                                                            option1 : opts[0],
+                           																  option2 : opts[1],
+                           																  option3 : opts[2],
+                           																  option4 : opts[3],
+                           																  option5 : opts[4],
+                           																  option6 : opts[5],
                                                             moduleID : moduleID
                                                           })
       .then((data : any) =>
@@ -354,20 +362,24 @@ export class SelectModulePage {
       {
         this.displayAlert('Error', error.message);
       });
+      })
     }
 
     else if(val.type == "radio"){
+      this.saveQuestionsHelper(val)
+      .then((opts : any) =>
+      {
       this._DB.addModules_Questions("Modules", this.docID, "Questions", {
                                                             name    : val.name,
                                                             type    : val.type,
                                                             qtext   : val.qtext,
-                                                            owner	 : val.owner,
-                                                            option1 : val.option1,
-                           																  option2 : val.option2,
-                           																  option3 : val.option3,
-                           																  option4 : val.option4,
-                           																  option5 : val.option5,
-                           																  option6 : val.option6,
+                                                            owner	  : val.owner,
+                                                            option1 : opts[0],
+                           																  option2 : opts[1],
+                           																  option3 : opts[2],
+                           																  option4 : opts[3],
+                           																  option5 : opts[4],
+                           																  option6 : opts[5],
                                                             moduleID : moduleID
                                                           })
       .then((data : any) =>
@@ -378,6 +390,7 @@ export class SelectModulePage {
       {
         this.displayAlert('Error', error.message);
       });
+    })
     }
 
     else{
@@ -398,6 +411,23 @@ export class SelectModulePage {
       });
     }
 
+  }
+
+  saveQuestionsHelper(val : any) : any
+  {
+    let opts = [];
+    let i = 0;
+    for(i = 0; i < this.quests.length; i++){
+      if (this.quests[i] == val.name){
+        opts[0] = this.quests[i].option1;
+        opts[1] = this.quests[i].option2;
+        opts[2] = this.quests[i].option3;
+        opts[3] = this.quests[i].option4;
+        opts[4] = this.quests[i].option5;
+        opts[5] = this.quests[i].option6;
+      }
+    }
+    return opts;
   }
 
   updateDocument(object) : void

@@ -277,23 +277,23 @@ var map = {
 		8
 	],
 	"../pages/create_participant/create_participant.module": [
-		536,
+		537,
 		7
 	],
 	"../pages/create_question/create_question.module": [
-		537,
+		536,
 		3
 	],
 	"../pages/create_questionMulti/create_questionMulti.module": [
-		538,
+		540,
 		6
 	],
 	"../pages/create_questionRadio/create_questionRadio.module": [
-		539,
+		538,
 		5
 	],
 	"../pages/create_questionSlider/create_questionSlider.module": [
-		540,
+		539,
 		4
 	],
 	"../pages/create_study/create_study.module": [
@@ -305,19 +305,19 @@ var map = {
 		12
 	],
 	"../pages/modules/modules.module": [
-		543,
+		544,
 		11
 	],
 	"../pages/select_module/select_module.module": [
-		544,
+		543,
 		1
 	],
 	"../pages/select_study/select_study.module": [
-		545,
+		546,
 		0
 	],
 	"../pages/signup/signup.module": [
-		546,
+		545,
 		10
 	]
 };
@@ -1164,17 +1164,17 @@ var AppModule = (function () {
                     links: [
                         { loadChildren: '../pages/branching/branching.module#BranchingPageModule', name: 'branching', segment: 'branching', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/create_module/create_module.module#CreateModulePageModule', name: 'create_module', segment: 'create_module', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/create_participant/create_participant.module#CreateParticipantPageModule', name: 'create_participant', segment: 'create_participant', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/create_question/create_question.module#CreateQuestionPageModule', name: 'create_question', segment: 'create_question', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/create_questionMulti/create_questionMulti.module#CreateQuestionMultiPageModule', name: 'create_questionMulti', segment: 'create_questionMulti', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/create_participant/create_participant.module#CreateParticipantPageModule', name: 'create_participant', segment: 'create_participant', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/create_questionRadio/create_questionRadio.module#CreateQuestionRadioPageModule', name: 'create_questionRadio', segment: 'create_questionRadio', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/create_questionSlider/create_questionSlider.module#CreateQuestionSliderPageModule', name: 'create_questionSlider', segment: 'create_questionSlider', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/create_questionMulti/create_questionMulti.module#CreateQuestionMultiPageModule', name: 'create_questionMulti', segment: 'create_questionMulti', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/create_study/create_study.module#CreateStudyPageModule', name: 'create_study', segment: 'create_study', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/modules/modules.module#ModulesPageModule', name: 'modules', segment: 'modules', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/select_module/select_module.module#SelectModulePageModule', name: 'select_module', segment: 'select_module', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/select_study/select_study.module#SelectStudyPageModule', name: 'select_study', segment: 'select_study', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/signup/signup.module#SignupPageModule', name: 'SignupPage', segment: 'signup', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/modules/modules.module#ModulesPageModule', name: 'modules', segment: 'modules', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/signup/signup.module#SignupPageModule', name: 'SignupPage', segment: 'signup', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/select_study/select_study.module#SelectStudyPageModule', name: 'select_study', segment: 'select_study', priority: 'low', defaultHistory: [] }
                     ]
                 })
             ],
@@ -1459,6 +1459,37 @@ var DatabaseProvider = (function () {
             });
         });
     };
+    /*getOptions_Modules(collectionObj: string) : Promise<any>{
+      return new Promise((resolve, reject) => {
+        this._DB.collection(collectionObj)
+        .get()
+        .then((querySnapshot) => {
+          let obj : any = [];
+  
+          querySnapshot
+          .forEach((doc: any) => {
+            obj.push({
+             id             : doc.id,
+             name           : doc.data().name,
+             type     : doc.data().type,
+             qtext    : doc.data().qtext,
+             owner    : doc.data().owner,
+             option1  : doc.data().option1,
+             option2  : doc.data().option2,
+             option3  : doc.data().option3,
+             option4  : doc.data().option4,
+             option5  : doc.data().option5,
+             option6  : doc.data().option6,
+            });
+          });
+  
+          resolve(obj);
+        })
+        .catch((error : any) => {
+          reject(error);
+        });
+      });
+    }*/
     DatabaseProvider.prototype.getParticipants = function (collectionObj) {
         var _this = this;
         return new Promise(function (resolve, reject) {

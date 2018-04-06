@@ -107,6 +107,38 @@ export class DatabaseProvider {
     });
   }
 
+  /*getOptions_Modules(collectionObj: string) : Promise<any>{
+    return new Promise((resolve, reject) => {
+      this._DB.collection(collectionObj)
+      .get()
+      .then((querySnapshot) => {
+        let obj : any = [];
+
+        querySnapshot
+        .forEach((doc: any) => {
+          obj.push({
+           id             : doc.id,
+           name           : doc.data().name,
+           type     : doc.data().type,
+           qtext    : doc.data().qtext,
+           owner    : doc.data().owner,
+           option1  : doc.data().option1,
+           option2  : doc.data().option2,
+           option3  : doc.data().option3,
+           option4  : doc.data().option4,
+           option5  : doc.data().option5,
+           option6  : doc.data().option6,
+          });
+        });
+
+        resolve(obj);
+      })
+      .catch((error : any) => {
+        reject(error);
+      });
+    });
+  }*/
+
   getParticipants(collectionObj: string) : Promise<any>{
     return new Promise((resolve, reject) => {
       this._DB.collection(collectionObj)

@@ -183,7 +183,7 @@ export class BranchingPage {
 
   retrieveSubCollection() : void
   {
-     this._DB.getModules_Questions(this._COLL, "OHiOh9B2BREiF8oyJkZ4", "Questions")
+     this._DB.getModules_Questions(this._COLL, this.moduleID, "Questions")
      .then((data) =>
      {
        console.log(data);

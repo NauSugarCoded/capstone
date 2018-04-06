@@ -1,6 +1,6 @@
 webpackJsonp([1],{
 
-/***/ 544:
+/***/ 543:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -67,6 +67,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var SelectModulePage = (function () {
+    //private opts          : any;
     function SelectModulePage(navCtrl, params, _FB, _DB, _ALERT) {
         this.navCtrl = navCtrl;
         this.params = params;
@@ -184,6 +185,7 @@ var SelectModulePage = (function () {
         this._DB.getQuestions_Modules("Questions")
             .then(function (data) {
             _this.quests = data;
+            console.log(_this.quests);
         })
             .catch();
     };
@@ -264,45 +266,52 @@ var SelectModulePage = (function () {
             });
         }
         else if (val.type == "multi") {
-            this._DB.addModules_Questions("Modules", this.docID, "Questions", {
-                name: val.name,
-                type: val.type,
-                qtext: val.qtext,
-                owner: val.owner,
-                option1: val.option1,
-                option2: val.option2,
-                option3: val.option3,
-                option4: val.option4,
-                option5: val.option5,
-                option6: val.option6,
-                moduleID: moduleID
-            })
-                .then(function (data) {
-                _this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
-            })
-                .catch(function (error) {
-                _this.displayAlert('Error', error.message);
+            this.saveQuestionsHelper(val)
+                .then(function (opts) {
+                console.log(_this.opts);
+                _this._DB.addModules_Questions("Modules", _this.docID, "Questions", {
+                    name: val.name,
+                    type: val.type,
+                    qtext: val.qtext,
+                    owner: val.owner,
+                    option1: opts[0],
+                    option2: opts[1],
+                    option3: opts[2],
+                    option4: opts[3],
+                    option5: opts[4],
+                    option6: opts[5],
+                    moduleID: moduleID
+                })
+                    .then(function (data) {
+                    _this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
+                })
+                    .catch(function (error) {
+                    _this.displayAlert('Error', error.message);
+                });
             });
         }
         else if (val.type == "radio") {
-            this._DB.addModules_Questions("Modules", this.docID, "Questions", {
-                name: val.name,
-                type: val.type,
-                qtext: val.qtext,
-                owner: val.owner,
-                option1: val.option1,
-                option2: val.option2,
-                option3: val.option3,
-                option4: val.option4,
-                option5: val.option5,
-                option6: val.option6,
-                moduleID: moduleID
-            })
-                .then(function (data) {
-                _this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
-            })
-                .catch(function (error) {
-                _this.displayAlert('Error', error.message);
+            this.saveQuestionsHelper(val)
+                .then(function (opts) {
+                _this._DB.addModules_Questions("Modules", _this.docID, "Questions", {
+                    name: val.name,
+                    type: val.type,
+                    qtext: val.qtext,
+                    owner: val.owner,
+                    option1: opts[0],
+                    option2: opts[1],
+                    option3: opts[2],
+                    option4: opts[3],
+                    option5: opts[4],
+                    option6: opts[5],
+                    moduleID: moduleID
+                })
+                    .then(function (data) {
+                    _this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
+                })
+                    .catch(function (error) {
+                    _this.displayAlert('Error', error.message);
+                });
             });
         }
         else {
@@ -320,6 +329,21 @@ var SelectModulePage = (function () {
                 _this.displayAlert('Error', error.message);
             });
         }
+    };
+    SelectModulePage.prototype.saveQuestionsHelper = function (val) {
+        var opts = [];
+        var i = 0;
+        for (i = 0; i < this.quests.length; i++) {
+            if (this.quests[i] == val.name) {
+                opts[0] = this.quests[i].option1;
+                opts[1] = this.quests[i].option2;
+                opts[2] = this.quests[i].option3;
+                opts[3] = this.quests[i].option4;
+                opts[4] = this.quests[i].option5;
+                opts[5] = this.quests[i].option6;
+            }
+        }
+        return opts;
     };
     SelectModulePage.prototype.updateDocument = function (object) {
         var params = {
