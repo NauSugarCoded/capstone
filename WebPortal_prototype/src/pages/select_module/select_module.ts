@@ -162,7 +162,7 @@ export class SelectModulePage {
   private option4       : string;
   private option5       : string;
   private option6       : string;
-  //private opts          : any;
+  private opts          : any;
 
 
   constructor(public navCtrl        : NavController,
@@ -321,6 +321,7 @@ export class SelectModulePage {
     if(val.type == "text"){
       this._DB.addModules_Questions("Modules", this.docID, "Questions", {
                                                             name    : val.name,
+                                                            id      : val.id,
                                                             type    : val.type,
                                                             qtext   : val.qtext,
                                                             owner	 : val.owner,
@@ -343,6 +344,7 @@ export class SelectModulePage {
       console.log(this.opts);
       this._DB.addModules_Questions("Modules", this.docID, "Questions", {
                                                             name    : val.name,
+                                                            id      : val.id,
                                                             type    : val.type,
                                                             qtext   : val.qtext,
                                                             owner	  : val.owner,
@@ -372,6 +374,7 @@ export class SelectModulePage {
       this._DB.addModules_Questions("Modules", this.docID, "Questions", {
                                                             name    : val.name,
                                                             type    : val.type,
+                                                            id      : val.id,
                                                             qtext   : val.qtext,
                                                             owner	  : val.owner,
                                                             option1 : opts[0],
@@ -396,6 +399,7 @@ export class SelectModulePage {
     else{
       this._DB.addModules_Questions("Modules", this.docID, "Questions", {
                                                             name    : val.name,
+                                                            id      : val.id,
                                                             type    : val.type,
                                                             qtext   : val.qtext,
                                                             owner	  : val.owner,
