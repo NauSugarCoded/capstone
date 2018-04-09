@@ -10,6 +10,7 @@ import { CreateStudyPage } from '../pages/create_study/create_study';
 import { ModulesPage } from '../pages/modules/modules';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
+import { ForgotPassPage } from '../pages/forgot_pass/forgot_pass';
 import { QuestionsPage } from '../pages/questions/questions';
 import { CreateQuestionPage } from '../pages/create_question/create_question';
 import { ParticipantsPage } from '../pages/participants/participants';
@@ -44,6 +45,7 @@ firebase.initializeApp(config);
     ModulesPage,
     LoginPage,
     SignupPage,
+    ForgotPassPage,
     QuestionsPage,
     ParticipantsPage
   ],
@@ -60,6 +62,7 @@ firebase.initializeApp(config);
     ModulesPage,
     LoginPage,
     SignupPage,
+    ForgotPassPage,
     QuestionsPage,
     ParticipantsPage
   ],
