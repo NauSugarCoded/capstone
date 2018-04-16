@@ -161,6 +161,11 @@ export class SelectModulePage {
 
   public every          : string;
 
+  public flag          : boolean = false;
+  public firstFlag     : boolean = false;
+  public secondFlag    : boolean = false;
+  public link          : string;
+
   constructor(public navCtrl        : NavController,
               public params         : NavParams,
               private _FB 	         : FormBuilder,
@@ -330,6 +335,25 @@ export class SelectModulePage {
 
   exportAnswers_Modules(){
     this._DB.exportAnswers_Modules(this.docID, this.name);
+    this.flag = true;
+  }
+
+  setLink() : void
+  {
+    this._DB.downloadAnswers_Modules(this.name);
+    this.firstFlag = true;
+  }
+
+  createLink() : void
+  {
+    this.link = this._DB.returnURL();
+    console.log(this.link);
+    this.secondFlag = true;
+  }
+
+  downloadFile() : void
+  {
+    window.location.href = this.link["i"];
   }
 
   searchQuestions(input : any){

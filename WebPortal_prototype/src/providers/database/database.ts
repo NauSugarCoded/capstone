@@ -440,7 +440,9 @@ export class DatabaseProvider {
 
     exportAnswers_Modules(moduleID : string, moduleName : string){
 
-      this.data = [];
+      this.data = {};
+      this.csv = [];
+      this.i = 0;
       this.data[moduleID] = {};
       let userList = [];
       this._DB.collection("Answers").get()
@@ -531,6 +533,12 @@ export class DatabaseProvider {
 
     downloadQuestions() : void {
       var fileRef = this.storage.ref('firestore-questions.json');
+      this.url = fileRef.getDownloadURL();
+      console.log(this.url);
+    }
+
+    downloadAnswers_Modules(moduleName : string): void {
+      var fileRef = this.storage.ref('firestore-answers-to-module-' + moduleName + '.csv');
       this.url = fileRef.getDownloadURL();
       console.log(this.url);
     }
