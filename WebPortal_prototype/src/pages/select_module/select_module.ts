@@ -329,7 +329,7 @@ export class SelectModulePage {
   }
 
   exportAnswers_Modules(){
-    this._DB.exportAnswers_Modules(this.docID);
+    this._DB.exportAnswers_Modules(this.docID, this.name);
   }
 
   searchQuestions(input : any){
@@ -345,6 +345,8 @@ export class SelectModulePage {
       this.retrieveSubCollection();
     }
   }
+
+
 
 
 

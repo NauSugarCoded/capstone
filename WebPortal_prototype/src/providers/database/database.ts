@@ -21,6 +21,7 @@ export class DatabaseProvider {
   private filename: string;
 
   public data = {};
+  public csv = [["Module Name","Participant ID", "Date", "Data"]];
   public i = 0;
 
   constructor(public http: HttpClient) {
@@ -370,6 +371,8 @@ export class DatabaseProvider {
 
     exportStudies(collectionObj : string){
 
+        this.data = {};
+
         this.data[collectionObj] = {};
 
         this._DB
@@ -390,6 +393,8 @@ export class DatabaseProvider {
     }
 
     exportModules(collectionObj : string){
+
+        this.data = {};
 
         this.data[collectionObj] = {};
 
@@ -412,6 +417,8 @@ export class DatabaseProvider {
 
     exportQuestions(collectionObj : string){
 
+        this.data = {};
+
         this.data[collectionObj] = {};
 
         this._DB
@@ -431,7 +438,9 @@ export class DatabaseProvider {
         });
     }
 
-    exportAnswers_Modules(moduleID : string){
+    exportAnswers_Modules(moduleID : string, moduleName : string){
+
+      this.data = [];
       this.data[moduleID] = {};
       let userList = [];
       this._DB.collection("Answers").get()
@@ -440,30 +449,67 @@ export class DatabaseProvider {
           userList.push(doc.id);
           this.data[moduleID][doc.id] = {};
         })
-
-        this.exportAnswers_Modules_helper(moduleID, userList);
+        this.createJSON(moduleID, userList, moduleName);
       })
       .catch((error : any) => {
         console.log(error);
       });
     }
 
-    exportAnswers_Modules_helper(moduleID: string, userList : any){
-        console.log(userList[this.i]);
-        this._DB
-        .collection("Answers").doc(userList[this.i]).collection(moduleID)
-        .get()
-        .then(snapshot => {
-          snapshot.forEach(doc => {
-              this.data[moduleID][userList[this.i]][doc.id] = doc.data();
-          })
-          var myData =  JSON.stringify(this.data);
-          this.filename = 'firestore-answers-to-module-' + moduleID + '.json';
-          this.ref.child(this.filename).putString(myData).then(function(snapshot) {
-            console.log('Uploaded JSON');
-          });
+    exportAnswers_Modules_helper(moduleID : string, user : any, moduleName : string){
+
+      console.log(user);
+      this._DB
+      .collection("Answers").doc(user).collection(moduleID)
+      .get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          this.i += 1;
+          var myData = doc.data()
+          var stringData = JSON.stringify(myData);
+          this.csv[this.i] = [moduleName, user, doc.id, stringData];
+          this.data[moduleID][user][doc.id] = doc.data();
         })
+
+        this.uploadJSON(moduleName);
+
+      })
     }
+
+    createJSON(moduleID : string, userList : any, moduleName : string) {
+
+      userList.forEach((user) =>{
+        this.exportAnswers_Modules_helper(moduleID, user, moduleName);
+      })
+
+    }
+
+    uploadJSON(moduleName : string) {
+      console.log(this.data);
+      console.log(this.csv);
+      console.log(this.i);
+      this.createCSV(moduleName);
+      var myData =  JSON.stringify(this.data);
+      this.filename = 'firestore-answers-to-module-' + moduleName + '.json';
+      this.ref.child(this.filename).putString(myData).then(function(snapshot) {
+        console.log('Uploaded JSON');
+      });
+    }
+
+    createCSV(moduleName : string) {
+      let csvContent = "";
+      this.csv.forEach(function(rowArray) {
+        let row = rowArray.join(",");
+        csvContent += row + "\r\n";
+      });
+
+      this.filename = 'firestore-answers-to-module-' + moduleName + '.csv';
+      this.ref.child(this.filename).putString(csvContent).then(function(snapshot) {
+        console.log('Uploaded CSV');
+      });
+    }
+
+
 
     downloadStudies() : void {
       var fileRef = this.storage.ref('firestore-studies.json');

@@ -42,7 +42,7 @@ export class UsersserviceProvider {
     this.fireAuth.signOut();
   }
 
-  sendResetPassword(email : string) : string {
+  sendResetPassword(email : string) {
 
     this.fireAuth.sendPasswordResetEmail(email).then(function() {
       // Email sent.
