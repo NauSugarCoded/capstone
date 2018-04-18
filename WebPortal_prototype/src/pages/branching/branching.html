@@ -16,12 +16,54 @@
   <h2> Question text:</h2><h3> {{ qtext }} </h3>
   <h2> Question Type:</h2><h3> {{ type }} </h3>
   <div *ngIf="type == 'radio' || type == 'multi'">
-    <h2> Option 1:  {{ option1 }} </h2>
-    <h2> Option 2:  {{ option2 }} </h2>
-    <h2> Option 3:  {{ option3 }} </h2>
-    <h2> Option 4:  {{ option4 }} </h2>
-    <h2> Option 5:  {{ option5 }} </h2>
-    <h2> Option 6:  {{ option6 }} </h2>
+
+    <h2> Option 1:
+      <select formControlName="branch">
+        <option *ngFor="let question of questions">
+          {{ question.name }}
+        </option>
+      </select>
+    </h2>
+
+    <h2> Option 2:
+      <select formControlName="branch2">
+        <option *ngFor="let question of questions">
+          {{ question.name }}
+        </option>
+      </select>
+    </h2>
+
+    <h2> Option 3:
+      <select formControlName="branch3">
+        <option *ngFor="let question of questions">
+          {{ question.name }}
+        </option>
+      </select>
+    </h2>
+
+    <h2> Option 4:
+      <select formControlName="branch4">
+        <option *ngFor="let question of questions">
+          {{ question.name }}
+        </option>
+      </select>
+    </h2>
+
+    <h2> Option 5:
+      <select formControlName="branch5">
+        <option *ngFor="let question of questions">
+          {{ question.name }}
+        </option>
+      </select>
+    </h2>
+
+    <h2> Option 6:
+      <select formControlName="branch6">
+        <option *ngFor="let question of questions">
+          {{ question.name }}
+        </option>
+      </select>
+    </h2>
   </div>
 
   <div *ngIf="type == 'slider' || type == 'text'">

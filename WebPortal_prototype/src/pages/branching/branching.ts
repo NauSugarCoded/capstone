@@ -45,6 +45,12 @@ export class BranchingPage {
    * @description     Model for population form field
    */
   public branch    : any;
+  public branch2    : any;
+  public branch3    : any;
+  public branch4    : any;
+  public branch5    : any;
+  public branch6    : any;
+
   public name  : any;
 
 
@@ -120,23 +126,28 @@ export class BranchingPage {
      // that will be used to programmatically control the
      // form / form fields in the component template
      this.form 		= _FB.group({
-        'branch' 		        : ['', Validators.required]
+        'branch' 		        : ['', Validators.required],
+        'branch2' 		        : ['', Validators.required],
+        'branch3' 		        : ['', Validators.required],
+        'branch4' 		        : ['', Validators.required],
+        'branch5' 		        : ['', Validators.required],
+        'branch6' 		        : ['', Validators.required]
      });
 
 
      // If we have navigation parameters then we need to
      // parse these as we know these will be used for
      // editing an existing record
-         let record 		        = params.get('record');
+         let record 		      = params.get('record');
          this.name            = record.location.name;
          this.qtext           = record.location.qtext;
          this.branch          = record.location.branch;
-         this.docID            = record.location.id;
+         this.docID           = record.location.id;
          this.moduleID        = record.location.moduleID;
          this.qID             = record.location.quest_id;
-         this.type             = record.location.type;
-         this.isEditable       = true;
-         this.title            = 'Update this branch';
+         this.type            = record.location.type;
+         this.isEditable      = true;
+         this.title           = 'Update this branch';
   }
 
   ionViewDidEnter()
@@ -205,6 +216,12 @@ export class BranchingPage {
   saveDocument(val : any) : void
   {
      let branch        : string 		= this.form.controls["branch"].value;
+     let branch2        : string 		= this.form.controls["branch2"].value;
+     let branch3        : string 		= this.form.controls["branch3"].value;
+     let branch4        : string 		= this.form.controls["branch4"].value;
+     let branch5       : string 		= this.form.controls["branch5"].value;
+     let branch6        : string 		= this.form.controls["branch6"].value;
+
 
 
 
@@ -214,8 +231,8 @@ export class BranchingPage {
 
         // Call the DatabaseProvider service and pass/format the data for use
         // with the updateDocument method
-        this._DB.updateDocument(this._COLL,
-                              this.docID,
+        this._DB.updateModules_Questions(this._COLL,
+                              this.moduleID,"Questions", this.docID,
                               {
                                 branch    : branch
                             })
@@ -289,7 +306,7 @@ export class BranchingPage {
    */
   clearForm() : void
   {
-     this.name  					= '';
+     this.name  			= '';
      this.type				= '';
   }
 

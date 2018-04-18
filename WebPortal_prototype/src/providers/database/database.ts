@@ -371,6 +371,24 @@ export class DatabaseProvider {
       });
     }
 
+    updateModules_Questions(maincollectionObj : string,
+                    modID : string, collectionObj: string, docID: string,
+                    dataObj : any) : Promise<any>{
+      return new Promise((resolve, reject) => {
+        this._DB.collection(maincollectionObj)
+        .doc(modID)
+        .collection(collectionObj)
+        .doc(docID)
+        .update(dataObj)
+        .then((obj : any) => {
+          resolve(obj);
+        })
+        .catch((error : any) => {
+          reject(error);
+        });
+      });
+    }
+
     viewDocument(collectionObj : string,
                     docID : string,
                     dataObj : any) : Promise<any>{

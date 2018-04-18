@@ -24,7 +24,7 @@ var HomePage = (function () {
     }
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/home/chantz/Desktop/projects/capstone/WebPortal_prototype/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>SCHEMA</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n\n  <div id="page-container">\n\n    <h3>Home Page</h3>\n\n    <br><br><br>\n\n    <div id="owner-current-studies">\n      <ion-grid class="table">\n        <h4>My Studies</h4>\n        <ion-row class="grid-labels">\n          <ion-col col-1>ID</ion-col>\n          <ion-col col-9>Name</ion-col>\n          <ion-col col-2>Status</ion-col>\n        </ion-row>\n        <ion-row>\n          <ion-col col-1>0001</ion-col>\n          <ion-col col-9>TEST 1</ion-col>\n          <ion-col col-2>Active</ion-col>\n        </ion-row>\n        <ion-row>\n          <ion-col col-1>0002</ion-col>\n          <ion-col col-9>TEST 2</ion-col>\n          <ion-col col-2>Active</ion-col>\n        </ion-row>\n        <ion-row>\n          <ion-col col-1>0003</ion-col>\n          <ion-col col-9>TEST 3</ion-col>\n          <ion-col col-2>Active</ion-col>\n        </ion-row>\n        <button ion-button id="add-study-button" menuToggle> + </button>\n      </ion-grid>\n    </div>\n    <br><br><br><br>\n    <div id="owner-completed-studies">\n      <ion-grid class="table">\n        <h4>My Completed Studies</h4>\n        <ion-row class="grid-labels">\n          <ion-col col-1>ID</ion-col>\n          <ion-col col-9>Name</ion-col>\n          <ion-col col-2>Status</ion-col>\n        </ion-row>\n        <ion-row>\n          <ion-col col-1>0000</ion-col>\n          <ion-col col-9>COMPLETED TEST</ion-col>\n          <ion-col col-2>Active</ion-col>\n        </ion-row>\n      </ion-grid>\n    </div>\n  </div>\n\n\n\n</ion-content>\n'/*ion-inline-end:"/home/chantz/Desktop/projects/capstone/WebPortal_prototype/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"C:\Users\spear\Desktop\projects\capstone\WebPortal_prototype\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>SCHEMA</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n\n\n  <div id="page-container">\n\n\n\n    <h3>Home Page</h3>\n\n\n\n    <br><br><br>\n\n\n\n    <div id="owner-current-studies">\n\n      <ion-grid class="table">\n\n        <h4>My Studies</h4>\n\n        <ion-row class="grid-labels">\n\n          <ion-col col-1>ID</ion-col>\n\n          <ion-col col-9>Name</ion-col>\n\n          <ion-col col-2>Status</ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-1>0001</ion-col>\n\n          <ion-col col-9>TEST 1</ion-col>\n\n          <ion-col col-2>Active</ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-1>0002</ion-col>\n\n          <ion-col col-9>TEST 2</ion-col>\n\n          <ion-col col-2>Active</ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-1>0003</ion-col>\n\n          <ion-col col-9>TEST 3</ion-col>\n\n          <ion-col col-2>Active</ion-col>\n\n        </ion-row>\n\n        <button ion-button id="add-study-button" menuToggle> + </button>\n\n      </ion-grid>\n\n    </div>\n\n    <br><br><br><br>\n\n    <div id="owner-completed-studies">\n\n      <ion-grid class="table">\n\n        <h4>My Completed Studies</h4>\n\n        <ion-row class="grid-labels">\n\n          <ion-col col-1>ID</ion-col>\n\n          <ion-col col-9>Name</ion-col>\n\n          <ion-col col-2>Status</ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <ion-col col-1>0000</ion-col>\n\n          <ion-col col-9>COMPLETED TEST</ion-col>\n\n          <ion-col col-2>Active</ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n    </div>\n\n  </div>\n\n\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\spear\Desktop\projects\capstone\WebPortal_prototype\src\pages\home\home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]])
     ], HomePage);
@@ -36,83 +36,6 @@ var HomePage = (function () {
 /***/ }),
 
 /***/ 182:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SignupPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_usersservice_usersservice__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(104);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-/**
- * Generated class for the SignupPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var SignupPage = (function () {
-    function SignupPage(usersserviceProvider, navCtrl, navParams, toastCtrl, loadingCtrl) {
-        this.usersserviceProvider = usersserviceProvider;
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.toastCtrl = toastCtrl;
-        this.loadingCtrl = loadingCtrl;
-    }
-    SignupPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad SignupPage');
-    };
-    SignupPage.prototype.doSignup = function () {
-        var _this = this;
-        var that = this;
-        var loader = this.loadingCtrl.create({
-            content: "Please wait...",
-        });
-        loader.present();
-        this.usersserviceProvider.signupUserService(this.email, this.password).then(function (authData) {
-            loader.dismiss();
-            that.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__home_home__["a" /* HomePage */]);
-        }, function (error) {
-            loader.dismiss();
-            _this.toastCtrl.create({
-                message: error,
-                duration: 9000,
-                position: 'top'
-            }).present();
-            that.password = "";
-        });
-    };
-    SignupPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-signup',template:/*ion-inline-start:"/home/chantz/Desktop/projects/capstone/WebPortal_prototype/src/pages/signup/signup.html"*/'<!--\n  Generated template for the SignupPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Sign Up</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <ion-list>\n\n   <ion-item>\n      <ion-label stacked>Email</ion-label>\n      <ion-input type="email" [(ngModel)]="email" name="email" placeholder="eg. john@doe.com"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label stacked>Password</ion-label>\n      <ion-input type="password" [(ngModel)]="password" name="password"></ion-input>\n    </ion-item>\n\n    <ion-item >\n        <ion-label stacked>Phone</ion-label>\n        <ion-input type="text" [(ngModel)]="phone" name="phone" placeholder="eg. 0802222222" required="required"></ion-input>\n    </ion-item>\n\n<hr/>\n    <ion-item>\n      <ion-label stacked>First name</ion-label>\n      <ion-input type="text" [(ngModel)]="first_name" name="first_name"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label stacked>Last name</ion-label>\n      <ion-input type="text" [(ngModel)]="last_name" name="last_name"></ion-input>\n    </ion-item>\n\n    <div padding text-center>\n      <button ion-button color="default" round (click)="doSignup()" >Sign Up</button>\n    </div>\n\n  </ion-list>\n\n</ion-content>\n'/*ion-inline-end:"/home/chantz/Desktop/projects/capstone/WebPortal_prototype/src/pages/signup/signup.html"*/,
-            providers: [__WEBPACK_IMPORTED_MODULE_2__providers_usersservice_usersservice__["a" /* UsersserviceProvider */]]
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_usersservice_usersservice__["a" /* UsersserviceProvider */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]])
-    ], SignupPage);
-    return SignupPage;
-}());
-
-//# sourceMappingURL=signup.js.map
-
-/***/ }),
-
-/***/ 183:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -234,7 +157,7 @@ var ModulesPage = (function () {
     };
     ModulesPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-modules',template:/*ion-inline-start:"/home/chantz/Desktop/projects/capstone/WebPortal_prototype/src/pages/modules/modules.html"*/'<!--\n  Generated template for the ModulesPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Modules</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <ion-list>\n    <button\n      ion-button\n      block\n      color=\'primary\'\n      (click)=\'addDocument()\'>\n      Create a new module\n    </button>\n\n    <div *ngFor=\'let location of locations\'>\n      <div *ngIf = "email == location.owner">\n        <button ion-item (click)="updateDocument(location)">\n          {{location.name}}\n          <div class="item-note" item-end>\n            {{location.type}}\n          </div>\n        </button>\n      </div>\n    </div>\n  </ion-list>\n\n</ion-content>\n'/*ion-inline-end:"/home/chantz/Desktop/projects/capstone/WebPortal_prototype/src/pages/modules/modules.html"*/,
+            selector: 'page-modules',template:/*ion-inline-start:"C:\Users\spear\Desktop\projects\capstone\WebPortal_prototype\src\pages\modules\modules.html"*/'<!--\n\n  Generated template for the ModulesPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Modules</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n  <ion-list>\n\n    <button\n\n      ion-button\n\n      block\n\n      color=\'primary\'\n\n      (click)=\'addDocument()\'>\n\n      Create a new module\n\n    </button>\n\n\n\n    <div *ngFor=\'let location of locations\'>\n\n      <div *ngIf = "email == location.owner">\n\n        <button ion-item (click)="updateDocument(location)">\n\n          {{location.name}}\n\n          <div class="item-note" item-end>\n\n            {{location.type}}\n\n          </div>\n\n        </button>\n\n      </div>\n\n    </div>\n\n  </ion-list>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\spear\Desktop\projects\capstone\WebPortal_prototype\src\pages\modules\modules.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */],
@@ -244,6 +167,83 @@ var ModulesPage = (function () {
 }());
 
 //# sourceMappingURL=modules.js.map
+
+/***/ }),
+
+/***/ 183:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SignupPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_usersservice_usersservice__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(104);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/**
+ * Generated class for the SignupPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var SignupPage = (function () {
+    function SignupPage(usersserviceProvider, navCtrl, navParams, toastCtrl, loadingCtrl) {
+        this.usersserviceProvider = usersserviceProvider;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.toastCtrl = toastCtrl;
+        this.loadingCtrl = loadingCtrl;
+    }
+    SignupPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad SignupPage');
+    };
+    SignupPage.prototype.doSignup = function () {
+        var _this = this;
+        var that = this;
+        var loader = this.loadingCtrl.create({
+            content: "Please wait...",
+        });
+        loader.present();
+        this.usersserviceProvider.signupUserService(this.email, this.password).then(function (authData) {
+            loader.dismiss();
+            that.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__home_home__["a" /* HomePage */]);
+        }, function (error) {
+            loader.dismiss();
+            _this.toastCtrl.create({
+                message: error,
+                duration: 9000,
+                position: 'top'
+            }).present();
+            that.password = "";
+        });
+    };
+    SignupPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-signup',template:/*ion-inline-start:"C:\Users\spear\Desktop\projects\capstone\WebPortal_prototype\src\pages\signup\signup.html"*/'<!--\n  Generated template for the SignupPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Sign Up</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <ion-list>\n\n   <ion-item>\n      <ion-label stacked>Email</ion-label>\n      <ion-input type="email" [(ngModel)]="email" name="email" placeholder="eg. john@doe.com"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label stacked>Password</ion-label>\n      <ion-input type="password" [(ngModel)]="password" name="password"></ion-input>\n    </ion-item>\n\n    <ion-item >\n        <ion-label stacked>Phone</ion-label>\n        <ion-input type="text" [(ngModel)]="phone" name="phone" placeholder="eg. 0802222222" required="required"></ion-input>\n    </ion-item>\n\n<hr/>\n    <ion-item>\n      <ion-label stacked>First name</ion-label>\n      <ion-input type="text" [(ngModel)]="first_name" name="first_name"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label stacked>Last name</ion-label>\n      <ion-input type="text" [(ngModel)]="last_name" name="last_name"></ion-input>\n    </ion-item>\n\n    <div padding text-center>\n      <button ion-button color="default" round (click)="doSignup()" >Sign Up</button>\n    </div>\n\n  </ion-list>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\spear\Desktop\projects\capstone\WebPortal_prototype\src\pages\signup\signup.html"*/,
+            providers: [__WEBPACK_IMPORTED_MODULE_2__providers_usersservice_usersservice__["a" /* UsersserviceProvider */]]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_usersservice_usersservice__["a" /* UsersserviceProvider */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]])
+    ], SignupPage);
+    return SignupPage;
+}());
+
+//# sourceMappingURL=signup.js.map
 
 /***/ }),
 
@@ -282,22 +282,22 @@ var map = {
 	],
 	"../pages/create_question/create_question.module": [
 		537,
-		6
+		3
 	],
 	"../pages/create_questionMulti/create_questionMulti.module": [
 		538,
-		5
+		6
 	],
 	"../pages/create_questionRadio/create_questionRadio.module": [
 		539,
-		4
+		5
 	],
 	"../pages/create_questionSlider/create_questionSlider.module": [
 		540,
-		3
+		4
 	],
 	"../pages/create_study/create_study.module": [
-		541,
+		545,
 		2
 	],
 	"../pages/login/login.module": [
@@ -305,15 +305,15 @@ var map = {
 		12
 	],
 	"../pages/modules/modules.module": [
-		543,
+		541,
 		11
 	],
 	"../pages/select_module/select_module.module": [
-		544,
+		543,
 		1
 	],
 	"../pages/select_study/select_study.module": [
-		545,
+		544,
 		0
 	],
 	"../pages/signup/signup.module": [
@@ -522,7 +522,7 @@ var StudiesPage = (function () {
     };
     StudiesPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-studies',template:/*ion-inline-start:"/home/chantz/Desktop/projects/capstone/WebPortal_prototype/src/pages/studies/studies.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Studies</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <button\n    ion-button\n    block\n    color=\'primary\'\n    (click)=\'addDocument()\'>\n    Add a new Study\n  </button>\n\n  <div *ngFor=\'let location of locations\'>\n    <div *ngIf = "email == location.owner">\n      <button ion-item (click)="updateDocument(location)">\n        {{location.short_name}}\n        <div class="item-note" item-end>\n          {{location.abstract}}\n        </div>\n      </button>\n    </div>\n  </div>\n\n</ion-content>\n'/*ion-inline-end:"/home/chantz/Desktop/projects/capstone/WebPortal_prototype/src/pages/studies/studies.html"*/
+            selector: 'page-studies',template:/*ion-inline-start:"C:\Users\spear\Desktop\projects\capstone\WebPortal_prototype\src\pages\studies\studies.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Studies</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n  <button\n\n    ion-button\n\n    block\n\n    color=\'primary\'\n\n    (click)=\'addDocument()\'>\n\n    Add a new Study\n\n  </button>\n\n\n\n  <div *ngFor=\'let location of locations\'>\n\n    <div *ngIf = "email == location.owner">\n\n      <button ion-item (click)="updateDocument(location)">\n\n        {{location.short_name}}\n\n        <div class="item-note" item-end>\n\n          {{location.abstract}}\n\n        </div>\n\n      </button>\n\n    </div>\n\n  </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\spear\Desktop\projects\capstone\WebPortal_prototype\src\pages\studies\studies.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */],
@@ -760,7 +760,7 @@ var QuestionsPage = (function () {
     };
     QuestionsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-questions',template:/*ion-inline-start:"/home/chantz/Desktop/projects/capstone/WebPortal_prototype/src/pages/questions/questions.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>\n      Schema\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <div class = "row">\n    <div class = "col">\n      <button\n        ion-button\n        block\n        color=\'primary\'\n        (click)=\'addDocument()\'>\n        Add a new textbox question\n      </button>\n    </div>\n\n    <div class = "col">\n      <button\n        ion-button\n        block\n        color=\'primary\'\n        (click)=\'addRadio()\'>\n        Add a new radio question\n      </button>\n    </div>\n\n    <div class = "col">\n      <button\n        ion-button\n        block\n        color=\'primary\'\n        (click)=\'addMulti()\'>\n        Add a new multiple choice question\n      </button>\n    </div>\n\n    <div class = "col">\n      <button\n        ion-button\n        block\n        color=\'primary\'\n        (click)=\'addSlider()\'>\n        Add a new slider question\n      </button>\n    </div>\n  </div>\n\n  <div *ngFor=\'let location of locations\'>\n    <div *ngIf = "email == location.owner">\n      <ion-list>\n        <ion-item>\n          <h2>{{ location.name }}</h2>\n          <p>\n            Type: {{ location.type}}<br>\n            Question Text: {{ location.qtext }}<br>\n            <ng-container *ngIf="location.option1">\n            Answer Choice 1: {{ location.option1 }}<br>\n            </ng-container>\n            <ng-container *ngIf="location.option2">\n            Answer Choice 2: {{ location.option2 }}<br>\n            </ng-container>\n            <ng-container *ngIf="location.option3">\n            Answer Choice 3: {{ location.option3 }}<br>\n            </ng-container>\n            <ng-container *ngIf="location.option4">\n            Answer Choice 4: {{ location.option4 }}<br>\n            </ng-container>\n            <ng-container *ngIf="location.option5">\n            Answer Choice 5: {{ location.option5 }}<br>\n            </ng-container>\n            <ng-container *ngIf="location.option6">\n            Answer Choice 6: {{ location.option6 }}\n          </ng-container>\n          </p>\n\n          <ng-container *ngIf="location.type == \'text\'">\n            <button\n              ion-button\n              color=\'secondary\'\n              (click)=\'updateDocument(location)\'>\n              Update this question\n            </button>\n         </ng-container>\n\n          <ng-container *ngIf="location.type == \'radio\'">\n            <button\n              ion-button\n              color=\'secondary\'\n              (click)=\'updateRadio(location)\'>\n              Update this question\n            </button>\n         </ng-container>\n\n         <ng-container *ngIf="location.type == \'multi\'">\n           <button\n             ion-button\n             color=\'secondary\'\n             (click)=\'updateMulti(location)\'>\n             Update this question\n           </button>\n        </ng-container>\n\n        <ng-container *ngIf="location.type == \'slider\'">\n          <button\n            ion-button\n            color=\'secondary\'\n            (click)=\'updateSlider(location)\'>\n            Update this question\n          </button>\n       </ng-container>\n\n          <button\n            ion-button\n            color=\'danger\'\n            (click)="deleteDocument(location)">\n            Delete this question\n          </button>\n        </ion-item>\n      </ion-list>\n    </div>\n  </div>\n\n</ion-content>\n'/*ion-inline-end:"/home/chantz/Desktop/projects/capstone/WebPortal_prototype/src/pages/questions/questions.html"*/
+            selector: 'page-questions',template:/*ion-inline-start:"C:\Users\spear\Desktop\projects\capstone\WebPortal_prototype\src\pages\questions\questions.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>\n\n      Schema\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <div class = "row">\n\n    <div class = "col">\n\n      <button\n\n        ion-button\n\n        block\n\n        color=\'primary\'\n\n        (click)=\'addDocument()\'>\n\n        Add a new textbox question\n\n      </button>\n\n    </div>\n\n\n\n    <div class = "col">\n\n      <button\n\n        ion-button\n\n        block\n\n        color=\'primary\'\n\n        (click)=\'addRadio()\'>\n\n        Add a new radio question\n\n      </button>\n\n    </div>\n\n\n\n    <div class = "col">\n\n      <button\n\n        ion-button\n\n        block\n\n        color=\'primary\'\n\n        (click)=\'addMulti()\'>\n\n        Add a new multiple choice question\n\n      </button>\n\n    </div>\n\n\n\n    <div class = "col">\n\n      <button\n\n        ion-button\n\n        block\n\n        color=\'primary\'\n\n        (click)=\'addSlider()\'>\n\n        Add a new slider question\n\n      </button>\n\n    </div>\n\n  </div>\n\n\n\n  <div *ngFor=\'let location of locations\'>\n\n    <div *ngIf = "email == location.owner">\n\n      <ion-list>\n\n        <ion-item>\n\n          <h2>{{ location.name }}</h2>\n\n          <p>\n\n            Type: {{ location.type}}<br>\n\n            Question Text: {{ location.qtext }}<br>\n\n            <ng-container *ngIf="location.option1">\n\n            Answer Choice 1: {{ location.option1 }}<br>\n\n            </ng-container>\n\n            <ng-container *ngIf="location.option2">\n\n            Answer Choice 2: {{ location.option2 }}<br>\n\n            </ng-container>\n\n            <ng-container *ngIf="location.option3">\n\n            Answer Choice 3: {{ location.option3 }}<br>\n\n            </ng-container>\n\n            <ng-container *ngIf="location.option4">\n\n            Answer Choice 4: {{ location.option4 }}<br>\n\n            </ng-container>\n\n            <ng-container *ngIf="location.option5">\n\n            Answer Choice 5: {{ location.option5 }}<br>\n\n            </ng-container>\n\n            <ng-container *ngIf="location.option6">\n\n            Answer Choice 6: {{ location.option6 }}\n\n          </ng-container>\n\n          </p>\n\n\n\n          <ng-container *ngIf="location.type == \'text\'">\n\n            <button\n\n              ion-button\n\n              color=\'secondary\'\n\n              (click)=\'updateDocument(location)\'>\n\n              Update this question\n\n            </button>\n\n         </ng-container>\n\n\n\n          <ng-container *ngIf="location.type == \'radio\'">\n\n            <button\n\n              ion-button\n\n              color=\'secondary\'\n\n              (click)=\'updateRadio(location)\'>\n\n              Update this question\n\n            </button>\n\n         </ng-container>\n\n\n\n         <ng-container *ngIf="location.type == \'multi\'">\n\n           <button\n\n             ion-button\n\n             color=\'secondary\'\n\n             (click)=\'updateMulti(location)\'>\n\n             Update this question\n\n           </button>\n\n        </ng-container>\n\n\n\n        <ng-container *ngIf="location.type == \'slider\'">\n\n          <button\n\n            ion-button\n\n            color=\'secondary\'\n\n            (click)=\'updateSlider(location)\'>\n\n            Update this question\n\n          </button>\n\n       </ng-container>\n\n\n\n          <button\n\n            ion-button\n\n            color=\'danger\'\n\n            (click)="deleteDocument(location)">\n\n            Delete this question\n\n          </button>\n\n        </ion-item>\n\n      </ion-list>\n\n    </div>\n\n  </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\spear\Desktop\projects\capstone\WebPortal_prototype\src\pages\questions\questions.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */],
@@ -961,7 +961,7 @@ var ParticipantsPage = (function () {
     };
     ParticipantsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-participants',template:/*ion-inline-start:"/home/chantz/Desktop/projects/capstone/WebPortal_prototype/src/pages/participants/participants.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>\n      Schema\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <button\n      ion-button\n      block\n      color=\'primary\'\n      (click)=\'addParticipant()\'>\n      Add a new participant\n    </button>\n\n  <ion-list>\n    <ion-item *ngFor=\'let location of locations\'>\n      <h2>{{ location.name }}</h2>\n      <p>\n        ID: {{ location.id }} <br>\n        Email: {{ location.email}}<br>\n        Phone: {{ location.phone }}<br>\n        Owner: {{ location.owner }}<br>\n        Study: {{ location.study }}<br>\n        Sleep start time: {{ location.sleep_start}}<br>\n        Sleep end time: {{ location.sleep_end}}\n      </p>\n\n      <button\n        ion-button\n        color=\'secondary\'\n        (click)=\'updateDocument(location)\'>\n        Update this participant\n      </button>\n\n      <button\n        ion-button\n        color=\'danger\'\n        (click)="deleteDocument(location)">\n        Delete this participant\n      </button>\n    </ion-item>\n  </ion-list>\n\n</ion-content>\n'/*ion-inline-end:"/home/chantz/Desktop/projects/capstone/WebPortal_prototype/src/pages/participants/participants.html"*/
+            selector: 'page-participants',template:/*ion-inline-start:"C:\Users\spear\Desktop\projects\capstone\WebPortal_prototype\src\pages\participants\participants.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>\n\n      Schema\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n    <button\n\n      ion-button\n\n      block\n\n      color=\'primary\'\n\n      (click)=\'addParticipant()\'>\n\n      Add a new participant\n\n    </button>\n\n\n\n  <ion-list>\n\n    <ion-item *ngFor=\'let location of locations\'>\n\n      <h2>{{ location.name }}</h2>\n\n      <p>\n\n        ID: {{ location.id }} <br>\n\n        Email: {{ location.email}}<br>\n\n        Phone: {{ location.phone }}<br>\n\n        Owner: {{ location.owner }}<br>\n\n        Study: {{ location.study }}<br>\n\n        Sleep start time: {{ location.sleep_start}}<br>\n\n        Sleep end time: {{ location.sleep_end}}\n\n      </p>\n\n\n\n      <button\n\n        ion-button\n\n        color=\'secondary\'\n\n        (click)=\'updateDocument(location)\'>\n\n        Update this participant\n\n      </button>\n\n\n\n      <button\n\n        ion-button\n\n        color=\'danger\'\n\n        (click)="deleteDocument(location)">\n\n        Delete this participant\n\n      </button>\n\n    </ion-item>\n\n  </ion-list>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\spear\Desktop\projects\capstone\WebPortal_prototype\src\pages\participants\participants.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */],
@@ -981,7 +981,7 @@ var ParticipantsPage = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__home_home__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__signup_signup__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__signup_signup__ = __webpack_require__(183);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_firebase__);
@@ -1055,7 +1055,7 @@ var LoginPage = (function () {
     };
     LoginPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-login',template:/*ion-inline-start:"/home/chantz/Desktop/projects/capstone/WebPortal_prototype/src/pages/login/login.html"*/'<!--\n  Generated template for the LoginPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Login</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <ion-list>\n    <ion-item>\n      <ion-label floating>Email</ion-label>\n      <ion-input type="email" [(ngModel)]="email" name="email" required="required"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Password</ion-label>\n      <ion-input type="password" [(ngModel)]="password" name="password" required="required"></ion-input>\n    </ion-item>\n  </ion-list>\n\n  <div padding text-center>\n\n    <button *ngIf="email && password " ion-button color="default" round (click)="submitLogin()">\n     Login</button>\n   <!-- Show dead button if form is not filled -->\n   <button *ngIf="!email || !password" ion-button color="deafault" clear round>Login</button>\n\n  </div>\n\n  <br>\n\n  <div padding text-center>\n   <button ion-button color="gray" block clear (click)="forgotPassword()">Forgot Password</button>\n  </div>\n\n\n   <div padding text-center>\n     <button ion-button color="gray" block clear (click)="redirectToSignup()">Create new account</button>\n   </div>\n\n</ion-content>\n'/*ion-inline-end:"/home/chantz/Desktop/projects/capstone/WebPortal_prototype/src/pages/login/login.html"*/,
+            selector: 'page-login',template:/*ion-inline-start:"C:\Users\spear\Desktop\projects\capstone\WebPortal_prototype\src\pages\login\login.html"*/'<!--\n  Generated template for the LoginPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Login</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <ion-list>\n    <ion-item>\n      <ion-label floating>Email</ion-label>\n      <ion-input type="email" [(ngModel)]="email" name="email" required="required"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Password</ion-label>\n      <ion-input type="password" [(ngModel)]="password" name="password" required="required"></ion-input>\n    </ion-item>\n  </ion-list>\n\n  <div padding text-center>\n\n    <button *ngIf="email && password " ion-button color="default" round (click)="submitLogin()">\n     Login</button>\n   <!-- Show dead button if form is not filled -->\n   <button *ngIf="!email || !password" ion-button color="deafault" clear round>Login</button>\n\n  </div>\n\n  <br>\n\n  <div padding text-center>\n   <button ion-button color="gray" block clear (click)="forgotPassword()">Forgot Password</button>\n  </div>\n\n\n   <div padding text-center>\n     <button ion-button color="gray" block clear (click)="redirectToSignup()">Create new account</button>\n   </div>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\spear\Desktop\projects\capstone\WebPortal_prototype\src\pages\login\login.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_5__providers_usersservice_usersservice__["a" /* UsersserviceProvider */]]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5__providers_usersservice_usersservice__["a" /* UsersserviceProvider */],
@@ -1098,9 +1098,9 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(525);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_home_home__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_studies_studies__ = __webpack_require__(330);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_modules_modules__ = __webpack_require__(183);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_modules_modules__ = __webpack_require__(182);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_login_login__ = __webpack_require__(333);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_signup_signup__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_signup_signup__ = __webpack_require__(183);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_questions_questions__ = __webpack_require__(331);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_participants_participants__ = __webpack_require__(332);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_status_bar__ = __webpack_require__(326);
@@ -1169,11 +1169,11 @@ var AppModule = (function () {
                         { loadChildren: '../pages/create_questionMulti/create_questionMulti.module#CreateQuestionMultiPageModule', name: 'create_questionMulti', segment: 'create_questionMulti', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/create_questionRadio/create_questionRadio.module#CreateQuestionRadioPageModule', name: 'create_questionRadio', segment: 'create_questionRadio', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/create_questionSlider/create_questionSlider.module#CreateQuestionSliderPageModule', name: 'create_questionSlider', segment: 'create_questionSlider', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/create_study/create_study.module#CreateStudyPageModule', name: 'create_study', segment: 'create_study', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/modules/modules.module#ModulesPageModule', name: 'modules', segment: 'modules', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/select_module/select_module.module#SelectModulePageModule', name: 'select_module', segment: 'select_module', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/select_study/select_study.module#SelectStudyPageModule', name: 'select_study', segment: 'select_study', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/create_study/create_study.module#CreateStudyPageModule', name: 'create_study', segment: 'create_study', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/signup/signup.module#SignupPageModule', name: 'SignupPage', segment: 'signup', priority: 'low', defaultHistory: [] }
                     ]
                 })
@@ -1216,7 +1216,7 @@ var AppModule = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(329);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_studies_studies__ = __webpack_require__(330);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_modules_modules__ = __webpack_require__(183);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_modules_modules__ = __webpack_require__(182);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_questions_questions__ = __webpack_require__(331);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_participants_participants__ = __webpack_require__(332);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1272,7 +1272,7 @@ var MyApp = (function () {
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */])
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/home/chantz/Desktop/projects/capstone/WebPortal_prototype/src/app/app.html"*/'<ion-menu [content]="content">\n  <ion-header>\n    <ion-toolbar>\n      <ion-title>Menu</ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content>\n    <ion-list>\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n        {{p.title}}\n      </button>\n    </ion-list>\n  </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"/home/chantz/Desktop/projects/capstone/WebPortal_prototype/src/app/app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\spear\Desktop\projects\capstone\WebPortal_prototype\src\app\app.html"*/'<ion-menu [content]="content">\n  <ion-header>\n    <ion-toolbar>\n      <ion-title>Menu</ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content>\n    <ion-list>\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n        {{p.title}}\n      </button>\n    </ion-list>\n  </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"C:\Users\spear\Desktop\projects\capstone\WebPortal_prototype\src\app\app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
     ], MyApp);
@@ -1699,6 +1699,22 @@ var DatabaseProvider = (function () {
             });
         });
     };
+    DatabaseProvider.prototype.updateModules_Questions = function (maincollectionObj, modID, collectionObj, docID, dataObj) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this._DB.collection(maincollectionObj)
+                .doc(modID)
+                .collection(collectionObj)
+                .doc(docID)
+                .update(dataObj)
+                .then(function (obj) {
+                resolve(obj);
+            })
+                .catch(function (error) {
+                reject(error);
+            });
+        });
+    };
     DatabaseProvider.prototype.viewDocument = function (collectionObj, docID, dataObj) {
         var _this = this;
         return new Promise(function (resolve, reject) {
@@ -1715,9 +1731,10 @@ var DatabaseProvider = (function () {
     };
     DatabaseProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object])
     ], DatabaseProvider);
     return DatabaseProvider;
+    var _a;
 }());
 
 //# sourceMappingURL=database.js.map
