@@ -184,6 +184,7 @@ export class CreateQuestionPage {
 	                               name    : name,
 	                               type    : type,
 	                               qtext   : qtext,
+                                 options: ["none"],
 																 owner	 : owner
 	                           })
          .then((data) =>

@@ -242,6 +242,7 @@ export class CreateQuestionMultiPage {
 																 option4 : option4,
 																 option5 : option5,
 																 option6 : option6,
+                                 options : [option1, option2, option3, option4, option5, option6],
                                  owner	 : owner
 	                           })
          .then((data) =>

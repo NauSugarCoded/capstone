@@ -126,7 +126,7 @@ export class BranchingPage {
      // that will be used to programmatically control the
      // form / form fields in the component template
      this.form 		= _FB.group({
-        'branch' 		        : ['', Validators.required],
+        'branch' 		          : ['', Validators.required],
         'branch2' 		        : ['', Validators.required],
         'branch3' 		        : ['', Validators.required],
         'branch4' 		        : ['', Validators.required],
@@ -215,11 +215,11 @@ export class BranchingPage {
    */
   saveDocument(val : any) : void
   {
-     let branch        : string 		= this.form.controls["branch"].value;
+     let branch         : string 		= this.form.controls["branch"].value;
      let branch2        : string 		= this.form.controls["branch2"].value;
      let branch3        : string 		= this.form.controls["branch3"].value;
      let branch4        : string 		= this.form.controls["branch4"].value;
-     let branch5       : string 		= this.form.controls["branch5"].value;
+     let branch5        : string 		= this.form.controls["branch5"].value;
      let branch6        : string 		= this.form.controls["branch6"].value;
 
 
@@ -234,7 +234,7 @@ export class BranchingPage {
         this._DB.updateModules_Questions(this._COLL,
                               this.moduleID,"Questions", this.docID,
                               {
-                                branch    : branch
+                                branch    : [branch, branch2, branch3, branch4, branch5, branch6]
                             })
         .then((data) =>
         {

@@ -143,6 +143,7 @@ export class CreateQuestionRadioPage {
     */
    public title 		: string		   = 'Add a new question';
    public owner			: string;
+   public options   : any;
 
 
 
@@ -167,7 +168,7 @@ export class CreateQuestionRadioPage {
       // that will be used to programmatically control the
       // form / form fields in the component template
       this.form 		= _FB.group({
-         'name' 		        : ['', Validators.required],
+         'name' 		      : ['', Validators.required],
          'type' 	        : ['', Validators.required],
          'qtext'	        : ['', Validators.required],
 				 'option1'				: ['', Validators.required],
@@ -185,19 +186,20 @@ export class CreateQuestionRadioPage {
       if(params.get('isEdited'))
       {
           let record 		        = params.get('record');
-
           this.name	            = record.location.name;
-          this.type   	  = record.location.type;
-          this.qtext      = record.location.qtext;
-					this.option1 		= record.location.option1;
-					this.option2 		= record.location.option2;
-					this.option3 		= record.location.option3;
-					this.option4 		= record.location.option4;
-					this.option5 		= record.location.option5;
-					this.option6 		= record.location.option6;
+          this.type   	        = record.location.type;
+          this.qtext            = record.location.qtext;
+					this.option1 		      = record.location.option1;
+					this.option2 		      = record.location.option2;
+					this.option3 		      = record.location.option3;
+					this.option4 		      = record.location.option4;
+					this.option5 		      = record.location.option5;
+					this.option6 		      = record.location.option6;
+          this.options          = record.location.options;
           this.docID            = record.location.id;
           this.owner						= record.location.owner;
           this.isEditable       = true;
+          this.options          = [];
           this.title            = 'Update this question';
       }
    }
@@ -224,6 +226,7 @@ export class CreateQuestionRadioPage {
 					option4 		: string 		= this.form.controls["option4"].value,
 					option5 		: string 		= this.form.controls["option5"].value,
 					option6 		: string 		= this.form.controls["option6"].value,
+          options     : any       = [option1, option2, option3, option4, option5, option6],
           owner				: string		= this._US.returnUser();
 
 
@@ -246,6 +249,7 @@ export class CreateQuestionRadioPage {
 																 option4 : option4,
 																 option5 : option5,
 																 option6 : option6,
+                                 options : [option1, option2, option3, option4, option5, option6],
                                  owner	 : owner
 	                           })
          .then((data) =>
@@ -276,6 +280,7 @@ export class CreateQuestionRadioPage {
 														 option4 : option4,
 														 option5 : option5,
 														 option6 : option6,
+                             options : [option1, option2, option3, option4, option5, option6],
                              owner	 : owner
 	                        })
          .then((data) =>

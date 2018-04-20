@@ -173,6 +173,7 @@ export class CreateQuestionSliderPage {
 	                               name    : name,
 	                               type    : type,
 	                               qtext   : qtext,
+                                 options: ["none"],
                                  owner	 : owner
 	                           })
          .then((data) =>
