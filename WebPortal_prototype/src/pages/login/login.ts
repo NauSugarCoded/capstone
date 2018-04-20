@@ -29,7 +29,8 @@ export class LoginPage {
     public loadingCtrl: LoadingController,
     public toastCtrl: ToastController,
     public navCtrl: NavController,
-    public navParams: NavParams) {
+    public navParams: NavParams,
+    public _US: UsersserviceProvider) {
 
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
@@ -43,6 +44,11 @@ export class LoginPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
+  }
+
+  ionViewDidEnter() {
+    this._US.logoutUserService();
+    console.log("User has been signed out")
   }
 
   submitLogin() {

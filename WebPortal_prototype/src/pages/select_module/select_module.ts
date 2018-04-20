@@ -370,6 +370,20 @@ export class SelectModulePage {
     }
   }
 
+  searchOtherQuestions(input : any){
+
+    let val = input.target.value;
+    if(val && val.trim() != '') {
+      this.quests = this.quests.filter((quest) => {
+        return(quest.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+    }
+
+    else{
+      this.retrieveCollection();
+    }
+  }
+
 
 
 

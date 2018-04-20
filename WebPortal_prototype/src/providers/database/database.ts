@@ -441,7 +441,7 @@ export class DatabaseProvider {
     exportAnswers_Modules(moduleID : string, moduleName : string){
 
       this.data = {};
-      this.csv = [];
+      this.csv = [["Module Name","Participant ID", "Date", "Data"]];
       this.i = 0;
       this.data[moduleID] = {};
       let userList = [];
@@ -504,6 +504,7 @@ export class DatabaseProvider {
         let row = rowArray.join(",");
         csvContent += row + "\r\n";
       });
+
 
       this.filename = 'firestore-answers-to-module-' + moduleName + '.csv';
       this.ref.child(this.filename).putString(csvContent).then(function(snapshot) {
