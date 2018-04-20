@@ -35,7 +35,7 @@ export class LoginPage {
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
           // User is signed in.
-          this.navCtrl.push(HomePage);
+          //this.navCtrl.push(HomePage);
           // ...
         }
       });
