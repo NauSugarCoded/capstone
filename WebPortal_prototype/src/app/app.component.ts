@@ -9,7 +9,6 @@ import { ModulesPage } from '../pages/modules/modules';
 import { LoginPage } from '../pages/login/login';
 import { QuestionsPage } from '../pages/questions/questions';
 import { ParticipantsPage } from '../pages/participants/participants';
-import { LoginPage } from '../pages/login/login';
 import { UsersserviceProvider } from '../providers/usersservice/usersservice';
 import { ENV } from '../config/env';
 import * as firebase from 'firebase';
@@ -21,7 +20,7 @@ import * as firebase from 'firebase';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = HomePage;
+  rootPage:any = LoginPage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -44,11 +43,6 @@ export class MyApp {
       { title: 'Logout', component: LoginPage }
     ];
 
-  }
-
-  logoutUser() {
-    this._US.logoutUserService();
-    this.navCtrl.push(LoginPage);
   }
 
   initializeApp() {

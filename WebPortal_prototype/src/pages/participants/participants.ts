@@ -233,6 +233,20 @@ export class ParticipantsPage {
       });
    }
 
+   searchParticipants(input : any){
+
+     let val = input.target.value;
+     if(val && val.trim() != '') {
+       this.locations = this.locations.filter((participant) => {
+         return(participant.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
+       })
+     }
+
+     else{
+       this.retrieveCollection();
+     }
+   }
+
 
 
 

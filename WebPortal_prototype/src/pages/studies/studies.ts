@@ -246,6 +246,20 @@ export class StudiesPage {
     });
   }
 
+  searchStudies(input : any){
+
+    let val = input.target.value;
+    if(val && val.trim() != '') {
+      this.locations = this.locations.filter((study) => {
+        return(study.short_name.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+    }
+
+    else{
+      this.retrieveCollection();
+    }
+  }
+
 
 
   /**

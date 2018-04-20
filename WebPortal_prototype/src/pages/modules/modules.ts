@@ -200,6 +200,20 @@ export class ModulesPage {
      this.navCtrl.push('select_module', { record : params, isEdited : true });
   }
 
+  searchModules(input : any){
+
+    let val = input.target.value;
+    if(val && val.trim() != '') {
+      this.locations = this.locations.filter((mod) => {
+        return(mod.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+    }
+
+    else{
+      this.retrieveCollection();
+    }
+  }
+
 
 
 

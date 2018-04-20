@@ -18,6 +18,7 @@
       Add a new participant
     </button>
 
+  <ion-searchbar (ionInput)="searchParticipants($event)"></ion-searchbar>
   <ion-list>
     <div *ngFor='let location of locations'>
       <div *ngIf = "email == location.owner">
