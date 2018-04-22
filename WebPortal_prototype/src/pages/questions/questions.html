@@ -50,6 +50,17 @@
         Add a new slider question
       </button>
     </div>
+
+
+    <div class = "col">
+      <button
+        ion-button
+        block
+        color='primary'
+        (click)='addTime()'>
+        Add a new time based question
+      </button>
+    </div>
   </div>
 
   <div *ngFor='let location of locations'>
@@ -60,6 +71,12 @@
           <p>
             Type: {{ location.type}}<br>
             Question Text: {{ location.qtext }}<br>
+            <ng-container *ngIf="location.leftLabel">
+            Left Label: {{ location.leftLabel }}<br>
+            </ng-container>
+            <ng-container *ngIf="location.rightLabel">
+            Right Label: {{ location.rightLabel }}<br>
+            </ng-container>
             <ng-container *ngIf="location.option1">
             Answer Choice 1: {{ location.option1 }}<br>
             </ng-container>
@@ -121,6 +138,15 @@
             Update this question
           </button>
        </ng-container>
+
+       <ng-container *ngIf="location.type == 'time'">
+         <button
+           ion-button
+           color='secondary'
+           (click)='updateTime(location)'>
+           Update this question
+         </button>
+      </ng-container>
 
           <button
             ion-button

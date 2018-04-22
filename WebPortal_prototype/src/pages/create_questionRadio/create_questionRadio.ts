@@ -282,8 +282,8 @@ export class CreateQuestionRadioPage {
 																 option4 : option4,
 																 option5 : option5,
 																 option6 : option6,
-                                 option6 : option7,
-                                 option6 : option8,
+                                 option7 : option7,
+                                 option8 : option8,
                                  options : options,
                                  owner	 : owner
 	                           })

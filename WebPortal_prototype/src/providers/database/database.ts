@@ -71,7 +71,9 @@ export class DatabaseProvider {
            option5  :doc.data().option5,
            option6  :doc.data().option6,
            option7  :doc.data().option7,
-           option8  :doc.data().option8
+           option8  :doc.data().option8,
+           leftLabel  :doc.data().leftLabel,
+           rightLabel  :doc.data().rightLabel
           });
         });
 

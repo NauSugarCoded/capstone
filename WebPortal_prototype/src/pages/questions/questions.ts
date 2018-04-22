@@ -176,6 +176,11 @@ export class QuestionsPage {
       this.navCtrl.push('create_questionSlider');
    }
 
+   addTime() : void
+   {
+      this.navCtrl.push('create_questionTime');
+   }
+
 
    /**
     * Update a document by passing the data to the manage-document component
@@ -247,6 +252,22 @@ export class QuestionsPage {
       this.navCtrl.push('create_questionSlider', { record : params, isEdited : true });
    }
 
+   /**
+    * Update a document by passing the data to the manage-document component
+    *
+    * @public
+    * @method updateTime
+    * @param  obj          {Object}           The document data we wish to update
+    * @return {none}
+    */
+   updateTime(obj) : void
+   {
+      let params : any = {
+         collection   : this._COLL,
+         location     : obj
+      };
+      this.navCtrl.push('create_questionTime', { record : params, isEdited : true });
+   }
 
    /**
     * Delete a document from the Cloud Firestore collection using the
