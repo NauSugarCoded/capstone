@@ -5,7 +5,6 @@ import { DatabaseProvider } from '../../providers/database/database';
 import { UsersserviceProvider } from '../../providers/usersservice/usersservice';7
 
 
-
 @IonicPage({
 	name: "create_question"
 })
@@ -13,15 +12,6 @@ import { UsersserviceProvider } from '../../providers/usersservice/usersservice'
   selector: 'page-create-question',
   templateUrl: 'create_question.html',
 })
-
-/*export class storage {
-	qtypes = [
-		{name: 'Text'},
-		{name: 'Radio'},
-		{name: 'Multiple Choice'},
-		{name: 'Slider'}
-	];
-}*/
 
 export class CreateQuestionPage {
 
@@ -105,7 +95,7 @@ export class CreateQuestionPage {
     * @description     property that defines the template title value
     */
    public title 		: string		   = 'Add a new question';
-
+   public options   : any;
 	 public owner			: string;
 
 
@@ -149,6 +139,7 @@ export class CreateQuestionPage {
           this.docID            = record.location.id;
 					this.owner						= record.location.owner;
           this.isEditable       = true;
+          this.options          = ["none"];
           this.title            = 'Update this question';
       }
    }
@@ -169,6 +160,7 @@ export class CreateQuestionPage {
       let name	      : string		= this.form.controls["name"].value,
 	 	      type        : string 		= this.form.controls["type"].value,
   		    qtext       : string		= this.form.controls["qtext"].value,
+          options     : any       = ["none"],
 					owner				: string		= this._US.returnUser();
 
 
@@ -209,6 +201,7 @@ export class CreateQuestionPage {
 	                           name    : name,
 	                           type    : type,
 	                           qtext   : qtext,
+                             options: ["none"],
 														 owner	 : owner
 	                        })
          .then((data) =>

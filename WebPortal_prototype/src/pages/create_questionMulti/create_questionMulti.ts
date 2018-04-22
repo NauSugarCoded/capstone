@@ -115,6 +115,22 @@ export class CreateQuestionMultiPage {
 	 public option6 	: string          = '';
 
    /**
+    * @name option7
+    * @type {string}
+    * @public
+    * @description     Model for established form field
+    */
+   public option7 	: string          = '';
+
+   /**
+    * @name option8
+    * @type {string}
+    * @public
+    * @description     Model for established form field
+    */
+   public option8 	: string          = '';
+
+   /**
     * @name docID
     * @type {string}
     * @public
@@ -142,7 +158,8 @@ export class CreateQuestionMultiPage {
     */
    public title 		: string		   = 'Add a new question';
    public owner			: string;
-
+   public options   : any;
+   public iter      : any;
 
    /**
     * @name _COLL
@@ -165,7 +182,7 @@ export class CreateQuestionMultiPage {
       // that will be used to programmatically control the
       // form / form fields in the component template
       this.form 		= _FB.group({
-         'name' 		        : ['', Validators.required],
+         'name' 		      : ['', Validators.required],
          'type' 	        : ['', Validators.required],
          'qtext'	        : ['', Validators.required],
 				 'option1'				: ['', Validators.required],
@@ -173,7 +190,9 @@ export class CreateQuestionMultiPage {
 				 'option3'				: [''],
 				 'option4'				: [''],
 				 'option5'				: [''],
-				 'option6'				: ['']
+				 'option6'				: [''],
+         'option7'				: [''],
+         'option8'				: ['']
       });
 
 
@@ -193,9 +212,14 @@ export class CreateQuestionMultiPage {
 					this.option4 		= record.location.option4;
 					this.option5 		= record.location.option5;
 					this.option6 		= record.location.option6;
+          this.option7 		= record.location.option7;
+          this.option8 		= record.location.option8;
+          this.options    = record.location.options;
           this.docID            = record.location.id;
           this.owner						= record.location.owner;
           this.isEditable       = true;
+          this.iter             = [];
+          this.options          = [];
           this.title            = 'Update this question';
       }
    }
@@ -222,7 +246,20 @@ export class CreateQuestionMultiPage {
 					option4 		: string 		= this.form.controls["option4"].value,
 					option5 		: string 		= this.form.controls["option5"].value,
 					option6 		: string 		= this.form.controls["option6"].value,
+          option7 		: string 		= this.form.controls["option7"].value,
+          option8 		: string 		= this.form.controls["option8"].value,
+          iter        : any       = [option1, option2, option3, option4, option5, option6, option7, option8],
+          options     : any       = [],
           owner				: string		= this._US.returnUser();
+
+
+      //Makes options only populated with non-null in strings
+      let i = 0;
+      for(i; i<7; i++){
+        if(iter[i] != ""){
+          options[i] = iter[i]
+        }
+      }
 
       // If we are editing an existing record then handle this scenario
       if(this.isEditable)
@@ -242,7 +279,9 @@ export class CreateQuestionMultiPage {
 																 option4 : option4,
 																 option5 : option5,
 																 option6 : option6,
-                                 options : [option1, option2, option3, option4, option5, option6],
+                                 option7 : option7,
+                                 option8 : option8,
+                                 options : options,
                                  owner	 : owner
 	                           })
          .then((data) =>
@@ -273,6 +312,9 @@ export class CreateQuestionMultiPage {
 														 option4 : option4,
 														 option5 : option5,
 														 option6 : option6,
+                             option7 : option7,
+                             option7 : option8,
+                             options : options,
                              owner	 : owner
 	                        })
          .then((data) =>
@@ -321,7 +363,7 @@ export class CreateQuestionMultiPage {
    clearForm() : void
    {
       this.name  		= '';
-      this.type			= '';
+      //this.type			= '';
       this.qtext 		= '';
 			this.option1 	= '';
 			this.option2 	= '';
@@ -329,6 +371,8 @@ export class CreateQuestionMultiPage {
 			this.option4 	= '';
 			this.option5 	= '';
 			this.option6 	= '';
+      this.option7 	= '';
+      this.option8 	= '';
    }
 
 

@@ -66,6 +66,23 @@ export class CreateQuestionSliderPage {
    public qtext 	: string          = '';
 
 
+   /**
+    * @name leftLabel
+    * @type {string}
+    * @public
+    * @description     Model for established form field
+    */
+   public leftLabel 	: string          = '';
+
+
+   /**
+    * @name rightLabel
+    * @type {string}
+    * @public
+    * @description     Model for established form field
+    */
+   public rightLabel 	: string          = '';
+
 
    /**
     * @name docID
@@ -95,6 +112,7 @@ export class CreateQuestionSliderPage {
     * @description     property that defines the template title value
     */
    public title 		: string		   = 'Add a new question';
+   public options   : any;
    public owner			: string;
 
 
@@ -121,7 +139,9 @@ export class CreateQuestionSliderPage {
       this.form 		= _FB.group({
          'name' 		        : ['', Validators.required],
          'type' 	        : ['', Validators.required],
-         'qtext'	        : ['', Validators.required]
+         'qtext'	        : ['', Validators.required],
+         'leftLabel'      :[''],
+         'rightLabel'     :['']
       });
 
 
@@ -131,13 +151,15 @@ export class CreateQuestionSliderPage {
       if(params.get('isEdited'))
       {
           let record 		        = params.get('record');
-
           this.name	            = record.location.name;
-          this.type   	  = record.location.type;
-          this.qtext      = record.location.qtext;
+          this.type   	        = record.location.type;
+          this.qtext            = record.location.qtext;
           this.docID            = record.location.id;
           this.owner						= record.location.owner;
+          this.leftLabel        = record.location.leftLabel;
+          this.rightLabel        = record.location.rightLabel;
           this.isEditable       = true;
+          this.options          = ["none"];
           this.title            = 'Update this question';
       }
    }
@@ -158,6 +180,9 @@ export class CreateQuestionSliderPage {
       let name	      : string		= this.form.controls["name"].value,
 	 	      type        : string 		= this.form.controls["type"].value,
   		    qtext       : string		= this.form.controls["qtext"].value,
+          leftLabel   : string		= this.form.controls["leftLabel"].value,
+          rightLabel  : string		= this.form.controls["rightLabel"].value,
+          options     : any       = ["none"],
           owner				: string		= this._US.returnUser();
 
 
@@ -170,9 +195,11 @@ export class CreateQuestionSliderPage {
          this._DB.updateDocument(this._COLL,
                                this.docID,
                                {
-	                               name    : name,
-	                               type    : type,
-	                               qtext   : qtext,
+	                               name       : name,
+	                               type       : type,
+	                               qtext      : qtext,
+                                 leftLabel  : leftLabel,
+                                 rightLabel : rightLabel,
                                  options: ["none"],
                                  owner	 : owner
 	                           })
@@ -198,6 +225,9 @@ export class CreateQuestionSliderPage {
 	                           name    : name,
 	                           type    : type,
 	                           qtext   : qtext,
+                             leftLabel  : leftLabel,
+                             rightLabel : rightLabel,
+                             options: ["none"],
                              owner	 : owner
 	                        })
          .then((data) =>
@@ -245,9 +275,11 @@ export class CreateQuestionSliderPage {
     */
    clearForm() : void
    {
-      this.name  					= '';
+      this.name  		  = '';
       this.type				= '';
-      this.qtext 				= '';
+      this.qtext 			= '';
+      this.leftLabel  = '';
+      this.rightLabel = '';
    }
 
 
