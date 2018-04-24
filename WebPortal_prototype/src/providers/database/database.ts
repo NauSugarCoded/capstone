@@ -311,6 +311,26 @@ export class DatabaseProvider {
       });
     });
   }
+
+  addModules_First_Question(maincollectionObj: string, docObj: string,
+                            collectionObj:string, dataObj: any) : Promise<any>{
+    return new Promise((resolve, reject) => {
+      this._DB.collection(maincollectionObj).doc(docObj).collection(collectionObj)
+      .doc("1").set({
+        quest_id       : dataObj.id,
+        name           : dataObj.name,
+        type     : dataObj.type,
+        qtext    : dataObj.qtext,
+        owner    : dataObj.owner,
+      })
+      .then((obj : any) => {
+        resolve(obj);
+      })
+      .catch((error : any) => {
+        reject(error);
+      });
+    });
+    }
   /**
    * Delete an existing document from a selected database collection
    */
@@ -462,7 +482,7 @@ export class DatabaseProvider {
 
       console.log(user);
       this._DB
-      .collection("Answers").doc(user).collection(moduleID)
+      .collection("Answers").doc(user).collection(moduleName)
       .get()
       .then(snapshot => {
         snapshot.forEach(doc => {
@@ -510,32 +530,6 @@ export class DatabaseProvider {
       this.ref.child(this.filename).putString(csvContent).then(function(snapshot) {
         console.log('Uploaded CSV');
       });
-    }
-
-
-
-    downloadStudies() : void {
-      var fileRef = this.storage.ref('firestore-studies.json');
-      this.url = fileRef.getDownloadURL();
-      console.log(this.url);
-    }
-
-    downloadModules() : void {
-      var fileRef = this.storage.ref('firestore-modules.json');
-      this.url = fileRef.getDownloadURL();
-      console.log(this.url);
-    }
-
-    downloadParticipants() : void {
-      var fileRef = this.storage.ref('firestore-participants.json');
-      this.url = fileRef.getDownloadURL();
-      console.log(this.url);
-    }
-
-    downloadQuestions() : void {
-      var fileRef = this.storage.ref('firestore-questions.json');
-      this.url = fileRef.getDownloadURL();
-      console.log(this.url);
     }
 
     downloadAnswers_Modules(moduleName : string): void {

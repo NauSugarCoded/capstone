@@ -224,27 +224,6 @@ export class StudiesPage {
      });
   }
 
-  exportStudies() : any
-  {
-    this._DB.exportStudies(this._COLL);
-    this._DB.downloadStudies();
-    this.url = this._DB.returnURL();
-    return this.url;
-  }
-
-  downloadFile(link : any) : void
-  {
-
-    this.link = link;
-    window.location.href = this.link;
-  }
-
-  downloadClick() : void
-  {
-    this.exportStudies().then((link) => {
-      this.downloadFile(link);
-    });
-  }
 
   searchStudies(input : any){
 

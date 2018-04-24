@@ -304,6 +304,25 @@ var DatabaseProvider = (function () {
             });
         });
     };
+    DatabaseProvider.prototype.addModules_First_Question = function (maincollectionObj, docObj, collectionObj, dataObj) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this._DB.collection(maincollectionObj).doc(docObj).collection(collectionObj)
+                .doc("1").set({
+                quest_id: dataObj.id,
+                name: dataObj.name,
+                type: dataObj.type,
+                qtext: dataObj.qtext,
+                owner: dataObj.owner,
+            })
+                .then(function (obj) {
+                resolve(obj);
+            })
+                .catch(function (error) {
+                reject(error);
+            });
+        });
+    };
     /**
      * Delete an existing document from a selected database collection
      */
@@ -437,7 +456,7 @@ var DatabaseProvider = (function () {
         var _this = this;
         console.log(user);
         this._DB
-            .collection("Answers").doc(user).collection(moduleID)
+            .collection("Answers").doc(user).collection(moduleName)
             .get()
             .then(function (snapshot) {
             snapshot.forEach(function (doc) {
@@ -478,26 +497,6 @@ var DatabaseProvider = (function () {
             console.log('Uploaded CSV');
         });
     };
-    DatabaseProvider.prototype.downloadStudies = function () {
-        var fileRef = this.storage.ref('firestore-studies.json');
-        this.url = fileRef.getDownloadURL();
-        console.log(this.url);
-    };
-    DatabaseProvider.prototype.downloadModules = function () {
-        var fileRef = this.storage.ref('firestore-modules.json');
-        this.url = fileRef.getDownloadURL();
-        console.log(this.url);
-    };
-    DatabaseProvider.prototype.downloadParticipants = function () {
-        var fileRef = this.storage.ref('firestore-participants.json');
-        this.url = fileRef.getDownloadURL();
-        console.log(this.url);
-    };
-    DatabaseProvider.prototype.downloadQuestions = function () {
-        var fileRef = this.storage.ref('firestore-questions.json');
-        this.url = fileRef.getDownloadURL();
-        console.log(this.url);
-    };
     DatabaseProvider.prototype.downloadAnswers_Modules = function (moduleName) {
         var fileRef = this.storage.ref('firestore-answers-to-module-' + moduleName + '.csv');
         this.url = fileRef.getDownloadURL();
@@ -508,9 +507,10 @@ var DatabaseProvider = (function () {
     };
     DatabaseProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object])
     ], DatabaseProvider);
     return DatabaseProvider;
+    var _a;
 }());
 
 //# sourceMappingURL=database.js.map
@@ -770,10 +770,14 @@ var LoginPage = (function () {
             selector: 'page-login',template:/*ion-inline-start:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\login\login.html"*/'<!--\n\n  Generated template for the LoginPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Login</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n  <ion-list>\n\n    <ion-item>\n\n      <ion-label floating>Email</ion-label>\n\n      <ion-input type="email" [(ngModel)]="email" name="email" required="required"></ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label floating>Password</ion-label>\n\n      <ion-input type="password" [(ngModel)]="password" name="password" required="required"></ion-input>\n\n    </ion-item>\n\n  </ion-list>\n\n\n\n  <div padding text-center>\n\n\n\n    <button *ngIf="email && password " ion-button color="default" round (click)="submitLogin()">\n\n     Login</button>\n\n   <!-- Show dead button if form is not filled -->\n\n   <button *ngIf="!email || !password" ion-button color="deafault" clear round>Login</button>\n\n\n\n  </div>\n\n\n\n  <br>\n\n\n\n  <div padding text-center>\n\n   <button ion-button color="gray" block clear (click)="forgotPassword()">Forgot Password</button>\n\n  </div>\n\n\n\n\n\n   <div padding text-center>\n\n     <button ion-button color="gray" block clear (click)="redirectToSignup()">Create new account</button>\n\n   </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\login\login.html"*/,
             providers: [__WEBPACK_IMPORTED_MODULE_6__providers_usersservice_usersservice__["a" /* UsersserviceProvider */]]
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_6__providers_usersservice_usersservice__["a" /* UsersserviceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__providers_usersservice_usersservice__["a" /* UsersserviceProvider */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["f" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["f" /* LoadingController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["k" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["k" /* ToastController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["h" /* NavController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["i" /* NavParams */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__providers_usersservice_usersservice__["a" /* UsersserviceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__providers_usersservice_usersservice__["a" /* UsersserviceProvider */]) === "function" && _f || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_6__providers_usersservice_usersservice__["a" /* UsersserviceProvider */],
+            __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["f" /* LoadingController */],
+            __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["k" /* ToastController */],
+            __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["h" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["i" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_6__providers_usersservice_usersservice__["a" /* UsersserviceProvider */]])
     ], LoginPage);
     return LoginPage;
-    var _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=login.js.map
@@ -970,22 +974,6 @@ var ModulesPage = (function () {
     ModulesPage.prototype.addDocument = function () {
         this.navCtrl.push('create_module');
     };
-    ModulesPage.prototype.exportModules = function () {
-        this._DB.exportModules(this._COLL);
-        this.flag = true;
-    };
-    ModulesPage.prototype.setLink = function () {
-        this._DB.downloadModules();
-        this.firstFlag = true;
-    };
-    ModulesPage.prototype.createLink = function () {
-        this.link = this._DB.returnURL();
-        console.log(this.link);
-        this.secondFlag = true;
-    };
-    ModulesPage.prototype.downloadFile = function () {
-        window.location.href = this.link["i"];
-    };
     ModulesPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad ModulesPage');
     };
@@ -1009,13 +997,12 @@ var ModulesPage = (function () {
     };
     ModulesPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-modules',template:/*ion-inline-start:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\modules\modules.html"*/'<!--\n\n  Generated template for the ModulesPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Modules</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n  <ion-list>\n\n    <button\n\n      ion-button\n\n      block\n\n      color=\'primary\'\n\n      (click)=\'addDocument()\'>\n\n      Create a new module\n\n    </button>\n\n\n\n    <ion-searchbar (ionInput)="searchModules($event)"></ion-searchbar>\n\n    <div *ngFor=\'let location of locations\'>\n\n      <div *ngIf = "email == location.owner">\n\n        <button ion-item (click)="updateDocument(location)">\n\n          {{location.name}}\n\n          <div class="item-note" item-end>\n\n            {{location.type}}\n\n          </div>\n\n        </button>\n\n      </div>\n\n    </div>\n\n  </ion-list>\n\n\n\n  <div *ngIf="!flag">\n\n    <button ion-button\n\n            block\n\n            color=\'primary\'\n\n            (click)="exportModules()">\n\n            Create Modules File\n\n    </button>\n\n  </div>\n\n\n\n  <div *ngIf="flag && !firstFlag">\n\n    <button ion-button\n\n            block\n\n            color=\'primary\'\n\n            (click)="setLink()">\n\n            Set Link\n\n    </button>\n\n  </div>\n\n\n\n  <div *ngIf="firstFlag && !secondFlag">\n\n    <button ion-button\n\n            block\n\n            color=\'primary\'\n\n            (click)="createLink()">\n\n            Generate Link\n\n    </button>\n\n  </div>\n\n\n\n  <div *ngIf="secondFlag">\n\n    <button ion-button\n\n            block\n\n            color=\'primary\'\n\n            (click)="downloadFile()">\n\n            Download Modules File\n\n    </button>\n\n  </div>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\modules\modules.html"*/,
+            selector: 'page-modules',template:/*ion-inline-start:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\modules\modules.html"*/'<!--\n\n  Generated template for the ModulesPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Modules</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n  <ion-list>\n\n    <button\n\n      ion-button\n\n      block\n\n      color=\'primary\'\n\n      (click)=\'addDocument()\'>\n\n      Create a new module\n\n    </button>\n\n\n\n    <ion-searchbar (ionInput)="searchModules($event)"></ion-searchbar>\n\n    <div *ngFor=\'let location of locations\'>\n\n      <div *ngIf = "email == location.owner">\n\n        <button ion-item (click)="updateDocument(location)">\n\n          {{location.name}}\n\n          <div class="item-note" item-end>\n\n            {{location.type}}\n\n          </div>\n\n        </button>\n\n      </div>\n\n    </div>\n\n  </ion-list>\n\n\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\modules\modules.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */],
-            __WEBPACK_IMPORTED_MODULE_3__providers_usersservice_usersservice__["a" /* UsersserviceProvider */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__providers_usersservice_usersservice__["a" /* UsersserviceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_usersservice_usersservice__["a" /* UsersserviceProvider */]) === "function" && _c || Object])
     ], ModulesPage);
     return ModulesPage;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=modules.js.map
@@ -1064,15 +1051,15 @@ var map = {
 		5
 	],
 	"../pages/create_questionSlider/create_questionSlider.module": [
-		1261,
+		1260,
 		4
 	],
 	"../pages/create_study/create_study.module": [
-		1260,
+		1262,
 		2
 	],
 	"../pages/forgot_pass/forgot_pass.module": [
-		1262,
+		1261,
 		12
 	],
 	"../pages/login/login.module": [
@@ -1088,11 +1075,11 @@ var map = {
 		1
 	],
 	"../pages/select_study/select_study.module": [
-		1266,
+		1267,
 		0
 	],
 	"../pages/signup/signup.module": [
-		1267,
+		1266,
 		9
 	]
 };
@@ -1272,22 +1259,6 @@ var StudiesPage = (function () {
             _this.displayAlert('Error', error.message);
         });
     };
-    StudiesPage.prototype.exportStudies = function () {
-        this._DB.exportStudies(this._COLL);
-        this._DB.downloadStudies();
-        this.url = this._DB.returnURL();
-        return this.url;
-    };
-    StudiesPage.prototype.downloadFile = function (link) {
-        this.link = link;
-        window.location.href = this.link;
-    };
-    StudiesPage.prototype.downloadClick = function () {
-        var _this = this;
-        this.exportStudies().then(function (link) {
-            _this.downloadFile(link);
-        });
-    };
     StudiesPage.prototype.searchStudies = function (input) {
         var val = input.target.value;
         if (val && val.trim() != '') {
@@ -1324,14 +1295,12 @@ var StudiesPage = (function () {
     };
     StudiesPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-studies',template:/*ion-inline-start:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\studies\studies.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Studies</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n  <button\n\n    ion-button\n\n    block\n\n    color=\'primary\'\n\n    (click)=\'addDocument()\'>\n\n    Add a new Study\n\n  </button>\n\n\n\n  <ion-searchbar (ionInput)="searchStudies($event)"></ion-searchbar>\n\n  <div *ngFor=\'let location of locations\'>\n\n    <div *ngIf = "email == location.owner">\n\n      <button ion-item (click)="updateDocument(location)">\n\n        {{location.short_name}}\n\n        <div class="item-note" item-end>\n\n          {{location.abstract}}\n\n        </div>\n\n      </button>\n\n    </div>\n\n  </div>\n\n\n\n  <div *ngIf="flag == true">\n\n    <button ion-button\n\n            block\n\n            color=\'primary\'\n\n            (click)="downloadClick()">\n\n            Download Study\n\n    </button>\n\n  </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\studies\studies.html"*/
+            selector: 'page-studies',template:/*ion-inline-start:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\studies\studies.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Studies</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n  <button\n\n    ion-button\n\n    block\n\n    color=\'primary\'\n\n    (click)=\'addDocument()\'>\n\n    Add a new Study\n\n  </button>\n\n\n\n  <ion-searchbar (ionInput)="searchStudies($event)"></ion-searchbar>\n\n  <div *ngFor=\'let location of locations\'>\n\n    <div *ngIf = "email == location.owner">\n\n      <button ion-item (click)="updateDocument(location)">\n\n        {{location.short_name}}\n\n        <div class="item-note" item-end>\n\n          {{location.abstract}}\n\n        </div>\n\n      </button>\n\n    </div>\n\n  </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\studies\studies.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */],
-            __WEBPACK_IMPORTED_MODULE_3__providers_usersservice_usersservice__["a" /* UsersserviceProvider */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__providers_usersservice_usersservice__["a" /* UsersserviceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_usersservice_usersservice__["a" /* UsersserviceProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _d || Object])
     ], StudiesPage);
     return StudiesPage;
+    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=studies.js.map
@@ -1573,7 +1542,7 @@ var QuestionsPage = (function () {
     };
     QuestionsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-questions',template:/*ion-inline-start:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\questions\questions.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>\n\n      Schema\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <div class = "row">\n\n    <div class = "col">\n\n      <button\n\n        ion-button\n\n        block\n\n        color=\'primary\'\n\n        (click)=\'addDocument()\'>\n\n        Add a new textbox question\n\n      </button>\n\n    </div>\n\n\n\n    <div class = "col">\n\n      <button\n\n        ion-button\n\n        block\n\n        color=\'primary\'\n\n        (click)=\'addRadio()\'>\n\n        Add a new radio question\n\n      </button>\n\n    </div>\n\n\n\n    <div class = "col">\n\n      <button\n\n        ion-button\n\n        block\n\n        color=\'primary\'\n\n        (click)=\'addMulti()\'>\n\n        Add a new multiple choice question\n\n      </button>\n\n    </div>\n\n\n\n    <div class = "col">\n\n      <button\n\n        ion-button\n\n        block\n\n        color=\'primary\'\n\n        (click)=\'addSlider()\'>\n\n        Add a new slider question\n\n      </button>\n\n    </div>\n\n  </div>\n\n\n\n  <ion-searchbar (ionInput)="searchQuestions($event)"></ion-searchbar>\n\n  <div *ngFor=\'let location of locations\'>\n\n    <div *ngIf = "email == location.owner">\n\n      <ion-list>\n\n        <ion-item>\n\n          <h2>{{ location.name }}</h2>\n\n          <p>\n\n            Type: {{ location.type}}<br>\n\n            Question Text: {{ location.qtext }}<br>\n\n            <ng-container *ngIf="location.option1">\n\n            Answer Choice 1: {{ location.option1 }}<br>\n\n            </ng-container>\n\n            <ng-container *ngIf="location.option2">\n\n            Answer Choice 2: {{ location.option2 }}<br>\n\n            </ng-container>\n\n            <ng-container *ngIf="location.option3">\n\n            Answer Choice 3: {{ location.option3 }}<br>\n\n            </ng-container>\n\n            <ng-container *ngIf="location.option4">\n\n            Answer Choice 4: {{ location.option4 }}<br>\n\n            </ng-container>\n\n            <ng-container *ngIf="location.option5">\n\n            Answer Choice 5: {{ location.option5 }}<br>\n\n            </ng-container>\n\n            <ng-container *ngIf="location.option6">\n\n            Answer Choice 6: {{ location.option6 }}\n\n          </ng-container>\n\n          </p>\n\n\n\n          <ng-container *ngIf="location.type == \'text\'">\n\n            <button\n\n              ion-button\n\n              color=\'secondary\'\n\n              (click)=\'updateDocument(location)\'>\n\n              Update this question\n\n            </button>\n\n         </ng-container>\n\n\n\n          <ng-container *ngIf="location.type == \'radio\'">\n\n            <button\n\n              ion-button\n\n              color=\'secondary\'\n\n              (click)=\'updateRadio(location)\'>\n\n              Update this question\n\n            </button>\n\n         </ng-container>\n\n\n\n         <ng-container *ngIf="location.type == \'multi\'">\n\n           <button\n\n             ion-button\n\n             color=\'secondary\'\n\n             (click)=\'updateMulti(location)\'>\n\n             Update this question\n\n           </button>\n\n        </ng-container>\n\n\n\n        <ng-container *ngIf="location.type == \'slider\'">\n\n          <button\n\n            ion-button\n\n            color=\'secondary\'\n\n            (click)=\'updateSlider(location)\'>\n\n            Update this question\n\n          </button>\n\n       </ng-container>\n\n\n\n          <button\n\n            ion-button\n\n            color=\'danger\'\n\n            (click)="deleteDocument(location)">\n\n            Delete this question\n\n          </button>\n\n        </ion-item>\n\n      </ion-list>\n\n    </div>\n\n  </div>\n\n\n\n  <button ion-button\n\n          block\n\n          color=\'primary\'\n\n          (click)="downloadClick()">\n\n          Download Questions\n\n  </button>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\questions\questions.html"*/
+            selector: 'page-questions',template:/*ion-inline-start:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\questions\questions.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>\n\n      Schema\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <div class = "row">\n\n    <div class = "col">\n\n      <button\n\n        ion-button\n\n        block\n\n        color=\'primary\'\n\n        (click)=\'addDocument()\'>\n\n        Add a new textbox question\n\n      </button>\n\n    </div>\n\n\n\n    <div class = "col">\n\n      <button\n\n        ion-button\n\n        block\n\n        color=\'primary\'\n\n        (click)=\'addRadio()\'>\n\n        Add a new radio question\n\n      </button>\n\n    </div>\n\n\n\n    <div class = "col">\n\n      <button\n\n        ion-button\n\n        block\n\n        color=\'primary\'\n\n        (click)=\'addMulti()\'>\n\n        Add a new multiple choice question\n\n      </button>\n\n    </div>\n\n\n\n    <div class = "col">\n\n      <button\n\n        ion-button\n\n        block\n\n        color=\'primary\'\n\n        (click)=\'addSlider()\'>\n\n        Add a new slider question\n\n      </button>\n\n    </div>\n\n  </div>\n\n\n\n  <ion-searchbar (ionInput)="searchQuestions($event)"></ion-searchbar>\n\n  <div *ngFor=\'let location of locations\'>\n\n    <div *ngIf = "email == location.owner">\n\n      <ion-list>\n\n        <ion-item>\n\n          <h2>{{ location.name }}</h2>\n\n          <p>\n\n            Type: {{ location.type}}<br>\n\n            Question Text: {{ location.qtext }}<br>\n\n            <ng-container *ngIf="location.option1">\n\n            Answer Choice 1: {{ location.option1 }}<br>\n\n            </ng-container>\n\n            <ng-container *ngIf="location.option2">\n\n            Answer Choice 2: {{ location.option2 }}<br>\n\n            </ng-container>\n\n            <ng-container *ngIf="location.option3">\n\n            Answer Choice 3: {{ location.option3 }}<br>\n\n            </ng-container>\n\n            <ng-container *ngIf="location.option4">\n\n            Answer Choice 4: {{ location.option4 }}<br>\n\n            </ng-container>\n\n            <ng-container *ngIf="location.option5">\n\n            Answer Choice 5: {{ location.option5 }}<br>\n\n            </ng-container>\n\n            <ng-container *ngIf="location.option6">\n\n            Answer Choice 6: {{ location.option6 }}\n\n          </ng-container>\n\n          </p>\n\n\n\n          <ng-container *ngIf="location.type == \'text\'">\n\n            <button\n\n              ion-button\n\n              color=\'secondary\'\n\n              (click)=\'updateDocument(location)\'>\n\n              Update this question\n\n            </button>\n\n         </ng-container>\n\n\n\n          <ng-container *ngIf="location.type == \'radio\'">\n\n            <button\n\n              ion-button\n\n              color=\'secondary\'\n\n              (click)=\'updateRadio(location)\'>\n\n              Update this question\n\n            </button>\n\n         </ng-container>\n\n\n\n         <ng-container *ngIf="location.type == \'multi\'">\n\n           <button\n\n             ion-button\n\n             color=\'secondary\'\n\n             (click)=\'updateMulti(location)\'>\n\n             Update this question\n\n           </button>\n\n        </ng-container>\n\n\n\n        <ng-container *ngIf="location.type == \'slider\'">\n\n          <button\n\n            ion-button\n\n            color=\'secondary\'\n\n            (click)=\'updateSlider(location)\'>\n\n            Update this question\n\n          </button>\n\n       </ng-container>\n\n\n\n          <button\n\n            ion-button\n\n            color=\'danger\'\n\n            (click)="deleteDocument(location)">\n\n            Delete this question\n\n          </button>\n\n        </ion-item>\n\n      </ion-list>\n\n    </div>\n\n  </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\questions\questions.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */],
@@ -1789,7 +1758,7 @@ var ParticipantsPage = (function () {
     };
     ParticipantsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-participants',template:/*ion-inline-start:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\participants\participants.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>\n\n      Schema\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n    <button\n\n      ion-button\n\n      block\n\n      color=\'primary\'\n\n      (click)=\'addParticipant()\'>\n\n      Add a new participant\n\n    </button>\n\n\n\n  <ion-searchbar (ionInput)="searchParticipants($event)"></ion-searchbar>\n\n  <ion-list>\n\n    <div *ngFor=\'let location of locations\'>\n\n      <div *ngIf = "email == location.owner">\n\n        <ion-item>\n\n          <h2>{{ location.name }}</h2>\n\n          <p>\n\n            ID: {{ location.id }} <br>\n\n            Email: {{ location.email}}<br>\n\n            Phone: {{ location.phone }}<br>\n\n            Owner: {{ location.owner }}<br>\n\n            Study: {{ location.study }}<br>\n\n            Sleep start time: {{ location.sleep_start}}<br>\n\n            Sleep end time: {{ location.sleep_end}}\n\n          </p>\n\n\n\n          <button\n\n            ion-button\n\n            color=\'secondary\'\n\n            (click)=\'updateDocument(location)\'>\n\n            Update this participant\n\n          </button>\n\n\n\n          <button\n\n            ion-button\n\n            color=\'danger\'\n\n            (click)="deleteDocument(location)">\n\n            Delete this participant\n\n          </button>\n\n        </ion-item>\n\n      </div>\n\n    </div>\n\n\n\n  </ion-list>\n\n\n\n  <button ion-button\n\n          block\n\n          color=\'primary\'\n\n          (click)="downloadClick()">\n\n          Download Participants\n\n  </button>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\participants\participants.html"*/
+            selector: 'page-participants',template:/*ion-inline-start:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\participants\participants.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>\n\n      Schema\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n    <button\n\n      ion-button\n\n      block\n\n      color=\'primary\'\n\n      (click)=\'addParticipant()\'>\n\n      Add a new participant\n\n    </button>\n\n\n\n  <ion-searchbar (ionInput)="searchParticipants($event)"></ion-searchbar>\n\n  <ion-list>\n\n    <div *ngFor=\'let location of locations\'>\n\n      <div *ngIf = "email == location.owner">\n\n        <ion-item>\n\n          <h2>{{ location.name }}</h2>\n\n          <p>\n\n            ID: {{ location.id }} <br>\n\n            Email: {{ location.email}}<br>\n\n            Phone: {{ location.phone }}<br>\n\n            Owner: {{ location.owner }}<br>\n\n            Study: {{ location.study }}<br>\n\n            Sleep start time: {{ location.sleep_start}}<br>\n\n            Sleep end time: {{ location.sleep_end}}\n\n          </p>\n\n\n\n          <button\n\n            ion-button\n\n            color=\'secondary\'\n\n            (click)=\'updateDocument(location)\'>\n\n            Update this participant\n\n          </button>\n\n\n\n          <button\n\n            ion-button\n\n            color=\'danger\'\n\n            (click)="deleteDocument(location)">\n\n            Delete this participant\n\n          </button>\n\n        </ion-item>\n\n      </div>\n\n    </div>\n\n\n\n  </ion-list>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\participants\participants.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */],
@@ -1983,14 +1952,14 @@ var AppModule = (function () {
                         { loadChildren: '../pages/create_question/create_question.module#CreateQuestionPageModule', name: 'create_question', segment: 'create_question', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/create_questionMulti/create_questionMulti.module#CreateQuestionMultiPageModule', name: 'create_questionMulti', segment: 'create_questionMulti', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/create_questionRadio/create_questionRadio.module#CreateQuestionRadioPageModule', name: 'create_questionRadio', segment: 'create_questionRadio', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/create_study/create_study.module#CreateStudyPageModule', name: 'create_study', segment: 'create_study', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/create_questionSlider/create_questionSlider.module#CreateQuestionSliderPageModule', name: 'create_questionSlider', segment: 'create_questionSlider', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/forgot_pass/forgot_pass.module#ForgotPassPageModule', name: 'ForgotPassPage', segment: 'forgot_pass', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/create_study/create_study.module#CreateStudyPageModule', name: 'create_study', segment: 'create_study', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/modules/modules.module#ModulesPageModule', name: 'modules', segment: 'modules', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/select_module/select_module.module#SelectModulePageModule', name: 'select_module', segment: 'select_module', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/select_study/select_study.module#SelectStudyPageModule', name: 'select_study', segment: 'select_study', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/signup/signup.module#SignupPageModule', name: 'SignupPage', segment: 'signup', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/signup/signup.module#SignupPageModule', name: 'SignupPage', segment: 'signup', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/select_study/select_study.module#SelectStudyPageModule', name: 'select_study', segment: 'select_study', priority: 'low', defaultHistory: [] }
                     ]
                 })
             ],

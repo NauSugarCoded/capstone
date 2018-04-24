@@ -160,30 +160,6 @@ export class ModulesPage {
       this.navCtrl.push('create_module');
    }
 
-   exportModules() : any
-   {
-     this._DB.exportModules(this._COLL);
-     this.flag = true;
-   }
-
-   setLink() : void
-   {
-     this._DB.downloadModules();
-     this.firstFlag = true;
-   }
-
-   createLink() : void
-   {
-     this.link = this._DB.returnURL();
-     console.log(this.link);
-     this.secondFlag = true;
-   }
-
-   downloadFile() : void
-   {
-     window.location.href = this.link["i"];
-   }
-
 
 
 

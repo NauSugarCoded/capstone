@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators,FormsModule } from '@angular/forms';
 import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ModulesPage } from '../modules/modules';
 import { DatabaseProvider } from '../../providers/database/database';
 import { UsersserviceProvider } from '../../providers/usersservice/usersservice';
 
@@ -313,6 +314,7 @@ export class SelectModulePage {
      .then((data : any) =>
      {
         this.displayAlert('Success', 'The module ' + this.name + ' was successfully removed');
+        this.navCtrl.push(ModulesPage);
      })
      .catch((error : any) =>
      {
@@ -322,15 +324,35 @@ export class SelectModulePage {
 
   saveQuestions(val : any)
   {
-    this._DB.addModules_Questions("Modules", this.docID, "Questions", val)
-    .then((data : any) =>
+    this.retrieveSubCollection();
+
+    if(this.questions.length === 0)
     {
-      this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
-    })
-    .catch((error : any) =>
+      this._DB.addModules_First_Question("Modules", this.docID, "Questions", val)
+      .then((data : any) =>
+      {
+        this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
+      })
+      .catch((error : any) =>
+      {
+        this.displayAlert('Error', error.message);
+      });
+    }
+
+    else
     {
-      this.displayAlert('Error', error.message);
-    });
+      this._DB.addModules_Questions("Modules", this.docID, "Questions", val)
+      .then((data : any) =>
+      {
+        this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
+      })
+      .catch((error : any) =>
+      {
+        this.displayAlert('Error', error.message);
+      });
+    }
+
+
   }
 
   exportAnswers_Modules(){

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators,FormsModule } from '@angular/forms';
 import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ModulesPage } from '../modules/modules'
 import { DatabaseProvider } from '../../providers/database/database';
 import { UsersserviceProvider } from '../../providers/usersservice/usersservice';
 
@@ -226,11 +227,11 @@ export class CreateModulePage {
          .then((data) =>
          {
             this.clearForm();
-            this.displayAlert('Success', 'The question ' +  name + ' was successfully updated');
+            this.displayAlert('Success', 'The module ' +  name + ' was successfully updated');
          })
          .catch((error) =>
          {
-            this.displayAlert('Updating question failed', error.message);
+            this.displayAlert('Updating module failed', error.message);
          });
       }
 
@@ -255,6 +256,7 @@ export class CreateModulePage {
          {
             this.clearForm();
             this.displayAlert('Record added', 'The module ' +  name + ' was successfully added');
+						this.navCtrl.push(ModulesPage);
          })
          .catch((error) =>
          {

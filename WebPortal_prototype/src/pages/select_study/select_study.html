@@ -106,7 +106,7 @@
   <div *ngFor='let mod of mods'>
     <div *ngIf = "email == mod.owner">
       <button ion-item (click)="saveDocument(mod)">
-        Add {{ mod.name }}
+        {{ mod.name }}
       </button>
     </div>
   </div>

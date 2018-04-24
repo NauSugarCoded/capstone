@@ -40,41 +40,6 @@
     </div>
   </ion-list>
 
-  <div *ngIf="!flag">
-    <button ion-button
-            block
-            color='primary'
-            (click)="exportModules()">
-            Create Modules File
-    </button>
-  </div>
-
-  <div *ngIf="flag && !firstFlag">
-    <button ion-button
-            block
-            color='primary'
-            (click)="setLink()">
-            Set Link
-    </button>
-  </div>
-
-  <div *ngIf="firstFlag && !secondFlag">
-    <button ion-button
-            block
-            color='primary'
-            (click)="createLink()">
-            Generate Link
-    </button>
-  </div>
-
-  <div *ngIf="secondFlag">
-    <button ion-button
-            block
-            color='primary'
-            (click)="downloadFile()">
-            Download Modules File
-    </button>
-  </div>
 
 
 </ion-content>
