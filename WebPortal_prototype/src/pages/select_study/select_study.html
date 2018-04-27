@@ -52,6 +52,15 @@
  	  </ion-item>
 
     <ion-item>
+       <ion-label stacked> End Time </ion-label>
+       <ion-datetime
+          displayFormat="hh:mma"
+          type="time"
+          formControlName="end_time"
+          [(ngModel)]="end_time"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
        <ion-label stacked>Description</ion-label>
        <ion-input
           type="text"
@@ -96,13 +105,15 @@
   </ion-item>
 
   <h2> Modules </h2>
+  <ion-searchbar (ionInput)="searchModules($event)"></ion-searchbar>
   <ion-list>
     <button ion-item *ngFor='let module of modules'> <!-- (click)="viewDocument(module)" -->
       <h2> {{ module.name }} </h2>
     </button>
   </ion-list>
 
-  <h2> Create Modules </h2>
+  <h2> Add Modules </h2>
+  <ion-searchbar (ionInput)="searchOtherModules($event)"></ion-searchbar>
   <div *ngFor='let mod of mods'>
     <div *ngIf = "email == mod.owner">
       <button ion-item (click)="saveDocument(mod)">

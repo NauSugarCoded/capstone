@@ -164,6 +164,7 @@ export class DatabaseProvider {
            abstract           : doc.data().abstract,
            start_date         : doc.data().start_date,
            end_date          : doc.data().end_date,
+           end_time          : doc.data().end_time,
            full_name          : doc.data().full_name,
            short_name    : doc.data().short_name,
            owner         : doc.data().owner,

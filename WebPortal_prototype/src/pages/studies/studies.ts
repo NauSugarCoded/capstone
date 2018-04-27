@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
-import { SelectStudyPage } from "../select_study/select_study"
+import { SelectStudyPage } from "../select_study/select_study";
 import { DatabaseProvider } from '../../providers/database/database';
 import { UsersserviceProvider } from '../../providers/usersservice/usersservice';
 import * as admin from 'firebase-admin';
 import * as fs from 'fs';
+
 
 @Component({
   selector: 'page-studies',

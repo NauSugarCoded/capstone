@@ -172,6 +172,7 @@ var DatabaseProvider = (function () {
                         abstract: doc.data().abstract,
                         start_date: doc.data().start_date,
                         end_date: doc.data().end_date,
+                        end_time: doc.data().end_time,
                         full_name: doc.data().full_name,
                         short_name: doc.data().short_name,
                         owner: doc.data().owner,
@@ -507,10 +508,9 @@ var DatabaseProvider = (function () {
     };
     DatabaseProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]])
     ], DatabaseProvider);
     return DatabaseProvider;
-    var _a;
 }());
 
 //# sourceMappingURL=database.js.map
@@ -615,253 +615,6 @@ var HomePage = (function () {
 /***/ }),
 
 /***/ 343:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ForgotPassPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_usersservice_usersservice__ = __webpack_require__(66);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-/**
- * Generated class for the ForgotPassPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var ForgotPassPage = (function () {
-    function ForgotPassPage(navCtrl, navParams, _ALERT, _US) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this._ALERT = _ALERT;
-        this._US = _US;
-    }
-    ForgotPassPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad ForgotPassPage');
-    };
-    ForgotPassPage.prototype.sendResetPassword = function () {
-        this._US.sendResetPassword(this.email);
-        this.displayAlert('Success', 'An email has been sent to: ' + this.email);
-    };
-    ForgotPassPage.prototype.displayAlert = function (title, message) {
-        var alert = this._ALERT.create({
-            title: title,
-            subTitle: message,
-            buttons: ['Got it!']
-        });
-        alert.present();
-    };
-    ForgotPassPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-forgot-pass',template:/*ion-inline-start:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\forgot_pass\forgot_pass.html"*/'<!--\n  Generated template for the ForgotPassPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Forgot Password</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <ion-list>\n\n    <ion-item>\n       <ion-label stacked>Email</ion-label>\n       <ion-input type="email" [(ngModel)]="email" name="email" placeholder="eg. john@doe.com"></ion-input>\n     </ion-item>\n\n     <div padding text-center>\n       <button ion-button color="default" round (click)="sendResetPassword()" >Reset Password</button>\n     </div>\n\n   </ion-list>\n</ion-content>\n'/*ion-inline-end:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\forgot_pass\forgot_pass.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_usersservice_usersservice__["a" /* UsersserviceProvider */]])
-    ], ForgotPassPage);
-    return ForgotPassPage;
-}());
-
-//# sourceMappingURL=forgot_pass.js.map
-
-/***/ }),
-
-/***/ 344:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__home_home__ = __webpack_require__(188);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__signup_signup__ = __webpack_require__(345);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__forgot_pass_forgot_pass__ = __webpack_require__(343);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase__ = __webpack_require__(172);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_usersservice_usersservice__ = __webpack_require__(66);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var LoginPage = (function () {
-    function LoginPage(usersService, loadingCtrl, toastCtrl, navCtrl, navParams, _US) {
-        this.usersService = usersService;
-        this.loadingCtrl = loadingCtrl;
-        this.toastCtrl = toastCtrl;
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this._US = _US;
-        __WEBPACK_IMPORTED_MODULE_5_firebase__["auth"]().onAuthStateChanged(function (user) {
-            if (user) {
-                // User is signed in.
-                //this.navCtrl.push(HomePage);
-                // ...
-            }
-        });
-    }
-    LoginPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad LoginPage');
-    };
-    LoginPage.prototype.ionViewDidEnter = function () {
-        this._US.logoutUserService();
-        console.log("User has been signed out");
-    };
-    LoginPage.prototype.submitLogin = function () {
-        var _this = this;
-        var that = this;
-        var loader = this.loadingCtrl.create({
-            content: "Please wait...."
-        });
-        loader.present();
-        this.usersService.loginUserService(this.email, this.password).then(function (authData) {
-            //successful
-            loader.dismiss();
-            that.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_1__home_home__["a" /* HomePage */]);
-        }, function (error) {
-            loader.dismiss();
-            //Unable to log in
-            var toast = _this.toastCtrl.create({
-                message: error,
-                duration: 9000,
-                position: 'top'
-            });
-            toast.present();
-            that.password = ""; //empty password field
-        });
-    };
-    LoginPage.prototype.forgotPassword = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__forgot_pass_forgot_pass__["a" /* ForgotPassPage */]);
-    };
-    LoginPage.prototype.redirectToSignup = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__signup_signup__["a" /* SignupPage */]);
-    };
-    LoginPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-login',template:/*ion-inline-start:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\login\login.html"*/'<!--\n\n  Generated template for the LoginPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Login</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n  <ion-list>\n\n    <ion-item>\n\n      <ion-label floating>Email</ion-label>\n\n      <ion-input type="email" [(ngModel)]="email" name="email" required="required"></ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label floating>Password</ion-label>\n\n      <ion-input type="password" [(ngModel)]="password" name="password" required="required"></ion-input>\n\n    </ion-item>\n\n  </ion-list>\n\n\n\n  <div padding text-center>\n\n\n\n    <button *ngIf="email && password " ion-button color="default" round (click)="submitLogin()">\n\n     Login</button>\n\n   <!-- Show dead button if form is not filled -->\n\n   <button *ngIf="!email || !password" ion-button color="deafault" clear round>Login</button>\n\n\n\n  </div>\n\n\n\n  <br>\n\n\n\n  <div padding text-center>\n\n   <button ion-button color="gray" block clear (click)="forgotPassword()">Forgot Password</button>\n\n  </div>\n\n\n\n\n\n   <div padding text-center>\n\n     <button ion-button color="gray" block clear (click)="redirectToSignup()">Create new account</button>\n\n   </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\login\login.html"*/,
-            providers: [__WEBPACK_IMPORTED_MODULE_6__providers_usersservice_usersservice__["a" /* UsersserviceProvider */]]
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_6__providers_usersservice_usersservice__["a" /* UsersserviceProvider */],
-            __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["f" /* LoadingController */],
-            __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["k" /* ToastController */],
-            __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["h" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["i" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_6__providers_usersservice_usersservice__["a" /* UsersserviceProvider */]])
-    ], LoginPage);
-    return LoginPage;
-}());
-
-//# sourceMappingURL=login.js.map
-
-/***/ }),
-
-/***/ 345:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SignupPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_usersservice_usersservice__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(188);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-/**
- * Generated class for the SignupPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var SignupPage = (function () {
-    function SignupPage(usersserviceProvider, navCtrl, navParams, toastCtrl, loadingCtrl) {
-        this.usersserviceProvider = usersserviceProvider;
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.toastCtrl = toastCtrl;
-        this.loadingCtrl = loadingCtrl;
-    }
-    SignupPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad SignupPage');
-    };
-    SignupPage.prototype.doSignup = function () {
-        var _this = this;
-        var that = this;
-        var loader = this.loadingCtrl.create({
-            content: "Please wait...",
-        });
-        loader.present();
-        this.usersserviceProvider.signupUserService(this.email, this.password).then(function (authData) {
-            loader.dismiss();
-            that.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__home_home__["a" /* HomePage */]);
-        }, function (error) {
-            loader.dismiss();
-            _this.toastCtrl.create({
-                message: error,
-                duration: 9000,
-                position: 'top'
-            }).present();
-            that.password = "";
-        });
-    };
-    SignupPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-signup',template:/*ion-inline-start:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\signup\signup.html"*/'<!--\n\n  Generated template for the SignupPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Sign Up</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <ion-list>\n\n\n\n   <ion-item>\n\n      <ion-label stacked>Email</ion-label>\n\n      <ion-input type="email" [(ngModel)]="email" name="email" placeholder="eg. john@doe.com"></ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label stacked>Password</ion-label>\n\n      <ion-input type="password" [(ngModel)]="password" name="password"></ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item >\n\n        <ion-label stacked>Phone</ion-label>\n\n        <ion-input type="text" [(ngModel)]="phone" name="phone" placeholder="eg. 0802222222" required="required"></ion-input>\n\n    </ion-item>\n\n\n\n<hr/>\n\n    <ion-item>\n\n      <ion-label stacked>First name</ion-label>\n\n      <ion-input type="text" [(ngModel)]="first_name" name="first_name"></ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label stacked>Last name</ion-label>\n\n      <ion-input type="text" [(ngModel)]="last_name" name="last_name"></ion-input>\n\n    </ion-item>\n\n\n\n    <div padding text-center>\n\n      <button ion-button color="default" round (click)="doSignup()" >Sign Up</button>\n\n    </div>\n\n\n\n  </ion-list>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\signup\signup.html"*/,
-            providers: [__WEBPACK_IMPORTED_MODULE_2__providers_usersservice_usersservice__["a" /* UsersserviceProvider */]]
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_usersservice_usersservice__["a" /* UsersserviceProvider */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]])
-    ], SignupPage);
-    return SignupPage;
-}());
-
-//# sourceMappingURL=signup.js.map
-
-/***/ }),
-
-/***/ 346:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -999,13 +752,261 @@ var ModulesPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-modules',template:/*ion-inline-start:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\modules\modules.html"*/'<!--\n\n  Generated template for the ModulesPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Modules</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n  <ion-list>\n\n    <button\n\n      ion-button\n\n      block\n\n      color=\'primary\'\n\n      (click)=\'addDocument()\'>\n\n      Create a new module\n\n    </button>\n\n\n\n    <ion-searchbar (ionInput)="searchModules($event)"></ion-searchbar>\n\n    <div *ngFor=\'let location of locations\'>\n\n      <div *ngIf = "email == location.owner">\n\n        <button ion-item (click)="updateDocument(location)">\n\n          {{location.name}}\n\n          <div class="item-note" item-end>\n\n            {{location.type}}\n\n          </div>\n\n        </button>\n\n      </div>\n\n    </div>\n\n  </ion-list>\n\n\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\modules\modules.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__providers_usersservice_usersservice__["a" /* UsersserviceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_usersservice_usersservice__["a" /* UsersserviceProvider */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_usersservice_usersservice__["a" /* UsersserviceProvider */]])
     ], ModulesPage);
     return ModulesPage;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=modules.js.map
+
+/***/ }),
+
+/***/ 344:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ForgotPassPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_usersservice_usersservice__ = __webpack_require__(66);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the ForgotPassPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var ForgotPassPage = (function () {
+    function ForgotPassPage(navCtrl, navParams, _ALERT, _US) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this._ALERT = _ALERT;
+        this._US = _US;
+    }
+    ForgotPassPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad ForgotPassPage');
+    };
+    ForgotPassPage.prototype.sendResetPassword = function () {
+        this._US.sendResetPassword(this.email);
+        this.displayAlert('Success', 'An email has been sent to: ' + this.email);
+    };
+    ForgotPassPage.prototype.displayAlert = function (title, message) {
+        var alert = this._ALERT.create({
+            title: title,
+            subTitle: message,
+            buttons: ['Got it!']
+        });
+        alert.present();
+    };
+    ForgotPassPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-forgot-pass',template:/*ion-inline-start:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\forgot_pass\forgot_pass.html"*/'<!--\n  Generated template for the ForgotPassPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Forgot Password</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <ion-list>\n\n    <ion-item>\n       <ion-label stacked>Email</ion-label>\n       <ion-input type="email" [(ngModel)]="email" name="email" placeholder="eg. john@doe.com"></ion-input>\n     </ion-item>\n\n     <div padding text-center>\n       <button ion-button color="default" round (click)="sendResetPassword()" >Reset Password</button>\n     </div>\n\n   </ion-list>\n</ion-content>\n'/*ion-inline-end:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\forgot_pass\forgot_pass.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_usersservice_usersservice__["a" /* UsersserviceProvider */]])
+    ], ForgotPassPage);
+    return ForgotPassPage;
+}());
+
+//# sourceMappingURL=forgot_pass.js.map
+
+/***/ }),
+
+/***/ 345:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__home_home__ = __webpack_require__(188);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__signup_signup__ = __webpack_require__(346);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__forgot_pass_forgot_pass__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase__ = __webpack_require__(172);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_firebase__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_usersservice_usersservice__ = __webpack_require__(66);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+/**
+ * Generated class for the LoginPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var LoginPage = (function () {
+    function LoginPage(usersService, loadingCtrl, toastCtrl, navCtrl, navParams, _US) {
+        this.usersService = usersService;
+        this.loadingCtrl = loadingCtrl;
+        this.toastCtrl = toastCtrl;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this._US = _US;
+        __WEBPACK_IMPORTED_MODULE_5_firebase__["auth"]().onAuthStateChanged(function (user) {
+            if (user) {
+                // User is signed in.
+                //this.navCtrl.push(HomePage);
+                // ...
+            }
+        });
+    }
+    LoginPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad LoginPage');
+    };
+    LoginPage.prototype.ionViewDidEnter = function () {
+        this._US.logoutUserService();
+        console.log("User has been signed out");
+    };
+    LoginPage.prototype.submitLogin = function () {
+        var _this = this;
+        var that = this;
+        var loader = this.loadingCtrl.create({
+            content: "Please wait...."
+        });
+        loader.present();
+        this.usersService.loginUserService(this.email, this.password).then(function (authData) {
+            //successful
+            loader.dismiss();
+            that.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_1__home_home__["a" /* HomePage */]);
+        }, function (error) {
+            loader.dismiss();
+            //Unable to log in
+            var toast = _this.toastCtrl.create({
+                message: error,
+                duration: 9000,
+                position: 'top'
+            });
+            toast.present();
+            that.password = ""; //empty password field
+        });
+    };
+    LoginPage.prototype.forgotPassword = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__forgot_pass_forgot_pass__["a" /* ForgotPassPage */]);
+    };
+    LoginPage.prototype.redirectToSignup = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__signup_signup__["a" /* SignupPage */]);
+    };
+    LoginPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-login',template:/*ion-inline-start:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\login\login.html"*/'<!--\n\n  Generated template for the LoginPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Login</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n  <ion-list>\n\n    <ion-item>\n\n      <ion-label floating>Email</ion-label>\n\n      <ion-input type="email" [(ngModel)]="email" name="email" required="required"></ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label floating>Password</ion-label>\n\n      <ion-input type="password" [(ngModel)]="password" name="password" required="required"></ion-input>\n\n    </ion-item>\n\n  </ion-list>\n\n\n\n  <div padding text-center>\n\n\n\n    <button *ngIf="email && password " ion-button color="default" round (click)="submitLogin()">\n\n     Login</button>\n\n   <!-- Show dead button if form is not filled -->\n\n   <button *ngIf="!email || !password" ion-button color="deafault" clear round>Login</button>\n\n\n\n  </div>\n\n\n\n  <br>\n\n\n\n  <div padding text-center>\n\n   <button ion-button color="gray" block clear (click)="forgotPassword()">Forgot Password</button>\n\n  </div>\n\n\n\n\n\n   <div padding text-center>\n\n     <button ion-button color="gray" block clear (click)="redirectToSignup()">Create new account</button>\n\n   </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\login\login.html"*/,
+            providers: [__WEBPACK_IMPORTED_MODULE_6__providers_usersservice_usersservice__["a" /* UsersserviceProvider */]]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_6__providers_usersservice_usersservice__["a" /* UsersserviceProvider */],
+            __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["f" /* LoadingController */],
+            __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["k" /* ToastController */],
+            __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["h" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["i" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_6__providers_usersservice_usersservice__["a" /* UsersserviceProvider */]])
+    ], LoginPage);
+    return LoginPage;
+}());
+
+//# sourceMappingURL=login.js.map
+
+/***/ }),
+
+/***/ 346:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SignupPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_usersservice_usersservice__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(188);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/**
+ * Generated class for the SignupPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var SignupPage = (function () {
+    function SignupPage(usersserviceProvider, navCtrl, navParams, toastCtrl, loadingCtrl) {
+        this.usersserviceProvider = usersserviceProvider;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.toastCtrl = toastCtrl;
+        this.loadingCtrl = loadingCtrl;
+    }
+    SignupPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad SignupPage');
+    };
+    SignupPage.prototype.doSignup = function () {
+        var _this = this;
+        var that = this;
+        var loader = this.loadingCtrl.create({
+            content: "Please wait...",
+        });
+        loader.present();
+        this.usersserviceProvider.signupUserService(this.email, this.password).then(function (authData) {
+            loader.dismiss();
+            that.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__home_home__["a" /* HomePage */]);
+        }, function (error) {
+            loader.dismiss();
+            _this.toastCtrl.create({
+                message: error,
+                duration: 9000,
+                position: 'top'
+            }).present();
+            that.password = "";
+        });
+    };
+    SignupPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-signup',template:/*ion-inline-start:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\signup\signup.html"*/'<!--\n\n  Generated template for the SignupPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Sign Up</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <ion-list>\n\n\n\n   <ion-item>\n\n      <ion-label stacked>Email</ion-label>\n\n      <ion-input type="email" [(ngModel)]="email" name="email" placeholder="eg. john@doe.com"></ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label stacked>Password</ion-label>\n\n      <ion-input type="password" [(ngModel)]="password" name="password"></ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item >\n\n        <ion-label stacked>Phone</ion-label>\n\n        <ion-input type="text" [(ngModel)]="phone" name="phone" placeholder="eg. 0802222222" required="required"></ion-input>\n\n    </ion-item>\n\n\n\n<hr/>\n\n    <ion-item>\n\n      <ion-label stacked>First name</ion-label>\n\n      <ion-input type="text" [(ngModel)]="first_name" name="first_name"></ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label stacked>Last name</ion-label>\n\n      <ion-input type="text" [(ngModel)]="last_name" name="last_name"></ion-input>\n\n    </ion-item>\n\n\n\n    <div padding text-center>\n\n      <button ion-button color="default" round (click)="doSignup()" >Sign Up</button>\n\n    </div>\n\n\n\n  </ion-list>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\signup\signup.html"*/,
+            providers: [__WEBPACK_IMPORTED_MODULE_2__providers_usersservice_usersservice__["a" /* UsersserviceProvider */]]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_usersservice_usersservice__["a" /* UsersserviceProvider */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]])
+    ], SignupPage);
+    return SignupPage;
+}());
+
+//# sourceMappingURL=signup.js.map
 
 /***/ }),
 
@@ -1031,11 +1032,11 @@ webpackEmptyAsyncContext.id = 358;
 
 var map = {
 	"../pages/create_module/create_module.module": [
-		1256,
+		1255,
 		8
 	],
 	"../pages/create_participant/create_participant.module": [
-		1255,
+		1256,
 		7
 	],
 	"../pages/create_question/create_question.module": [
@@ -1055,11 +1056,11 @@ var map = {
 		4
 	],
 	"../pages/create_study/create_study.module": [
-		1262,
+		1261,
 		2
 	],
 	"../pages/forgot_pass/forgot_pass.module": [
-		1261,
+		1262,
 		12
 	],
 	"../pages/login/login.module": [
@@ -1071,15 +1072,15 @@ var map = {
 		10
 	],
 	"../pages/select_module/select_module.module": [
-		1265,
+		1266,
 		1
 	],
 	"../pages/select_study/select_study.module": [
-		1267,
+		1265,
 		0
 	],
 	"../pages/signup/signup.module": [
-		1266,
+		1267,
 		9
 	]
 };
@@ -1297,10 +1298,12 @@ var StudiesPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-studies',template:/*ion-inline-start:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\studies\studies.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Studies</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n  <button\n\n    ion-button\n\n    block\n\n    color=\'primary\'\n\n    (click)=\'addDocument()\'>\n\n    Add a new Study\n\n  </button>\n\n\n\n  <ion-searchbar (ionInput)="searchStudies($event)"></ion-searchbar>\n\n  <div *ngFor=\'let location of locations\'>\n\n    <div *ngIf = "email == location.owner">\n\n      <button ion-item (click)="updateDocument(location)">\n\n        {{location.short_name}}\n\n        <div class="item-note" item-end>\n\n          {{location.abstract}}\n\n        </div>\n\n      </button>\n\n    </div>\n\n  </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\studies\studies.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__providers_usersservice_usersservice__["a" /* UsersserviceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_usersservice_usersservice__["a" /* UsersserviceProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _d || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_usersservice_usersservice__["a" /* UsersserviceProvider */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], StudiesPage);
     return StudiesPage;
-    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=studies.js.map
@@ -1875,10 +1878,10 @@ var UsersserviceProvider = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(839);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_home_home__ = __webpack_require__(188);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_studies_studies__ = __webpack_require__(493);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_modules_modules__ = __webpack_require__(346);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_login_login__ = __webpack_require__(344);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_signup_signup__ = __webpack_require__(345);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_forgot_pass_forgot_pass__ = __webpack_require__(343);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_modules_modules__ = __webpack_require__(343);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_login_login__ = __webpack_require__(345);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_signup_signup__ = __webpack_require__(346);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_forgot_pass_forgot_pass__ = __webpack_require__(344);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_questions_questions__ = __webpack_require__(494);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_participants_participants__ = __webpack_require__(495);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_status_bar__ = __webpack_require__(489);
@@ -1947,19 +1950,19 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["b" /* HttpClientModule */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* MyApp */], {}, {
                     links: [
-                        { loadChildren: '../pages/create_participant/create_participant.module#CreateParticipantPageModule', name: 'create_participant', segment: 'create_participant', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/create_module/create_module.module#CreateModulePageModule', name: 'create_module', segment: 'create_module', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/create_participant/create_participant.module#CreateParticipantPageModule', name: 'create_participant', segment: 'create_participant', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/create_question/create_question.module#CreateQuestionPageModule', name: 'create_question', segment: 'create_question', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/create_questionMulti/create_questionMulti.module#CreateQuestionMultiPageModule', name: 'create_questionMulti', segment: 'create_questionMulti', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/create_questionRadio/create_questionRadio.module#CreateQuestionRadioPageModule', name: 'create_questionRadio', segment: 'create_questionRadio', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/create_questionSlider/create_questionSlider.module#CreateQuestionSliderPageModule', name: 'create_questionSlider', segment: 'create_questionSlider', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/forgot_pass/forgot_pass.module#ForgotPassPageModule', name: 'ForgotPassPage', segment: 'forgot_pass', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/create_study/create_study.module#CreateStudyPageModule', name: 'create_study', segment: 'create_study', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/forgot_pass/forgot_pass.module#ForgotPassPageModule', name: 'ForgotPassPage', segment: 'forgot_pass', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/modules/modules.module#ModulesPageModule', name: 'modules', segment: 'modules', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/select_study/select_study.module#SelectStudyPageModule', name: 'select_study', segment: 'select_study', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/select_module/select_module.module#SelectModulePageModule', name: 'select_module', segment: 'select_module', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/signup/signup.module#SignupPageModule', name: 'SignupPage', segment: 'signup', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/select_study/select_study.module#SelectStudyPageModule', name: 'select_study', segment: 'select_study', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/signup/signup.module#SignupPageModule', name: 'SignupPage', segment: 'signup', priority: 'low', defaultHistory: [] }
                     ]
                 })
             ],
@@ -2002,8 +2005,8 @@ var AppModule = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(492);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(188);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_studies_studies__ = __webpack_require__(493);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_modules_modules__ = __webpack_require__(346);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_login_login__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_modules_modules__ = __webpack_require__(343);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_login_login__ = __webpack_require__(345);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_questions_questions__ = __webpack_require__(494);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_participants_participants__ = __webpack_require__(495);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__providers_usersservice_usersservice__ = __webpack_require__(66);
