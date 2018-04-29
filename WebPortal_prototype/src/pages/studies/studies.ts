@@ -3,11 +3,8 @@ import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { SelectStudyPage } from "../select_study/select_study";
 import { DatabaseProvider } from '../../providers/database/database';
 import { UsersserviceProvider } from '../../providers/usersservice/usersservice';
-<<<<<<< HEAD
-=======
 import * as admin from 'firebase-admin';
 import * as fs from 'fs';
->>>>>>> master
 
 
 @Component({
@@ -57,12 +54,9 @@ export class StudiesPage {
   public locations     : any;
 
   public email         : string;
-<<<<<<< HEAD
-=======
   public url           : any;
   public link          : string;
   public flag          : boolean = false;
->>>>>>> master
 
 
   constructor(public navCtrl  : NavController,
@@ -91,10 +85,6 @@ export class StudiesPage {
   {
      this.retrieveCollection();
      this.email = this._US.returnUser();
-<<<<<<< HEAD
-     console.log(this.email);
-=======
->>>>>>> master
   }
 
 
