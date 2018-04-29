@@ -558,8 +558,6 @@ export class SelectModulePage {
   }
 
 
-  }
-
   exportAnswers_Modules(){
     this._DB.exportAnswers_Modules(this.docID, this.name);
     this.flag = true;

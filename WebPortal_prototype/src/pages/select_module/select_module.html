@@ -119,20 +119,7 @@
 
   <h2> Questions </h2>
 
-<<<<<<< HEAD
-  <!--<ion-item>
-     <button
-       ion-button
-       block
-       color="primary"
-       text-center
-       padding-top
-       padding-bottom
-       (click)="updateDocument()">
-           Add Branching
-      </button>
-    </ion-item>-->
-
+  <ion-searchbar (ionInput)="searchQuestions($event)"></ion-searchbar>
   <ion-list>
     <button ion-item *ngFor='let question of questions' (click)="updateDocument(question)">
       <h2> {{ question.name }} </h2>
@@ -140,22 +127,10 @@
   </ion-list>
 
   <h2> Add Questions </h2>
-  <button ion-item *ngFor='let quest of quests' (click)="saveQuestions(quest, docID)">
-    Add {{ quest.name }}
-  </button>
-=======
-  <ion-searchbar (ionInput)="searchQuestions($event)"></ion-searchbar>
-  <ion-list>
-    <ion-item *ngFor="let question of questions">
-      {{ question.name }}
-    </ion-item>
-  </ion-list>
-
-  <h2> Add Questions </h2>
   <ion-searchbar (ionInput)="searchOtherQuestions($event)"></ion-searchbar>
   <div *ngFor='let quest of quests'>
     <div *ngIf = "email == quest.owner">
-      <button ion-item (click)="saveQuestions(quest)">
+      <button ion-item (click)="saveQuestions(quest, docID)">
       {{ quest.name }}
       </button>
     </div>
@@ -196,6 +171,5 @@
             Download Modules File
     </button>
   </div>
->>>>>>> master
 
 </ion-content>
