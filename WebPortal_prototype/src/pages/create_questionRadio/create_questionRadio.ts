@@ -172,6 +172,8 @@ export class CreateQuestionRadioPage {
     */
    private _COLL 		: string 			= "Questions";
 
+	 public owner			: string;
+
 
    constructor(public navCtrl        : NavController,
                public params         : NavParams,

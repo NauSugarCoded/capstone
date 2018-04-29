@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators,FormsModule } from '@angular/forms';
 import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ModulesPage } from '../modules/modules'
 import { DatabaseProvider } from '../../providers/database/database';
 import { UsersserviceProvider } from '../../providers/usersservice/usersservice';
 
@@ -140,6 +141,8 @@ export class CreateModulePage {
     */
    private _COLL 		: string 			= "Modules";
 
+	 public every			: any;
+
 
    constructor(public navCtrl        : NavController,
                public params         : NavParams,
@@ -156,6 +159,8 @@ export class CreateModulePage {
          'name' 		        : ['', Validators.required],
          'type' 	        : ['', Validators.required],
 				 'recurrence'			: [''],
+				 'every_hour'			: [''],
+				 'every_minute'		: [''],
 				 'start_time'			:	[''],
 				 'start_date'			: [''],
 				 'end_date'				: ['']
@@ -197,6 +202,7 @@ export class CreateModulePage {
 					start_time	: string		= this.form.controls['start_time'].value,
 					start_date	: string		= this.form.controls['start_date'].value,
 					end_date		: string		= this.form.controls['end_date'].value,
+					every				: number 		= (this.form.controls['every_hour'].value * 3600000) + (this.form.controls['every_minute'].value * 60000),
   		    owner       : string		= this._US.returnUser();
 
 
@@ -215,16 +221,17 @@ export class CreateModulePage {
 																 start_time	: start_time,
 																 start_date	: start_date,
 																 end_date		: end_date,
+																 every			: every,
 	                               owner   : owner
 	                           })
          .then((data) =>
          {
             this.clearForm();
-            this.displayAlert('Success', 'The question ' +  name + ' was successfully updated');
+            this.displayAlert('Success', 'The module ' +  name + ' was successfully updated');
          })
          .catch((error) =>
          {
-            this.displayAlert('Updating question failed', error.message);
+            this.displayAlert('Updating module failed', error.message);
          });
       }
 
@@ -242,12 +249,14 @@ export class CreateModulePage {
 														 start_time	: start_time,
 														 start_date : start_date,
 														 end_date		: end_date,
+														 every			: every,
 	                           owner   : owner
 	                        })
          .then((data) =>
          {
             this.clearForm();
             this.displayAlert('Record added', 'The module ' +  name + ' was successfully added');
+						this.navCtrl.push(ModulesPage);
          })
          .catch((error) =>
          {

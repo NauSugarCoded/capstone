@@ -60,6 +60,12 @@ export class ModulesPage {
   public locations     : any;
 
   public email         : string;
+  public url           : any;
+  public link          : string;
+  public flag          : boolean = false;
+  public firstFlag     : boolean = false;
+  public secondFlag    : boolean = false;
+  public answers       : any;
 
 
   constructor(public navCtrl: NavController,
@@ -87,7 +93,6 @@ export class ModulesPage {
    {
       this.retrieveCollection();
       this.email = this._US.returnUser();
-      console.log(this.email)
    }
 
    /**
@@ -126,6 +131,8 @@ export class ModulesPage {
     */
    retrieveCollection() : void
    {
+      this._DB.getAnswers("Answers");
+
       this._DB.getModules(this._COLL)
       .then((data) =>
       {
@@ -155,6 +162,7 @@ export class ModulesPage {
 
 
 
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad ModulesPage');
   }
@@ -166,6 +174,20 @@ export class ModulesPage {
         location     : obj
      };
      this.navCtrl.push('select_module', { record : params, isEdited : true });
+  }
+
+  searchModules(input : any){
+
+    let val = input.target.value;
+    if(val && val.trim() != '') {
+      this.locations = this.locations.filter((mod) => {
+        return(mod.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+    }
+
+    else{
+      this.retrieveCollection();
+    }
   }
 
 

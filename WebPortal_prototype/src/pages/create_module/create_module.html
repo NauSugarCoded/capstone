@@ -30,6 +30,14 @@
     <ion-list radio-group formControlName="type" [(ngModel)]="type">
       <ion-label stacked>Module Type:</ion-label>
       <ion-item>
+        <ion-label> Baseline </ion-label>
+        <ion-radio value="Base Line"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label> End </ion-label>
+        <ion-radio value="End Module"></ion-radio>
+      </ion-item>
+      <ion-item>
         <ion-label> User Initiated </ion-label>
         <ion-radio value="User Initiated"></ion-radio>
       </ion-item>
@@ -47,6 +55,24 @@
           <ion-option value="day"> Daily </ion-option>
           <ion-option value="week"> Weekly </ion-option>
         </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Hour(s)</ion-label>
+        <ion-input
+          type='number'
+          formControlName='every_hour'
+          [(ngModel)]='every_hour'>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Minute(s)</ion-label>
+        <ion-input
+          type='number'
+          formControlName='every_minute'
+          [(ngModel)]='every_minute'>
+        </ion-input>
       </ion-item>
 
       <ion-item>
@@ -94,21 +120,6 @@
           </button>
  	  </ion-item>
 
-    <h2> Questions </h2>
-    <ion-item>
-      <div *ngIf="isEditable">
-        <button
-          ion-button
-          block
-          color="primary"
-          text-center
-          padding-top
-          padding-bottom
-          [disabled]="!form.valid">
-          Add a question
-        </button>
-      </div>
-    </ion-item>
 
 
   </form>

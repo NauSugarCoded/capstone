@@ -38,6 +38,19 @@ export class UsersserviceProvider {
 
   }
 
+  logoutUserService() {
+    this.fireAuth.signOut();
+  }
+
+  sendResetPassword(email : string) {
+
+    this.fireAuth.sendPasswordResetEmail(email).then(function() {
+      // Email sent.
+    }).catch(function(error) {
+      // An error happened.
+    });
+  }
+
   returnUser(): string
   {
     let email = firebase.auth().currentUser.email;

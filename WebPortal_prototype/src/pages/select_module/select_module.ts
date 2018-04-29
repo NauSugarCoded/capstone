@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators,FormsModule } from '@angular/forms';
 import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ModulesPage } from '../modules/modules';
 import { DatabaseProvider } from '../../providers/database/database';
+import { UsersserviceProvider } from '../../providers/usersservice/usersservice';
+
 /**
  * Generated class for the SelectModulePage page.
  *
@@ -165,10 +168,20 @@ export class SelectModulePage {
   private opts          : any;
 
 
+  public email          : string;
+
+  public every          : string;
+
+  public flag          : boolean = false;
+  public firstFlag     : boolean = false;
+  public secondFlag    : boolean = false;
+  public link          : string;
+
   constructor(public navCtrl        : NavController,
               public params         : NavParams,
               private _FB 	         : FormBuilder,
               private _DB           : DatabaseProvider,
+              private _US           : UsersserviceProvider,
               private _ALERT        : AlertController)
   {
 
@@ -181,7 +194,8 @@ export class SelectModulePage {
         'recurrence'			: [''],
         'start_time'			:	[''],
         'start_date'			: [''],
-        'end_date'				: ['']
+        'end_date'				: [''],
+        'every'           : [''],
 
      });
 
@@ -199,6 +213,7 @@ export class SelectModulePage {
          this.start_time = record.location.start_time;
          this.start_date = record.location.start_date;
          this.end_date = record.location.end_date;
+         this.every    = record.location.every;
          this.owner      = record.location.owner;
          this.docID            = record.location.id;
          this.isEditable       = true;
@@ -214,6 +229,8 @@ export class SelectModulePage {
     if(this.docID != ''){
       this.retrieveSubCollection();
     }
+
+    this.email = this._US.returnUser();
   }
 
   retrieveCollection() : void
@@ -246,7 +263,8 @@ export class SelectModulePage {
          recurrence	: string		= this.form.controls['recurrence'].value,
          start_time	: string		= this.form.controls['start_time'].value,
          start_date	: string		= this.form.controls['start_date'].value,
-         end_date		: string		= this.form.controls['end_date'].value
+         end_date		: string		= this.form.controls['end_date'].value,
+         every      : string    = this.form.controls['every'].value;
 
 
      // If we are editing an existing record then handle this scenario
@@ -263,7 +281,8 @@ export class SelectModulePage {
                                 recurrence : recurrence,
                                 start_time	: start_time,
                                 start_date	: start_date,
-                                end_date		: end_date
+                                end_date		: end_date,
+                                every       : every
                             })
         .then((data) =>
         {
@@ -288,7 +307,8 @@ export class SelectModulePage {
                             recurrence : recurrence,
                             start_time	: start_time,
                             start_date : start_date,
-                            end_date		: end_date
+                            end_date		: end_date,
+                            every       : every
                          })
         .then((data) =>
         {
@@ -308,6 +328,7 @@ export class SelectModulePage {
      .then((data : any) =>
      {
         this.displayAlert('Success', 'The module ' + this.name + ' was successfully removed');
+        this.navCtrl.push(ModulesPage);
      })
      .catch((error : any) =>
      {
@@ -319,82 +340,176 @@ export class SelectModulePage {
   saveQuestions(val : any, moduleID : any)
   {
     if(val.type == "text"){
-      this._DB.addModules_Questions("Modules", this.docID, "Questions", {
-                                                            name    : val.name,
-                                                            id      : val.id,
-                                                            type    : val.type,
-                                                            qtext   : val.qtext,
-                                                            owner	 : val.owner,
-                                                            moduleID : moduleID
-                                                          })
-      .then((data : any) =>
+
+      if(this.questions.length === 0)
       {
-        this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
-      })
-      .catch((error : any) =>
-      {
-        this.displayAlert('Error', error.message);
-      });
+        this._DB.addModules_First_Question("Modules", this.docID, "Questions", {
+                                                              name    : val.name,
+                                                              id      : val.id,
+                                                              type    : val.type,
+                                                              qtext   : val.qtext,
+                                                              owner	 : val.owner,
+                                                              moduleID : moduleID
+                                                            })
+        .then((data : any) =>
+        {
+          this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
+        })
+        .catch((error : any) =>
+        {
+          this.displayAlert('Error', error.message);
+        });
+      }
+
+      else {
+        this._DB.addModules_Questions("Modules", this.docID, "Questions", {
+                                                              name    : val.name,
+                                                              id      : val.id,
+                                                              type    : val.type,
+                                                              qtext   : val.qtext,
+                                                              owner	 : val.owner,
+                                                              moduleID : moduleID
+                                                            })
+        .then((data : any) =>
+        {
+          this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
+        })
+        .catch((error : any) =>
+        {
+          this.displayAlert('Error', error.message);
+        });
+      }
     }
 
     else if(val.type == "multi"){
-      this.saveQuestionsHelper(val)
-      .then((opts : any) =>
+
+      if(this.questions.length === 0)
       {
-      console.log(this.opts);
-      this._DB.addModules_Questions("Modules", this.docID, "Questions", {
-                                                            name    : val.name,
-                                                            id      : val.id,
-                                                            type    : val.type,
-                                                            qtext   : val.qtext,
-                                                            owner	  : val.owner,
-                                                            option1 : opts[0],
-                           																  option2 : opts[1],
-                           																  option3 : opts[2],
-                           																  option4 : opts[3],
-                           																  option5 : opts[4],
-                           																  option6 : opts[5],
-                                                            moduleID : moduleID
-                                                          })
-      .then((data : any) =>
-      {
-        this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
-      })
-      .catch((error : any) =>
-      {
-        this.displayAlert('Error', error.message);
-      });
-      })
-    }
+        this.saveQuestionsHelper(val)
+        .then((opts : any) =>
+        {
+        console.log(this.opts);
+        this._DB.addModules_First_Question("Modules", this.docID, "Questions", {
+                                                              name    : val.name,
+                                                              id      : val.id,
+                                                              type    : val.type,
+                                                              qtext   : val.qtext,
+                                                              owner	  : val.owner,
+                                                              option1 : opts[0],
+                             																  option2 : opts[1],
+                             																  option3 : opts[2],
+                             																  option4 : opts[3],
+                             																  option5 : opts[4],
+                             																  option6 : opts[5],
+                                                              moduleID : moduleID
+                                                            })
+          .then((data : any) =>
+          {
+            this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
+          })
+          .catch((error : any) =>
+          {
+            this.displayAlert('Error', error.message);
+          });
+        })
+      }
+
+      else {
+        this.saveQuestionsHelper(val)
+        .then((opts : any) =>
+        {
+        console.log(this.opts);
+        this._DB.addModules_Questions("Modules", this.docID, "Questions", {
+                                                              name    : val.name,
+                                                              id      : val.id,
+                                                              type    : val.type,
+                                                              qtext   : val.qtext,
+                                                              owner	  : val.owner,
+                                                              option1 : opts[0],
+                             																  option2 : opts[1],
+                             																  option3 : opts[2],
+                             																  option4 : opts[3],
+                             																  option5 : opts[4],
+                             																  option6 : opts[5],
+                                                              moduleID : moduleID
+                                                            })
+            .then((data : any) =>
+            {
+              this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
+            })
+            .catch((error : any) =>
+            {
+              this.displayAlert('Error', error.message);
+            });
+          })
+        }
+
+      }
+
+
 
     else if(val.type == "radio"){
-      this.saveQuestionsHelper(val)
-      .then((opts : any) =>
+      if(this.questions.length === 0)
       {
-      this._DB.addModules_Questions("Modules", this.docID, "Questions", {
-                                                            name    : val.name,
-                                                            type    : val.type,
-                                                            id      : val.id,
-                                                            qtext   : val.qtext,
-                                                            owner	  : val.owner,
-                                                            option1 : opts[0],
-                           																  option2 : opts[1],
-                           																  option3 : opts[2],
-                           																  option4 : opts[3],
-                           																  option5 : opts[4],
-                           																  option6 : opts[5],
-                                                            moduleID : moduleID
-                                                          })
-      .then((data : any) =>
-      {
-        this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
-      })
-      .catch((error : any) =>
-      {
-        this.displayAlert('Error', error.message);
-      });
-    })
-    }
+        this.saveQuestionsHelper(val)
+        .then((opts : any) =>
+        {
+        console.log(this.opts);
+        this._DB.addModules_First_Question("Modules", this.docID, "Questions", {
+                                                              name    : val.name,
+                                                              id      : val.id,
+                                                              type    : val.type,
+                                                              qtext   : val.qtext,
+                                                              owner	  : val.owner,
+                                                              option1 : opts[0],
+                             																  option2 : opts[1],
+                             																  option3 : opts[2],
+                             																  option4 : opts[3],
+                             																  option5 : opts[4],
+                             																  option6 : opts[5],
+                                                              moduleID : moduleID
+                                                            })
+          .then((data : any) =>
+          {
+            this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
+          })
+          .catch((error : any) =>
+          {
+            this.displayAlert('Error', error.message);
+          });
+        })
+      }
+
+      else {
+        this.saveQuestionsHelper(val)
+        .then((opts : any) =>
+        {
+        console.log(this.opts);
+        this._DB.addModules_Questions("Modules", this.docID, "Questions", {
+                                                              name    : val.name,
+                                                              id      : val.id,
+                                                              type    : val.type,
+                                                              qtext   : val.qtext,
+                                                              owner	  : val.owner,
+                                                              option1 : opts[0],
+                             																  option2 : opts[1],
+                             																  option3 : opts[2],
+                             																  option4 : opts[3],
+                             																  option5 : opts[4],
+                             																  option6 : opts[5],
+                                                              moduleID : moduleID
+                                                            })
+            .then((data : any) =>
+            {
+              this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
+            })
+            .catch((error : any) =>
+            {
+              this.displayAlert('Error', error.message);
+            });
+          })
+        }
+      }
 
     else{
       this._DB.addModules_Questions("Modules", this.docID, "Questions", {
@@ -414,7 +529,6 @@ export class SelectModulePage {
         this.displayAlert('Error', error.message);
       });
     }
-
   }
 
   saveQuestionsHelper(val : any) : any
@@ -442,6 +556,63 @@ export class SelectModulePage {
      };
      this.navCtrl.push('branching', { record : params});
   }
+
+
+  }
+
+  exportAnswers_Modules(){
+    this._DB.exportAnswers_Modules(this.docID, this.name);
+    this.flag = true;
+  }
+
+  setLink() : void
+  {
+    this._DB.downloadAnswers_Modules(this.name);
+    this.firstFlag = true;
+  }
+
+  createLink() : void
+  {
+    this.link = this._DB.returnURL();
+    console.log(this.link);
+    this.secondFlag = true;
+  }
+
+  downloadFile() : void
+  {
+    window.location.href = this.link["i"];
+  }
+
+  searchQuestions(input : any){
+
+    let val = input.target.value;
+    if(val && val.trim() != '') {
+      this.questions = this.questions.filter((question) => {
+        return(question.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+    }
+
+    else{
+      this.retrieveSubCollection();
+    }
+  }
+
+  searchOtherQuestions(input : any){
+
+    let val = input.target.value;
+    if(val && val.trim() != '') {
+      this.quests = this.quests.filter((quest) => {
+        return(quest.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+    }
+
+    else{
+      this.retrieveCollection();
+    }
+  }
+
+
+
 
 
   /**

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
 import { DatabaseProvider } from '../../providers/database/database';
+import { UsersserviceProvider } from '../../providers/usersservice/usersservice';
+
 
 @Component({
   selector: 'page-participants',
@@ -49,10 +51,12 @@ export class ParticipantsPage {
     */
    public locations     : any;
    public studs         : any;
+   public email         : string;
 
 
    constructor(public navCtrl  : NavController,
                private _DB     : DatabaseProvider,
+               private _US     : UsersserviceProvider,
                private _ALERT  : AlertController)
    {
       this._CONTENT = {
@@ -81,6 +85,7 @@ export class ParticipantsPage {
    {
       this.retrieveCollection();
       this.retrieveStudies();
+      this.email = this._US.returnUser();
    }
 
 
@@ -226,6 +231,20 @@ export class ParticipantsPage {
       {
          this.displayAlert('Error', error.message);
       });
+   }
+
+   searchParticipants(input : any){
+
+     let val = input.target.value;
+     if(val && val.trim() != '') {
+       this.locations = this.locations.filter((participant) => {
+         return(participant.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
+       })
+     }
+
+     else{
+       this.retrieveCollection();
+     }
    }
 
 

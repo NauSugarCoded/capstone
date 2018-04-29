@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms';
 import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ModulesPage } from "../modules/modules"
 import { DatabaseProvider } from '../../providers/database/database';
+import { UsersserviceProvider } from '../../providers/usersservice/usersservice';
+
 
 /**
  * Generated class for the SelectStudyPage page.
@@ -84,6 +85,13 @@ export class SelectStudyPage {
    */
   public end_date 	: string           ='';
 
+  /**
+   * @name end_time
+   * @type {date}
+   * @public
+   * @description     Model for established form field
+   */
+  public end_time 	: string           ='';
 
 
   /**
@@ -150,12 +158,15 @@ export class SelectStudyPage {
    */
   public mods     : any;
 
+  public email    : string;
+
 
 
   constructor(public navCtrl        : NavController,
               public params         : NavParams,
               private _FB 	         : FormBuilder,
               private _DB           : DatabaseProvider,
+              private _US           : UsersserviceProvider,
               private _ALERT        : AlertController)
   {
 
@@ -168,6 +179,7 @@ export class SelectStudyPage {
         'abstract'	            : ['', Validators.required],
         'start_date'	            : ['', Validators.required],
         'end_date'	            : ['', Validators.required],
+        'end_time'              : ['', Validators.required],
         'modules'               : ['']
      });
 
@@ -184,6 +196,7 @@ export class SelectStudyPage {
          this.abstract      = record.location.abstract;
          this.start_date      = record.location.start_date;
          this.end_date      = record.location.end_date;
+         this.end_time      = record.location.end_time;
          this.docID            = record.location.id;
          this.isEditable       = true;
          this.title            = 'Update this document';
@@ -203,6 +216,7 @@ export class SelectStudyPage {
     this.retrieveCollection();
     this.retrieveSubCollection();
     this.retrieveModules();
+    this.email = this._US.returnUser();
   }
 
   retrieveCollection() : void
@@ -250,7 +264,8 @@ export class SelectStudyPage {
          short_name        : string 		= this.form.controls["short_name"].value,
          abstract       : string		= this.form.controls["abstract"].value,
          start_date       : string		= this.form.controls["start_date"].value,
-         end_date       : string		= this.form.controls["end_date"].value;
+         end_date       : string		= this.form.controls["end_date"].value,
+         end_time       : string    = this.form.controls["end_time"].value;
 
      // If we are editing an existing record then handle this scenario
      if(this.isEditable)
@@ -265,7 +280,8 @@ export class SelectStudyPage {
                                 short_name    : short_name,
                                 abstract   : abstract,
                                 start_date	: start_date,
-                                end_date   : end_date
+                                end_date   : end_date,
+                                end_time   : end_time
                             })
         .then((data) =>
         {
@@ -289,7 +305,8 @@ export class SelectStudyPage {
                             short_name    : short_name,
                             abstract   : abstract,
                             start_date	: start_date,
-                            end_date   : end_date
+                            end_date   : end_date,
+                            end_time   : end_time
                          })
         .then((data) =>
         {
@@ -331,11 +348,40 @@ export class SelectStudyPage {
       .then((data : any) =>
       {
          this.displayAlert('Success', 'The study ' + this.short_name + ' was successfully removed');
+         this.navCtrl.push('study');
       })
       .catch((error : any) =>
       {
          this.displayAlert('Error', error.message);
       });
+   }
+
+   searchModules(input : any){
+
+     let val = input.target.value;
+     if(val && val.trim() != '') {
+       this.modules = this.modules.filter((mod) => {
+         return(mod.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
+       })
+     }
+
+     else{
+       this.retrieveSubCollection();
+     }
+   }
+
+   searchOtherModules(input : any){
+
+     let val = input.target.value;
+     if(val && val.trim() != '') {
+       this.mods = this.mods.filter((mod) => {
+         return(mod.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
+       })
+     }
+
+     else{
+       this.retrieveModules();
+     }
    }
 
   /**

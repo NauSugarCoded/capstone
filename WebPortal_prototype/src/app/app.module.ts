@@ -10,6 +10,7 @@ import { CreateStudyPage } from '../pages/create_study/create_study';
 import { ModulesPage } from '../pages/modules/modules';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
+import { ForgotPassPage } from '../pages/forgot_pass/forgot_pass';
 import { QuestionsPage } from '../pages/questions/questions';
 import { CreateQuestionPage } from '../pages/create_question/create_question';
 import { ParticipantsPage } from '../pages/participants/participants';
@@ -18,9 +19,11 @@ import { ParticipantsPage } from '../pages/participants/participants';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import * as firebase from 'firebase';
+import * as admin from 'firebase-admin';
 import { UsersserviceProvider } from '../providers/usersservice/usersservice';
 import { DatabaseProvider } from '../providers/database/database';
 
+var iceAccount = require("../capstone-sugar-firebase-adminsdk-mbprx-a6251a0043.json");
 
 // Initialize Firebase
 export const config = {
@@ -29,7 +32,8 @@ export const config = {
   databaseURL: "https://capstone-sugar.firebaseio.com",
   projectId: "capstone-sugar",
   storageBucket: "capstone-sugar.appspot.com",
-  messagingSenderId: "714682249068"
+  messagingSenderId: "714682249068",
+  credential: admin.credential.cert(iceAccount)
 };
 firebase.initializeApp(config);
 
@@ -41,6 +45,7 @@ firebase.initializeApp(config);
     ModulesPage,
     LoginPage,
     SignupPage,
+    ForgotPassPage,
     QuestionsPage,
     ParticipantsPage
   ],
@@ -57,6 +62,7 @@ firebase.initializeApp(config);
     ModulesPage,
     LoginPage,
     SignupPage,
+    ForgotPassPage,
     QuestionsPage,
     ParticipantsPage
   ],

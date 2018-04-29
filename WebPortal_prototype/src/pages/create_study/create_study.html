@@ -46,6 +46,15 @@
  	  </ion-item>
 
     <ion-item>
+       <ion-label stacked> End Time </ion-label>
+       <ion-datetime
+          displayFormat="hh:mma"
+          type="time"
+          formControlName="end_time"
+          [(ngModel)]="end_time"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
        <ion-label stacked>Description</ion-label>
        <ion-input
           type="text"

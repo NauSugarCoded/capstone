@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HomePage } from '../home/home';
 import { SignupPage } from '../signup/signup';
+import { ForgotPassPage } from '../forgot_pass/forgot_pass';
 import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 import * as firebase from 'firebase';
 import { UsersserviceProvider } from '../../providers/usersservice/usersservice';
@@ -28,12 +29,13 @@ export class LoginPage {
     public loadingCtrl: LoadingController,
     public toastCtrl: ToastController,
     public navCtrl: NavController,
-    public navParams: NavParams) {
+    public navParams: NavParams,
+    public _US: UsersserviceProvider) {
 
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
           // User is signed in.
-          this.navCtrl.push(HomePage);
+          //this.navCtrl.push(HomePage);
           // ...
         }
       });
@@ -42,6 +44,11 @@ export class LoginPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
+  }
+
+  ionViewDidEnter() {
+    this._US.logoutUserService();
+    console.log("User has been signed out")
   }
 
   submitLogin() {
@@ -74,7 +81,7 @@ export class LoginPage {
   }
 
   forgotPassword() {
-
+    this.navCtrl.push(ForgotPassPage);
   }
 
   redirectToSignup() {

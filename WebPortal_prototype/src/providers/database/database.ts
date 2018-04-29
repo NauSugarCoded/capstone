@@ -15,10 +15,21 @@ import 'firebase/firestore';
 export class DatabaseProvider {
 
   private _DB: any;
+  private storage: any;
+  private ref: any;
+  private url: any;
+  private filename: string;
+
+  public data = {};
+  public csv = [["Module Name","Participant ID", "Date", "Data"]];
+  public i = 0;
 
   constructor(public http: HttpClient) {
     console.log('Hello DatabaseQuestionsProvider Provider');
     this._DB = firebase.firestore();
+    this.storage = firebase.storage();
+    this.ref = this.storage.ref();
+
   }
 
   /**
@@ -83,6 +94,9 @@ export class DatabaseProvider {
         reject(error);
       });
     });
+  }
+
+  getAnswers(collectionObj: string){
   }
 
   getQuestions_Modules(collectionObj: string) : Promise<any>{
@@ -186,6 +200,7 @@ export class DatabaseProvider {
            abstract           : doc.data().abstract,
            start_date         : doc.data().start_date,
            end_date          : doc.data().end_date,
+           end_time          : doc.data().end_time,
            full_name          : doc.data().full_name,
            short_name    : doc.data().short_name,
            owner         : doc.data().owner,
@@ -222,6 +237,7 @@ export class DatabaseProvider {
            start_time : doc.data().start_time,
            start_date : doc.data().start_date,
            end_date   : doc.data().end_date,
+           every      : doc.data().every,
           });
         });
 
@@ -275,7 +291,10 @@ export class DatabaseProvider {
             type     : doc.data().type,
             qtext    : doc.data().qtext,
             owner    : doc.data().owner,
+<<<<<<< HEAD
             moduleID : doc.data().moduleID,
+=======
+>>>>>>> master
           });
         });
 
@@ -333,6 +352,26 @@ export class DatabaseProvider {
       });
     });
   }
+
+  addModules_First_Question(maincollectionObj: string, docObj: string,
+                            collectionObj:string, dataObj: any) : Promise<any>{
+    return new Promise((resolve, reject) => {
+      this._DB.collection(maincollectionObj).doc(docObj).collection(collectionObj)
+      .doc("1").set({
+        quest_id       : dataObj.id,
+        name           : dataObj.name,
+        type     : dataObj.type,
+        qtext    : dataObj.qtext,
+        owner    : dataObj.owner,
+      })
+      .then((obj : any) => {
+        resolve(obj);
+      })
+      .catch((error : any) => {
+        reject(error);
+      });
+    });
+    }
   /**
    * Delete an existing document from a selected database collection
    */
@@ -408,5 +447,159 @@ export class DatabaseProvider {
         });
       });
     }
+
+    exportStudies(collectionObj : string){
+
+        this.data = {};
+
+        this.data[collectionObj] = {};
+
+        this._DB
+        .collection(collectionObj)
+        .get()
+        .then(snapshot => {
+          snapshot.forEach(doc => {
+            this.data[collectionObj][doc.id] = doc.data();
+          })
+          var myData =  JSON.stringify(this.data);
+          this.ref.child('firestore-studies.json').putString(myData).then(function(snapshot) {
+            console.log('Uploaded JSON');
+          });
+        })
+        .catch((error : any) => {
+          console.log(error);
+        });
+    }
+
+    exportModules(collectionObj : string){
+
+        this.data = {};
+
+        this.data[collectionObj] = {};
+
+        this._DB
+        .collection(collectionObj)
+        .get()
+        .then(snapshot => {
+          snapshot.forEach(doc => {
+            this.data[collectionObj][doc.id] = doc.data();
+          })
+          var myData =  JSON.stringify(this.data);
+          this.ref.child('firestore-modules.json').putString(myData).then(function(snapshot) {
+            console.log('Uploaded JSON');
+          });
+        })
+        .catch((error : any) => {
+          console.log(error);
+        });
+    }
+
+    exportQuestions(collectionObj : string){
+
+        this.data = {};
+
+        this.data[collectionObj] = {};
+
+        this._DB
+        .collection(collectionObj)
+        .get()
+        .then(snapshot => {
+          snapshot.forEach(doc => {
+            this.data[collectionObj][doc.id] = doc.data();
+          })
+          var myData =  JSON.stringify(this.data);
+          this.ref.child('firestore-questions.json').putString(myData).then(function(snapshot) {
+            console.log('Uploaded JSON');
+          });
+        })
+        .catch((error : any) => {
+          console.log(error);
+        });
+    }
+
+    exportAnswers_Modules(moduleID : string, moduleName : string){
+
+      this.data = {};
+      this.csv = [["Module Name","Participant ID", "Date", "Data"]];
+      this.i = 0;
+      this.data[moduleID] = {};
+      let userList = [];
+      this._DB.collection("Answers").get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          userList.push(doc.id);
+          this.data[moduleID][doc.id] = {};
+        })
+        this.createJSON(moduleID, userList, moduleName);
+      })
+      .catch((error : any) => {
+        console.log(error);
+      });
+    }
+
+    exportAnswers_Modules_helper(moduleID : string, user : any, moduleName : string){
+
+      console.log(user);
+      this._DB
+      .collection("Answers").doc(user).collection(moduleName)
+      .get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          this.i += 1;
+          var myData = doc.data()
+          var stringData = JSON.stringify(myData);
+          this.csv[this.i] = [moduleName, user, doc.id, stringData];
+          this.data[moduleID][user][doc.id] = doc.data();
+        })
+
+        this.uploadJSON(moduleName);
+
+      })
+    }
+
+    createJSON(moduleID : string, userList : any, moduleName : string) {
+
+      userList.forEach((user) =>{
+        this.exportAnswers_Modules_helper(moduleID, user, moduleName);
+      })
+
+    }
+
+    uploadJSON(moduleName : string) {
+      console.log(this.data);
+      console.log(this.csv);
+      console.log(this.i);
+      this.createCSV(moduleName);
+      var myData =  JSON.stringify(this.data);
+      this.filename = 'firestore-answers-to-module-' + moduleName + '.json';
+      this.ref.child(this.filename).putString(myData).then(function(snapshot) {
+        console.log('Uploaded JSON');
+      });
+    }
+
+    createCSV(moduleName : string) {
+      let csvContent = "";
+      this.csv.forEach(function(rowArray) {
+        let row = rowArray.join(",");
+        csvContent += row + "\r\n";
+      });
+
+
+      this.filename = 'firestore-answers-to-module-' + moduleName + '.csv';
+      this.ref.child(this.filename).putString(csvContent).then(function(snapshot) {
+        console.log('Uploaded CSV');
+      });
+    }
+
+    downloadAnswers_Modules(moduleName : string): void {
+      var fileRef = this.storage.ref('firestore-answers-to-module-' + moduleName + '.csv');
+      this.url = fileRef.getDownloadURL();
+      console.log(this.url);
+    }
+
+    returnURL() : any {
+      return this.url;
+    }
+
 
 }

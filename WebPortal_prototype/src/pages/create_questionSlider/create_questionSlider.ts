@@ -124,6 +124,8 @@ export class CreateQuestionSliderPage {
     */
    private _COLL 		: string 			= "Questions";
 
+	 public owner			: string;
+
 
    constructor(public navCtrl        : NavController,
                public params         : NavParams,
@@ -158,6 +160,7 @@ export class CreateQuestionSliderPage {
           this.owner						= record.location.owner;
           this.leftLabel        = record.location.leftLabel;
           this.rightLabel        = record.location.rightLabel;
+					this.owner						= record.loaction.owner;
           this.isEditable       = true;
           this.options          = ["none"];
           this.title            = 'Update this question';
@@ -184,6 +187,7 @@ export class CreateQuestionSliderPage {
           rightLabel  : string		= this.form.controls["rightLabel"].value,
           options     : any       = ["none"],
           owner				: string		= this._US.returnUser();
+
 
 
       // If we are editing an existing record then handle this scenario

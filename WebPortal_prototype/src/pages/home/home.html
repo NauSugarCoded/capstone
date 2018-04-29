@@ -19,26 +19,15 @@
       <ion-grid class="table">
         <h4>My Studies</h4>
         <ion-row class="grid-labels">
-          <ion-col col-1>ID</ion-col>
           <ion-col col-9>Name</ion-col>
-          <ion-col col-2>Status</ion-col>
         </ion-row>
-        <ion-row>
-          <ion-col col-1>0001</ion-col>
-          <ion-col col-9>TEST 1</ion-col>
-          <ion-col col-2>Active</ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-1>0002</ion-col>
-          <ion-col col-9>TEST 2</ion-col>
-          <ion-col col-2>Active</ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-1>0003</ion-col>
-          <ion-col col-9>TEST 3</ion-col>
-          <ion-col col-2>Active</ion-col>
-        </ion-row>
-        <button ion-button id="add-study-button" menuToggle> + </button>
+        <div *ngFor='let location of locations'>
+          <div *ngIf = "email == location.owner">
+            <ion-row>
+              <ion-col col-9> {{ location.full_name }}</ion-col>
+            </ion-row>
+          </div>
+        </div>
       </ion-grid>
     </div>
     <br><br><br><br>
@@ -58,7 +47,6 @@
       </ion-grid>
     </div>
   </div>
-
 
 
 </ion-content>

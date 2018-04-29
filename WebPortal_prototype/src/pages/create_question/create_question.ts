@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators,FormsModule } from '@angular/forms';
 import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DatabaseProvider } from '../../providers/database/database';
-import { UsersserviceProvider } from '../../providers/usersservice/usersservice';7
+import { UsersserviceProvider } from '../../providers/usersservice/usersservice';
+
 
 
 @IonicPage({
@@ -96,6 +97,10 @@ export class CreateQuestionPage {
     */
    public title 		: string		   = 'Add a new question';
    public options   : any;
+	 public owner			: string;
+
+	 public email			: string;
+
 	 public owner			: string;
 
 

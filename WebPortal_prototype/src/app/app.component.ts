@@ -9,6 +9,7 @@ import { ModulesPage } from '../pages/modules/modules';
 import { LoginPage } from '../pages/login/login';
 import { QuestionsPage } from '../pages/questions/questions';
 import { ParticipantsPage } from '../pages/participants/participants';
+import { UsersserviceProvider } from '../providers/usersservice/usersservice';
 import { ENV } from '../config/env';
 import * as firebase from 'firebase';
 
@@ -23,7 +24,10 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform,
+              public statusBar: StatusBar,
+              public splashScreen: SplashScreen,
+              public _US:     UsersserviceProvider) {
 
 
 
@@ -36,6 +40,7 @@ export class MyApp {
       { title: 'Modules', component: ModulesPage },
       { title: 'Questions', component: QuestionsPage },
       { title: 'Participants', component: ParticipantsPage },
+      { title: 'Logout', component: LoginPage }
     ];
 
   }

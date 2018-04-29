@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms';
 import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
+import { StudiesPage } from '../studies/studies'
 import { DatabaseProvider } from '../../providers/database/database';
 import { UsersserviceProvider } from '../../providers/usersservice/usersservice';
 
@@ -80,6 +81,14 @@ export class CreateStudyPage {
     */
    public end_date 	: any;
 
+	 /**
+		* @name end_time
+		* @type {date}
+		* @public
+		* @description     Model for established form field
+		*/
+	 public end_time 	: string = '';
+
    /**
     * @name docID
     * @type {string}
@@ -138,7 +147,8 @@ export class CreateStudyPage {
          'short_name' 	        : ['', Validators.required],
          'abstract'	            : ['', Validators.required],
 				 'start_date'	            : ['', Validators.required],
-         'end_date'	            : ['', Validators.required]
+         'end_date'	            : ['', Validators.required],
+				 'end_time'							: ['', Validators.required],
       });
 
 
@@ -154,6 +164,7 @@ export class CreateStudyPage {
           this.abstract      = record.location.abstract;
 					this.start_date      = record.location.start_date;
           this.end_date      = record.location.end_date;
+					this.end_time			 = record.location.end_time;
           this.docID            = record.location.id;
 					this.owner 						= record.location.owner;
           this.isEditable       = true;
@@ -181,6 +192,8 @@ export class CreateStudyPage {
           abstract       : string		= this.form.controls["abstract"].value,
 					start_date       : string		= this.form.controls["start_date"].value,
           end_date       : string		= this.form.controls["end_date"].value,
+					end_time				: string  = this.form.controls["end_time"].value,
+					end							: string = this.form.controls["end_date"].value + "T" + this.form.controls["end_time"].value,
 					owner 					: string = this._US.returnUser();
 
       // If we are editing an existing record then handle this scenario
@@ -197,6 +210,8 @@ export class CreateStudyPage {
 	                               abstract   : abstract,
 																 start_date	: start_date,
                                  end_date   : end_date,
+																 end_time		: end_time,
+																 end				: end,
 																 owner 			: owner
 	                           })
          .then((data) =>
@@ -223,12 +238,15 @@ export class CreateStudyPage {
 	                           abstract   : abstract,
 														 start_date	: start_date,
                              end_date   : end_date,
+														 end_time		: end_time,
+														 end				: end,
 														 owner			: owner
 	                        })
          .then((data) =>
          {
             this.clearForm();
             this.displayAlert('Record added', 'The study ' +  name + ' was successfully added');
+						this.navCtrl.push(StudiesPage);
          })
          .catch((error) =>
          {
@@ -275,6 +293,7 @@ export class CreateStudyPage {
       this.abstract 				= '';
 			this.start_date				= '';
       this.end_date         = '';
+			this.end_time					= '';
    }
 
 

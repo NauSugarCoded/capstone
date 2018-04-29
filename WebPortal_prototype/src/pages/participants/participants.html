@@ -18,33 +18,40 @@
       Add a new participant
     </button>
 
+  <ion-searchbar (ionInput)="searchParticipants($event)"></ion-searchbar>
   <ion-list>
-    <ion-item *ngFor='let location of locations'>
-      <h2>{{ location.name }}</h2>
-      <p>
-        ID: {{ location.id }} <br>
-        Email: {{ location.email}}<br>
-        Phone: {{ location.phone }}<br>
-        Owner: {{ location.owner }}<br>
-        Study: {{ location.study }}<br>
-        Sleep start time: {{ location.sleep_start}}<br>
-        Sleep end time: {{ location.sleep_end}}
-      </p>
+    <div *ngFor='let location of locations'>
+      <div *ngIf = "email == location.owner">
+        <ion-item>
+          <h2>{{ location.name }}</h2>
+          <p>
+            ID: {{ location.id }} <br>
+            Email: {{ location.email}}<br>
+            Phone: {{ location.phone }}<br>
+            Owner: {{ location.owner }}<br>
+            Study: {{ location.study }}<br>
+            Sleep start time: {{ location.sleep_start}}<br>
+            Sleep end time: {{ location.sleep_end}}
+          </p>
 
-      <button
-        ion-button
-        color='secondary'
-        (click)='updateDocument(location)'>
-        Update this participant
-      </button>
+          <button
+            ion-button
+            color='secondary'
+            (click)='updateDocument(location)'>
+            Update this participant
+          </button>
 
-      <button
-        ion-button
-        color='danger'
-        (click)="deleteDocument(location)">
-        Delete this participant
-      </button>
-    </ion-item>
+          <button
+            ion-button
+            color='danger'
+            (click)="deleteDocument(location)">
+            Delete this participant
+          </button>
+        </ion-item>
+      </div>
+    </div>
+
   </ion-list>
+
 
 </ion-content>

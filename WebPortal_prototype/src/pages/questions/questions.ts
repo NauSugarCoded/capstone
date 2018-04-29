@@ -292,6 +292,20 @@ export class QuestionsPage {
       });
    }
 
+   searchQuestions(input : any){
+
+     let val = input.target.value;
+     if(val && val.trim() != '') {
+       this.locations = this.locations.filter((question) => {
+         return(question.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
+       })
+     }
+
+     else{
+       this.retrieveCollection();
+     }
+   }
+
 
 
 
