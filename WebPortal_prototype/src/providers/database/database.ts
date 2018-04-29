@@ -291,10 +291,7 @@ export class DatabaseProvider {
             type     : doc.data().type,
             qtext    : doc.data().qtext,
             owner    : doc.data().owner,
-<<<<<<< HEAD
             moduleID : doc.data().moduleID,
-=======
->>>>>>> master
           });
         });
 

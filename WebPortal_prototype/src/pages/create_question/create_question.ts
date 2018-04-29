@@ -101,9 +101,6 @@ export class CreateQuestionPage {
 
 	 public email			: string;
 
-	 public owner			: string;
-
-
 
    /**
     * @name _COLL

@@ -3,6 +3,7 @@ import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { SelectStudyPage } from "../select_study/select_study";
 import { DatabaseProvider } from '../../providers/database/database';
 import { UsersserviceProvider } from '../../providers/usersservice/usersservice';
+
 import * as admin from 'firebase-admin';
 import * as fs from 'fs';
 
@@ -85,6 +86,7 @@ export class StudiesPage {
   {
      this.retrieveCollection();
      this.email = this._US.returnUser();
+     console.log(this.email);
   }
 
 

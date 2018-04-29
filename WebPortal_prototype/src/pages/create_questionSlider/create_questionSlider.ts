@@ -124,9 +124,6 @@ export class CreateQuestionSliderPage {
     */
    private _COLL 		: string 			= "Questions";
 
-	 public owner			: string;
-
-
    constructor(public navCtrl        : NavController,
                public params         : NavParams,
                private _FB 	         : FormBuilder,
