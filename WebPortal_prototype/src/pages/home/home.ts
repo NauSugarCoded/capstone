@@ -14,6 +14,8 @@ export class HomePage {
   public _COLL = "Studies";
   public locations: any;
   public email: string;
+  public studies: any = [];
+  public end_studies: any = [];
 
   constructor(public navCtrl: NavController,
               public _US:     UsersserviceProvider,
@@ -25,6 +27,9 @@ export class HomePage {
   {
     this.retrieveCollection();
     this.email = this._US.returnUser();
+
+
+
   }
 
 
@@ -34,6 +39,24 @@ export class HomePage {
      .then((data) =>
      {
        this.locations = data;
+
+       var i = 0;
+       var currentDay = new Date();
+       for(i; i < this.locations.length; i++)
+       {
+         if(this.email == this.locations[i].owner)
+         {
+           var location_end = new Date(this.locations[i].end_date);
+           if(currentDay > location_end)
+           {
+             this.end_studies.push(this.locations[i]);
+           }
+           else
+           {
+             this.studies.push(this.locations[i]);
+           }
+         }
+       }
 
      })
      .catch();

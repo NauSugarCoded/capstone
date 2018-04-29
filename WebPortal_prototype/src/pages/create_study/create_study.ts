@@ -246,7 +246,7 @@ export class CreateStudyPage {
          {
             this.clearForm();
             this.displayAlert('Record added', 'The study ' +  name + ' was successfully added');
-						this.navCtrl.push(StudiesPage);
+						this.navCtrl.pop();
          })
          .catch((error) =>
          {

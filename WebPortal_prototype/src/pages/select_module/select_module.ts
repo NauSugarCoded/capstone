@@ -328,7 +328,7 @@ export class SelectModulePage {
      .then((data : any) =>
      {
         this.displayAlert('Success', 'The module ' + this.name + ' was successfully removed');
-        this.navCtrl.push(ModulesPage);
+        this.navCtrl.pop();
      })
      .catch((error : any) =>
      {

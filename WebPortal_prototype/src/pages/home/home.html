@@ -21,10 +21,10 @@
         <ion-row class="grid-labels">
           <ion-col col-9>Name</ion-col>
         </ion-row>
-        <div *ngFor='let location of locations'>
-          <div *ngIf = "email == location.owner">
+        <div *ngFor='let study of studies'>
+          <div *ngIf = "email == study.owner">
             <ion-row>
-              <ion-col col-9> {{ location.full_name }}</ion-col>
+              <ion-col col-9> {{ study.full_name }}</ion-col>
             </ion-row>
           </div>
         </div>
@@ -35,14 +35,12 @@
       <ion-grid class="table">
         <h4>My Completed Studies</h4>
         <ion-row class="grid-labels">
-          <ion-col col-1>ID</ion-col>
           <ion-col col-9>Name</ion-col>
-          <ion-col col-2>Status</ion-col>
         </ion-row>
         <ion-row>
-          <ion-col col-1>0000</ion-col>
-          <ion-col col-9>COMPLETED TEST</ion-col>
-          <ion-col col-2>Active</ion-col>
+          <div *ngFor="let study of end_studies">
+            {{ study.full_name }}
+          </div>
         </ion-row>
       </ion-grid>
     </div>

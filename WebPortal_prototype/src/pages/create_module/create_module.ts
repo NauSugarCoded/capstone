@@ -256,7 +256,7 @@ export class CreateModulePage {
          {
             this.clearForm();
             this.displayAlert('Record added', 'The module ' +  name + ' was successfully added');
-						this.navCtrl.push(ModulesPage);
+						this.navCtrl.pop();
          })
          .catch((error) =>
          {

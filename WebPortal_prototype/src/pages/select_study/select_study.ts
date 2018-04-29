@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms'
 import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DatabaseProvider } from '../../providers/database/database';
 import { UsersserviceProvider } from '../../providers/usersservice/usersservice';
-
+import { StudiesPage } from '../studies/studies';
 
 /**
  * Generated class for the SelectStudyPage page.
@@ -348,7 +348,7 @@ export class SelectStudyPage {
       .then((data : any) =>
       {
          this.displayAlert('Success', 'The study ' + this.short_name + ' was successfully removed');
-         this.navCtrl.push('study');
+         this.navCtrl.pop();
       })
       .catch((error : any) =>
       {
