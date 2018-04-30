@@ -17,53 +17,124 @@
   <h2> Question Type:</h2><h3> {{ type }} </h3>
   <div *ngIf="type == 'radio' || type == 'multi'">
 
-    <h2> Option 1:
+    <ng-container *ngIf="options_1">
+    <h2> {{ options_1 }}:
       <select formControlName="branch">
+        <option>
+
+        </option>
         <option *ngFor="let question of questions">
           {{ question.name }}
         </option>
+        <option>
+          -1
+        </option>
       </select>
     </h2>
+  </ng-container>
 
-    <h2> Option 2:
+    <ng-container *ngIf="options_2">
+    <h2> {{ options_2 }}:
       <select formControlName="branch2">
+        <option>
+
+        </option>
         <option *ngFor="let question of questions">
           {{ question.name }}
         </option>
+        <option>
+          -1
+        </option>
       </select>
     </h2>
+  </ng-container>
 
-    <h2> Option 3:
+    <ng-container *ngIf="options_3">
+    <h2> {{ options_3 }}:
       <select formControlName="branch3">
+        <option>
+
+        </option>
         <option *ngFor="let question of questions">
           {{ question.name }}
         </option>
+        <option>
+          -1
+        </option>
       </select>
     </h2>
+  </ng-container>
 
-    <h2> Option 4:
+    <ng-container *ngIf="options_4">
+    <h2> {{ options_4 }}:
       <select formControlName="branch4">
+        <option>
+
+        </option>
         <option *ngFor="let question of questions">
           {{ question.name }}
         </option>
+        <option>
+          -1
+        </option>
       </select>
     </h2>
+  </ng-container>
 
-    <h2> Option 5:
+    <ng-container *ngIf="options_5">
+    <h2> {{ options_5 }}:
       <select formControlName="branch5">
-        <option *ngFor="let question of questions">
-          {{ question.name }}
-        </option>
-      </select>
-    </h2>
+        <option>
 
-    <h2> Option 6:
+        </option>
+        <option *ngFor="let question of questions">
+          {{ question.name }}
+        </option>
+        <option>
+          -1
+        </option>
+      </select>
+    </h2>
+  </ng-container>
+
+    <ng-container *ngIf="options_6">
+    <h2> {{ options_6 }}:
       <select formControlName="branch6">
+        <option>
+
+        </option>
         <option *ngFor="let question of questions">
           {{ question.name }}
         </option>
       </select>
     </h2>
+  </ng-container>
+
+    <ng-container *ngIf="options_7">
+    <h2> {{ options_7 }}:
+      <select formControlName="branch7">
+        <option>
+
+        </option>
+        <option *ngFor="let question of questions">
+          {{ question.name }}
+        </option>
+      </select>
+    </h2>
+  </ng-container>
+
+    <ng-container *ngIf="options_8">
+    <h2> {{ options_8 }}:
+      <select formControlName="branch8">
+        <option>
+
+        </option>
+        <option *ngFor="let question of questions">
+          {{ question.name }}
+        </option>
+      </select>
+    </h2>
+  </ng-container>
   </div>
 
   <div *ngIf="type == 'slider' || type == 'text'">

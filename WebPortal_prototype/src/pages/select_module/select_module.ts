@@ -165,9 +165,11 @@ export class SelectModulePage {
   private option4       : string;
   private option5       : string;
   private option6       : string;
+  private option7       : string;
+  private option8       : string;
   private opts          : any;
 
-
+  public quest_id       : any;
   public email          : string;
 
   public every          : string;
@@ -215,6 +217,7 @@ export class SelectModulePage {
          this.end_date = record.location.end_date;
          this.every    = record.location.every;
          this.owner      = record.location.owner;
+         this.quest_id   = record.location.id;
          this.docID            = record.location.id;
          this.isEditable       = true;
          this.title            = 'Update this document';
@@ -328,7 +331,7 @@ export class SelectModulePage {
      .then((data : any) =>
      {
         this.displayAlert('Success', 'The module ' + this.name + ' was successfully removed');
-        this.navCtrl.pop();
+        this.navCtrl.push(ModulesPage);
      })
      .catch((error : any) =>
      {
@@ -339,7 +342,7 @@ export class SelectModulePage {
 
   saveQuestions(val : any, moduleID : any)
   {
-    if(val.type == "text"){
+    if(val.type == "text" || val.type == "time"){
 
       if(this.questions.length === 0)
       {
@@ -349,6 +352,7 @@ export class SelectModulePage {
                                                               type    : val.type,
                                                               qtext   : val.qtext,
                                                               owner	 : val.owner,
+                                                              quest_id : val.id,
                                                               moduleID : moduleID
                                                             })
         .then((data : any) =>
@@ -368,6 +372,7 @@ export class SelectModulePage {
                                                               type    : val.type,
                                                               qtext   : val.qtext,
                                                               owner	 : val.owner,
+                                                              quest_id : val.id,
                                                               moduleID : moduleID
                                                             })
         .then((data : any) =>
@@ -395,13 +400,17 @@ export class SelectModulePage {
                                                               type    : val.type,
                                                               qtext   : val.qtext,
                                                               owner	  : val.owner,
+                                                              quest_id : val.id,
                                                               option1 : opts[0],
                              																  option2 : opts[1],
                              																  option3 : opts[2],
                              																  option4 : opts[3],
                              																  option5 : opts[4],
                              																  option6 : opts[5],
-                                                              moduleID : moduleID
+                                                              option7 : opts[6],
+                                                              option8 : opts[7],
+                                                              moduleID : moduleID,
+                                                              options : val.options
                                                             })
           .then((data : any) =>
           {
@@ -425,13 +434,18 @@ export class SelectModulePage {
                                                               type    : val.type,
                                                               qtext   : val.qtext,
                                                               owner	  : val.owner,
+                                                              quest_id : val.id,
                                                               option1 : opts[0],
                              																  option2 : opts[1],
                              																  option3 : opts[2],
                              																  option4 : opts[3],
                              																  option5 : opts[4],
                              																  option6 : opts[5],
-                                                              moduleID : moduleID
+                                                              option7 : opts[6],
+                                                              option8 : opts[7],
+                                                              moduleID : moduleID,
+                                                              options : val.options
+
                                                             })
             .then((data : any) =>
             {
@@ -461,12 +475,81 @@ export class SelectModulePage {
                                                               type    : val.type,
                                                               qtext   : val.qtext,
                                                               owner	  : val.owner,
+                                                              quest_id : val.id,
                                                               option1 : opts[0],
                              																  option2 : opts[1],
                              																  option3 : opts[2],
                              																  option4 : opts[3],
                              																  option5 : opts[4],
                              																  option6 : opts[5],
+                                                              option7 : opts[6],
+                                                              option8 : opts[7],
+                                                              moduleID : moduleID,
+                                                              options : val.options
+
+                                                            })
+          .then((data : any) =>
+          {
+            this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
+          })
+          .catch((error : any) =>
+          {
+            this.displayAlert('Error', error.message);
+          });
+        })
+      }
+
+      else {
+        this.saveQuestionsHelper(val)
+        .then((opts : any) =>
+        {
+        console.log(this.opts);
+        this._DB.addModules_Questions("Modules", this.docID, "Questions", {
+                                                              name    : val.name,
+                                                              id      : val.id,
+                                                              type    : val.type,
+                                                              qtext   : val.qtext,
+                                                              owner	  : val.owner,
+                                                              quest_id : val.id,
+                                                              option1 : opts[0],
+                             																  option2 : opts[1],
+                             																  option3 : opts[2],
+                             																  option4 : opts[3],
+                             																  option5 : opts[4],
+                             																  option6 : opts[5],
+                                                              option7 : opts[6],
+                                                              option8 : opts[7],
+                                                              moduleID : moduleID,
+                                                              options : val.options
+
+                                                            })
+            .then((data : any) =>
+            {
+              this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
+            })
+            .catch((error : any) =>
+            {
+              this.displayAlert('Error', error.message);
+            });
+          })
+        }
+      }
+
+    else{
+
+      if(this.questions.length === 0)
+      {
+        this.saveQuestionsHelper(val)
+        .then((opts : any) =>
+        {
+        console.log(this.opts);
+        this._DB.addModules_First_Question("Modules", this.docID, "Questions", {
+                                                              name    : val.name,
+                                                              id      : val.id,
+                                                              type    : val.type,
+                                                              qtext   : val.qtext,
+                                                              owner	  : val.owner,
+                                                              quest_id : val.id,
                                                               moduleID : moduleID
                                                             })
           .then((data : any) =>
@@ -491,12 +574,7 @@ export class SelectModulePage {
                                                               type    : val.type,
                                                               qtext   : val.qtext,
                                                               owner	  : val.owner,
-                                                              option1 : opts[0],
-                             																  option2 : opts[1],
-                             																  option3 : opts[2],
-                             																  option4 : opts[3],
-                             																  option5 : opts[4],
-                             																  option6 : opts[5],
+                                                              quest_id : val.id,
                                                               moduleID : moduleID
                                                             })
             .then((data : any) =>
@@ -509,25 +587,6 @@ export class SelectModulePage {
             });
           })
         }
-      }
-
-    else{
-      this._DB.addModules_Questions("Modules", this.docID, "Questions", {
-                                                            name    : val.name,
-                                                            id      : val.id,
-                                                            type    : val.type,
-                                                            qtext   : val.qtext,
-                                                            owner	  : val.owner,
-                                                            moduleID : moduleID
-                                                          })
-      .then((data : any) =>
-      {
-        this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
-      })
-      .catch((error : any) =>
-      {
-        this.displayAlert('Error', error.message);
-      });
     }
   }
 
@@ -543,6 +602,8 @@ export class SelectModulePage {
         opts[3] = this.quests[i].option4;
         opts[4] = this.quests[i].option5;
         opts[5] = this.quests[i].option6;
+        opts[6] = this.quests[i].option7;
+        opts[7] = this.quests[i].option8;
       }
     }
     return opts;

@@ -50,6 +50,17 @@ export class BranchingPage {
   public branch4    : any;
   public branch5    : any;
   public branch6    : any;
+  public branch7    : any;
+  public branch8    : any;
+
+  public branchID   : any;
+  public branchID2    : any;
+  public branchID3    : any;
+  public branchID4    : any;
+  public branchID5    : any;
+  public branchID6    : any;
+  public branchID7    : any;
+  public branchID8    : any;
 
   public name  : any;
 
@@ -113,7 +124,16 @@ export class BranchingPage {
   private quest : any;
   private qtext : any;
   private type : any;
+  private options : any;
   private moduleID : any;
+  private options_1 : any;
+  private options_2 : any;
+  private options_3 : any;
+  private options_4 : any;
+  private options_5 : any;
+  private options_6 : any;
+  private options_7 : any;
+  private options_8 : any;
 
   constructor(public navCtrl        : NavController,
               public params         : NavParams,
@@ -127,11 +147,13 @@ export class BranchingPage {
      // form / form fields in the component template
      this.form 		= _FB.group({
         'branch' 		          : ['', Validators.required],
-        'branch2' 		        : ['', Validators.required],
-        'branch3' 		        : ['', Validators.required],
-        'branch4' 		        : ['', Validators.required],
-        'branch5' 		        : ['', Validators.required],
-        'branch6' 		        : ['', Validators.required]
+        'branch2' 		        : [''],
+        'branch3' 		        : [''],
+        'branch4' 		        : [''],
+        'branch5' 		        : [''],
+        'branch6' 		        : [''],
+        'branch7' 		        : [''],
+        'branch8' 		        : ['']
      });
 
 
@@ -144,17 +166,26 @@ export class BranchingPage {
          this.branch          = record.location.branch;
          this.docID           = record.location.id;
          this.moduleID        = record.location.moduleID;
-         this.qID             = record.location.quest_id;
+         this.quest_id        = record.location.quest_id;
          this.type            = record.location.type;
+         this.options         = record.location.options;
          this.isEditable      = true;
          this.title           = 'Update this branch';
   }
 
   ionViewDidEnter()
   {
-    this.retrieveCollection();
+    //this.retrieveCollection();
     if(this.moduleID != '') {
       this.retrieveSubCollection();
+      this.options_1 = this.options[0];
+      this.options_2 = this.options[1];
+      this.options_3 = this.options[2];
+      this.options_4 = this.options[3];
+      this.options_5 = this.options[4];
+      this.options_6 = this.options[5];
+      this.options_7 = this.options[6];
+      this.options_8 = this.options[7];
     }
   /*  var start = new Date().getTime();
     var end = start;
@@ -188,16 +219,16 @@ export class BranchingPage {
      .then((data) =>
      {
        this.quests = data;
+       console.log(this.quests);
      })
      .catch();
   }
 
   retrieveSubCollection() : void
   {
-     this._DB.getModules_Questions(this._COLL, this.moduleID, "Questions")
+     this._DB.getModules_Questions("Modules", this.moduleID, "Questions")
      .then((data) =>
      {
-       console.log(data);
        this.questions = data;
        console.log(this.questions);
      })
@@ -221,7 +252,90 @@ export class BranchingPage {
      let branch4        : string 		= this.form.controls["branch4"].value;
      let branch5        : string 		= this.form.controls["branch5"].value;
      let branch6        : string 		= this.form.controls["branch6"].value;
+     let branch7        : string 		= this.form.controls["branch7"].value;
+     let branch8        : string 		= this.form.controls["branch8"].value;
 
+     let i = 0;
+     let branchID = '';
+     let branchID2 = '';
+     let branchID3 = '';
+     let branchID4 = '';
+     let branchID5 = '';
+     let branchID6 = '';
+     let branchID7 = '';
+     let branchID8 = '';
+
+     for(i = 0; i < this.questions.length; i++){
+       if(branch == this.questions[i].name){
+         branchID = this.questions[i].quest_id;
+       }
+       else{
+         branchID = '';
+       }
+     }
+
+     for(i = 0; i < this.questions.length; i++){
+       if(branch2 == this.questions[i].name){
+         branchID2 = this.questions[i].ques_id;
+       }
+       else{
+         branchID2 = '';
+       }
+     }
+
+     for(i = 0; i < this.questions.length; i++){
+       if(branch3 == this.questions[i].name){
+         branchID3 = this.questions[i].quest_id;
+       }
+       else{
+         branchID3 = '';
+       }
+     }
+
+     for(i = 0; i < this.questions.length; i++){
+       if(branch4 == this.questions[i].name){
+         branchID4 = this.questions[i].quest_id;
+       }
+       else{
+         branchID4 = '';
+       }
+     }
+
+     for(i = 0; i < this.questions.length; i++){
+       if(branch5 == this.questions[i].name){
+         branchID5 = this.questions[i].quest_id;
+       }
+       else{
+         branchID5 = '';
+       }
+     }
+
+     for(i = 0; i < this.questions.length; i++){
+       if(branch6 == this.questions[i].name){
+         branchID6 = this.questions[i].quet_id;
+       }
+       else{
+         branchID6 = '';
+       }
+     }
+
+     for(i = 0; i < this.questions.length; i++){
+       if(branch7 == this.questions[i].name){
+         branchID7 = this.questions[i].quest_id;
+       }
+       else{
+         branchID7 = '';
+       }
+     }
+
+     for(i = 0; i < this.questions.length; i++){
+       if(branch8 == this.questions[i].name){
+         branchID8 = this.questions[i].quest_id;
+       }
+       else{
+         branchID8 = '';
+       }
+     }
 
 
 
@@ -234,7 +348,7 @@ export class BranchingPage {
         this._DB.updateModules_Questions(this._COLL,
                               this.moduleID,"Questions", this.docID,
                               {
-                                branch    : [branch, branch2, branch3, branch4, branch5, branch6]
+                                branch    : [branchID, branchID2, branchID3, branchID4, branchID5, branchID6, branchID7, branchID8]
                             })
         .then((data) =>
         {
