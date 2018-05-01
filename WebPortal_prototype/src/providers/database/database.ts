@@ -385,14 +385,14 @@ export class DatabaseProvider {
           type     : dataObj.type,
           qtext    : dataObj.qtext,
           owner    : dataObj.owner,
-          option1  :doc.data().option1,
-          option2  :doc.data().option2,
-          option3  :doc.data().option3,
-          option4  :doc.data().option4,
-          option5  :doc.data().option5,
-          option6  :doc.data().option6,
-          option7  :doc.data().option7,
-          option8  :doc.data().option8
+          option1  : dataObj.option1,
+          option2  : dataObj.option2,
+          option3  : dataObj.option3,
+          option4  : dataObj.option4,
+          option5  : dataObj.option5,
+          option6  : dataObj.option6,
+          option7  : dataObj.option7,
+          option8  : dataObj.option8
         })
         .then((obj : any) => {
           resolve(obj);
@@ -415,8 +415,8 @@ export class DatabaseProvider {
             type     : dataObj.type,
             qtext    : dataObj.qtext,
             owner    : dataObj.owner,
-            leftLabel  :doc.data().leftLabel,
-            rightLabel  :doc.data().rightLabel
+            leftLabel  : dataObj.leftLabel,
+            rightLabel  : dataObj.rightLabel
           })
           .then((obj : any) => {
             resolve(obj);
