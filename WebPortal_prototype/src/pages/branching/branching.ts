@@ -125,6 +125,7 @@ export class BranchingPage {
   private qtext : any;
   private type : any;
   private options : any;
+  private quest_id : any;
   private moduleID : any;
   private options_1 : any;
   private options_2 : any;
