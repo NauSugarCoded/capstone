@@ -183,8 +183,8 @@ export class CreateQuestionPage {
 	                           })
          .then((data) =>
          {
-            this.clearForm();
             this.displayAlert('Success', 'The question ' +  name + ' was successfully updated');
+						this.navCtrl.pop();
          })
          .catch((error) =>
          {
@@ -208,8 +208,8 @@ export class CreateQuestionPage {
 	                        })
          .then((data) =>
          {
-            this.clearForm();
             this.displayAlert('Question added', 'The question ' +  name + ' was successfully added');
+						this.navCtrl.pop();
          })
          .catch((error) =>
          {

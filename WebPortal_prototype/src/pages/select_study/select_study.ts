@@ -325,6 +325,7 @@ export class SelectStudyPage {
      .then((data : any) =>
      {
        this.displayAlert('Success', 'The module ' + val.name + ' was successfully added');
+       this.retrieveSubCollection();
      })
      .catch((error : any) =>
      {

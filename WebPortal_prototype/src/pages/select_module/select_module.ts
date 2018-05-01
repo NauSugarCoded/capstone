@@ -238,11 +238,10 @@ export class SelectModulePage {
 
   retrieveCollection() : void
   {
-     this._DB.getQuestions_Modules("Questions")
+     this._DB.getQuestions("Questions")
      .then((data) =>
      {
        this.quests = data;
-       console.log(this.quests);
      })
      .catch();
 
@@ -358,6 +357,7 @@ export class SelectModulePage {
         .then((data : any) =>
         {
           this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
+          this.retrieveSubCollection();
         })
         .catch((error : any) =>
         {
@@ -378,6 +378,7 @@ export class SelectModulePage {
         .then((data : any) =>
         {
           this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
+          this.retrieveSubCollection();
         })
         .catch((error : any) =>
         {
@@ -394,7 +395,7 @@ export class SelectModulePage {
         .then((opts : any) =>
         {
         console.log(this.opts);
-        this._DB.addModules_First_Question("Modules", this.docID, "Questions", {
+        this._DB.addModules_First_Question_Multi("Modules", this.docID, "Questions", {
                                                               name    : val.name,
                                                               id      : val.id,
                                                               type    : val.type,
@@ -410,11 +411,12 @@ export class SelectModulePage {
                                                               option7 : opts[6],
                                                               option8 : opts[7],
                                                               moduleID : moduleID,
-                                                              options : val.options
+                                                              options : opts
                                                             })
           .then((data : any) =>
           {
             this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
+            this.retrieveSubCollection();
           })
           .catch((error : any) =>
           {
@@ -427,7 +429,6 @@ export class SelectModulePage {
         this.saveQuestionsHelper(val)
         .then((opts : any) =>
         {
-        console.log(this.opts);
         this._DB.addModules_Questions("Modules", this.docID, "Questions", {
                                                               name    : val.name,
                                                               id      : val.id,
@@ -444,12 +445,13 @@ export class SelectModulePage {
                                                               option7 : opts[6],
                                                               option8 : opts[7],
                                                               moduleID : moduleID,
-                                                              options : val.options
+                                                              options : opts
 
                                                             })
             .then((data : any) =>
             {
               this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
+              this.retrieveSubCollection();
             })
             .catch((error : any) =>
             {
@@ -468,8 +470,8 @@ export class SelectModulePage {
         this.saveQuestionsHelper(val)
         .then((opts : any) =>
         {
-        console.log(this.opts);
-        this._DB.addModules_First_Question("Modules", this.docID, "Questions", {
+        console.log(opts);
+        this._DB.addModules_First_Question_Multi("Modules", this.docID, "Questions", {
                                                               name    : val.name,
                                                               id      : val.id,
                                                               type    : val.type,
@@ -485,12 +487,13 @@ export class SelectModulePage {
                                                               option7 : opts[6],
                                                               option8 : opts[7],
                                                               moduleID : moduleID,
-                                                              options : val.options
+                                                              options : opts
 
                                                             })
           .then((data : any) =>
           {
             this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
+            this.retrieveSubCollection();
           })
           .catch((error : any) =>
           {
@@ -503,7 +506,6 @@ export class SelectModulePage {
         this.saveQuestionsHelper(val)
         .then((opts : any) =>
         {
-        console.log(this.opts);
         this._DB.addModules_Questions("Modules", this.docID, "Questions", {
                                                               name    : val.name,
                                                               id      : val.id,
@@ -520,12 +522,13 @@ export class SelectModulePage {
                                                               option7 : opts[6],
                                                               option8 : opts[7],
                                                               moduleID : moduleID,
-                                                              options : val.options
+                                                              options : opts
 
                                                             })
             .then((data : any) =>
             {
               this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
+              this.retrieveSubCollection();
             })
             .catch((error : any) =>
             {
@@ -543,18 +546,21 @@ export class SelectModulePage {
         .then((opts : any) =>
         {
         console.log(this.opts);
-        this._DB.addModules_First_Question("Modules", this.docID, "Questions", {
+        this._DB.addModules_First_Question_Slider("Modules", this.docID, "Questions", {
                                                               name    : val.name,
                                                               id      : val.id,
                                                               type    : val.type,
                                                               qtext   : val.qtext,
                                                               owner	  : val.owner,
                                                               quest_id : val.id,
-                                                              moduleID : moduleID
+                                                              moduleID : moduleID,
+                                                              leftLabel : val.leftLabel,
+                                                              rightLabel : val.rightLabel
                                                             })
           .then((data : any) =>
           {
             this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
+            this.retrieveSubCollection();
           })
           .catch((error : any) =>
           {
@@ -575,11 +581,14 @@ export class SelectModulePage {
                                                               qtext   : val.qtext,
                                                               owner	  : val.owner,
                                                               quest_id : val.id,
-                                                              moduleID : moduleID
+                                                              moduleID : moduleID,
+                                                              leftLabel : val.leftLabel,
+                                                              rightLabel : val.rightLabel
                                                             })
             .then((data : any) =>
             {
               this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
+              this.retrieveSubCollection();
             })
             .catch((error : any) =>
             {
@@ -595,7 +604,9 @@ export class SelectModulePage {
     let opts = [];
     let i = 0;
     for(i = 0; i < this.quests.length; i++){
-      if (this.quests[i] == val.name){
+      if (this.quests[i].name == val.name){
+        //console.log(this.quests[i].option1);
+        (this.quests[i]).name;
         opts[0] = this.quests[i].option1;
         opts[1] = this.quests[i].option2;
         opts[2] = this.quests[i].option3;
@@ -606,7 +617,7 @@ export class SelectModulePage {
         opts[7] = this.quests[i].option8;
       }
     }
-    return opts;
+    return Promise.resolve(opts);
   }
 
   updateDocument(object) : void

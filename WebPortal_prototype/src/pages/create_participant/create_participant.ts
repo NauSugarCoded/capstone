@@ -239,9 +239,16 @@ export class CreateParticipantPage {
           owner        : string 		= this._US.returnUser(),
           sleep_end        : string 		= this.form.controls["sleep_end"].value,
           sleep_start        : string 		= this.form.controls["sleep_start"].value,
-          study        : string 		= this.form.controls["study"].value;
+          study        : string 		= this.form.controls["study"].value,
+					i = 0,
+					study_id = '';
 
 
+			for(i = 0; i < this.studs.length; i++){
+        if(study == this.studs[i].short_name){
+          study_id = this.studs[i].id;
+        }
+      }
 
       // If we are editing an existing record then handle this scenario
       if(this.isEditable)
@@ -258,12 +265,13 @@ export class CreateParticipantPage {
                                  owner  : owner,
                                  sleep_end : sleep_end,
                                  sleep_start : sleep_start,
-                                 study    : study
+                                 study    : study,
+																 study_id : study_id
 	                           })
          .then((data) =>
          {
-            this.clearForm();
             this.displayAlert('Success', 'The participant ' +  name + ' was successfully updated');
+						this.navCtrl.pop();
          })
          .catch((error) =>
          {
@@ -285,12 +293,13 @@ export class CreateParticipantPage {
                              owner  : owner,
                              sleep_end : sleep_end,
                              sleep_start : sleep_start,
-                             study  : study
+                             study  : study,
+														 study_id : study_id
 	                        })
          .then((data) =>
          {
-            this.clearForm();
             this.displayAlert('Record added', 'The participant ' +  name + ' was successfully added');
+						this.navCtrl.pop();
          })
          .catch((error) =>
          {

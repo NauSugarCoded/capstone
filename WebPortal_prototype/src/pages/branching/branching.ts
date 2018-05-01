@@ -179,14 +179,18 @@ export class BranchingPage {
     //this.retrieveCollection();
     if(this.moduleID != '') {
       this.retrieveSubCollection();
-      this.options_1 = this.options[0];
-      this.options_2 = this.options[1];
-      this.options_3 = this.options[2];
-      this.options_4 = this.options[3];
-      this.options_5 = this.options[4];
-      this.options_6 = this.options[5];
-      this.options_7 = this.options[6];
-      this.options_8 = this.options[7];
+      if(this.type == "radio")
+      {
+        this.options_1 = this.options[0];
+        this.options_2 = this.options[1];
+        this.options_3 = this.options[2];
+        this.options_4 = this.options[3];
+        this.options_5 = this.options[4];
+        this.options_6 = this.options[5];
+        this.options_7 = this.options[6];
+        this.options_8 = this.options[7];
+      }
+
     }
   /*  var start = new Date().getTime();
     var end = start;
@@ -214,24 +218,12 @@ export class BranchingPage {
     }
   }*/
 
-  retrieveCollection() : void
-  {
-     this._DB.getQuestions("Questions")
-     .then((data) =>
-     {
-       this.quests = data;
-       console.log(this.quests);
-     })
-     .catch();
-  }
-
   retrieveSubCollection() : void
   {
      this._DB.getModules_Questions("Modules", this.moduleID, "Questions")
      .then((data) =>
      {
        this.questions = data;
-       console.log(this.questions);
      })
      .catch();
   }
@@ -270,17 +262,17 @@ export class BranchingPage {
        if(branch == this.questions[i].name){
          branchID = this.questions[i].quest_id;
        }
-       else{
-         branchID = '';
+       else if(branch == "-1"){
+         branchID = "-1";
        }
      }
 
      for(i = 0; i < this.questions.length; i++){
        if(branch2 == this.questions[i].name){
-         branchID2 = this.questions[i].ques_id;
+         branchID2 = this.questions[i].quest_id;
        }
-       else{
-         branchID2 = '';
+       else if(branch2 == "-1"){
+         branchID2 = "-1";
        }
      }
 
@@ -288,8 +280,8 @@ export class BranchingPage {
        if(branch3 == this.questions[i].name){
          branchID3 = this.questions[i].quest_id;
        }
-       else{
-         branchID3 = '';
+       else if(branch3 == "-1"){
+         branchID3 = "-1";
        }
      }
 
@@ -297,17 +289,18 @@ export class BranchingPage {
        if(branch4 == this.questions[i].name){
          branchID4 = this.questions[i].quest_id;
        }
-       else{
-         branchID4 = '';
+       else if(branch4 == "-1"){
+         branchID4 = "-1";
        }
+
      }
 
      for(i = 0; i < this.questions.length; i++){
        if(branch5 == this.questions[i].name){
          branchID5 = this.questions[i].quest_id;
        }
-       else{
-         branchID5 = '';
+       else if(branch5 == "-1"){
+         branchID5 = "-1";
        }
      }
 
@@ -315,8 +308,8 @@ export class BranchingPage {
        if(branch6 == this.questions[i].name){
          branchID6 = this.questions[i].quet_id;
        }
-       else{
-         branchID6 = '';
+       else if(branch6 == "-1"){
+         branchID6 = "-1";
        }
      }
 
@@ -324,8 +317,8 @@ export class BranchingPage {
        if(branch7 == this.questions[i].name){
          branchID7 = this.questions[i].quest_id;
        }
-       else{
-         branchID7 = '';
+       else if(branch7 == "-1"){
+         branchID7 = "-1";
        }
      }
 
@@ -333,8 +326,8 @@ export class BranchingPage {
        if(branch8 == this.questions[i].name){
          branchID8 = this.questions[i].quest_id;
        }
-       else{
-         branchID8 = '';
+       else if(branch8 == "-1"){
+         branchID8 = "-1";
        }
      }
 
@@ -343,7 +336,11 @@ export class BranchingPage {
      // If we are editing an existing record then handle this scenario
      if(this.isEditable)
      {
-
+       console.log("Hello");
+       console.log(branchID);
+       console.log(branchID2);
+       console.log(branchID3);
+       console.log(branchID4);
         // Call the DatabaseProvider service and pass/format the data for use
         // with the updateDocument method
         this._DB.updateModules_Questions(this._COLL,
@@ -390,7 +387,28 @@ export class BranchingPage {
      }*/
   }
 
-
+  /**
+   * Delete a document from the Cloud Firestore collection using the
+   * deleteDocument method of the DatabaseProvider service
+   *
+   * @public
+   * @method deleteDocument
+   * @param  obj          {Object}           The document ID for the document we wish to delete
+   * @return {none}
+   */
+  deleteDocument() : void
+  {
+     this._DB.deleteModules_Question("Modules", this.moduleID, "Questions", this.docID)
+     .then((data : any) =>
+     {
+        this.displayAlert('Success', 'The question ' + this.name + ' was successfully removed');
+        this.navCtrl.pop();
+     })
+     .catch((error : any) =>
+     {
+        this.displayAlert('Error', error.message);
+     });
+  }
 
   /**
    * Provide feedback to user after an operation has succeeded/failed

@@ -1,14 +1,14 @@
 webpackJsonp([1],{
 
-/***/ 1219:
+/***/ 1267:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SelectModulePageModule", function() { return SelectModulePageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__select_module__ = __webpack_require__(1231);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__select_module__ = __webpack_require__(1279);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,17 +38,17 @@ var SelectModulePageModule = (function () {
 
 /***/ }),
 
-/***/ 1231:
+/***/ 1279:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SelectModulePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_modules__ = __webpack_require__(337);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_modules__ = __webpack_require__(343);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_database_database__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_usersservice_usersservice__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_usersservice_usersservice__ = __webpack_require__(66);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -193,10 +193,9 @@ var SelectModulePage = (function () {
     };
     SelectModulePage.prototype.retrieveCollection = function () {
         var _this = this;
-        this._DB.getQuestions_Modules("Questions")
+        this._DB.getQuestions("Questions")
             .then(function (data) {
             _this.quests = data;
-            console.log(_this.quests);
         })
             .catch();
     };
@@ -277,6 +276,7 @@ var SelectModulePage = (function () {
                 })
                     .then(function (data) {
                     _this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
+                    _this.retrieveSubCollection();
                 })
                     .catch(function (error) {
                     _this.displayAlert('Error', error.message);
@@ -294,6 +294,7 @@ var SelectModulePage = (function () {
                 })
                     .then(function (data) {
                     _this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
+                    _this.retrieveSubCollection();
                 })
                     .catch(function (error) {
                     _this.displayAlert('Error', error.message);
@@ -305,7 +306,7 @@ var SelectModulePage = (function () {
                 this.saveQuestionsHelper(val)
                     .then(function (opts) {
                     console.log(_this.opts);
-                    _this._DB.addModules_First_Question("Modules", _this.docID, "Questions", {
+                    _this._DB.addModules_First_Question_Multi("Modules", _this.docID, "Questions", {
                         name: val.name,
                         id: val.id,
                         type: val.type,
@@ -321,10 +322,11 @@ var SelectModulePage = (function () {
                         option7: opts[6],
                         option8: opts[7],
                         moduleID: moduleID,
-                        options: val.options
+                        options: opts
                     })
                         .then(function (data) {
                         _this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
+                        _this.retrieveSubCollection();
                     })
                         .catch(function (error) {
                         _this.displayAlert('Error', error.message);
@@ -334,7 +336,6 @@ var SelectModulePage = (function () {
             else {
                 this.saveQuestionsHelper(val)
                     .then(function (opts) {
-                    console.log(_this.opts);
                     _this._DB.addModules_Questions("Modules", _this.docID, "Questions", {
                         name: val.name,
                         id: val.id,
@@ -351,10 +352,11 @@ var SelectModulePage = (function () {
                         option7: opts[6],
                         option8: opts[7],
                         moduleID: moduleID,
-                        options: val.options
+                        options: opts
                     })
                         .then(function (data) {
                         _this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
+                        _this.retrieveSubCollection();
                     })
                         .catch(function (error) {
                         _this.displayAlert('Error', error.message);
@@ -366,8 +368,8 @@ var SelectModulePage = (function () {
             if (this.questions.length === 0) {
                 this.saveQuestionsHelper(val)
                     .then(function (opts) {
-                    console.log(_this.opts);
-                    _this._DB.addModules_First_Question("Modules", _this.docID, "Questions", {
+                    console.log(opts);
+                    _this._DB.addModules_First_Question_Multi("Modules", _this.docID, "Questions", {
                         name: val.name,
                         id: val.id,
                         type: val.type,
@@ -383,10 +385,11 @@ var SelectModulePage = (function () {
                         option7: opts[6],
                         option8: opts[7],
                         moduleID: moduleID,
-                        options: val.options
+                        options: opts
                     })
                         .then(function (data) {
                         _this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
+                        _this.retrieveSubCollection();
                     })
                         .catch(function (error) {
                         _this.displayAlert('Error', error.message);
@@ -396,7 +399,6 @@ var SelectModulePage = (function () {
             else {
                 this.saveQuestionsHelper(val)
                     .then(function (opts) {
-                    console.log(_this.opts);
                     _this._DB.addModules_Questions("Modules", _this.docID, "Questions", {
                         name: val.name,
                         id: val.id,
@@ -413,10 +415,11 @@ var SelectModulePage = (function () {
                         option7: opts[6],
                         option8: opts[7],
                         moduleID: moduleID,
-                        options: val.options
+                        options: opts
                     })
                         .then(function (data) {
                         _this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
+                        _this.retrieveSubCollection();
                     })
                         .catch(function (error) {
                         _this.displayAlert('Error', error.message);
@@ -429,17 +432,20 @@ var SelectModulePage = (function () {
                 this.saveQuestionsHelper(val)
                     .then(function (opts) {
                     console.log(_this.opts);
-                    _this._DB.addModules_First_Question("Modules", _this.docID, "Questions", {
+                    _this._DB.addModules_First_Question_Slider("Modules", _this.docID, "Questions", {
                         name: val.name,
                         id: val.id,
                         type: val.type,
                         qtext: val.qtext,
                         owner: val.owner,
                         quest_id: val.id,
-                        moduleID: moduleID
+                        moduleID: moduleID,
+                        leftLabel: val.leftLabel,
+                        rightLabel: val.rightLabel
                     })
                         .then(function (data) {
                         _this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
+                        _this.retrieveSubCollection();
                     })
                         .catch(function (error) {
                         _this.displayAlert('Error', error.message);
@@ -457,10 +463,13 @@ var SelectModulePage = (function () {
                         qtext: val.qtext,
                         owner: val.owner,
                         quest_id: val.id,
-                        moduleID: moduleID
+                        moduleID: moduleID,
+                        leftLabel: val.leftLabel,
+                        rightLabel: val.rightLabel
                     })
                         .then(function (data) {
                         _this.displayAlert('Success', 'The question ' + val.name + ' was successfully added');
+                        _this.retrieveSubCollection();
                     })
                         .catch(function (error) {
                         _this.displayAlert('Error', error.message);
@@ -473,7 +482,9 @@ var SelectModulePage = (function () {
         var opts = [];
         var i = 0;
         for (i = 0; i < this.quests.length; i++) {
-            if (this.quests[i] == val.name) {
+            if (this.quests[i].name == val.name) {
+                //console.log(this.quests[i].option1);
+                (this.quests[i]).name;
                 opts[0] = this.quests[i].option1;
                 opts[1] = this.quests[i].option2;
                 opts[2] = this.quests[i].option3;
@@ -484,7 +495,7 @@ var SelectModulePage = (function () {
                 opts[7] = this.quests[i].option8;
             }
         }
-        return opts;
+        return Promise.resolve(opts);
     };
     SelectModulePage.prototype.updateDocument = function (object) {
         var params = {
@@ -550,16 +561,12 @@ var SelectModulePage = (function () {
     };
     SelectModulePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-select-module',template:/*ion-inline-start:"/home/chantz/Desktop/projects/capstone/WebPortal_prototype/src/pages/select_module/select_module.html"*/'<!--\n  Generated template for the SelectModulePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Module</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <form\n    [formGroup]=\'form\'\n    (ngSubmit)=\'updateModule(form.value)\'>\n\n    <ion-item>\n      <ion-label stacked>Modules Name:</ion-label>\n      <ion-input\n        type=\'text\'\n        formControlName=\'name\'\n        [(ngModel)]=\'name\'>\n      </ion-input>\n    </ion-item>\n\n    <ion-item>\n       <ion-label stacked>Type:</ion-label>\n       <ion-input\n          type="text"\n          formControlName="type"\n          [(ngModel)]="type"></ion-input>\n 	  </ion-item>\n\n    <div *ngIf="type == \'Time Initiated\'">\n      <ion-item>\n        <ion-label> Recurrence: </ion-label>\n        <ion-select formControlName="recurrence" [(ngModel)]="recurrence">\n          <ion-option value="once"> Once </ion-option>\n          <ion-option value="day"> Daily </ion-option>\n          <ion-option value="week"> Weekly </ion-option>\n        </ion-select>\n      </ion-item>\n\n      <ion-item>\n        <ion-label stacked>Every X Hour(s)</ion-label>\n        <ion-datetime\n          displayFormat="HH:mm"\n          type=\'time\'\n          formControlName=\'every\'\n          [(ngModel)]=\'every\'>\n        </ion-datetime>\n      </ion-item>\n\n      <ion-item>\n         <ion-label stacked> Start Time </ion-label>\n         <ion-datetime\n            displayFormat="hh:mma"\n            type="time"\n            formControlName="start_time"\n            [(ngModel)]="start_time"></ion-datetime>\n   	  </ion-item>\n\n      <ion-item>\n         <ion-label stacked> Start Date </ion-label>\n         <ion-input\n            formControlName="start_date"\n            [(ngModel)]="start_date"></ion-input>\n   	  </ion-item>\n\n      <ion-item>\n         <ion-label stacked> End Date</ion-label>\n         <ion-input\n            formControlName="end_date"\n            [(ngModel)]="end_date"></ion-input>\n   	  </ion-item>\n    </div>\n\n    <ion-item>\n       <button\n         ion-button\n         block\n         color="primary"\n         text-center\n         padding-top\n         padding-bottom\n         [disabled]="!form.valid">\n          <div *ngIf="!isEditable">\n             Add a new Module\n          </div>\n\n          <div *ngIf="isEditable">\n             Update this Module\n          </div>\n          </button>\n 	  </ion-item>\n\n  </form>\n\n  <ion-item>\n  <div *ngIf="isEditable">\n      <button\n        ion-button\n        block\n        color="danger"\n        text-center\n        padding-top\n        padding-bottom\n        [disabled]="!form.valid"\n        (click)="deleteDocument()">\n        Delete Module\n      </button>\n    </div>\n  </ion-item>\n\n  <h2> Questions </h2>\n\n  <ion-searchbar (ionInput)="searchQuestions($event)"></ion-searchbar>\n  <ion-list>\n    <button ion-item *ngFor=\'let question of questions\' (click)="updateDocument(question)">\n      <h2> {{ question.name }} </h2>\n    </button>\n  </ion-list>\n\n  <h2> Add Questions </h2>\n  <ion-searchbar (ionInput)="searchOtherQuestions($event)"></ion-searchbar>\n  <div *ngFor=\'let quest of quests\'>\n    <div *ngIf = "email == quest.owner">\n      <button ion-item (click)="saveQuestions(quest, docID)">\n      {{ quest.name }}\n      </button>\n    </div>\n  </div>\n\n  <div *ngIf="!flag">\n    <button ion-button\n            block\n            color=\'primary\'\n            (click)="exportAnswers_Modules()">\n            Export Module Answers\n    </button>\n  </div>\n\n  <div *ngIf="flag && !firstFlag">\n    <button ion-button\n            block\n            color=\'primary\'\n            (click)="setLink()">\n            Set Link\n    </button>\n  </div>\n\n  <div *ngIf="firstFlag && !secondFlag">\n    <button ion-button\n            block\n            color=\'primary\'\n            (click)="createLink()">\n            Generate Link\n    </button>\n  </div>\n\n  <div *ngIf="secondFlag">\n    <button ion-button\n            block\n            color=\'primary\'\n            (click)="downloadFile()">\n            Download Modules File\n    </button>\n  </div>\n\n</ion-content>\n'/*ion-inline-end:"/home/chantz/Desktop/projects/capstone/WebPortal_prototype/src/pages/select_module/select_module.html"*/,
+            selector: 'page-select-module',template:/*ion-inline-start:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\select_module\select_module.html"*/'<!--\n\n  Generated template for the SelectModulePage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Module</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n  <form\n\n    [formGroup]=\'form\'\n\n    (ngSubmit)=\'updateModule(form.value)\'>\n\n\n\n    <ion-item>\n\n      <ion-label stacked>Modules Name:</ion-label>\n\n      <ion-input\n\n        type=\'text\'\n\n        formControlName=\'name\'\n\n        [(ngModel)]=\'name\'>\n\n      </ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n       <ion-label stacked>Type:</ion-label>\n\n       <ion-input\n\n          type="text"\n\n          formControlName="type"\n\n          [(ngModel)]="type"></ion-input>\n\n 	  </ion-item>\n\n\n\n    <div *ngIf="type == \'Time Initiated\'">\n\n      <ion-item>\n\n        <ion-label> Recurrence: </ion-label>\n\n        <ion-select formControlName="recurrence" [(ngModel)]="recurrence">\n\n          <ion-option value="once"> Once </ion-option>\n\n          <ion-option value="day"> Daily </ion-option>\n\n          <ion-option value="week"> Weekly </ion-option>\n\n        </ion-select>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n        <ion-label stacked>Every X Hour(s)</ion-label>\n\n        <ion-datetime\n\n          displayFormat="HH:mm"\n\n          type=\'time\'\n\n          formControlName=\'every\'\n\n          [(ngModel)]=\'every\'>\n\n        </ion-datetime>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n         <ion-label stacked> Start Time </ion-label>\n\n         <ion-datetime\n\n            displayFormat="hh:mma"\n\n            type="time"\n\n            formControlName="start_time"\n\n            [(ngModel)]="start_time"></ion-datetime>\n\n   	  </ion-item>\n\n\n\n      <ion-item>\n\n         <ion-label stacked> Start Date </ion-label>\n\n         <ion-input\n\n            formControlName="start_date"\n\n            [(ngModel)]="start_date"></ion-input>\n\n   	  </ion-item>\n\n\n\n      <ion-item>\n\n         <ion-label stacked> End Date</ion-label>\n\n         <ion-input\n\n            formControlName="end_date"\n\n            [(ngModel)]="end_date"></ion-input>\n\n   	  </ion-item>\n\n    </div>\n\n\n\n    <ion-item>\n\n       <button\n\n         ion-button\n\n         block\n\n         color="primary"\n\n         text-center\n\n         padding-top\n\n         padding-bottom\n\n         [disabled]="!form.valid">\n\n          <div *ngIf="!isEditable">\n\n             Add a new Module\n\n          </div>\n\n\n\n          <div *ngIf="isEditable">\n\n             Update this Module\n\n          </div>\n\n          </button>\n\n 	  </ion-item>\n\n\n\n  </form>\n\n\n\n  <ion-item>\n\n  <div *ngIf="isEditable">\n\n      <button\n\n        ion-button\n\n        block\n\n        color="danger"\n\n        text-center\n\n        padding-top\n\n        padding-bottom\n\n        [disabled]="!form.valid"\n\n        (click)="deleteDocument()">\n\n        Delete Module\n\n      </button>\n\n    </div>\n\n  </ion-item>\n\n\n\n  <h2> Questions </h2>\n\n\n\n  <ion-searchbar (ionInput)="searchQuestions($event)"></ion-searchbar>\n\n  <ion-list>\n\n    <button ion-item *ngFor=\'let question of questions\' (click)="updateDocument(question)">\n\n      <h2> {{ question.name }} </h2>\n\n    </button>\n\n  </ion-list>\n\n\n\n  <h2> Add Questions </h2>\n\n  <ion-searchbar (ionInput)="searchOtherQuestions($event)"></ion-searchbar>\n\n  <div *ngFor=\'let quest of quests\'>\n\n    <div *ngIf = "email == quest.owner">\n\n      <button ion-item (click)="saveQuestions(quest, docID)">\n\n      {{ quest.name }}\n\n      </button>\n\n    </div>\n\n  </div>\n\n\n\n  <div *ngIf="!flag">\n\n    <button ion-button\n\n            block\n\n            color=\'primary\'\n\n            (click)="exportAnswers_Modules()">\n\n            Export Module Answers\n\n    </button>\n\n  </div>\n\n\n\n  <div *ngIf="flag && !firstFlag">\n\n    <button ion-button\n\n            block\n\n            color=\'primary\'\n\n            (click)="setLink()">\n\n            Set Link\n\n    </button>\n\n  </div>\n\n\n\n  <div *ngIf="firstFlag && !secondFlag">\n\n    <button ion-button\n\n            block\n\n            color=\'primary\'\n\n            (click)="createLink()">\n\n            Generate Link\n\n    </button>\n\n  </div>\n\n\n\n  <div *ngIf="secondFlag">\n\n    <button ion-button\n\n            block\n\n            color=\'primary\'\n\n            (click)="downloadFile()">\n\n            Download Modules File\n\n    </button>\n\n  </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\select_module\select_module.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormBuilder */],
-            __WEBPACK_IMPORTED_MODULE_4__providers_database_database__["a" /* DatabaseProvider */],
-            __WEBPACK_IMPORTED_MODULE_5__providers_usersservice_usersservice__["a" /* UsersserviceProvider */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormBuilder */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__providers_database_database__["a" /* DatabaseProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_database_database__["a" /* DatabaseProvider */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__providers_usersservice_usersservice__["a" /* UsersserviceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__providers_usersservice_usersservice__["a" /* UsersserviceProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */]) === "function" && _f || Object])
     ], SelectModulePage);
     return SelectModulePage;
+    var _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=select_module.js.map

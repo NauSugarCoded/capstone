@@ -15,7 +15,7 @@
   <h2> Question name:</h2><h3> {{ name }} </h3>
   <h2> Question text:</h2><h3> {{ qtext }} </h3>
   <h2> Question Type:</h2><h3> {{ type }} </h3>
-  <div *ngIf="type == 'radio' || type == 'multi'">
+  <div *ngIf="type == 'radio'">
 
     <ng-container *ngIf="options_1">
     <h2> {{ options_1 }}:
@@ -137,7 +137,7 @@
   </ng-container>
   </div>
 
-  <div *ngIf="type == 'slider' || type == 'text'">
+  <div *ngIf="type == 'slider' || type == 'text' || type == 'multi' || type == 'time'">
     <label stacked class ="item item-input item-select">
           <div class ="input-label">
 
@@ -170,4 +170,18 @@
 </ion-item>
 
 </form>
+
+<ion-item>
+  <button
+    ion-button
+    block
+    color="danger"
+    text-center
+    padding-top
+    padding-bottom
+    (click)="deleteDocument()">
+    Delete question
+  </button>
+</ion-item>
+
 </ion-content>

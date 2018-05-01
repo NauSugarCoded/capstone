@@ -356,11 +356,13 @@ export class DatabaseProvider {
     return new Promise((resolve, reject) => {
       this._DB.collection(maincollectionObj).doc(docObj).collection(collectionObj)
       .doc("1").set({
+        id             : dataObj.id,
+        moduleID       : dataObj.moduleID,
         quest_id       : dataObj.id,
         name           : dataObj.name,
         type     : dataObj.type,
         qtext    : dataObj.qtext,
-        owner    : dataObj.owner,
+        owner    : dataObj.owner
       })
       .then((obj : any) => {
         resolve(obj);
@@ -370,6 +372,60 @@ export class DatabaseProvider {
       });
     });
     }
+
+    addModules_First_Question_Multi(maincollectionObj: string, docObj: string,
+                              collectionObj:string, dataObj: any) : Promise<any>{
+      return new Promise((resolve, reject) => {
+        this._DB.collection(maincollectionObj).doc(docObj).collection(collectionObj)
+        .doc("1").set({
+          id             : dataObj.id,
+          moduleID       : dataObj.moduleID,
+          quest_id       : dataObj.id,
+          name           : dataObj.name,
+          type     : dataObj.type,
+          qtext    : dataObj.qtext,
+          owner    : dataObj.owner,
+          option1  :doc.data().option1,
+          option2  :doc.data().option2,
+          option3  :doc.data().option3,
+          option4  :doc.data().option4,
+          option5  :doc.data().option5,
+          option6  :doc.data().option6,
+          option7  :doc.data().option7,
+          option8  :doc.data().option8
+        })
+        .then((obj : any) => {
+          resolve(obj);
+        })
+        .catch((error : any) => {
+          reject(error);
+        });
+      });
+      }
+
+      addModules_First_Question_Slider(maincollectionObj: string, docObj: string,
+                                collectionObj:string, dataObj: any) : Promise<any>{
+        return new Promise((resolve, reject) => {
+          this._DB.collection(maincollectionObj).doc(docObj).collection(collectionObj)
+          .doc("1").set({
+            id             : dataObj.id,
+            moduleID       : dataObj.moduleID,
+            quest_id       : dataObj.id,
+            name           : dataObj.name,
+            type     : dataObj.type,
+            qtext    : dataObj.qtext,
+            owner    : dataObj.owner,
+            leftLabel  :doc.data().leftLabel,
+            rightLabel  :doc.data().rightLabel
+          })
+          .then((obj : any) => {
+            resolve(obj);
+          })
+          .catch((error : any) => {
+            reject(error);
+          });
+        });
+        }
   /**
    * Delete an existing document from a selected database collection
    */
@@ -390,6 +446,25 @@ export class DatabaseProvider {
         });
       });
     }
+
+    deleteModules_Question(collectionObj : string,
+                   docID : string, subColleciton : string,
+                   quest_id : string) : Promise<any>{
+       return new Promise((resolve, reject) => {
+         this._DB
+         .collection(collectionObj)
+         .doc(docID)
+         .collection(subColleciton)
+         .doc(quest_id)
+         .delete()
+         .then((obj : any) => {
+           resolve(obj);
+         })
+         .catch((error : any) => {
+           reject(error);
+         });
+       });
+     }
 
     /**
      * Update an existing document within a selected database collection
