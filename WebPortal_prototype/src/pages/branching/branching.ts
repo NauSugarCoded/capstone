@@ -333,6 +333,17 @@ export class BranchingPage {
        }
      }
 
+     let localarr = [branchID, branchID2, branchID3, branchID4, branchID5, branchID6, branchID7, branchID8];
+     let brancharr = [];
+     let x = 0;
+     for(i = 0; i < localarr.length; i++){
+       if(localarr[i] != ''){
+         brancharr[x] = localarr[i];
+         x++;
+       }
+     }
+
+
 
 
      // If we are editing an existing record then handle this scenario
@@ -343,7 +354,7 @@ export class BranchingPage {
         this._DB.updateModules_Questions(this._COLL,
                               this.moduleID,"Questions", this.docID,
                               {
-                                branch    : [branchID, branchID2, branchID3, branchID4, branchID5, branchID6, branchID7, branchID8]
+                                branch    : brancharr,
                             })
         .then((data) =>
         {
