@@ -53,6 +53,8 @@ export class QuestionsPage {
 
    public email         : string;
 
+   public local         : any;
+
 
 
    constructor(public navCtrl  : NavController,
@@ -141,6 +143,7 @@ export class QuestionsPage {
          else
          {
             this.locations = data;
+            this.local = data;
          }
       })
       .catch();
@@ -293,17 +296,20 @@ export class QuestionsPage {
       });
    }
 
+   resetLocations()
+   {
+     this.locations = this.local;
+   }
+
    searchQuestions(input : any){
 
+     this.resetLocations();
+     
      let val = input.target.value;
      if(val && val.trim() != '') {
        this.locations = this.locations.filter((question) => {
          return(question.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
        })
-     }
-
-     else{
-       this.retrieveCollection();
      }
    }
 

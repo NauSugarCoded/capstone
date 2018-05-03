@@ -50,6 +50,7 @@ export class ParticipantsPage {
     * @description      Property to store the returned documents from the database collection
     */
    public locations     : any;
+   public local         : any;
    public studs         : any;
    public email         : string;
 
@@ -145,6 +146,7 @@ export class ParticipantsPage {
          else
          {
             this.locations = data;
+            this.local = data;
          }
       })
       .catch();
@@ -233,17 +235,20 @@ export class ParticipantsPage {
       });
    }
 
+   resetLocations()
+   {
+     this.locations = this.local;
+   }
+
    searchParticipants(input : any){
+
+     this.resetLocations();
 
      let val = input.target.value;
      if(val && val.trim() != '') {
        this.locations = this.locations.filter((participant) => {
-         return(participant.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
+         return(participant.study.toLowerCase().indexOf(val.toLowerCase()) > -1);
        })
-     }
-
-     else{
-       this.retrieveCollection();
      }
    }
 

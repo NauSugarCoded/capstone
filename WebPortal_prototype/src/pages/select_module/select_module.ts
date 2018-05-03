@@ -179,6 +179,9 @@ export class SelectModulePage {
   public secondFlag    : boolean = false;
   public link          : string;
 
+  public local_quests   : any;
+  public local_questions : any;
+
   constructor(public navCtrl        : NavController,
               public params         : NavParams,
               private _FB 	         : FormBuilder,
@@ -242,6 +245,7 @@ export class SelectModulePage {
      .then((data) =>
      {
        this.quests = data;
+       this.local_quests = data;
      })
      .catch();
 
@@ -253,6 +257,7 @@ export class SelectModulePage {
      .then((data) =>
      {
        this.questions = data;
+       this.local_questions = data;
      })
      .catch();
   }
@@ -653,7 +658,19 @@ export class SelectModulePage {
     window.location.href = this.link["i"];
   }
 
+  resetQuestions()
+  {
+    this.questions = this.local_questions;
+  }
+
+  resetQuests()
+  {
+    this.quests = this.local_quests;
+  }
+
   searchQuestions(input : any){
+
+    this.resetQuestions();
 
     let val = input.target.value;
     if(val && val.trim() != '') {
@@ -661,23 +678,17 @@ export class SelectModulePage {
         return(question.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
-
-    else{
-      this.retrieveSubCollection();
-    }
   }
 
   searchOtherQuestions(input : any){
+
+    this.resetQuests();
 
     let val = input.target.value;
     if(val && val.trim() != '') {
       this.quests = this.quests.filter((quest) => {
         return(quest.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
-    }
-
-    else{
-      this.retrieveCollection();
     }
   }
 

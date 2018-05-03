@@ -859,6 +859,7 @@ var ModulesPage = (function () {
             }
             else {
                 _this.locations = data;
+                _this.local = data;
             }
         })
             .catch();
@@ -876,26 +877,26 @@ var ModulesPage = (function () {
         };
         this.navCtrl.push('select_module', { record: params, isEdited: true });
     };
+    ModulesPage.prototype.resetLocations = function () {
+        this.locations = this.local;
+    };
     ModulesPage.prototype.searchModules = function (input) {
+        this.resetLocations();
         var val = input.target.value;
         if (val && val.trim() != '') {
             this.locations = this.locations.filter(function (mod) {
                 return (mod.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
             });
         }
-        else {
-            this.retrieveCollection();
-        }
     };
     ModulesPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-modules',template:/*ion-inline-start:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\modules\modules.html"*/'<!--\n\n  Generated template for the ModulesPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Modules</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n  <ion-list>\n\n    <button\n\n      ion-button\n\n      block\n\n      color=\'primary\'\n\n      (click)=\'addDocument()\'>\n\n      Create a new module\n\n    </button>\n\n\n\n    <ion-searchbar (ionInput)="searchModules($event)"></ion-searchbar>\n\n    <div *ngFor=\'let location of locations\'>\n\n      <div *ngIf = "email == location.owner">\n\n        <button ion-item (click)="updateDocument(location)">\n\n          {{location.name}}\n\n          <div class="item-note" item-end>\n\n            {{location.type}}\n\n          </div>\n\n        </button>\n\n      </div>\n\n    </div>\n\n  </ion-list>\n\n\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\modules\modules.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */],
-            __WEBPACK_IMPORTED_MODULE_3__providers_usersservice_usersservice__["a" /* UsersserviceProvider */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__providers_usersservice_usersservice__["a" /* UsersserviceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_usersservice_usersservice__["a" /* UsersserviceProvider */]) === "function" && _c || Object])
     ], ModulesPage);
     return ModulesPage;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=modules.js.map
@@ -1345,6 +1346,7 @@ var StudiesPage = (function () {
             }
             else {
                 _this.locations = data;
+                _this.local = data;
             }
         })
             .catch();
@@ -1408,15 +1410,16 @@ var StudiesPage = (function () {
             _this.displayAlert('Error', error.message);
         });
     };
+    StudiesPage.prototype.resetLocations = function () {
+        this.locations = this.local;
+    };
     StudiesPage.prototype.searchStudies = function (input) {
+        this.resetLocations();
         var val = input.target.value;
         if (val && val.trim() != '') {
             this.locations = this.locations.filter(function (study) {
                 return (study.short_name.toLowerCase().indexOf(val.toLowerCase()) > -1);
             });
-        }
-        else {
-            this.retrieveCollection();
         }
     };
     /**
@@ -1446,12 +1449,10 @@ var StudiesPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-studies',template:/*ion-inline-start:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\studies\studies.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Studies</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n  <button\n\n    ion-button\n\n    block\n\n    color=\'primary\'\n\n    (click)=\'addDocument()\'>\n\n    Add a new Study\n\n  </button>\n\n\n\n  <ion-searchbar (ionInput)="searchStudies($event)"></ion-searchbar>\n\n  <div *ngFor=\'let location of locations\'>\n\n    <div *ngIf = "email == location.owner">\n\n      <button ion-item (click)="updateDocument(location)">\n\n        {{location.short_name}}\n\n        <div class="item-note" item-end>\n\n          {{location.abstract}}\n\n        </div>\n\n      </button>\n\n    </div>\n\n  </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\studies\studies.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */],
-            __WEBPACK_IMPORTED_MODULE_3__providers_usersservice_usersservice__["a" /* UsersserviceProvider */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__providers_usersservice_usersservice__["a" /* UsersserviceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_usersservice_usersservice__["a" /* UsersserviceProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _d || Object])
     ], StudiesPage);
     return StudiesPage;
+    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=studies.js.map
@@ -1555,6 +1556,7 @@ var QuestionsPage = (function () {
             }
             else {
                 _this.locations = data;
+                _this.local = data;
             }
         })
             .catch();
@@ -1676,15 +1678,16 @@ var QuestionsPage = (function () {
             _this.displayAlert('Error', error.message);
         });
     };
+    QuestionsPage.prototype.resetLocations = function () {
+        this.locations = this.local;
+    };
     QuestionsPage.prototype.searchQuestions = function (input) {
+        this.resetLocations();
         var val = input.target.value;
         if (val && val.trim() != '') {
             this.locations = this.locations.filter(function (question) {
                 return (question.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
             });
-        }
-        else {
-            this.retrieveCollection();
         }
     };
     /**
@@ -1714,12 +1717,10 @@ var QuestionsPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-questions',template:/*ion-inline-start:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\questions\questions.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>\n\n      Schema\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <div class = "row">\n\n    <div class = "col">\n\n      <button\n\n        ion-button\n\n        block\n\n        color=\'primary\'\n\n        (click)=\'addDocument()\'>\n\n        Add a new textbox question\n\n      </button>\n\n    </div>\n\n\n\n    <div class = "col">\n\n      <button\n\n        ion-button\n\n        block\n\n        color=\'primary\'\n\n        (click)=\'addRadio()\'>\n\n        Add a new radio question\n\n      </button>\n\n    </div>\n\n\n\n    <div class = "col">\n\n      <button\n\n        ion-button\n\n        block\n\n        color=\'primary\'\n\n        (click)=\'addMulti()\'>\n\n        Add a new multiple response question\n\n      </button>\n\n    </div>\n\n\n\n    <div class = "col">\n\n      <button\n\n        ion-button\n\n        block\n\n        color=\'primary\'\n\n        (click)=\'addSlider()\'>\n\n        Add a new visual analog scale question\n\n      </button>\n\n    </div>\n\n\n\n\n\n    <div class = "col">\n\n      <button\n\n        ion-button\n\n        block\n\n        color=\'primary\'\n\n        (click)=\'addTime()\'>\n\n        Add a new time based question\n\n      </button>\n\n    </div>\n\n  </div>\n\n\n\n  <ion-searchbar (ionInput)="searchQuestions($event)"></ion-searchbar>\n\n  <div *ngFor=\'let location of locations\'>\n\n    <div *ngIf = "email == location.owner">\n\n      <ion-list>\n\n        <ion-item>\n\n          <h2>{{ location.name }}</h2>\n\n          <p>\n\n            Type: {{ location.type}}<br>\n\n            Question Text: {{ location.qtext }}<br>\n\n            <ng-container *ngIf="location.leftLabel">\n\n            Left Label: {{ location.leftLabel }}<br>\n\n            </ng-container>\n\n            <ng-container *ngIf="location.rightLabel">\n\n            Right Label: {{ location.rightLabel }}<br>\n\n            </ng-container>\n\n            <ng-container *ngIf="location.option1">\n\n            Answer Choice 1: {{ location.option1 }}<br>\n\n            </ng-container>\n\n            <ng-container *ngIf="location.option2">\n\n            Answer Choice 2: {{ location.option2 }}<br>\n\n            </ng-container>\n\n            <ng-container *ngIf="location.option3">\n\n            Answer Choice 3: {{ location.option3 }}<br>\n\n            </ng-container>\n\n            <ng-container *ngIf="location.option4">\n\n            Answer Choice 4: {{ location.option4 }}<br>\n\n            </ng-container>\n\n            <ng-container *ngIf="location.option5">\n\n            Answer Choice 5: {{ location.option5 }}<br>\n\n            </ng-container>\n\n            <ng-container *ngIf="location.option6">\n\n            Answer Choice 6: {{ location.option6 }}<br>\n\n            </ng-container>\n\n            <ng-container *ngIf="location.option7">\n\n            Answer Choice 7: {{ location.option7 }}<br>\n\n            </ng-container>\n\n            <ng-container *ngIf="location.option8">\n\n            Answer Choice 8: {{ location.option8 }}\n\n            </ng-container>\n\n          </p>\n\n\n\n          <ng-container *ngIf="location.type == \'text\'">\n\n            <button\n\n              ion-button\n\n              color=\'secondary\'\n\n              (click)=\'updateDocument(location)\'>\n\n              Update this question\n\n            </button>\n\n         </ng-container>\n\n\n\n          <ng-container *ngIf="location.type == \'radio\'">\n\n            <button\n\n              ion-button\n\n              color=\'secondary\'\n\n              (click)=\'updateRadio(location)\'>\n\n              Update this question\n\n            </button>\n\n         </ng-container>\n\n\n\n         <ng-container *ngIf="location.type == \'multi\'">\n\n           <button\n\n             ion-button\n\n             color=\'secondary\'\n\n             (click)=\'updateMulti(location)\'>\n\n             Update this question\n\n           </button>\n\n        </ng-container>\n\n\n\n        <ng-container *ngIf="location.type == \'slider\'">\n\n          <button\n\n            ion-button\n\n            color=\'secondary\'\n\n            (click)=\'updateSlider(location)\'>\n\n            Update this question\n\n          </button>\n\n       </ng-container>\n\n\n\n       <ng-container *ngIf="location.type == \'time\'">\n\n         <button\n\n           ion-button\n\n           color=\'secondary\'\n\n           (click)=\'updateTime(location)\'>\n\n           Update this question\n\n         </button>\n\n      </ng-container>\n\n\n\n          <button\n\n            ion-button\n\n            color=\'danger\'\n\n            (click)="deleteDocument(location)">\n\n            Delete this question\n\n          </button>\n\n        </ion-item>\n\n      </ion-list>\n\n    </div>\n\n  </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\questions\questions.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */],
-            __WEBPACK_IMPORTED_MODULE_3__providers_usersservice_usersservice__["a" /* UsersserviceProvider */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__providers_usersservice_usersservice__["a" /* UsersserviceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_usersservice_usersservice__["a" /* UsersserviceProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _d || Object])
     ], QuestionsPage);
     return QuestionsPage;
+    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=questions.js.map
@@ -1829,6 +1830,7 @@ var ParticipantsPage = (function () {
             }
             else {
                 _this.locations = data;
+                _this.local = data;
             }
         })
             .catch();
@@ -1892,15 +1894,16 @@ var ParticipantsPage = (function () {
             _this.displayAlert('Error', error.message);
         });
     };
+    ParticipantsPage.prototype.resetLocations = function () {
+        this.locations = this.local;
+    };
     ParticipantsPage.prototype.searchParticipants = function (input) {
+        this.resetLocations();
         var val = input.target.value;
         if (val && val.trim() != '') {
             this.locations = this.locations.filter(function (participant) {
-                return (participant.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
+                return (participant.study.toLowerCase().indexOf(val.toLowerCase()) > -1);
             });
-        }
-        else {
-            this.retrieveCollection();
         }
     };
     /**
@@ -1928,14 +1931,12 @@ var ParticipantsPage = (function () {
     };
     ParticipantsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-participants',template:/*ion-inline-start:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\participants\participants.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>\n\n      Schema\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n    <button\n\n      ion-button\n\n      block\n\n      color=\'primary\'\n\n      (click)=\'addParticipant()\'>\n\n      Add a new participant\n\n    </button>\n\n\n\n  <ion-searchbar (ionInput)="searchParticipants($event)"></ion-searchbar>\n\n  <ion-list>\n\n    <div *ngFor=\'let location of locations\'>\n\n      <div *ngIf = "email == location.owner">\n\n        <ion-item>\n\n          <h2>{{ location.name }}</h2>\n\n          <p>\n\n            ID: {{ location.id }} <br>\n\n            Email: {{ location.email}}<br>\n\n            Phone: {{ location.phone }}<br>\n\n            Owner: {{ location.owner }}<br>\n\n            Study: {{ location.study }}<br>\n\n            Sleep start time: {{ location.sleep_start}}<br>\n\n            Sleep end time: {{ location.sleep_end}}\n\n          </p>\n\n\n\n          <button\n\n            ion-button\n\n            color=\'secondary\'\n\n            (click)=\'updateDocument(location)\'>\n\n            Update this participant\n\n          </button>\n\n\n\n          <button\n\n            ion-button\n\n            color=\'danger\'\n\n            (click)="deleteDocument(location)">\n\n            Delete this participant\n\n          </button>\n\n        </ion-item>\n\n      </div>\n\n    </div>\n\n\n\n  </ion-list>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\participants\participants.html"*/
+            selector: 'page-participants',template:/*ion-inline-start:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\participants\participants.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>\n\n      Schema\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n    <button\n\n      ion-button\n\n      block\n\n      color=\'primary\'\n\n      (click)=\'addParticipant()\'>\n\n      Add a new participant\n\n    </button>\n\n\n\n  <ion-searchbar (ionInput)="searchParticipants($event)"></ion-searchbar>\n\n  <ion-list>\n\n    <div *ngFor=\'let location of locations\'>\n\n      <div *ngIf = "email == location.owner">\n\n        <ion-item>\n\n          <h2>Study Name: {{ location.study }}</h2>\n\n          <p>\n\n            ID: {{ location.id }} <br>\n\n            Name: {{ location.name }} <br>\n\n            Email: {{ location.email}}<br>\n\n            Phone: {{ location.phone }}<br>\n\n            Owner: {{ location.owner }}<br>\n\n            Sleep start time: {{ location.sleep_start}}<br>\n\n            Sleep end time: {{ location.sleep_end}}\n\n          </p>\n\n\n\n          <button\n\n            ion-button\n\n            color=\'secondary\'\n\n            (click)=\'updateDocument(location)\'>\n\n            Update this participant\n\n          </button>\n\n\n\n          <button\n\n            ion-button\n\n            color=\'danger\'\n\n            (click)="deleteDocument(location)">\n\n            Delete this participant\n\n          </button>\n\n        </ion-item>\n\n      </div>\n\n    </div>\n\n\n\n  </ion-list>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\participants\participants.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */],
-            __WEBPACK_IMPORTED_MODULE_3__providers_usersservice_usersservice__["a" /* UsersserviceProvider */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__providers_usersservice_usersservice__["a" /* UsersserviceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_usersservice_usersservice__["a" /* UsersserviceProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _d || Object])
     ], ParticipantsPage);
     return ParticipantsPage;
+    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=participants.js.map

@@ -158,6 +158,10 @@ export class SelectStudyPage {
    */
   public mods     : any;
 
+  public local_modules    : any;
+  public local_mods        : any;
+
+
   public email    : string;
 
 
@@ -244,6 +248,7 @@ export class SelectStudyPage {
      .then((data) =>
      {
        this.modules = data;
+       this.local_modules = data;
      })
      .catch();
   }
@@ -254,6 +259,7 @@ export class SelectStudyPage {
     .then((data) =>
     {
       this.mods = data;
+      this.local_mods = data;
     })
     .catch();
   }
@@ -357,7 +363,19 @@ export class SelectStudyPage {
       });
    }
 
+   resetModules()
+   {
+     this.modules = this.local_modules;
+   }
+
+   resetMods()
+   {
+     this.mods = this.local_mods;
+   }
+
    searchModules(input : any){
+
+     this.resetModules();
 
      let val = input.target.value;
      if(val && val.trim() != '') {
@@ -365,23 +383,17 @@ export class SelectStudyPage {
          return(mod.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
        })
      }
-
-     else{
-       this.retrieveSubCollection();
-     }
    }
 
    searchOtherModules(input : any){
+
+     this.resetMods();
 
      let val = input.target.value;
      if(val && val.trim() != '') {
        this.mods = this.mods.filter((mod) => {
          return(mod.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
        })
-     }
-
-     else{
-       this.retrieveModules();
      }
    }
 

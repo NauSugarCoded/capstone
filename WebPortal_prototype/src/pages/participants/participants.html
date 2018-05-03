@@ -23,13 +23,13 @@
     <div *ngFor='let location of locations'>
       <div *ngIf = "email == location.owner">
         <ion-item>
-          <h2>{{ location.name }}</h2>
+          <h2>Study Name: {{ location.study }}</h2>
           <p>
             ID: {{ location.id }} <br>
+            Name: {{ location.name }} <br>
             Email: {{ location.email}}<br>
             Phone: {{ location.phone }}<br>
             Owner: {{ location.owner }}<br>
-            Study: {{ location.study }}<br>
             Sleep start time: {{ location.sleep_start}}<br>
             Sleep end time: {{ location.sleep_end}}
           </p>

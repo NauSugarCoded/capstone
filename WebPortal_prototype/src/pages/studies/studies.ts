@@ -54,6 +54,8 @@ export class StudiesPage {
    */
   public locations     : any;
 
+  public local : any;
+
   public email         : string;
   public url           : any;
   public link          : string;
@@ -146,6 +148,7 @@ export class StudiesPage {
         else
         {
            this.locations = data;
+           this.local = data;
         }
      })
      .catch();
@@ -227,18 +230,21 @@ export class StudiesPage {
      });
   }
 
+  resetLocations()
+  {
+    this.locations = this.local;
+  }
+
 
   searchStudies(input : any){
 
+    this.resetLocations();
+    
     let val = input.target.value;
     if(val && val.trim() != '') {
       this.locations = this.locations.filter((study) => {
         return(study.short_name.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
-    }
-
-    else{
-      this.retrieveCollection();
     }
   }
 

@@ -66,6 +66,7 @@ export class ModulesPage {
   public firstFlag     : boolean = false;
   public secondFlag    : boolean = false;
   public answers       : any;
+  public local         : any;
 
 
   constructor(public navCtrl: NavController,
@@ -149,6 +150,7 @@ export class ModulesPage {
          else
          {
             this.locations = data;
+            this.local = data;
          }
       })
       .catch();
@@ -175,17 +177,20 @@ export class ModulesPage {
      this.navCtrl.push('select_module', { record : params, isEdited : true });
   }
 
+  resetLocations()
+  {
+    this.locations = this.local;
+  }
+
   searchModules(input : any){
 
+    this.resetLocations();
+    
     let val = input.target.value;
     if(val && val.trim() != '') {
       this.locations = this.locations.filter((mod) => {
         return(mod.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
-    }
-
-    else{
-      this.retrieveCollection();
     }
   }
 

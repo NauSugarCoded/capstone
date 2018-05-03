@@ -155,9 +155,9 @@ export class CreateParticipantPage {
       // that will be used to programmatically control the
       // form / form fields in the component template
       this.form 		= _FB.group({
-         'name' 		        : ['', Validators.required],
-         'email' 	        : ['', Validators.required],
-         'phone'	        : ['', Validators.required],
+         'name' 		        : [''],
+         'email' 	        : [''],
+         'phone'	        : [''],
          'owner' 	        : ['',],
          'sleep_end' 	        : ['',],
          'sleep_start' 	        : ['',],
