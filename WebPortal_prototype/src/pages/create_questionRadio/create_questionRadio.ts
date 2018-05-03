@@ -205,7 +205,7 @@ export class CreateQuestionRadioPage {
       if(params.get('isEdited'))
       {
           let record 		        = params.get('record');
-          this.name	            = record.location.name;
+          this.name	            = record.location.name.trim();
           this.type   	        = record.location.type;
           this.qtext            = record.location.qtext;
 					this.option1 		      = record.location.option1;

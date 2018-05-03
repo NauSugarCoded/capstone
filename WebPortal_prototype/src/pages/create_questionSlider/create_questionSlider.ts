@@ -161,6 +161,7 @@ export class CreateQuestionSliderPage {
           this.isEditable       = true;
           this.options          = ["none"];
           this.title            = 'Update this question';
+					console.log(this.owner);
       }
    }
 
@@ -177,15 +178,13 @@ export class CreateQuestionSliderPage {
     */
    saveDocument(val : any) : void
    {
-      let name	      : string		= this.form.controls["name"].value,
+      let name	      : string		= this.form.controls["name"].value.trim(),
 	 	      type        : string 		= this.form.controls["type"].value,
   		    qtext       : string		= this.form.controls["qtext"].value,
           leftLabel   : string		= this.form.controls["leftLabel"].value,
           rightLabel  : string		= this.form.controls["rightLabel"].value,
           options     : any       = ["none"],
           owner				: string		= this._US.returnUser();
-
-
 
       // If we are editing an existing record then handle this scenario
       if(this.isEditable)

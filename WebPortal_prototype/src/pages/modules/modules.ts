@@ -131,7 +131,6 @@ export class ModulesPage {
     */
    retrieveCollection() : void
    {
-      this._DB.getAnswers("Answers");
 
       this._DB.getModules(this._COLL)
       .then((data) =>

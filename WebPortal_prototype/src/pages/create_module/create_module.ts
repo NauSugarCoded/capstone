@@ -205,7 +205,10 @@ export class CreateModulePage {
 					every				: number 		= (this.form.controls['every_hour'].value * 3600000) + (this.form.controls['every_minute'].value * 60000),
   		    owner       : string		= this._US.returnUser();
 
-
+			if(every == 0)
+			{
+				every=null;
+			}
       // If we are editing an existing record then handle this scenario
       if(this.isEditable)
       {

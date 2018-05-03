@@ -109,8 +109,6 @@ var DatabaseProvider = (function () {
             });
         });
     };
-    DatabaseProvider.prototype.getAnswers = function (collectionObj) {
-    };
     DatabaseProvider.prototype.getQuestions_Modules = function (collectionObj) {
         var _this = this;
         return new Promise(function (resolve, reject) {
@@ -342,6 +340,8 @@ var DatabaseProvider = (function () {
             });
         });
     };
+    DatabaseProvider.prototype.getAnswers = function () {
+    };
     DatabaseProvider.prototype.addModules_First_Question = function (maincollectionObj, docObj, collectionObj, dataObj) {
         var _this = this;
         return new Promise(function (resolve, reject) {
@@ -382,7 +382,8 @@ var DatabaseProvider = (function () {
                 option5: dataObj.option5,
                 option6: dataObj.option6,
                 option7: dataObj.option7,
-                option8: dataObj.option8
+                option8: dataObj.option8,
+                options: dataObj.options,
             })
                 .then(function (obj) {
                 resolve(obj);
@@ -396,7 +397,7 @@ var DatabaseProvider = (function () {
         var _this = this;
         return new Promise(function (resolve, reject) {
             _this._DB.collection(maincollectionObj).doc(docObj).collection(collectionObj)
-                .doc("1").set({
+                .doc("0").set({
                 id: dataObj.id,
                 moduleID: dataObj.moduleID,
                 quest_id: dataObj.id,
@@ -632,10 +633,9 @@ var DatabaseProvider = (function () {
     };
     DatabaseProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]])
     ], DatabaseProvider);
     return DatabaseProvider;
-    var _a;
 }());
 
 //# sourceMappingURL=database.js.map
@@ -734,7 +734,7 @@ var HomePage = (function () {
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>SCHEMA</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n\n\n  <div id="page-container">\n\n\n\n    <h3>Home Page</h3>\n\n\n\n    <br><br><br>\n\n\n\n    <div id="owner-current-studies">\n\n      <ion-grid class="table">\n\n        <h4>My Studies</h4>\n\n        <ion-row class="grid-labels">\n\n          <ion-col col-9>Name</ion-col>\n\n        </ion-row>\n\n        <div *ngFor=\'let study of studies\'>\n\n          <div *ngIf = "email == study.owner">\n\n            <ion-row>\n\n              <ion-col col-9> {{ study.full_name }}</ion-col>\n\n            </ion-row>\n\n          </div>\n\n        </div>\n\n      </ion-grid>\n\n    </div>\n\n    <br><br><br><br>\n\n    <div id="owner-completed-studies">\n\n      <ion-grid class="table">\n\n        <h4>My Completed Studies</h4>\n\n        <ion-row class="grid-labels">\n\n          <ion-col col-9>Name</ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n          <div *ngFor="let study of end_studies">\n\n            {{ study.full_name }}\n\n          </div>\n\n        </ion-row>\n\n      </ion-grid>\n\n    </div>\n\n  </div>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\home\home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>SCHEMA</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n\n\n  <div id="page-container">\n\n\n\n    <h3>Home Page</h3>\n\n\n\n    <br><br><br>\n\n\n\n    <div id="owner-current-studies">\n\n      <ion-grid class="table">\n\n        <h4>My Studies</h4>\n\n        <ion-row class="grid-labels">\n\n          <ion-col col-9>Name</ion-col>\n\n        </ion-row>\n\n        <div *ngFor=\'let study of studies\'>\n\n          <div *ngIf = "email == study.owner">\n\n            <ion-row>\n\n              <ion-col col-9> {{ study.full_name }}</ion-col>\n\n            </ion-row>\n\n          </div>\n\n        </div>\n\n      </ion-grid>\n\n    </div>\n\n    <br><br><br><br>\n\n    <div id="owner-completed-studies">\n\n      <ion-grid class="table">\n\n        <h4>My Completed Studies</h4>\n\n        <ion-row class="grid-labels">\n\n          <ion-col col-9>Name</ion-col>\n\n        </ion-row>\n\n        <div *ngFor="let study of end_studies">\n\n          <ion-row>\n\n            <ion-col col-9> {{ study.full_name }} </ion-col>\n\n          </ion-row>\n\n        </div>\n\n      </ion-grid>\n\n    </div>\n\n  </div>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\home\home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_2__providers_usersservice_usersservice__["a" /* UsersserviceProvider */],
@@ -850,7 +850,6 @@ var ModulesPage = (function () {
      */
     ModulesPage.prototype.retrieveCollection = function () {
         var _this = this;
-        this._DB.getAnswers("Answers");
         this._DB.getModules(this._COLL)
             .then(function (data) {
             // IF we don't have any documents then the collection doesn't exist
@@ -892,11 +891,10 @@ var ModulesPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-modules',template:/*ion-inline-start:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\modules\modules.html"*/'<!--\n\n  Generated template for the ModulesPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Modules</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n  <ion-list>\n\n    <button\n\n      ion-button\n\n      block\n\n      color=\'primary\'\n\n      (click)=\'addDocument()\'>\n\n      Create a new module\n\n    </button>\n\n\n\n    <ion-searchbar (ionInput)="searchModules($event)"></ion-searchbar>\n\n    <div *ngFor=\'let location of locations\'>\n\n      <div *ngIf = "email == location.owner">\n\n        <button ion-item (click)="updateDocument(location)">\n\n          {{location.name}}\n\n          <div class="item-note" item-end>\n\n            {{location.type}}\n\n          </div>\n\n        </button>\n\n      </div>\n\n    </div>\n\n  </ion-list>\n\n\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\modules\modules.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */],
-            __WEBPACK_IMPORTED_MODULE_3__providers_usersservice_usersservice__["a" /* UsersserviceProvider */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_database_database__["a" /* DatabaseProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__providers_usersservice_usersservice__["a" /* UsersserviceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_usersservice_usersservice__["a" /* UsersserviceProvider */]) === "function" && _c || Object])
     ], ModulesPage);
     return ModulesPage;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=modules.js.map
@@ -1172,63 +1170,63 @@ webpackEmptyAsyncContext.id = 358;
 
 var map = {
 	"../pages/branching/branching.module": [
-		1255,
+		1266,
 		10
 	],
 	"../pages/create_module/create_module.module": [
-		1256,
+		1260,
 		9
 	],
 	"../pages/create_participant/create_participant.module": [
-		1257,
+		1255,
 		8
 	],
 	"../pages/create_question/create_question.module": [
-		1258,
+		1256,
 		3
 	],
 	"../pages/create_questionMulti/create_questionMulti.module": [
-		1259,
+		1257,
 		7
 	],
 	"../pages/create_questionRadio/create_questionRadio.module": [
-		1260,
+		1258,
 		6
 	],
 	"../pages/create_questionSlider/create_questionSlider.module": [
-		1261,
+		1259,
 		5
 	],
 	"../pages/create_questionTime/create_questionTime.module": [
-		1262,
+		1261,
 		4
 	],
 	"../pages/create_study/create_study.module": [
-		1263,
+		1262,
 		2
 	],
 	"../pages/forgot_pass/forgot_pass.module": [
-		1264,
+		1263,
 		14
 	],
 	"../pages/login/login.module": [
-		1265,
+		1264,
 		13
 	],
 	"../pages/modules/modules.module": [
-		1266,
+		1265,
 		12
 	],
 	"../pages/select_module/select_module.module": [
-		1267,
+		1269,
 		1
 	],
 	"../pages/select_study/select_study.module": [
-		1268,
+		1267,
 		0
 	],
 	"../pages/signup/signup.module": [
-		1269,
+		1268,
 		11
 	]
 };
@@ -1640,6 +1638,7 @@ var QuestionsPage = (function () {
             collection: this._COLL,
             location: obj
         };
+        console.log(obj.id);
         this.navCtrl.push('create_questionSlider', { record: params, isEdited: true });
     };
     /**
@@ -2117,21 +2116,21 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["b" /* HttpClientModule */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* MyApp */], {}, {
                     links: [
-                        { loadChildren: '../pages/branching/branching.module#BranchingPageModule', name: 'branching', segment: 'branching', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/create_module/create_module.module#CreateModulePageModule', name: 'create_module', segment: 'create_module', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/create_participant/create_participant.module#CreateParticipantPageModule', name: 'create_participant', segment: 'create_participant', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/create_question/create_question.module#CreateQuestionPageModule', name: 'create_question', segment: 'create_question', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/create_questionMulti/create_questionMulti.module#CreateQuestionMultiPageModule', name: 'create_questionMulti', segment: 'create_questionMulti', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/create_questionRadio/create_questionRadio.module#CreateQuestionRadioPageModule', name: 'create_questionRadio', segment: 'create_questionRadio', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/create_questionSlider/create_questionSlider.module#CreateQuestionSliderPageModule', name: 'create_questionSlider', segment: 'create_questionSlider', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/create_module/create_module.module#CreateModulePageModule', name: 'create_module', segment: 'create_module', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/create_questionTime/create_questionTime.module#CreateQuestionTimePageModule', name: 'create_questionTime', segment: 'create_questionTime', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/create_study/create_study.module#CreateStudyPageModule', name: 'create_study', segment: 'create_study', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/forgot_pass/forgot_pass.module#ForgotPassPageModule', name: 'ForgotPassPage', segment: 'forgot_pass', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/modules/modules.module#ModulesPageModule', name: 'modules', segment: 'modules', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/select_module/select_module.module#SelectModulePageModule', name: 'select_module', segment: 'select_module', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/branching/branching.module#BranchingPageModule', name: 'branching', segment: 'branching', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/select_study/select_study.module#SelectStudyPageModule', name: 'select_study', segment: 'select_study', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/signup/signup.module#SignupPageModule', name: 'SignupPage', segment: 'signup', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/signup/signup.module#SignupPageModule', name: 'SignupPage', segment: 'signup', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/select_module/select_module.module#SelectModulePageModule', name: 'select_module', segment: 'select_module', priority: 'low', defaultHistory: [] }
                     ]
                 })
             ],

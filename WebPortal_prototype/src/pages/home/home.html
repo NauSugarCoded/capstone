@@ -37,11 +37,11 @@
         <ion-row class="grid-labels">
           <ion-col col-9>Name</ion-col>
         </ion-row>
-        <ion-row>
-          <div *ngFor="let study of end_studies">
-            {{ study.full_name }}
-          </div>
-        </ion-row>
+        <div *ngFor="let study of end_studies">
+          <ion-row>
+            <ion-col col-9> {{ study.full_name }} </ion-col>
+          </ion-row>
+        </div>
       </ion-grid>
     </div>
   </div>

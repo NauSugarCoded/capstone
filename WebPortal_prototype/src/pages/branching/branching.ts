@@ -259,7 +259,9 @@ export class BranchingPage {
      let branchID8 = '';
 
      for(i = 0; i < this.questions.length; i++){
+       console.log(this.questions[i].quest_id);
        if(branch == this.questions[i].name){
+         console.log("It entered the if statement");
          branchID = this.questions[i].quest_id;
        }
        else if(branch == "-1"){
@@ -306,7 +308,7 @@ export class BranchingPage {
 
      for(i = 0; i < this.questions.length; i++){
        if(branch6 == this.questions[i].name){
-         branchID6 = this.questions[i].quet_id;
+         branchID6 = this.questions[i].quest_id;
        }
        else if(branch6 == "-1"){
          branchID6 = "-1";
@@ -336,11 +338,6 @@ export class BranchingPage {
      // If we are editing an existing record then handle this scenario
      if(this.isEditable)
      {
-       console.log("Hello");
-       console.log(branchID);
-       console.log(branchID2);
-       console.log(branchID3);
-       console.log(branchID4);
         // Call the DatabaseProvider service and pass/format the data for use
         // with the updateDocument method
         this._DB.updateModules_Questions(this._COLL,
@@ -350,8 +347,8 @@ export class BranchingPage {
                             })
         .then((data) =>
         {
-           this.clearForm();
            this.displayAlert('Success', 'The branch was successfully updated');
+           this.navCtrl.pop();
         })
         .catch((error) =>
         {

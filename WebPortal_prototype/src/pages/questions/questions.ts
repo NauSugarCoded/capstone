@@ -249,6 +249,7 @@ export class QuestionsPage {
          collection   : this._COLL,
          location     : obj
       };
+      console.log(obj.id);
       this.navCtrl.push('create_questionSlider', { record : params, isEdited : true });
    }
 

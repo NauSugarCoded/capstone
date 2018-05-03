@@ -153,7 +153,7 @@ export class CreateQuestionTimePage {
     */
    saveDocument(val : any) : void
    {
-      let name	      : string		= this.form.controls["name"].value,
+      let name	      : string		= this.form.controls["name"].value.trim(),
 	 	      type        : string 		= this.form.controls["type"].value,
   		    qtext       : string		= this.form.controls["qtext"].value,
           options     : any       = ["none"],

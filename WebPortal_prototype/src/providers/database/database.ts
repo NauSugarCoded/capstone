@@ -96,9 +96,6 @@ export class DatabaseProvider {
     });
   }
 
-  getAnswers(collectionObj: string){
-  }
-
   getQuestions_Modules(collectionObj: string) : Promise<any>{
     return new Promise((resolve, reject) => {
       this._DB.collection(collectionObj)
@@ -351,6 +348,10 @@ export class DatabaseProvider {
     });
   }
 
+  getAnswers() {
+
+  }
+
   addModules_First_Question(maincollectionObj: string, docObj: string,
                             collectionObj:string, dataObj: any) : Promise<any>{
     return new Promise((resolve, reject) => {
@@ -392,7 +393,8 @@ export class DatabaseProvider {
           option5  : dataObj.option5,
           option6  : dataObj.option6,
           option7  : dataObj.option7,
-          option8  : dataObj.option8
+          option8  : dataObj.option8,
+          options : dataObj.options,
         })
         .then((obj : any) => {
           resolve(obj);
@@ -407,7 +409,7 @@ export class DatabaseProvider {
                                 collectionObj:string, dataObj: any) : Promise<any>{
         return new Promise((resolve, reject) => {
           this._DB.collection(maincollectionObj).doc(docObj).collection(collectionObj)
-          .doc("1").set({
+          .doc("0").set({
             id             : dataObj.id,
             moduleID       : dataObj.moduleID,
             quest_id       : dataObj.id,
