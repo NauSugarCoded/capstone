@@ -15,7 +15,10 @@
   <h2> Question name:</h2><h3> {{ name }} </h3>
   <h2> Question text:</h2><h3> {{ qtext }} </h3>
   <h2> Question Type:</h2><h3> {{ type }} </h3>
+
   <div *ngIf="type == 'radio'">
+
+    <h2> For each option, choose what the next question should be: </h2>
 
     <ng-container *ngIf="options_1">
     <h2> {{ options_1 }}:
@@ -153,6 +156,9 @@
           <h2>  What should the next question be:</h2>
 
           <select formControlName="branch">
+            <option>
+
+            </option>
             <option *ngFor="let question of questions">
               {{ question.name }}
             </option>

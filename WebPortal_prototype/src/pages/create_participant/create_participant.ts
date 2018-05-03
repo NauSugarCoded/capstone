@@ -136,6 +136,9 @@ export class CreateParticipantPage {
    private _COLL 		: string 			= "Participants";
 	 private _STUDS 	: string		  = "Studies";
 	 public studs : any;
+	 public user : any;
+
+	 public owned_studies : any = [];
 
 
 
@@ -205,9 +208,26 @@ export class CreateParticipantPage {
          // iterated through in the component template
 
         this.studs = data;
+
+				this.findOwnedStudies();
       })
       .catch();
    }
+
+	 findOwnedStudies()
+	 {
+		 let i = 0;
+		 let x = 0;
+
+		 for(i = 0; i < this.studs.length; i++)
+		 {
+			 if(this.user == this.studs[i].owner)
+			 {
+				 this.owned_studies[x] = this.studs[i];
+				 x++;
+			 }
+		 }
+	 }
 
 	 /**
     * Retrieve all documents from the specified collection using the
@@ -220,6 +240,7 @@ export class CreateParticipantPage {
    ionViewDidEnter()
    {
       this.retrieveCollection();
+			this.user = this._US.returnUser();
    }
 
    /**

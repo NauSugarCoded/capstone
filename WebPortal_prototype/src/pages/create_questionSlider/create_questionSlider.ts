@@ -157,13 +157,13 @@ export class CreateQuestionSliderPage {
           this.owner						= record.location.owner;
           this.leftLabel        = record.location.leftLabel;
           this.rightLabel        = record.location.rightLabel;
-					this.owner						= record.loaction.owner;
           this.isEditable       = true;
           this.options          = ["none"];
           this.title            = 'Update this question';
-					console.log(this.owner);
       }
    }
+
+
 
 
 

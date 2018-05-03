@@ -44,12 +44,15 @@
       </div>
 
       <select formControlName="study">
-        <option *ngFor="let stud of studs">
-          {{ stud.short_name }}
+        <option>
+
+        </option>
+        <option *ngFor="let stud of owned_studies">
+            {{ stud.short_name }}
         </option>
       </select>
     </label>
-    
+
     <br>
 
  	  <ion-item>
