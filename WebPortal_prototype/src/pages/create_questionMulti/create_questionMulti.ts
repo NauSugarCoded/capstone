@@ -239,15 +239,15 @@ export class CreateQuestionMultiPage {
    {
       let name	      : string		= this.form.controls["name"].value.trim(),
 	 	      type        : string 		= this.form.controls["type"].value,
-  		    qtext       : string		= this.form.controls["qtext"].value,
-					option1 		: string 		= this.form.controls["option1"].value,
-					option2 		: string 		= this.form.controls["option2"].value,
-					option3 		: string 		= this.form.controls["option3"].value,
-					option4 		: string 		= this.form.controls["option4"].value,
-					option5 		: string 		= this.form.controls["option5"].value,
-					option6 		: string 		= this.form.controls["option6"].value,
-          option7 		: string 		= this.form.controls["option7"].value,
-          option8 		: string 		= this.form.controls["option8"].value,
+  		    qtext       : string		= this.form.controls["qtext"].value.trim(),
+					option1 		: string 		= this.form.controls["option1"].value.trim(),
+					option2 		: string 		= this.form.controls["option2"].value.trim(),
+					option3 		: string 		= this.form.controls["option3"].value.trim(),
+					option4 		: string 		= this.form.controls["option4"].value.trim(),
+					option5 		: string 		= this.form.controls["option5"].value.trim(),
+					option6 		: string 		= this.form.controls["option6"].value.trim(),
+          option7 		: string 		= this.form.controls["option7"].value.trim(),
+          option8 		: string 		= this.form.controls["option8"].value.trim(),
           iter        : any       = [option1, option2, option3, option4, option5, option6, option7, option8],
           options     : any       = [],
           owner				: string		= this._US.returnUser();
@@ -257,7 +257,7 @@ export class CreateQuestionMultiPage {
       let i = 0;
       for(i; i<7; i++){
         if(iter[i] != ""){
-          options[i] = iter[i]
+          options[i] = iter[i].trim();
         }
       }
 

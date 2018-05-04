@@ -155,7 +155,7 @@ export class CreateQuestionTimePage {
    {
       let name	      : string		= this.form.controls["name"].value.trim(),
 	 	      type        : string 		= this.form.controls["type"].value,
-  		    qtext       : string		= this.form.controls["qtext"].value,
+  		    qtext       : string		= this.form.controls["qtext"].value.trim(),
           options     : any       = ["none"],
           owner				: string		= this._US.returnUser();
 

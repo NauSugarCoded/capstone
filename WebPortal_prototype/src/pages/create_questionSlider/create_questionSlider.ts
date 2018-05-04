@@ -180,9 +180,9 @@ export class CreateQuestionSliderPage {
    {
       let name	      : string		= this.form.controls["name"].value.trim(),
 	 	      type        : string 		= this.form.controls["type"].value,
-  		    qtext       : string		= this.form.controls["qtext"].value,
-          leftLabel   : string		= this.form.controls["leftLabel"].value,
-          rightLabel  : string		= this.form.controls["rightLabel"].value,
+  		    qtext       : string		= this.form.controls["qtext"].value.trim(),
+          leftLabel   : string		= this.form.controls["leftLabel"].value.trim(),
+          rightLabel  : string		= this.form.controls["rightLabel"].value.trim(),
           options     : any       = ["none"],
           owner				: string		= this._US.returnUser();
 
