@@ -235,6 +235,8 @@ export class DatabaseProvider {
            start_date : doc.data().start_date,
            end_date   : doc.data().end_date,
            every      : doc.data().every,
+           every_hour : doc.data().every_hour,
+           every_minute : doc.data().every_minute,
           });
         });
 
@@ -449,7 +451,7 @@ export class DatabaseProvider {
       });
     }
 
-    deleteModules_Question(collectionObj : string,
+    deleteNestedCollection(collectionObj : string,
                    docID : string, subColleciton : string,
                    quest_id : string) : Promise<any>{
        return new Promise((resolve, reject) => {

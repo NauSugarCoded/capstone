@@ -368,6 +368,20 @@ export class SelectStudyPage {
       });
    }
 
+   deleteModule(object) : void
+   {
+      this._DB.deleteNestedCollection("Studies", this.docID, "modules", object.id)
+      .then((data : any) =>
+      {
+         this.displayAlert('Success', 'The module ' + object.name + ' was successfully removed');
+         this.retrieveSubCollection();
+      })
+      .catch((error : any) =>
+      {
+         this.displayAlert('Error', error.message);
+      });
+   }
+
    resetModules()
    {
      this.modules = this.local_modules;

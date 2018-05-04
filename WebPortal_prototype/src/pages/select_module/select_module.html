@@ -47,13 +47,21 @@
       </ion-item>
 
       <ion-item>
-        <ion-label stacked>Every X Hour(s)</ion-label>
-        <ion-datetime
-          displayFormat="HH:mm"
-          type='time'
-          formControlName='every'
-          [(ngModel)]='every'>
-        </ion-datetime>
+        <ion-label stacked>Hour(s)</ion-label>
+        <ion-input
+          type='number'
+          formControlName='every_hour'
+          [(ngModel)]='every_hour'>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Minute(s)</ion-label>
+        <ion-input
+          type='number'
+          formControlName='every_minute'
+          [(ngModel)]='every_minute'>
+        </ion-input>
       </ion-item>
 
       <ion-item>

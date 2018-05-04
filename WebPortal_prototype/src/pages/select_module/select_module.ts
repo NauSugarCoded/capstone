@@ -172,7 +172,8 @@ export class SelectModulePage {
   public quest_id       : any;
   public email          : string;
 
-  public every          : string;
+  public every_hour          : number;
+  public every_minute        : number;
 
   public flag          : boolean = false;
   public firstFlag     : boolean = false;
@@ -202,7 +203,8 @@ export class SelectModulePage {
         'start_time'			:	[''],
         'start_date'			: [''],
         'end_date'				: [''],
-        'every'           : [''],
+        'every_hour'			: [''],
+        'every_minute'		: [''],
 
      });
 
@@ -220,7 +222,8 @@ export class SelectModulePage {
          this.start_time = record.location.start_time;
          this.start_date = record.location.start_date;
          this.end_date = record.location.end_date;
-         this.every    = record.location.every;
+         this.every_hour    = record.location.every_hour;
+         this.every_minute  = record.location.every_minute;
          this.owner      = record.location.owner;
          this.quest_id   = record.location.id;
          this.docID            = record.location.id;
@@ -275,7 +278,9 @@ export class SelectModulePage {
          start_time	: string		= this.form.controls['start_time'].value,
          start_date	: string		= this.form.controls['start_date'].value,
          end_date		: string		= this.form.controls['end_date'].value,
-         every      : string    = this.form.controls['every'].value;
+         every_hour : number    = this.form.controls['every_hour'].value,
+         every_minute : number  = this.form.controls['every_minute'].value,
+         every      : number    = (this.form.controls['every_hour'].value * 3600000) + (this.form.controls['every_minute'].value * 60000);
 
 
      // If we are editing an existing record then handle this scenario
@@ -293,7 +298,9 @@ export class SelectModulePage {
                                 start_time	: start_time,
                                 start_date	: start_date,
                                 end_date		: end_date,
-                                every       : every
+                                every_hour  : every_hour,
+                                every_minute : every_minute,
+                                every        : every
                             })
         .then((data) =>
         {
@@ -319,6 +326,8 @@ export class SelectModulePage {
                             start_time	: start_time,
                             start_date : start_date,
                             end_date		: end_date,
+                            every_hour  : every_hour,
+                            every_minute : every_minute,
                             every       : every
                          })
         .then((data) =>

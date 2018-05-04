@@ -40,6 +40,7 @@
     <ion-item>
        <ion-label stacked>Study Start Date</ion-label>
        <ion-input
+          type="date"
           formControlName="start_date"
           [(ngModel)]="start_date"></ion-input>
  	  </ion-item>
@@ -47,6 +48,7 @@
     <ion-item>
        <ion-label stacked>Study End Date</ion-label>
        <ion-input
+          type="date"
           formControlName="end_date"
           [(ngModel)]="end_date"></ion-input>
  	  </ion-item>
@@ -107,9 +109,11 @@
   <h2> Modules </h2>
   <ion-searchbar [(ngModel)] = "searchbar1" (ionInput)="searchModules($event)"></ion-searchbar>
   <ion-list>
-    <button ion-item *ngFor='let module of modules'> <!-- (click)="viewDocument(module)" -->
-      <h2> {{ module.name }} </h2>
-    </button>
+    <div *ngFor='let module of modules'>
+      <button ion-item (click)=deleteModule(module)> <!-- (click)="viewDocument(module)" -->
+        <h2> {{ module.name }} </h2>
+      </button>
+    </div>
   </ion-list>
 
   <h2> Add Modules </h2>

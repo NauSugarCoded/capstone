@@ -406,7 +406,7 @@ export class BranchingPage {
    */
   deleteDocument() : void
   {
-     this._DB.deleteModules_Question("Modules", this.moduleID, "Questions", this.docID)
+     this._DB.deleteNestedCollection("Modules", this.moduleID, "Questions", this.docID)
      .then((data : any) =>
      {
         this.displayAlert('Success', 'The question ' + this.name + ' was successfully removed');

@@ -202,6 +202,8 @@ export class CreateModulePage {
 					start_time	: string		= this.form.controls['start_time'].value,
 					start_date	: string		= this.form.controls['start_date'].value,
 					end_date		: string		= this.form.controls['end_date'].value,
+					every_hour	: number		= this.form.controls['every_hour'].value,
+					every_minute : number		= this.form.controls['every_minute'].value,
 					every				: number 		= (this.form.controls['every_hour'].value * 3600000) + (this.form.controls['every_minute'].value * 60000),
   		    owner       : string		= this._US.returnUser();
 
@@ -224,6 +226,8 @@ export class CreateModulePage {
 																 start_time	: start_time,
 																 start_date	: start_date,
 																 end_date		: end_date,
+																 every_hour	: every_hour,
+																 every_minute : every_minute,
 																 every			: every,
 	                               owner   : owner
 	                           })
@@ -252,6 +256,8 @@ export class CreateModulePage {
 														 start_time	: start_time,
 														 start_date : start_date,
 														 end_date		: end_date,
+														 every_hour	: every_hour,
+														 every_minute : every_minute,
 														 every			: every,
 	                           owner   : owner
 	                        })
