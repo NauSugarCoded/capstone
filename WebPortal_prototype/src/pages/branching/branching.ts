@@ -259,9 +259,7 @@ export class BranchingPage {
      let branchID8 = '';
 
      for(i = 0; i < this.questions.length; i++){
-       console.log(this.questions[i].quest_id);
        if(branch == this.questions[i].name){
-         console.log("It entered the if statement");
          branchID = this.questions[i].quest_id;
        }
        else if(branch == "-1"){
@@ -349,6 +347,8 @@ export class BranchingPage {
      // If we are editing an existing record then handle this scenario
      if(this.isEditable)
      {
+       console.log(brancharr);
+       console.log(branch, branch2, branch3, branch4);
         // Call the DatabaseProvider service and pass/format the data for use
         // with the updateDocument method
         this._DB.updateModules_Questions(this._COLL,

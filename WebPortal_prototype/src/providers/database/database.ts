@@ -356,7 +356,7 @@ export class DatabaseProvider {
                             collectionObj:string, dataObj: any) : Promise<any>{
     return new Promise((resolve, reject) => {
       this._DB.collection(maincollectionObj).doc(docObj).collection(collectionObj)
-      .doc("1").set({
+      .doc("0").set({
         id             : dataObj.id,
         moduleID       : dataObj.moduleID,
         quest_id       : dataObj.id,
@@ -378,7 +378,7 @@ export class DatabaseProvider {
                               collectionObj:string, dataObj: any) : Promise<any>{
       return new Promise((resolve, reject) => {
         this._DB.collection(maincollectionObj).doc(docObj).collection(collectionObj)
-        .doc("1").set({
+        .doc("0").set({
           id             : dataObj.id,
           moduleID       : dataObj.moduleID,
           quest_id       : dataObj.id,
