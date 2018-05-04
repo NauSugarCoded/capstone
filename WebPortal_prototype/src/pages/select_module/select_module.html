@@ -119,7 +119,7 @@
 
   <h2> Questions </h2>
 
-  <ion-searchbar (ionInput)="searchQuestions($event)"></ion-searchbar>
+  <ion-searchbar [(ngModel)] = "searchbar1" (ionInput)="searchQuestions($event)"></ion-searchbar>
   <ion-list>
     <button ion-item *ngFor='let question of questions' (click)="updateDocument(question)">
       <h2> {{ question.name }} </h2>
@@ -127,7 +127,7 @@
   </ion-list>
 
   <h2> Add Questions </h2>
-  <ion-searchbar (ionInput)="searchOtherQuestions($event)"></ion-searchbar>
+  <ion-searchbar [(ngModel)] = "searchbar2" (ionInput)="searchOtherQuestions($event)"></ion-searchbar>
   <div *ngFor='let quest of quests'>
     <div *ngIf = "email == quest.owner">
       <button ion-item (click)="saveQuestions(quest, docID)">

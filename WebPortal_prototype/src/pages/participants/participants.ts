@@ -53,6 +53,7 @@ export class ParticipantsPage {
    public local         : any;
    public studs         : any;
    public email         : string;
+   public searchbar     : any;
 
 
    constructor(public navCtrl  : NavController,
@@ -87,6 +88,7 @@ export class ParticipantsPage {
       this.retrieveCollection();
       this.retrieveStudies();
       this.email = this._US.returnUser();
+      this.searchbar = '';
    }
 
 

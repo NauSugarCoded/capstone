@@ -60,6 +60,7 @@ export class StudiesPage {
   public url           : any;
   public link          : string;
   public flag          : boolean = false;
+  public searchbar     : any;
 
 
   constructor(public navCtrl  : NavController,
@@ -88,6 +89,7 @@ export class StudiesPage {
   {
      this.retrieveCollection();
      this.email = this._US.returnUser();
+     this.searchbar = '';
      console.log(this.email);
   }
 
@@ -239,7 +241,7 @@ export class StudiesPage {
   searchStudies(input : any){
 
     this.resetLocations();
-    
+
     let val = input.target.value;
     if(val && val.trim() != '') {
       this.locations = this.locations.filter((study) => {

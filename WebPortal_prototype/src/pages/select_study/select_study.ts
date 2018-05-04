@@ -160,9 +160,9 @@ export class SelectStudyPage {
 
   public local_modules    : any;
   public local_mods        : any;
-
-
   public email    : string;
+  public searchbar1 : any;
+  public searchbar2 : any;
 
 
 
@@ -221,6 +221,8 @@ export class SelectStudyPage {
     this.retrieveSubCollection();
     this.retrieveModules();
     this.email = this._US.returnUser();
+    this.searchbar1 = '';
+    this.searchbar2 = '';
   }
 
   retrieveCollection() : void
@@ -313,7 +315,7 @@ export class SelectStudyPage {
                             short_name    : short_name,
                             abstract   : abstract,
                             start_date	: start_date,
-                            end_date    : end,
+                            end    : end,
                             end_date   : end_date,
                             end_time   : end_time
                          })

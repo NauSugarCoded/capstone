@@ -55,6 +55,8 @@ export class QuestionsPage {
 
    public local         : any;
 
+   public searchbar     : any;
+
 
 
    constructor(public navCtrl  : NavController,
@@ -84,6 +86,7 @@ export class QuestionsPage {
    {
       this.retrieveCollection();
       this.email = this._US.returnUser();
+      this.searchbar = '';
    }
 
 
@@ -304,7 +307,7 @@ export class QuestionsPage {
    searchQuestions(input : any){
 
      this.resetLocations();
-     
+
      let val = input.target.value;
      if(val && val.trim() != '') {
        this.locations = this.locations.filter((question) => {

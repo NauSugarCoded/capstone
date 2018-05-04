@@ -67,6 +67,7 @@ export class ModulesPage {
   public secondFlag    : boolean = false;
   public answers       : any;
   public local         : any;
+  public searchbar     : any;
 
 
   constructor(public navCtrl: NavController,
@@ -94,6 +95,7 @@ export class ModulesPage {
    {
       this.retrieveCollection();
       this.email = this._US.returnUser();
+      this.searchbar = '';
    }
 
    /**
@@ -185,7 +187,7 @@ export class ModulesPage {
   searchModules(input : any){
 
     this.resetLocations();
-    
+
     let val = input.target.value;
     if(val && val.trim() != '') {
       this.locations = this.locations.filter((mod) => {

@@ -105,7 +105,7 @@
   </ion-item>
 
   <h2> Modules </h2>
-  <ion-searchbar (ionInput)="searchModules($event)"></ion-searchbar>
+  <ion-searchbar [(ngModel)] = "searchbar1" (ionInput)="searchModules($event)"></ion-searchbar>
   <ion-list>
     <button ion-item *ngFor='let module of modules'> <!-- (click)="viewDocument(module)" -->
       <h2> {{ module.name }} </h2>
@@ -113,7 +113,7 @@
   </ion-list>
 
   <h2> Add Modules </h2>
-  <ion-searchbar (ionInput)="searchOtherModules($event)"></ion-searchbar>
+  <ion-searchbar [(ngModel)] = "searchbar2" (ionInput)="searchOtherModules($event)"></ion-searchbar>
   <div *ngFor='let mod of mods'>
     <div *ngIf = "email == mod.owner">
       <button ion-item (click)="saveDocument(mod)">

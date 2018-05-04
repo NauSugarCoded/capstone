@@ -16,7 +16,7 @@
     Add a new Study
   </button>
 
-  <ion-searchbar (ionInput)="searchStudies($event)"></ion-searchbar>
+  <ion-searchbar [(ngModel)] = "searchbar" (ionInput)="searchStudies($event)"></ion-searchbar>
   <div *ngFor='let location of locations'>
     <div *ngIf = "email == location.owner">
       <button ion-item (click)="updateDocument(location)">

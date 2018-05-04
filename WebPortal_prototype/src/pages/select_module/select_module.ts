@@ -181,6 +181,8 @@ export class SelectModulePage {
 
   public local_quests   : any;
   public local_questions : any;
+  public searchbar1      : any;
+  public searchbar2      : any;
 
   constructor(public navCtrl        : NavController,
               public params         : NavParams,
@@ -237,6 +239,8 @@ export class SelectModulePage {
     }
 
     this.email = this._US.returnUser();
+    this.searchbar1 = '';
+    this.searchbar2 = '';
   }
 
   retrieveCollection() : void
