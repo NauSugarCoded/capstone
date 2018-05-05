@@ -227,7 +227,7 @@ var SelectStudyPage = (function () {
     };
     SelectStudyPage.prototype.updateStudy = function (obj) {
         var _this = this;
-        var full_name = this.form.controls["full_name"].value, short_name = this.form.controls["short_name"].value, abstract = this.form.controls["abstract"].value, start_date = this.form.controls["start_date"].value, end = this.form.controls["end_date"].value + "T" + this.form.controls["end_time"].value, end_date = this.form.controls["end_date"].value, end_time = this.form.controls["end_time"].value;
+        var full_name = this.form.controls["full_name"].value, short_name = this.form.controls["short_name"].value, abstract = this.form.controls["abstract"].value, start_date = this.form.controls["start_date"].value, end = this.form.controls["end_date"].value + "T" + this.form.controls["end_time"].value + ":00", end_date = this.form.controls["end_date"].value, end_time = this.form.controls["end_time"].value;
         // If we are editing an existing record then handle this scenario
         if (this.isEditable) {
             // Call the DatabaseProvider service and pass/format the data for use

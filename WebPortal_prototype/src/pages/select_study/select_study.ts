@@ -272,7 +272,7 @@ export class SelectStudyPage {
          short_name        : string 		= this.form.controls["short_name"].value,
          abstract       : string		= this.form.controls["abstract"].value,
          start_date       : string		= this.form.controls["start_date"].value,
-         end							: string = this.form.controls["end_date"].value + "T" + this.form.controls["end_time"].value,
+         end							: string = this.form.controls["end_date"].value + "T" + this.form.controls["end_time"].value + ":00",
          end_date       : string		= this.form.controls["end_date"].value,
          end_time       : string    = this.form.controls["end_time"].value;
 

@@ -193,7 +193,7 @@ export class CreateStudyPage {
 					start_date       : string		= this.form.controls["start_date"].value,
           end_date       : string		= this.form.controls["end_date"].value,
 					end_time				: string  = this.form.controls["end_time"].value,
-					end							: string = this.form.controls["end_date"].value + "T" + this.form.controls["end_time"].value,
+					end							: string = this.form.controls["end_date"].value + "T" + this.form.controls["end_time"].value + ":00",
 					owner 					: string = this._US.returnUser();
 
       // If we are editing an existing record then handle this scenario
