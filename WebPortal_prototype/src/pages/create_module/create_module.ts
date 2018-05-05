@@ -210,6 +210,8 @@ export class CreateModulePage {
 			if(every == 0)
 			{
 				every=null;
+				every_hour = null;
+				every_minute =null;
 			}
       // If we are editing an existing record then handle this scenario
       if(this.isEditable)

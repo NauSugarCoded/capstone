@@ -282,7 +282,12 @@ export class SelectModulePage {
          every_minute : number  = this.form.controls['every_minute'].value,
          every      : number    = (this.form.controls['every_hour'].value * 3600000) + (this.form.controls['every_minute'].value * 60000);
 
-
+     if(every == 0 || every == null)
+     {
+       every=null;
+       every_hour = null;
+       every_minute =null;
+     }
      // If we are editing an existing record then handle this scenario
      if(this.isEditable)
      {
@@ -343,6 +348,11 @@ export class SelectModulePage {
 
   deleteDocument() : void
   {
+     let i = 0;
+     for(i = 0; i < this.questions.length; i++)
+     {
+       this._DB.deleteNestedCollection("Modules", this.docID, "Questions", this.questions[i].id);
+     }
      this._DB.deleteDocument(this._COLL,
                 this.docID)
      .then((data : any) =>

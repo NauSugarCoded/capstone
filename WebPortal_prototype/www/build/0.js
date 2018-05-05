@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 1268:
+/***/ 1269:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -209,7 +209,7 @@ var SelectStudyPage = (function () {
      */
     SelectStudyPage.prototype.retrieveSubCollection = function () {
         var _this = this;
-        this._DB.getStudies_Modules(this._COLL, this.docID, "modules")
+        this._DB.getStudies_Modules(this._COLL, this.docID, "Modules")
             .then(function (data) {
             _this.modules = data;
             _this.local_modules = data;
@@ -270,7 +270,7 @@ var SelectStudyPage = (function () {
     };
     SelectStudyPage.prototype.saveDocument = function (val) {
         var _this = this;
-        this._DB.addStudies_Modules(this._COLL, this.docID, "modules", val)
+        this._DB.addStudies_Modules(this._COLL, this.docID, "Modules", val)
             .then(function (data) {
             _this.displayAlert('Success', 'The module ' + val.name + ' was successfully added');
             _this.retrieveSubCollection();
@@ -288,6 +288,10 @@ var SelectStudyPage = (function () {
     };
     SelectStudyPage.prototype.deleteDocument = function () {
         var _this = this;
+        var i = 0;
+        for (i = 0; i < this.modules.length; i++) {
+            this._DB.deleteNestedCollection("Studies", this.docID, "Modules", this.modules[i].id);
+        }
         this._DB.deleteDocument(this._COLL, this.docID)
             .then(function (data) {
             _this.displayAlert('Success', 'The study ' + _this.short_name + ' was successfully removed');
@@ -299,7 +303,7 @@ var SelectStudyPage = (function () {
     };
     SelectStudyPage.prototype.deleteModule = function (object) {
         var _this = this;
-        this._DB.deleteNestedCollection("Studies", this.docID, "modules", object.id)
+        this._DB.deleteNestedCollection("Studies", this.docID, "Modules", object.id)
             .then(function (data) {
             _this.displayAlert('Success', 'The module ' + object.name + ' was successfully removed');
             _this.retrieveSubCollection();
