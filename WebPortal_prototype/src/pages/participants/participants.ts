@@ -55,6 +55,11 @@ export class ParticipantsPage {
    public email         : string;
    public searchbar     : any;
 
+   public flag          : boolean = false;
+   public firstFlag     : boolean = false;
+   public secondFlag    : boolean = false;
+   public link          : string;
+
 
    constructor(public navCtrl  : NavController,
                private _DB     : DatabaseProvider,
@@ -252,6 +257,29 @@ export class ParticipantsPage {
          return(participant.study.toLowerCase().indexOf(val.toLowerCase()) > -1);
        })
      }
+   }
+
+   exportAnswers_Modules(){
+     this._DB.exportParticipants(this.email);
+     this.flag = true;
+   }
+
+   setLink() : void
+   {
+     this._DB.downloadParticipants();
+     this.firstFlag = true;
+   }
+
+   createLink() : void
+   {
+     this.link = this._DB.returnURL();
+     console.log(this.link);
+     this.secondFlag = true;
+   }
+
+   downloadFile() : void
+   {
+     window.location.href = this.link["i"];
    }
 
 

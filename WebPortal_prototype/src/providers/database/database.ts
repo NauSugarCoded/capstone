@@ -23,6 +23,7 @@ export class DatabaseProvider {
   public data = {};
   public csv = [["Module Name","Participant ID", "Date", "Data"]];
   public i = 0;
+  public participantList = [["Number", "Participant ID"]];
 
   constructor(public http: HttpClient) {
     console.log('Hello DatabaseQuestionsProvider Provider');
@@ -614,6 +615,25 @@ export class DatabaseProvider {
       });
     }
 
+    exportParticipants(owner : any){
+      this.participantList = [["Number", "Participant ID"]];
+      this.i = 1;
+      this._DB.collection("Participants").get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          console.log(doc.data().owner);
+          if(doc.data().owner == owner){
+            this.participantList[this.i] = [this.i, doc.id];
+            this.i += 1;
+          }
+        })
+        this.createParticipantCSV();
+      })
+      .catch((error : any) => {
+        console.log(error);
+      });
+    }
+
     exportAnswers_Modules_helper(moduleID : string, user : any, moduleName : string){
 
       console.log(user);
@@ -628,11 +648,13 @@ export class DatabaseProvider {
           this.csv[this.i] = [moduleName, user, doc.id, stringData];
           this.data[moduleID][user][doc.id] = doc.data();
         })
-
         this.uploadJSON(moduleName);
-
       })
+      .catch((error : any) => {
+        console.log(error);
+      });
     }
+
 
     createJSON(moduleID : string, userList : any, moduleName : string) {
 
@@ -651,6 +673,9 @@ export class DatabaseProvider {
       this.filename = 'firestore-answers-to-module-' + moduleName + '.json';
       this.ref.child(this.filename).putString(myData).then(function(snapshot) {
         console.log('Uploaded JSON');
+      })
+      .catch((error : any) => {
+        console.log(error);
       });
     }
 
@@ -665,11 +690,36 @@ export class DatabaseProvider {
       this.filename = 'firestore-answers-to-module-' + moduleName + '.csv';
       this.ref.child(this.filename).putString(csvContent).then(function(snapshot) {
         console.log('Uploaded CSV');
+      })
+      .catch((error : any) => {
+        console.log(error);
+      });
+    }
+
+    createParticipantCSV() {
+      let csvContent = "";
+      this.participantList.forEach(function(rowArray) {
+        let row = rowArray.join(",");
+        csvContent += row + "\r\n";
+      });
+
+      this.filename = 'firestore-participants.csv';
+      this.ref.child(this.filename).putString(csvContent).then(function(snapshot) {
+        console.log('Uploaded CSV');
+      })
+      .catch((error : any) => {
+        console.log(error);
       });
     }
 
     downloadAnswers_Modules(moduleName : string): void {
       var fileRef = this.storage.ref('firestore-answers-to-module-' + moduleName + '.csv');
+      this.url = fileRef.getDownloadURL();
+      console.log(this.url);
+    }
+
+    downloadParticipants() {
+      var fileRef = this.storage.ref('firestore-participants.csv');
       this.url = fileRef.getDownloadURL();
       console.log(this.url);
     }
