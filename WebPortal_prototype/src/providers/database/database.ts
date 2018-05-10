@@ -23,6 +23,7 @@ export class DatabaseProvider {
   public data = {};
   public csv = [["Module Name","Participant ID", "Date", "Data"]];
   public i = 0;
+  public j = 0;
   public participantList = [["Number", "Participant ID"]];
 
   constructor(public http: HttpClient) {
@@ -595,7 +596,7 @@ export class DatabaseProvider {
         });
     }
 
-    exportAnswers_Modules(moduleID : string, moduleName : string){
+    exportAnswers_Modules(moduleID : string, moduleName : string) : any{
 
       this.data = {};
       this.csv = [["Module Name","Participant ID", "Date", "Data"]];
@@ -608,30 +609,33 @@ export class DatabaseProvider {
           userList.push(doc.id);
           this.data[moduleID][doc.id] = {};
         })
-        this.createJSON(moduleID, userList, moduleName);
+        return Promise.resolve(userList);
       })
       .catch((error : any) => {
         console.log(error);
       });
+
+      return Promise.resolve(userList);
     }
 
-    exportParticipants(owner : any){
-      this.participantList = [["Number", "Participant ID"]];
+    exportParticipants(owner : any) : any{
+      let participantList = [["Number", "Participant ID"]];
       this.i = 1;
       this._DB.collection("Participants").get()
       .then(snapshot => {
         snapshot.forEach(doc => {
-          console.log(doc.data().owner);
           if(doc.data().owner == owner){
-            this.participantList[this.i] = [this.i, doc.id];
+            participantList[this.i] = [this.i, doc.id];
             this.i += 1;
           }
         })
-        this.createParticipantCSV();
+        return Promise.resolve(participantList);
       })
       .catch((error : any) => {
         console.log(error);
       });
+
+      return Promise.resolve(participantList);
     }
 
     exportAnswers_Modules_helper(moduleID : string, user : any, moduleName : string){
@@ -648,7 +652,7 @@ export class DatabaseProvider {
           this.csv[this.i] = [moduleName, user, doc.id, stringData];
           this.data[moduleID][user][doc.id] = doc.data();
         })
-        this.uploadJSON(moduleName);
+
       })
       .catch((error : any) => {
         console.log(error);
@@ -656,27 +660,36 @@ export class DatabaseProvider {
     }
 
 
-    createJSON(moduleID : string, userList : any, moduleName : string) {
+    createJSON(moduleID : string, userList : any, moduleName : string) : any{
 
+      this.j = 0;
       userList.forEach((user) =>{
         this.exportAnswers_Modules_helper(moduleID, user, moduleName);
+        this.j += 1;
       })
 
+      if(this.j == userList.length){
+        return Promise.resolve(moduleName);
+      }
     }
 
-    uploadJSON(moduleName : string) {
+    uploadJSON(moduleName : string) : any {
       console.log(this.data);
       console.log(this.csv);
       console.log(this.i);
       this.createCSV(moduleName);
+      var that = this;
       var myData =  JSON.stringify(this.data);
       this.filename = 'firestore-answers-to-module-' + moduleName + '.json';
       this.ref.child(this.filename).putString(myData).then(function(snapshot) {
         console.log('Uploaded JSON');
+        return Promise.resolve(moduleName);
       })
       .catch((error : any) => {
         console.log(error);
       });
+
+      return Promise.resolve(moduleName);
     }
 
     createCSV(moduleName : string) {
@@ -696,9 +709,9 @@ export class DatabaseProvider {
       });
     }
 
-    createParticipantCSV() {
+    createParticipantCSV(participantList : any) : any{
       let csvContent = "";
-      this.participantList.forEach(function(rowArray) {
+      participantList.forEach(function(rowArray) {
         let row = rowArray.join(",");
         csvContent += row + "\r\n";
       });
@@ -706,22 +719,26 @@ export class DatabaseProvider {
       this.filename = 'firestore-participants.csv';
       this.ref.child(this.filename).putString(csvContent).then(function(snapshot) {
         console.log('Uploaded CSV');
+        return Promise.resolve(participantList);
       })
       .catch((error : any) => {
         console.log(error);
       });
+      return Promise.resolve(participantList);
     }
 
-    downloadAnswers_Modules(moduleName : string): void {
+    downloadAnswers_Modules(moduleName : string): any {
       var fileRef = this.storage.ref('firestore-answers-to-module-' + moduleName + '.csv');
       this.url = fileRef.getDownloadURL();
       console.log(this.url);
+      return Promise.resolve(this.url);
     }
 
-    downloadParticipants() {
+    downloadParticipants() : any {
       var fileRef = this.storage.ref('firestore-participants.csv');
       this.url = fileRef.getDownloadURL();
       console.log(this.url);
+      return Promise.resolve(this.url);
     }
 
     returnURL() : any {
