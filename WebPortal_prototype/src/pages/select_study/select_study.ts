@@ -246,7 +246,7 @@ export class SelectStudyPage {
    */
   retrieveSubCollection() : void
   {
-     this._DB.getStudies_Modules(this._COLL, this.docID, "Modules")
+     this._DB.getStudies_Modules(this._COLL, this.docID, "modules")
      .then((data) =>
      {
        this.modules = data;
@@ -332,7 +332,7 @@ export class SelectStudyPage {
 
    saveDocument(val : any)
    {
-     this._DB.addStudies_Modules(this._COLL, this.docID, "Modules", val)
+     this._DB.addStudies_Modules(this._COLL, this.docID, "modules", val)
      .then((data : any) =>
      {
        this.displayAlert('Success', 'The module ' + val.name + ' was successfully added');
@@ -358,7 +358,7 @@ export class SelectStudyPage {
      let i = 0;
      for(i = 0; i < this.modules.length; i++)
      {
-       this._DB.deleteNestedCollection("Studies", this.docID, "Modules", this.modules[i].id);
+       this._DB.deleteNestedCollection("Studies", this.docID, "modules", this.modules[i].id);
      }
       this._DB.deleteDocument(this._COLL,
                  this.docID)
@@ -375,7 +375,7 @@ export class SelectStudyPage {
 
    deleteModule(object) : void
    {
-      this._DB.deleteNestedCollection("Studies", this.docID, "Modules", object.id)
+      this._DB.deleteNestedCollection("Studies", this.docID, "modules", object.id)
       .then((data : any) =>
       {
          this.displayAlert('Success', 'The module ' + object.name + ' was successfully removed');

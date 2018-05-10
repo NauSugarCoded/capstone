@@ -85,6 +85,18 @@ export class DatabaseProvider {
            option6  :doc.data().option6,
            option7  :doc.data().option7,
            option8  :doc.data().option8,
+           option9  :doc.data().option9,
+           option10  :doc.data().option10,
+           option11  :doc.data().option11,
+           option12  :doc.data().option12,
+           option13  :doc.data().option13,
+           option14  :doc.data().option14,
+           option15  :doc.data().option15,
+           option16  :doc.data().option16,
+           option17  :doc.data().option17,
+           option18  :doc.data().option18,
+           option19  :doc.data().option19,
+           option20  :doc.data().option20,
            leftLabel  :doc.data().leftLabel,
            rightLabel  :doc.data().rightLabel
           });
@@ -124,37 +136,6 @@ export class DatabaseProvider {
     });
   }
 
-  /*getOptions_Modules(collectionObj: string) : Promise<any>{
-    return new Promise((resolve, reject) => {
-      this._DB.collection(collectionObj)
-      .get()
-      .then((querySnapshot) => {
-        let obj : any = [];
-
-        querySnapshot
-        .forEach((doc: any) => {
-          obj.push({
-           id             : doc.id,
-           name           : doc.data().name,
-           type     : doc.data().type,
-           qtext    : doc.data().qtext,
-           owner    : doc.data().owner,
-           option1  : doc.data().option1,
-           option2  : doc.data().option2,
-           option3  : doc.data().option3,
-           option4  : doc.data().option4,
-           option5  : doc.data().option5,
-           option6  : doc.data().option6,
-          });
-        });
-
-        resolve(obj);
-      })
-      .catch((error : any) => {
-        reject(error);
-      });
-    });
-  }*/
 
   getParticipants(collectionObj: string) : Promise<any>{
     return new Promise((resolve, reject) => {
@@ -398,6 +379,18 @@ export class DatabaseProvider {
           option6  : dataObj.option6,
           option7  : dataObj.option7,
           option8  : dataObj.option8,
+          option9  : dataObj.option9,
+          option10  : dataObj.option10,
+          option11  : dataObj.option11,
+          option12  : dataObj.option12,
+          option13  : dataObj.option13,
+          option14  : dataObj.option14,
+          option15  : dataObj.option15,
+          option16  : dataObj.option16,
+          option17  : dataObj.option17,
+          option18  : dataObj.option18,
+          option19  : dataObj.option19,
+          option20  : dataObj.option20,
           options : dataObj.options,
         })
         .then((obj : any) => {

@@ -130,6 +130,91 @@ export class CreateQuestionRadioPage {
     */
    public option8 	: string          = '';
 
+	 /**
+		* @name option9
+		* @type {string}
+		* @public
+		* @description     Model for established form field
+		*/
+	 public option9 	: string          = '';
+	 /**
+		* @name option10
+		* @type {string}
+		* @public
+		* @description     Model for established form field
+		*/
+	 public option10 	: string          = '';
+	 /**
+		* @name option11
+		* @type {string}
+		* @public
+		* @description     Model for established form field
+		*/
+	 public option11 	: string          = '';
+	 /**
+		* @name option12
+		* @type {string}
+		* @public
+		* @description     Model for established form field
+		*/
+	 public option12 	: string          = '';
+	 /**
+		* @name option13
+		* @type {string}
+		* @public
+		* @description     Model for established form field
+		*/
+	 public option13 	: string          = '';
+	 /**
+		* @name option14
+		* @type {string}
+		* @public
+		* @description     Model for established form field
+		*/
+	 public option14 	: string          = '';
+	 /**
+		* @name option15
+		* @type {string}
+		* @public
+		* @description     Model for established form field
+		*/
+	 public option15 	: string          = '';
+	 /**
+		* @name option16
+		* @type {string}
+		* @public
+		* @description     Model for established form field
+		*/
+	 public option16 	: string          = '';
+	 /**
+		* @name option17
+		* @type {string}
+		* @public
+		* @description     Model for established form field
+		*/
+	 public option17 	: string          = '';
+	 /**
+		* @name option18
+		* @type {string}
+		* @public
+		* @description     Model for established form field
+		*/
+	 public option18 	: string          = '';
+	 /**
+		* @name option19
+		* @type {string}
+		* @public
+		* @description     Model for established form field
+		*/
+	 public option19 	: string          = '';
+	 /**
+		* @name option20
+		* @type {string}
+		* @public
+		* @description     Model for established form field
+		*/
+	 public option20 	: string          = '';
+
    /**
     * @name docID
     * @type {string}
@@ -195,7 +280,19 @@ export class CreateQuestionRadioPage {
 				 'option5'				: [''],
 				 'option6'				: [''],
          'option7'				: [''],
-         'option8'				: ['']
+         'option8'				: [''],
+				 'option9'				: [''],
+				 'option10'				: [''],
+				 'option11'				: [''],
+				 'option12'				: [''],
+				 'option13'				: [''],
+				 'option14'				: [''],
+				 'option15'				: [''],
+				 'option16'				: [''],
+				 'option17'				: [''],
+				 'option18'				: [''],
+				 'option19'				: [''],
+				 'option20'				: ['']
       });
 
 
@@ -216,6 +313,18 @@ export class CreateQuestionRadioPage {
 					this.option6 		      = record.location.option6;
           this.option7 		      = record.location.option7;
           this.option8 		      = record.location.option8;
+					this.option9 		      = record.location.option9;
+					this.option10 		      = record.location.option10;
+					this.option11 		      = record.location.option11;
+					this.option12 		      = record.location.option12;
+					this.option13 		      = record.location.option13;
+					this.option14 		      = record.location.option14;
+					this.option15 		      = record.location.option15;
+					this.option16 		      = record.location.option16;
+					this.option17 		      = record.location.option17;
+					this.option18 		      = record.location.option18;
+					this.option19 		      = record.location.option19;
+					this.option20 		      = record.location.option20;
           this.options          = record.location.options;
           this.docID            = record.location.id;
           this.owner						= record.location.owner;
@@ -250,6 +359,18 @@ export class CreateQuestionRadioPage {
 					option6 		: string 		= this.form.controls["option6"].value.trim(),
           option7 		: string 		= this.form.controls["option7"].value.trim(),
           option8 		: string 		= this.form.controls["option8"].value.trim(),
+					option9 		: string 		= this.form.controls["option9"].value.trim(),
+					option10 		: string 		= this.form.controls["option10"].value.trim(),
+					option11 		: string 		= this.form.controls["option11"].value.trim(),
+					option12 		: string 		= this.form.controls["option12"].value.trim(),
+					option13 		: string 		= this.form.controls["option13"].value.trim(),
+					option14 		: string 		= this.form.controls["option14"].value.trim(),
+					option15 		: string 		= this.form.controls["option15"].value.trim(),
+					option16 		: string 		= this.form.controls["option16"].value.trim(),
+					option17 		: string 		= this.form.controls["option17"].value.trim(),
+					option18 		: string 		= this.form.controls["option18"].value.trim(),
+					option19 		: string 		= this.form.controls["option19"].value.trim(),
+					option20 		: string 		= this.form.controls["option20"].value.trim(),
           iter        : any       = [option1, option2, option3, option4, option5, option6, option7, option8],
           options     : any       = [],
           owner				: string		= this._US.returnUser();
@@ -284,6 +405,18 @@ export class CreateQuestionRadioPage {
 																 option6 : option6,
                                  option7 : option7,
                                  option8 : option8,
+																 option9 : option9,
+																 option10 : option10,
+																 option11 : option11,
+																 option12 : option12,
+																 option13 : option13,
+																 option14 : option14,
+																 option15 : option15,
+																 option16 : option16,
+																 option17 : option17,
+																 option18 : option18,
+																 option19 : option19,
+																 option20 : option20,
                                  options : options,
                                  owner	 : owner
 	                           })
@@ -317,6 +450,18 @@ export class CreateQuestionRadioPage {
 														 option6 : option6,
                              option7 : option7,
                              option8 : option8,
+														 option9 : option9,
+														 option10 : option10,
+														 option11 : option11,
+														 option12 : option12,
+														 option13 : option13,
+														 option14 : option14,
+														 option15 : option15,
+														 option16 : option16,
+														 option17 : option17,
+														 option18 : option18,
+														 option19 : option19,
+														 option20 : option20,
                              options : options,
                              owner	 : owner
 	                        })
@@ -376,6 +521,18 @@ export class CreateQuestionRadioPage {
 			this.option6 	= '';
       this.option7 	= '';
       this.option8 	= '';
+			this.option9 	= '';
+			this.option10 	= '';
+			this.option11 	= '';
+			this.option12 	= '';
+			this.option13 	= '';
+			this.option14 	= '';
+			this.option15 	= '';
+			this.option16 	= '';
+			this.option17 	= '';
+			this.option18 	= '';
+			this.option19 	= '';
+			this.option20 	= '';
    }
 
 

@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 1270:
+/***/ 1232:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SelectStudyPageModule", function() { return SelectStudyPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__select_study__ = __webpack_require__(1284);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__select_study__ = __webpack_require__(1246);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,7 +38,7 @@ var SelectStudyPageModule = (function () {
 
 /***/ }),
 
-/***/ 1284:
+/***/ 1246:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -209,7 +209,7 @@ var SelectStudyPage = (function () {
      */
     SelectStudyPage.prototype.retrieveSubCollection = function () {
         var _this = this;
-        this._DB.getStudies_Modules(this._COLL, this.docID, "Modules")
+        this._DB.getStudies_Modules(this._COLL, this.docID, "modules")
             .then(function (data) {
             _this.modules = data;
             _this.local_modules = data;
@@ -270,7 +270,7 @@ var SelectStudyPage = (function () {
     };
     SelectStudyPage.prototype.saveDocument = function (val) {
         var _this = this;
-        this._DB.addStudies_Modules(this._COLL, this.docID, "Modules", val)
+        this._DB.addStudies_Modules(this._COLL, this.docID, "modules", val)
             .then(function (data) {
             _this.displayAlert('Success', 'The module ' + val.name + ' was successfully added');
             _this.retrieveSubCollection();
@@ -290,7 +290,7 @@ var SelectStudyPage = (function () {
         var _this = this;
         var i = 0;
         for (i = 0; i < this.modules.length; i++) {
-            this._DB.deleteNestedCollection("Studies", this.docID, "Modules", this.modules[i].id);
+            this._DB.deleteNestedCollection("Studies", this.docID, "modules", this.modules[i].id);
         }
         this._DB.deleteDocument(this._COLL, this.docID)
             .then(function (data) {
@@ -303,7 +303,7 @@ var SelectStudyPage = (function () {
     };
     SelectStudyPage.prototype.deleteModule = function (object) {
         var _this = this;
-        this._DB.deleteNestedCollection("Studies", this.docID, "Modules", object.id)
+        this._DB.deleteNestedCollection("Studies", this.docID, "modules", object.id)
             .then(function (data) {
             _this.displayAlert('Success', 'The module ' + object.name + ' was successfully removed');
             _this.retrieveSubCollection();
@@ -355,16 +355,12 @@ var SelectStudyPage = (function () {
     };
     SelectStudyPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-select-study',template:/*ion-inline-start:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\select_study\select_study.html"*/'<!--\n\n  Generated template for the SelectStudyPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{ short_name }}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n  <form\n\n    [formGroup]=\'form\'\n\n    (ngSubmit)=\'updateStudy(form.value)\'>\n\n\n\n\n\n    <ion-item>\n\n      <ion-label stacked>Study Full Name</ion-label>\n\n      <ion-input\n\n        type=\'text\'\n\n        formControlName= "full_name"\n\n        [(ngModel)]="full_name">\n\n      </ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n       <ion-label stacked>Study Short Name</ion-label>\n\n       <ion-input\n\n          type="text"\n\n          formControlName="short_name"\n\n          [(ngModel)]="short_name"></ion-input>\n\n 	  </ion-item>\n\n\n\n    <ion-item>\n\n       <ion-label stacked>Study Start Date</ion-label>\n\n       <ion-input\n\n          type="date"\n\n          formControlName="start_date"\n\n          [(ngModel)]="start_date"></ion-input>\n\n 	  </ion-item>\n\n\n\n    <ion-item>\n\n       <ion-label stacked>Study End Date</ion-label>\n\n       <ion-input\n\n          type="date"\n\n          formControlName="end_date"\n\n          [(ngModel)]="end_date"></ion-input>\n\n 	  </ion-item>\n\n\n\n    <ion-item>\n\n       <ion-label stacked> End Time </ion-label>\n\n       <ion-datetime\n\n          displayFormat="hh:mma"\n\n          type="time"\n\n          formControlName="end_time"\n\n          [(ngModel)]="end_time"></ion-datetime>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n       <ion-label stacked>Description</ion-label>\n\n       <ion-input\n\n          type="text"\n\n          formControlName="abstract"\n\n          [(ngModel)]="abstract"></ion-input>\n\n 	  </ion-item>\n\n\n\n    <ion-item>\n\n       <button\n\n         ion-button\n\n         block\n\n         color="primary"\n\n         text-center\n\n         padding-top\n\n         padding-bottom\n\n         [disabled]="!form.valid">\n\n          <div *ngIf="!isEditable">\n\n             Add a new study\n\n          </div>\n\n\n\n          <div *ngIf="isEditable">\n\n             Update this study\n\n          </div>\n\n          </button>\n\n 	  </ion-item>\n\n  </form>\n\n\n\n  <ion-item>\n\n  <div *ngIf="isEditable">\n\n      <button\n\n        ion-button\n\n        block\n\n        color="danger"\n\n        text-center\n\n        padding-top\n\n        padding-bottom\n\n        [disabled]="!form.valid"\n\n        (click)="deleteDocument()">\n\n        Delete study\n\n      </button>\n\n    </div>\n\n  </ion-item>\n\n\n\n  <h2> Modules </h2>\n\n  <ion-searchbar [(ngModel)] = "searchbar1" (ionInput)="searchModules($event)"></ion-searchbar>\n\n  <ion-list>\n\n    <div *ngFor=\'let module of modules\'>\n\n      <button ion-item (click)=deleteModule(module)> <!-- (click)="viewDocument(module)" -->\n\n        <h2> {{ module.name }} </h2>\n\n      </button>\n\n    </div>\n\n  </ion-list>\n\n\n\n  <h2> Add Modules </h2>\n\n  <ion-searchbar [(ngModel)] = "searchbar2" (ionInput)="searchOtherModules($event)"></ion-searchbar>\n\n  <div *ngFor=\'let mod of mods\'>\n\n    <div *ngIf = "email == mod.owner">\n\n      <button ion-item (click)="saveDocument(mod)">\n\n        {{ mod.name }}\n\n      </button>\n\n    </div>\n\n  </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\select_study\select_study.html"*/,
+            selector: 'page-select-study',template:/*ion-inline-start:"/home/chantz/Desktop/projects/capstone/WebPortal_prototype/src/pages/select_study/select_study.html"*/'<!--\n  Generated template for the SelectStudyPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ short_name }}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <form\n    [formGroup]=\'form\'\n    (ngSubmit)=\'updateStudy(form.value)\'>\n\n\n    <ion-item>\n      <ion-label stacked>Study Full Name</ion-label>\n      <ion-input\n        type=\'text\'\n        formControlName= "full_name"\n        [(ngModel)]="full_name">\n      </ion-input>\n    </ion-item>\n\n    <ion-item>\n       <ion-label stacked>Study Short Name</ion-label>\n       <ion-input\n          type="text"\n          formControlName="short_name"\n          [(ngModel)]="short_name"></ion-input>\n 	  </ion-item>\n\n    <ion-item>\n       <ion-label stacked>Study Start Date</ion-label>\n       <ion-input\n          type="date"\n          formControlName="start_date"\n          [(ngModel)]="start_date"></ion-input>\n 	  </ion-item>\n\n    <ion-item>\n       <ion-label stacked>Study End Date</ion-label>\n       <ion-input\n          type="date"\n          formControlName="end_date"\n          [(ngModel)]="end_date"></ion-input>\n 	  </ion-item>\n\n    <ion-item>\n       <ion-label stacked> End Time </ion-label>\n       <ion-datetime\n          displayFormat="hh:mma"\n          type="time"\n          formControlName="end_time"\n          [(ngModel)]="end_time"></ion-datetime>\n    </ion-item>\n\n    <ion-item>\n       <ion-label stacked>Description</ion-label>\n       <ion-input\n          type="text"\n          formControlName="abstract"\n          [(ngModel)]="abstract"></ion-input>\n 	  </ion-item>\n\n    <ion-item>\n       <button\n         ion-button\n         block\n         color="primary"\n         text-center\n         padding-top\n         padding-bottom\n         [disabled]="!form.valid">\n          <div *ngIf="!isEditable">\n             Add a new study\n          </div>\n\n          <div *ngIf="isEditable">\n             Update this study\n          </div>\n          </button>\n 	  </ion-item>\n  </form>\n\n  <ion-item>\n  <div *ngIf="isEditable">\n      <button\n        ion-button\n        block\n        color="danger"\n        text-center\n        padding-top\n        padding-bottom\n        [disabled]="!form.valid"\n        (click)="deleteDocument()">\n        Delete study\n      </button>\n    </div>\n  </ion-item>\n\n  <h2> Modules </h2>\n  <ion-searchbar [(ngModel)] = "searchbar1" (ionInput)="searchModules($event)"></ion-searchbar>\n  <ion-list>\n    <div *ngFor=\'let module of modules\'>\n      <button ion-item (click)=deleteModule(module)> <!-- (click)="viewDocument(module)" -->\n        <h2> {{ module.name }} </h2>\n      </button>\n    </div>\n  </ion-list>\n\n  <h2> Add Modules </h2>\n  <ion-searchbar [(ngModel)] = "searchbar2" (ionInput)="searchOtherModules($event)"></ion-searchbar>\n  <div *ngFor=\'let mod of mods\'>\n    <div *ngIf = "email == mod.owner">\n      <button ion-item (click)="saveDocument(mod)">\n        {{ mod.name }}\n      </button>\n    </div>\n  </div>\n\n</ion-content>\n'/*ion-inline-end:"/home/chantz/Desktop/projects/capstone/WebPortal_prototype/src/pages/select_study/select_study.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormBuilder */],
-            __WEBPACK_IMPORTED_MODULE_3__providers_database_database__["a" /* DatabaseProvider */],
-            __WEBPACK_IMPORTED_MODULE_4__providers_usersservice_usersservice__["a" /* UsersserviceProvider */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormBuilder */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__providers_database_database__["a" /* DatabaseProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_database_database__["a" /* DatabaseProvider */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__providers_usersservice_usersservice__["a" /* UsersserviceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_usersservice_usersservice__["a" /* UsersserviceProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */]) === "function" && _f || Object])
     ], SelectStudyPage);
     return SelectStudyPage;
+    var _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=select_study.js.map

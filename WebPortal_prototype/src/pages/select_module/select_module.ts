@@ -167,6 +167,19 @@ export class SelectModulePage {
   private option6       : string;
   private option7       : string;
   private option8       : string;
+  private option9       : string;
+  private option10       : string;
+  private option11       : string;
+  private option12       : string;
+  private option13       : string;
+  private option14       : string;
+  private option15       : string;
+  private option16       : string;
+  private option17       : string;
+  private option18       : string;
+  private option19       : string;
+  private option20       : string;
+
   private opts          : any;
 
   public quest_id       : any;
@@ -438,6 +451,18 @@ export class SelectModulePage {
                              																  option6 : opts[5],
                                                               option7 : opts[6],
                                                               option8 : opts[7],
+                                                              option9 : opts[8],
+                                                              option10 : opts[9],
+                                                              option11 : opts[10],
+                                                              option12 : opts[11],
+                                                              option13 : opts[12],
+                                                              option14 : opts[13],
+                                                              option15 : opts[14],
+                                                              option16 : opts[15],
+                                                              option17 : opts[16],
+                                                              option18 : opts[17],
+                                                              option19 : opts[18],
+                                                              option20 : opts[19],
                                                               moduleID : moduleID,
                                                               options : opts
                                                             })
@@ -472,6 +497,18 @@ export class SelectModulePage {
                              																  option6 : opts[5],
                                                               option7 : opts[6],
                                                               option8 : opts[7],
+                                                              option9 : opts[8],
+                                                              option10 : opts[9],
+                                                              option11 : opts[10],
+                                                              option12 : opts[11],
+                                                              option13 : opts[12],
+                                                              option14 : opts[13],
+                                                              option15 : opts[14],
+                                                              option16 : opts[15],
+                                                              option17 : opts[16],
+                                                              option18 : opts[17],
+                                                              option19 : opts[18],
+                                                              option20 : opts[19],
                                                               moduleID : moduleID,
                                                               options : opts
 
@@ -514,6 +551,18 @@ export class SelectModulePage {
                              																  option6 : opts[5],
                                                               option7 : opts[6],
                                                               option8 : opts[7],
+                                                              option9 : opts[8],
+                                                              option10 : opts[9],
+                                                              option11 : opts[10],
+                                                              option12 : opts[11],
+                                                              option13 : opts[12],
+                                                              option14 : opts[13],
+                                                              option15 : opts[14],
+                                                              option16 : opts[15],
+                                                              option17 : opts[16],
+                                                              option18 : opts[17],
+                                                              option19 : opts[18],
+                                                              option20 : opts[19],
                                                               moduleID : moduleID,
                                                               options : opts
 
@@ -549,6 +598,18 @@ export class SelectModulePage {
                              																  option6 : opts[5],
                                                               option7 : opts[6],
                                                               option8 : opts[7],
+                                                              option9 : opts[8],
+                                                              option10 : opts[9],
+                                                              option11 : opts[10],
+                                                              option12 : opts[11],
+                                                              option13 : opts[12],
+                                                              option14 : opts[13],
+                                                              option15 : opts[14],
+                                                              option16 : opts[15],
+                                                              option17 : opts[16],
+                                                              option18 : opts[17],
+                                                              option19 : opts[18],
+                                                              option20 : opts[19],
                                                               moduleID : moduleID,
                                                               options : opts
 
@@ -643,6 +704,18 @@ export class SelectModulePage {
         opts[5] = this.quests[i].option6;
         opts[6] = this.quests[i].option7;
         opts[7] = this.quests[i].option8;
+        opts[8] = this.quests[i].option9;
+        opts[9] = this.quests[i].option10;
+        opts[10] = this.quests[i].option11;
+        opts[11] = this.quests[i].option12;
+        opts[12] = this.quests[i].option13;
+        opts[13] = this.quests[i].option14;
+        opts[14] = this.quests[i].option15;
+        opts[15] = this.quests[i].option16;
+        opts[16] = this.quests[i].option17;
+        opts[17] = this.quests[i].option18;
+        opts[18] = this.quests[i].option19;
+        opts[19] = this.quests[i].option20;
       }
     }
     return Promise.resolve(opts);

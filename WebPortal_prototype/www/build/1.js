@@ -1,6 +1,6 @@
 webpackJsonp([1],{
 
-/***/ 1269:
+/***/ 1231:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SelectModulePageModule", function() { return SelectModulePageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__select_module__ = __webpack_require__(1283);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__select_module__ = __webpack_require__(1245);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,7 +38,7 @@ var SelectModulePageModule = (function () {
 
 /***/ }),
 
-/***/ 1283:
+/***/ 1245:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -338,6 +338,18 @@ var SelectModulePage = (function () {
                         option6: opts[5],
                         option7: opts[6],
                         option8: opts[7],
+                        option9: opts[8],
+                        option10: opts[9],
+                        option11: opts[10],
+                        option12: opts[11],
+                        option13: opts[12],
+                        option14: opts[13],
+                        option15: opts[14],
+                        option16: opts[15],
+                        option17: opts[16],
+                        option18: opts[17],
+                        option19: opts[18],
+                        option20: opts[19],
                         moduleID: moduleID,
                         options: opts
                     })
@@ -368,6 +380,18 @@ var SelectModulePage = (function () {
                         option6: opts[5],
                         option7: opts[6],
                         option8: opts[7],
+                        option9: opts[8],
+                        option10: opts[9],
+                        option11: opts[10],
+                        option12: opts[11],
+                        option13: opts[12],
+                        option14: opts[13],
+                        option15: opts[14],
+                        option16: opts[15],
+                        option17: opts[16],
+                        option18: opts[17],
+                        option19: opts[18],
+                        option20: opts[19],
                         moduleID: moduleID,
                         options: opts
                     })
@@ -401,6 +425,18 @@ var SelectModulePage = (function () {
                         option6: opts[5],
                         option7: opts[6],
                         option8: opts[7],
+                        option9: opts[8],
+                        option10: opts[9],
+                        option11: opts[10],
+                        option12: opts[11],
+                        option13: opts[12],
+                        option14: opts[13],
+                        option15: opts[14],
+                        option16: opts[15],
+                        option17: opts[16],
+                        option18: opts[17],
+                        option19: opts[18],
+                        option20: opts[19],
                         moduleID: moduleID,
                         options: opts
                     })
@@ -431,6 +467,18 @@ var SelectModulePage = (function () {
                         option6: opts[5],
                         option7: opts[6],
                         option8: opts[7],
+                        option9: opts[8],
+                        option10: opts[9],
+                        option11: opts[10],
+                        option12: opts[11],
+                        option13: opts[12],
+                        option14: opts[13],
+                        option15: opts[14],
+                        option16: opts[15],
+                        option17: opts[16],
+                        option18: opts[17],
+                        option19: opts[18],
+                        option20: opts[19],
                         moduleID: moduleID,
                         options: opts
                     })
@@ -510,6 +558,18 @@ var SelectModulePage = (function () {
                 opts[5] = this.quests[i].option6;
                 opts[6] = this.quests[i].option7;
                 opts[7] = this.quests[i].option8;
+                opts[8] = this.quests[i].option9;
+                opts[9] = this.quests[i].option10;
+                opts[10] = this.quests[i].option11;
+                opts[11] = this.quests[i].option12;
+                opts[12] = this.quests[i].option13;
+                opts[13] = this.quests[i].option14;
+                opts[14] = this.quests[i].option15;
+                opts[15] = this.quests[i].option16;
+                opts[16] = this.quests[i].option17;
+                opts[17] = this.quests[i].option18;
+                opts[18] = this.quests[i].option19;
+                opts[19] = this.quests[i].option20;
             }
         }
         return Promise.resolve(opts);
@@ -601,7 +661,7 @@ var SelectModulePage = (function () {
     };
     SelectModulePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-select-module',template:/*ion-inline-start:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\select_module\select_module.html"*/'<!--\n\n  Generated template for the SelectModulePage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Module</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n  <form\n\n    [formGroup]=\'form\'\n\n    (ngSubmit)=\'updateModule(form.value)\'>\n\n\n\n    <ion-item>\n\n      <ion-label stacked>Modules Name:</ion-label>\n\n      <ion-input\n\n        type=\'text\'\n\n        formControlName=\'name\'\n\n        [(ngModel)]=\'name\'>\n\n      </ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n       <ion-label stacked>Type:</ion-label>\n\n       <ion-input\n\n          type="text"\n\n          formControlName="type"\n\n          [(ngModel)]="type" disabled="true"></ion-input>\n\n 	  </ion-item>\n\n\n\n    <div *ngIf="type == \'Time Initiated\'">\n\n      <ion-item>\n\n        <ion-label> Recurrence: </ion-label>\n\n        <ion-select formControlName="recurrence" [(ngModel)]="recurrence">\n\n          <ion-option value="once"> Once </ion-option>\n\n          <ion-option value="day"> Daily </ion-option>\n\n          <ion-option value="week"> Weekly </ion-option>\n\n        </ion-select>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n        <ion-label stacked>Hour(s)</ion-label>\n\n        <ion-input\n\n          type=\'number\'\n\n          formControlName=\'every_hour\'\n\n          [(ngModel)]=\'every_hour\'>\n\n        </ion-input>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n        <ion-label stacked>Minute(s)</ion-label>\n\n        <ion-input\n\n          type=\'number\'\n\n          formControlName=\'every_minute\'\n\n          [(ngModel)]=\'every_minute\'>\n\n        </ion-input>\n\n      </ion-item>\n\n\n\n      <ion-item>\n\n         <ion-label stacked> Start Time </ion-label>\n\n         <ion-datetime\n\n            displayFormat="hh:mma"\n\n            type="time"\n\n            formControlName="start_time"\n\n            [(ngModel)]="start_time"></ion-datetime>\n\n   	  </ion-item>\n\n\n\n      <ion-item>\n\n         <ion-label stacked> Start Date </ion-label>\n\n         <ion-input\n\n            type="date"\n\n            formControlName="start_date"\n\n            [(ngModel)]="start_date"></ion-input>\n\n   	  </ion-item>\n\n\n\n    </div>\n\n\n\n    <ion-item>\n\n       <button\n\n         ion-button\n\n         block\n\n         color="primary"\n\n         text-center\n\n         padding-top\n\n         padding-bottom\n\n         [disabled]="!form.valid">\n\n          <div *ngIf="!isEditable">\n\n             Add a new Module\n\n          </div>\n\n\n\n          <div *ngIf="isEditable">\n\n             Update this Module\n\n          </div>\n\n          </button>\n\n 	  </ion-item>\n\n\n\n  </form>\n\n\n\n  <ion-item>\n\n  <div *ngIf="isEditable">\n\n      <button\n\n        ion-button\n\n        block\n\n        color="danger"\n\n        text-center\n\n        padding-top\n\n        padding-bottom\n\n        [disabled]="!form.valid"\n\n        (click)="deleteDocument()">\n\n        Delete Module\n\n      </button>\n\n    </div>\n\n  </ion-item>\n\n\n\n  <h2> Questions </h2>\n\n\n\n  <ion-searchbar [(ngModel)] = "searchbar1" (ionInput)="searchQuestions($event)"></ion-searchbar>\n\n  <ion-list>\n\n    <button ion-item *ngFor=\'let question of questions\' (click)="updateDocument(question)">\n\n      <h2> {{ question.name }} </h2>\n\n    </button>\n\n  </ion-list>\n\n\n\n  <h2> Add Questions </h2>\n\n  <ion-searchbar [(ngModel)] = "searchbar2" (ionInput)="searchOtherQuestions($event)"></ion-searchbar>\n\n  <div *ngFor=\'let quest of quests\'>\n\n    <div *ngIf = "email == quest.owner">\n\n      <button ion-item (click)="saveQuestions(quest, docID)">\n\n      {{ quest.name }}\n\n      </button>\n\n    </div>\n\n  </div>\n\n\n\n  <button ion-button\n\n          block\n\n          color=\'primary\'\n\n          (click)="exportAnswers_Modules()">\n\n          Export Module Answers\n\n  </button>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Charizard31\Documents\GitHub\capstone\WebPortal_prototype\src\pages\select_module\select_module.html"*/,
+            selector: 'page-select-module',template:/*ion-inline-start:"/home/chantz/Desktop/projects/capstone/WebPortal_prototype/src/pages/select_module/select_module.html"*/'<!--\n  Generated template for the SelectModulePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Module</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <form\n    [formGroup]=\'form\'\n    (ngSubmit)=\'updateModule(form.value)\'>\n\n    <ion-item>\n      <ion-label stacked>Modules Name:</ion-label>\n      <ion-input\n        type=\'text\'\n        formControlName=\'name\'\n        [(ngModel)]=\'name\'>\n      </ion-input>\n    </ion-item>\n\n    <ion-item>\n       <ion-label stacked>Type:</ion-label>\n       <ion-input\n          type="text"\n          formControlName="type"\n          [(ngModel)]="type" disabled="true"></ion-input>\n 	  </ion-item>\n\n    <div *ngIf="type == \'Time Initiated\'">\n      <ion-item>\n        <ion-label> Recurrence: </ion-label>\n        <ion-select formControlName="recurrence" [(ngModel)]="recurrence">\n          <ion-option value="once"> Once </ion-option>\n          <ion-option value="day"> Daily </ion-option>\n          <ion-option value="week"> Weekly </ion-option>\n        </ion-select>\n      </ion-item>\n\n      <ion-item>\n        <ion-label stacked>Hour(s)</ion-label>\n        <ion-input\n          type=\'number\'\n          formControlName=\'every_hour\'\n          [(ngModel)]=\'every_hour\'>\n        </ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label stacked>Minute(s)</ion-label>\n        <ion-input\n          type=\'number\'\n          formControlName=\'every_minute\'\n          [(ngModel)]=\'every_minute\'>\n        </ion-input>\n      </ion-item>\n\n      <ion-item>\n         <ion-label stacked> Start Time </ion-label>\n         <ion-datetime\n            displayFormat="hh:mma"\n            type="time"\n            formControlName="start_time"\n            [(ngModel)]="start_time"></ion-datetime>\n   	  </ion-item>\n\n      <ion-item>\n         <ion-label stacked> Start Date </ion-label>\n         <ion-input\n            type="date"\n            formControlName="start_date"\n            [(ngModel)]="start_date"></ion-input>\n   	  </ion-item>\n\n    </div>\n\n    <ion-item>\n       <button\n         ion-button\n         block\n         color="primary"\n         text-center\n         padding-top\n         padding-bottom\n         [disabled]="!form.valid">\n          <div *ngIf="!isEditable">\n             Add a new Module\n          </div>\n\n          <div *ngIf="isEditable">\n             Update this Module\n          </div>\n          </button>\n 	  </ion-item>\n\n  </form>\n\n  <ion-item>\n  <div *ngIf="isEditable">\n      <button\n        ion-button\n        block\n        color="danger"\n        text-center\n        padding-top\n        padding-bottom\n        [disabled]="!form.valid"\n        (click)="deleteDocument()">\n        Delete Module\n      </button>\n    </div>\n  </ion-item>\n\n  <h2> Questions </h2>\n\n  <ion-searchbar [(ngModel)] = "searchbar1" (ionInput)="searchQuestions($event)"></ion-searchbar>\n  <ion-list>\n    <button ion-item *ngFor=\'let question of questions\' (click)="updateDocument(question)">\n      <h2> {{ question.name }} </h2>\n    </button>\n  </ion-list>\n\n  <h2> Add Questions </h2>\n  <ion-searchbar [(ngModel)] = "searchbar2" (ionInput)="searchOtherQuestions($event)"></ion-searchbar>\n  <div *ngFor=\'let quest of quests\'>\n    <div *ngIf = "email == quest.owner">\n      <button ion-item (click)="saveQuestions(quest, docID)">\n      {{ quest.name }}\n      </button>\n    </div>\n  </div>\n\n  <button ion-button\n          block\n          color=\'primary\'\n          (click)="exportAnswers_Modules()">\n          Export Module Answers\n  </button>\n\n</ion-content>\n'/*ion-inline-end:"/home/chantz/Desktop/projects/capstone/WebPortal_prototype/src/pages/select_module/select_module.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavParams */],
