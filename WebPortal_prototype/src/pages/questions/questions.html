@@ -61,6 +61,27 @@
         Add a new time based question
       </button>
     </div>
+
+    <div class = "col">
+      <button
+        ion-button
+        block
+        color='primary'
+        (click)='addDate()'>
+        Add a new Date question
+      </button>
+    </div>
+
+    <div class = "col">
+      <button
+        ion-button
+        block
+        color='primary'
+        (click)='addNumber()'>
+        Add a new Number question
+      </button>
+    </div>
+
   </div>
 
   <ion-searchbar [(ngModel)] = "searchbar" (ionInput)="searchQuestions($event)"></ion-searchbar>
@@ -148,6 +169,24 @@
            Update this question
          </button>
       </ng-container>
+
+      <ng-container *ngIf="location.type == 'date'">
+        <button
+          ion-button
+          color='secondary'
+          (click)='updateDate(location)'>
+          Update this question
+        </button>
+     </ng-container>
+
+     <ng-container *ngIf="location.type == 'number'">
+       <button
+         ion-button
+         color='secondary'
+         (click)='updateDate(location)'>
+         Update this question
+       </button>
+    </ng-container>
 
           <button
             ion-button

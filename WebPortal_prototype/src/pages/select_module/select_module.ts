@@ -369,7 +369,7 @@ export class SelectModulePage {
 
   saveQuestions(val : any, moduleID : any)
   {
-    if(val.type == "text" || val.type == "time"){
+    if(val.type == "text" || val.type == "time" || val.type == "date" || val.type == "number"){
 
       if(this.questions.length === 0)
       {

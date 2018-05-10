@@ -367,32 +367,6 @@ export class BranchingPage {
         });
      }
 
-     // Otherwise we are adding a new record
-     /*else
-     {
-
-        // Call the DatabaseProvider service and pass/format the data for use
-        // with the addDocument method
-        this._DB.addDocument(this._COLL,
-                           {
-                            name    : name,
-                            email    : email,
-                            phone   : phone,
-                            owner  : owner,
-                            sleep_end : sleep_end,
-                            sleep_start : sleep_start,
-                            study  : study
-                         })
-        .then((data) =>
-        {
-           this.clearForm();
-           this.displayAlert('Record added', 'The participant ' +  name + ' was successfully added');
-        })
-        .catch((error) =>
-        {
-           this.displayAlert('Adding participant failed', error.message);
-        });
-     }*/
   }
 
   /**

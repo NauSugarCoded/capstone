@@ -187,6 +187,16 @@ export class QuestionsPage {
       this.navCtrl.push('create_questionTime');
    }
 
+   addDate() : void
+   {
+      this.navCtrl.push('create_questionDate');
+   }
+
+   addNumber() : void
+   {
+      this.navCtrl.push('create_questionNumber');
+   }
+
 
    /**
     * Update a document by passing the data to the manage-document component
@@ -274,6 +284,40 @@ export class QuestionsPage {
          location     : obj
       };
       this.navCtrl.push('create_questionTime', { record : params, isEdited : true });
+   }
+
+   /**
+    * Update a document by passing the data to the manage-document component
+    *
+    * @public
+    * @method updateDate
+    * @param  obj          {Object}           The document data we wish to update
+    * @return {none}
+    */
+   updateDate(obj) : void
+   {
+      let params : any = {
+         collection   : this._COLL,
+         location     : obj
+      };
+      this.navCtrl.push('create_questionDate', { record : params, isEdited : true });
+   }
+
+   /**
+    * Update a document by passing the data to the manage-document component
+    *
+    * @public
+    * @method updateNumber
+    * @param  obj          {Object}           The document data we wish to update
+    * @return {none}
+    */
+   updateNumber(obj) : void
+   {
+      let params : any = {
+         collection   : this._COLL,
+         location     : obj
+      };
+      this.navCtrl.push('create_questionNumber', { record : params, isEdited : true });
    }
 
    /**
