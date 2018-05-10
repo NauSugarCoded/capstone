@@ -358,7 +358,7 @@ export class SelectModulePage {
      .then((data : any) =>
      {
         this.displayAlert('Success', 'The module ' + this.name + ' was successfully removed');
-        this.navCtrl.push(ModulesPage);
+        this.navCtrl.pop();
      })
      .catch((error : any) =>
      {
@@ -659,13 +659,34 @@ export class SelectModulePage {
 
 
   exportAnswers_Modules(){
-    this._DB.exportAnswers_Modules(this.docID, this.name);
+    var that = this;
+    console.log("zero tier");
+    this._DB.exportAnswers_Modules(this.docID, this.name)
+    .then((data) => {
+      console.log("first tier");
+      that._DB.createJSON(that.docID, data, that.name)
+      .then((data) => {
+        console.log("second tier");
+        that._DB.uploadJSON(data)
+        .then((data) => {
+          console.log("third tier");
+          that._DB.downloadAnswers_Modules(that.name)
+          .then((data) => {
+            console.log("fourth tier");
+            that.link = data;
+            window.location.href = that.link;
+            console.log(that.link);
+            //window.location.href = that.link["i"];
+          });
+        });
+      });
+    });
     this.flag = true;
   }
 
   setLink() : void
   {
-    this._DB.downloadAnswers_Modules(this.name);
+    window.location.href = this.link;
     this.firstFlag = true;
   }
 

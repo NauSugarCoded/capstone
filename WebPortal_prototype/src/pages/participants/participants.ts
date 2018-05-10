@@ -260,7 +260,23 @@ export class ParticipantsPage {
    }
 
    exportAnswers_Modules(){
-     this._DB.exportParticipants(this.email);
+     var that = this;
+     console.log("zero tier");
+     this._DB.exportParticipants(this.email)
+     .then((data) => {
+       console.log("first tier");
+       that._DB.createParticipantCSV(data)
+       .then((data) => {
+         console.log("second tier");
+         that._DB.downloadParticipants()
+         .then((data) => {
+           console.log("third tier");
+           that.link = data;
+           window.location.href = that.link;
+           console.log(that.link);
+         });
+       });
+     });
      this.flag = true;
    }
 
