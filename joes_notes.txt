@@ -1,0 +1,14 @@
+Issues encountered:
+.csv file received for a module was empty; why is this?
+can't host on firebase; ionic build errors out with lots of references to 'child_process'. apparently webpack cannot handle child_process
+where do the hosted files go once built?
+
+Solutions:
+the csv file was empty because of a race condition present in the javascript code. The code has been partially reverted:
+the user has to click a button 4 times, but it at least works now... touched up the code there so it runs faster as well, and should
+not cause more issues. SMALL TODO: change that button so you only need to click it once
+
+ionic was not building for exactly the reason above. This was rather tricky to fix, but ultimately child_process does not actually seem
+to be necessary for the app, so adding ' "browser": { "fs": false, "child_process": false } ' to the package.json of each package with a child process error fixed all errors.
+
+move all files within www after building into your public firebase folder. I recommend using firebase_public during firebase init so as to not confuse firebase public files with ionic public files.

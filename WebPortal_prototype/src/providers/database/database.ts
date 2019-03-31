@@ -23,7 +23,6 @@ export class DatabaseProvider {
   public data = {};
   public csv = [["Module Name","Participant ID", "Date", "Data"]];
   public i = 0;
-  public j = 0;
   public participantList = [["Number", "Participant ID"]];
 
   constructor(public http: HttpClient) {
@@ -85,18 +84,6 @@ export class DatabaseProvider {
            option6  :doc.data().option6,
            option7  :doc.data().option7,
            option8  :doc.data().option8,
-           option9  :doc.data().option9,
-           option10  :doc.data().option10,
-           option11  :doc.data().option11,
-           option12  :doc.data().option12,
-           option13  :doc.data().option13,
-           option14  :doc.data().option14,
-           option15  :doc.data().option15,
-           option16  :doc.data().option16,
-           option17  :doc.data().option17,
-           option18  :doc.data().option18,
-           option19  :doc.data().option19,
-           option20  :doc.data().option20,
            leftLabel  :doc.data().leftLabel,
            rightLabel  :doc.data().rightLabel
           });
@@ -136,6 +123,37 @@ export class DatabaseProvider {
     });
   }
 
+  /*getOptions_Modules(collectionObj: string) : Promise<any>{
+    return new Promise((resolve, reject) => {
+      this._DB.collection(collectionObj)
+      .get()
+      .then((querySnapshot) => {
+        let obj : any = [];
+
+        querySnapshot
+        .forEach((doc: any) => {
+          obj.push({
+           id             : doc.id,
+           name           : doc.data().name,
+           type     : doc.data().type,
+           qtext    : doc.data().qtext,
+           owner    : doc.data().owner,
+           option1  : doc.data().option1,
+           option2  : doc.data().option2,
+           option3  : doc.data().option3,
+           option4  : doc.data().option4,
+           option5  : doc.data().option5,
+           option6  : doc.data().option6,
+          });
+        });
+
+        resolve(obj);
+      })
+      .catch((error : any) => {
+        reject(error);
+      });
+    });
+  }*/
 
   getParticipants(collectionObj: string) : Promise<any>{
     return new Promise((resolve, reject) => {
@@ -379,18 +397,6 @@ export class DatabaseProvider {
           option6  : dataObj.option6,
           option7  : dataObj.option7,
           option8  : dataObj.option8,
-          option9  : dataObj.option9,
-          option10  : dataObj.option10,
-          option11  : dataObj.option11,
-          option12  : dataObj.option12,
-          option13  : dataObj.option13,
-          option14  : dataObj.option14,
-          option15  : dataObj.option15,
-          option16  : dataObj.option16,
-          option17  : dataObj.option17,
-          option18  : dataObj.option18,
-          option19  : dataObj.option19,
-          option20  : dataObj.option20,
           options : dataObj.options,
         })
         .then((obj : any) => {
@@ -589,10 +595,9 @@ export class DatabaseProvider {
         });
     }
 
-    exportAnswers_Modules(moduleID : string, moduleName : string) : any{
+    exportAnswers_Modules(moduleID : string, moduleName : string){
 
       this.data = {};
-      this.csv = [["Module Name","Participant ID", "Date", "Data"]];
       this.i = 0;
       this.data[moduleID] = {};
       let userList = [];
@@ -602,97 +607,101 @@ export class DatabaseProvider {
           userList.push(doc.id);
           this.data[moduleID][doc.id] = {};
         })
-        return Promise.resolve(userList);
+        this.createJSON(moduleID, userList, moduleName);
       })
       .catch((error : any) => {
         console.log(error);
       });
-
-      return Promise.resolve(userList);
     }
 
-    exportParticipants(owner : any) : any{
-      let participantList = [["Number", "Participant ID"]];
+    exportParticipants(owner : any){
+      this.participantList = [["Number", "Participant ID"]];
       this.i = 1;
       this._DB.collection("Participants").get()
       .then(snapshot => {
         snapshot.forEach(doc => {
+          console.log(doc.data().owner);
           if(doc.data().owner == owner){
-            participantList[this.i] = [this.i, doc.id];
+            this.participantList[this.i] = [this.i, doc.id];
             this.i += 1;
           }
         })
-        return Promise.resolve(participantList);
-      })
-      .catch((error : any) => {
-        console.log(error);
-      });
-
-      return Promise.resolve(participantList);
-    }
-
-    exportAnswers_Modules_helper(moduleID : string, user : any, moduleName : string){
-
-      console.log(user);
-      this._DB
-      .collection("Answers").doc(user).collection(moduleName)
-      .get()
-      .then(snapshot => {
-        snapshot.forEach(doc => {
-          this.i += 1;
-          var myData = doc.data()
-          var stringData = JSON.stringify(myData);
-          this.csv[this.i] = [moduleName, user, doc.id, stringData];
-          this.data[moduleID][user][doc.id] = doc.data();
-        })
-
+        this.createParticipantCSV();
       })
       .catch((error : any) => {
         console.log(error);
       });
     }
 
-
-    createJSON(moduleID : string, userList : any, moduleName : string) : any{
-
-      this.j = 0;
+    exportAnswers_Modules_helper(moduleID : string,userList : any,moduleName : string){
+      let NEW_csv = [["Module Name","Participant ID", "Date", "Data"]];
+      let async_counter=0; //necessary since .then does not work for forEach; prevents race conditions
+      console.log(userList);
       userList.forEach((user) =>{
-        this.exportAnswers_Modules_helper(moduleID, user, moduleName);
-        this.j += 1;
-      })
-
-      if(this.j == userList.length){
-        return Promise.resolve(moduleName);
-      }
+        this._DB
+        .collection("Answers").doc(user).collection(moduleName)
+        .get()
+        .then(snapshot => {
+          snapshot.forEach(doc => {
+            this.i += 1;
+            var myData = doc.data()
+            for(let dataCol in myData) {
+              if(typeof(myData[dataCol])=="string"){
+                myData[dataCol]=myData[dataCol].replace(",",";")
+              }
+            }
+            var stringData = JSON.stringify(myData);
+            NEW_csv[this.i] = [moduleName, user, doc.id, stringData];
+            this.data[moduleID][user][doc.id] = doc.data();
+          })
+        })
+        .catch((error : any) => {
+          console.log(error);
+        })
+        .then(empty => {
+          if(++async_counter>=userList.length){
+            this.uploadJSON(moduleName, NEW_csv);
+          }
+          console.log("Counter:")
+          console.log(async_counter)
+          console.log(userList.length)
+        });
+      });
     }
 
-    uploadJSON(moduleName : string) : any {
+
+    createJSON(moduleID : string, userList : any, moduleName : string) {
+
+      this.exportAnswers_Modules_helper(moduleID,userList, moduleName);
+
+    }
+
+    uploadJSON(moduleName : string, NEW_csv :any) {
       console.log(this.data);
       console.log(this.csv);
       console.log(this.i);
-      this.createCSV(moduleName);
-      var that = this;
-      var myData =  JSON.stringify(this.data);
+      this.createCSV(moduleName,NEW_csv);
+      var myData =  JSON.stringify(NEW_csv);
+
       this.filename = 'firestore-answers-to-module-' + moduleName + '.json';
       this.ref.child(this.filename).putString(myData).then(function(snapshot) {
         console.log('Uploaded JSON');
-        return Promise.resolve(moduleName);
       })
       .catch((error : any) => {
         console.log(error);
       });
-
-      return Promise.resolve(moduleName);
     }
 
-    createCSV(moduleName : string) {
+    createCSV(moduleName : string,NEW_csv : any) {
       let csvContent = "";
-      this.csv.forEach(function(rowArray) {
-        let row = rowArray.join(",");
+      console.log("FULL CSV")
+      console.log(NEW_csv)
+      for(let i=0; i<NEW_csv.length;i++) {
+        console.log("loop")
+        let row = NEW_csv[i].join(",");
+        console.log(row)
         csvContent += row + "\r\n";
-      });
-
-
+      }
       this.filename = 'firestore-answers-to-module-' + moduleName + '.csv';
       this.ref.child(this.filename).putString(csvContent).then(function(snapshot) {
         console.log('Uploaded CSV');
@@ -702,9 +711,9 @@ export class DatabaseProvider {
       });
     }
 
-    createParticipantCSV(participantList : any) : any{
+    createParticipantCSV() {
       let csvContent = "";
-      participantList.forEach(function(rowArray) {
+      this.participantList.forEach(function(rowArray) {
         let row = rowArray.join(",");
         csvContent += row + "\r\n";
       });
@@ -712,26 +721,22 @@ export class DatabaseProvider {
       this.filename = 'firestore-participants.csv';
       this.ref.child(this.filename).putString(csvContent).then(function(snapshot) {
         console.log('Uploaded CSV');
-        return Promise.resolve(participantList);
       })
       .catch((error : any) => {
         console.log(error);
       });
-      return Promise.resolve(participantList);
     }
 
-    downloadAnswers_Modules(moduleName : string): any {
+    downloadAnswers_Modules(moduleName : string): void {
       var fileRef = this.storage.ref('firestore-answers-to-module-' + moduleName + '.csv');
       this.url = fileRef.getDownloadURL();
       console.log(this.url);
-      return Promise.resolve(this.url);
     }
 
-    downloadParticipants() : any {
+    downloadParticipants() {
       var fileRef = this.storage.ref('firestore-participants.csv');
       this.url = fileRef.getDownloadURL();
       console.log(this.url);
-      return Promise.resolve(this.url);
     }
 
     returnURL() : any {

@@ -9,5 +9,8 @@ import { ForgotPassPage } from './forgot_pass';
   imports: [
     IonicPageModule.forChild(ForgotPassPage),
   ],
+  exports: [
+    ForgotPassPage,
+  ]
 })
 export class ForgotPassPageModule {}

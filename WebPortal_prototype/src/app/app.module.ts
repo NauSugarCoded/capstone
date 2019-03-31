@@ -4,16 +4,16 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpClientModule } from '@angular/common/http';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-import { StudiesPage } from '../pages/studies/studies';
-import { CreateStudyPage } from '../pages/create_study/create_study';
-import { ModulesPage } from '../pages/modules/modules';
-import { LoginPage } from '../pages/login/login';
-import { SignupPage } from '../pages/signup/signup';
-import { ForgotPassPage } from '../pages/forgot_pass/forgot_pass';
-import { QuestionsPage } from '../pages/questions/questions';
-import { CreateQuestionPage } from '../pages/create_question/create_question';
-import { ParticipantsPage } from '../pages/participants/participants';
+import { HomePageModule } from '../pages/home/home.module';
+import { StudiesPageModule } from '../pages/studies/studies.module';
+import { CreateStudyPageModule } from '../pages/create_study/create_study.module';
+import { ModulesPageModule } from '../pages/modules/modules.module';
+import { LoginPageModule } from '../pages/login/login.module';
+import { SignupPageModule } from '../pages/signup/signup.module';
+import { ForgotPassPageModule } from '../pages/forgot_pass/forgot_pass.module';
+import { QuestionsPageModule } from '../pages/questions/questions.module';
+import { CreateQuestionPageModule } from '../pages/create_question/create_question.module';
+import { ParticipantsPageModule } from '../pages/participants/participants.module';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -40,31 +40,23 @@ firebase.initializeApp(config);
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
-    StudiesPage,
-    ModulesPage,
-    LoginPage,
-    SignupPage,
-    ForgotPassPage,
-    QuestionsPage,
-    ParticipantsPage
   ],
   imports: [
+    HomePageModule,
+    StudiesPageModule,
+    ModulesPageModule,
+    SignupPageModule,
+    QuestionsPageModule,
+    ParticipantsPageModule,
     BrowserModule,
     HttpClientModule,
+    ForgotPassPageModule,
+    LoginPageModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
-    StudiesPage,
-    ModulesPage,
-    LoginPage,
-    SignupPage,
-    ForgotPassPage,
-    QuestionsPage,
-    ParticipantsPage
   ],
   providers: [
     StatusBar,

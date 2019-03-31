@@ -3,6 +3,10 @@ import { NavController, AlertController } from 'ionic-angular';
 import { DatabaseProvider } from '../../providers/database/database';
 import { UsersserviceProvider } from '../../providers/usersservice/usersservice';
 
+//You can also create a new NgModule that exports and includes ForgotPassPage
+//in /home/joe/sugar_coded_firebase_site/capstone_old/WebPortal_prototype/src/pages/forgot_pass/forgot_pass.ts
+//then import that NgModule in AppModule in /home/joe/sugar_coded_firebase_site/capstone_old/WebPortal_prototype/src/app/app.module.ts
+//and ForgotPassPageModule in /home/joe/sugar_coded_firebase_site/capstone_old/WebPortal_prototype/src/pages/forgot_pass/forgot_pass.module.ts.
 
 @Component({
   selector: 'page-participants',
@@ -262,21 +266,7 @@ export class ParticipantsPage {
    exportAnswers_Modules(){
      var that = this;
      console.log("zero tier");
-     this._DB.exportParticipants(this.email)
-     .then((data) => {
-       console.log("first tier");
-       that._DB.createParticipantCSV(data)
-       .then((data) => {
-         console.log("second tier");
-         that._DB.downloadParticipants()
-         .then((data) => {
-           console.log("third tier");
-           that.link = data;
-           window.location.href = that.link;
-           console.log(that.link);
-         });
-       });
-     });
+     this._DB.exportParticipants(this.email);
      this.flag = true;
    }
 

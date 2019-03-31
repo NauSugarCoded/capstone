@@ -147,18 +147,18 @@ export class SelectModulePage {
   /**
    * @name quests
    * @type {object}
-   * @private
+   * @public
    * @description     property that stores the value for the database collection
    */
-  private quests 		: any;
+  public quests 		: any;
 
   /**
    * @name questions
    * @type {object}
-   * @private
+   * @public
    * @description     property that stores the value for the database collection
    */
-  private questions 		: any;
+  public questions 		: any;
   private option1       : string;
   private option2       : string;
   private option3       : string;
@@ -732,34 +732,13 @@ export class SelectModulePage {
 
 
   exportAnswers_Modules(){
-    var that = this;
-    console.log("zero tier");
-    this._DB.exportAnswers_Modules(this.docID, this.name)
-    .then((data) => {
-      console.log("first tier");
-      that._DB.createJSON(that.docID, data, that.name)
-      .then((data) => {
-        console.log("second tier");
-        that._DB.uploadJSON(data)
-        .then((data) => {
-          console.log("third tier");
-          that._DB.downloadAnswers_Modules(that.name)
-          .then((data) => {
-            console.log("fourth tier");
-            that.link = data;
-            window.location.href = that.link;
-            console.log(that.link);
-            //window.location.href = that.link["i"];
-          });
-        });
-      });
-    });
+    this._DB.exportAnswers_Modules(this.docID, this.name);
     this.flag = true;
   }
 
   setLink() : void
   {
-    window.location.href = this.link;
+    this._DB.downloadAnswers_Modules(this.name);
     this.firstFlag = true;
   }
 

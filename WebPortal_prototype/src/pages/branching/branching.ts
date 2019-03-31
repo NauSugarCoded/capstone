@@ -148,8 +148,8 @@ export class BranchingPage {
   private questions 		: any;
   private qID     : any;
   private quest : any;
-  private qtext : any;
-  private type : any;
+  public qtext : any;
+  public type : any;
   private options : any;
   private quest_id : any;
   private moduleID : any;
